@@ -10,15 +10,23 @@ public class Usuario {
 		this.nombre = nombre;
 		this.contrasenia = contrasenia;
 	}
+	
 	public boolean validarContrasenia() {
 		return validarLongitud() 
 				&& validarNumerosLetras();
 	}
+	
 	private boolean validarNumerosLetras() {
-		// TODO Auto-generated method stub
-		return false;
+		return contieneNumerosYLetras(contrasenia);
 	}
+	
 	private boolean validarLongitud() {
 		return contrasenia.length() >= LONGITUD_CONTRASENIA;
+	}
+	
+	private boolean contieneNumerosYLetras(String str) {
+    	String numerosRegex   = ".*[0-9].*";
+    	String letrasRegex = ".*[a-zA-Z].*";
+		return str.matches(numerosRegex) && str.matches(letrasRegex);
 	}
 }
