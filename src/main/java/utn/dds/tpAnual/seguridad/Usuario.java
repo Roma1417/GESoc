@@ -11,8 +11,8 @@ public class Usuario {
 
 	private String nombre;
 	private String contrasenia;
-	private int LONGITUD_CONTRASENIA = 8;
-	private String NOMBRE_ARCHIVO_CONTRASENIAS = "peoresContrasenias.txt";
+	private final int LONGITUD_CONTRASENIA = 8;
+	private final String NOMBRE_ARCHIVO_CONTRASENIAS = "peoresContrasenias.txt";
 
 	public Usuario(String nombre, String contrasenia) {
 		this.nombre = nombre;
