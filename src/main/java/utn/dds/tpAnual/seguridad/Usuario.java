@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Usuario {
 
@@ -15,7 +13,8 @@ public class Usuario {
 	private final String NOMBRE_ARCHIVO_CONTRASENIAS = "peoresContrasenias.txt";
 	private final String NOMBRE_ARCHIVO_DICCIONARIO = "dictionaryPasswords.txt";
 	private final String NOMBRE_ARCHIVO_PALABRAS_PROHIBIDAS = "palabrasProhibidas.txt";
-
+	private final int CANTIDAD_REPETICIONES_CARACTER_MAXIMA = 3;
+	
 	public Usuario(String nombre, String contrasenia) {
 		this.nombre = nombre;
 		this.contrasenia = contrasenia;
@@ -53,7 +52,7 @@ public class Usuario {
 		for(int i = 0; i < contrasenia.length() - 1 ; i++) {
 			int diferenciaNueva = contrasenia.charAt(i) - contrasenia.charAt(i + 1);
 			if(diferenciaEntreCaracteres != null && diferenciaEntreCaracteres == diferenciaNueva) {
-				if(++cantidadRepeticiones == 3) {
+				if(++cantidadRepeticiones == CANTIDAD_REPETICIONES_CARACTER_MAXIMA) {
 					return true;
 				}
 			}else {

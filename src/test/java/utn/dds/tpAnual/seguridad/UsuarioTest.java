@@ -51,7 +51,7 @@ public class UsuarioTest {
     }
     
     @Test
-    public void otraContraseniaReptitiva() {
+    public void otraContraseniaRepetitiva() {
     	Usuario usuario = new Usuario("un usuario valido", "1contraseniaNoTaaaanSegura");
     	assertFalse(usuario.validarContrasenia());
     }
