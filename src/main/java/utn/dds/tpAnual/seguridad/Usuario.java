@@ -13,6 +13,7 @@ public class Usuario {
 	private String contrasenia;
 	private final int LONGITUD_CONTRASENIA = 8;
 	private final String NOMBRE_ARCHIVO_CONTRASENIAS = "peoresContrasenias.txt";
+	private final String NOMBRE_ARCHIVO_DICCIONARIO = "dictionaryPasswords.txt";
 
 	public Usuario(String nombre, String contrasenia) {
 		this.nombre = nombre;
@@ -22,7 +23,8 @@ public class Usuario {
 	public boolean validarContrasenia() {
 		return validarLongitud() 
 				&& validarNumerosLetras()
-				&& !esPeorContrasenia();
+				&& !esPeorContrasenia()
+				&& !esContraseniaDiccionario();
 	}
 
 	private boolean validarNumerosLetras() {
@@ -38,17 +40,24 @@ public class Usuario {
 		String letrasRegex = ".*[a-zA-Z].*";
 		return str.matches(numerosRegex) && str.matches(letrasRegex);
 	}
+	
+	private boolean esContraseniaDiccionario() {
+		try {
+			return buscarContraseniaEn("./src/main/resources/" + NOMBRE_ARCHIVO_DICCIONARIO);
+		} catch (IOException e) {
+			return true;
+		}
+	}
 
 	private boolean esPeorContrasenia() {
 		try {
-			return buscarContraseniaEnTop();
+			return buscarContraseniaEn("./src/main/resources/" + NOMBRE_ARCHIVO_CONTRASENIAS);
 		} catch (IOException e) {
 			return false;
 		}
 	}
 	
-	private boolean buscarContraseniaEnTop() throws IOException {
-		String pathArchivo = "./src/main/resources/" + NOMBRE_ARCHIVO_CONTRASENIAS;
+	private boolean buscarContraseniaEn(String pathArchivo) throws IOException {
 		File peoresContraseniasFile = new File(pathArchivo);
 		if (peoresContraseniasFile.exists()) {
 			return archivoContienePalabra(peoresContraseniasFile, contrasenia);
@@ -66,11 +75,11 @@ public class Usuario {
 		while((linea = bufferedReader.readLine()) != null) {
 			if(linea.equals(palabra)) {
 				bufferedReader.close();
-				return false;
+				return true;
 			}
 		}
 		bufferedReader.close();
-		return true;
+		return false;
 		
 	}
 }
