@@ -40,38 +40,32 @@ public class Usuario {
 		String letrasRegex = ".*[a-zA-Z].*";
 		return str.matches(numerosRegex) && str.matches(letrasRegex);
 	}
-	
+
 	private boolean esContraseniaDiccionario() {
-		try {
-			return buscarContraseniaEn("./src/main/resources/" + NOMBRE_ARCHIVO_DICCIONARIO);
-		} catch (IOException e) {
-			return true;
-		}
+		return buscarContraseniaEn("./src/main/resources/" + NOMBRE_ARCHIVO_DICCIONARIO, false);
 	}
 
 	private boolean esPeorContrasenia() {
-		try {
-			return buscarContraseniaEn("./src/main/resources/" + NOMBRE_ARCHIVO_CONTRASENIAS);
-		} catch (IOException e) {
-			return false;
-		}
+		return buscarContraseniaEn("./src/main/resources/" + NOMBRE_ARCHIVO_CONTRASENIAS, true);
 	}
-	
-	private boolean buscarContraseniaEn(String pathArchivo) throws IOException {
+
+	private boolean buscarContraseniaEn(String pathArchivo, boolean validacionObligatoria){
 		File peoresContraseniasFile = new File(pathArchivo);
-		if (peoresContraseniasFile.exists()) {
-			return archivoContienePalabra(peoresContraseniasFile, contrasenia);
-		} else {
-			throw new RuntimeException("El archivo de contraseñas no pudo ser encontrado en "
-					+ pathArchivo);
+		try {
+			if (peoresContraseniasFile.exists()) {
+				return archivoContienePalabra(peoresContraseniasFile, contrasenia);
+			}
+		}catch (IOException exception) {
+			System.out.println("Hubo un error al buscar la contrasenia en el archivo" + pathArchivo);
 		}
+		return validacionObligatoria;
 	}
 
 	private boolean archivoContienePalabra(File archivoALeer, String palabra) throws IOException {
 		FileReader lectorArchivo = new FileReader(archivoALeer);
 		BufferedReader bufferedReader = new BufferedReader(lectorArchivo);
 		String linea;
-		
+
 		while((linea = bufferedReader.readLine()) != null) {
 			if(linea.equals(palabra)) {
 				bufferedReader.close();
@@ -80,6 +74,5 @@ public class Usuario {
 		}
 		bufferedReader.close();
 		return false;
-		
 	}
 }
