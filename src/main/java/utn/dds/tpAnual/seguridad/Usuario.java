@@ -10,10 +10,12 @@ public class Usuario {
 	private String nombre;
 	private String contrasenia;
 	private final int LONGITUD_CONTRASENIA = 8;
+	private final String PATH = "./src/main/resources/";
 	private final String NOMBRE_ARCHIVO_CONTRASENIAS = "peoresContrasenias.txt";
 	private final String NOMBRE_ARCHIVO_DICCIONARIO = "dictionaryPasswords.txt";
 	private final String NOMBRE_ARCHIVO_PALABRAS_PROHIBIDAS = "palabrasProhibidas.txt";
 	private final int CANTIDAD_REPETICIONES_CARACTER_MAXIMA = 3;
+	
 	
 	public Usuario(String nombre, String contrasenia) {
 		this.nombre = nombre;
@@ -64,15 +66,15 @@ public class Usuario {
 	}
 
 	private boolean esContraseniaDiccionario() {
-		return buscarContraseniaEn("./src/main/resources/" + NOMBRE_ARCHIVO_DICCIONARIO, false);
+		return buscarContraseniaEn(PATH + NOMBRE_ARCHIVO_DICCIONARIO, false);
 	}
 
 	private boolean esPeorContrasenia() {
-		return buscarContraseniaEn("./src/main/resources/" + NOMBRE_ARCHIVO_CONTRASENIAS, true);
+		return buscarContraseniaEn(PATH + NOMBRE_ARCHIVO_CONTRASENIAS, true);
 	}
 	
 	private boolean esPalabraProhibida() {
-		return buscarContraseniaEn("./src/main/resources/" + NOMBRE_ARCHIVO_PALABRAS_PROHIBIDAS, true);
+		return buscarContraseniaEn(PATH + NOMBRE_ARCHIVO_PALABRAS_PROHIBIDAS, true);
 	}
 	
 	private boolean tieneNombreEnContrasenia() {
