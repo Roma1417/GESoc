@@ -14,6 +14,7 @@ public class Usuario {
 	private final int LONGITUD_CONTRASENIA = 8;
 	private final String NOMBRE_ARCHIVO_CONTRASENIAS = "peoresContrasenias.txt";
 	private final String NOMBRE_ARCHIVO_DICCIONARIO = "dictionaryPasswords.txt";
+	private final String NOMBRE_ARCHIVO_PALABRAS_PROHIBIDAS = "palabrasProhibidas.txt";
 
 	public Usuario(String nombre, String contrasenia) {
 		this.nombre = nombre;
@@ -25,7 +26,9 @@ public class Usuario {
 				&& validarNumerosLetras()
 				&& !esPeorContrasenia()
 				&& !esContraseniaDiccionario()
-				&& !esContraseniaRepetitiva();
+				&& !esContraseniaRepetitiva()
+				&& !tieneNombreEnContrasenia()
+				&& !esPalabraProhibida();
 	}
 
 	private boolean validarNumerosLetras() {
@@ -36,6 +39,7 @@ public class Usuario {
 		return contrasenia.length() >= LONGITUD_CONTRASENIA;
 	}
 
+	
 	private boolean contieneNumerosYLetras(String str) {
 		String numerosRegex   = ".*[0-9].*";
 		String letrasRegex = ".*[a-zA-Z].*";
@@ -66,6 +70,14 @@ public class Usuario {
 
 	private boolean esPeorContrasenia() {
 		return buscarContraseniaEn("./src/main/resources/" + NOMBRE_ARCHIVO_CONTRASENIAS, true);
+	}
+	
+	private boolean esPalabraProhibida() {
+		return buscarContraseniaEn("./src/main/resources/" + NOMBRE_ARCHIVO_PALABRAS_PROHIBIDAS, true);
+	}
+	
+	private boolean tieneNombreEnContrasenia() {
+		return contrasenia.contains(nombre);
 	}
 
 	private boolean buscarContraseniaEn(String pathArchivo, boolean validacionObligatoria){
