@@ -24,7 +24,8 @@ public class Usuario {
 		return validarLongitud() 
 				&& validarNumerosLetras()
 				&& !esPeorContrasenia()
-				&& !esContraseniaDiccionario();
+				&& !esContraseniaDiccionario()
+				&& !esContraseniaRepetitiva();
 	}
 
 	private boolean validarNumerosLetras() {
@@ -40,6 +41,24 @@ public class Usuario {
 		String letrasRegex = ".*[a-zA-Z].*";
 		return str.matches(numerosRegex) && str.matches(letrasRegex);
 	}
+	
+	private boolean esContraseniaRepetitiva() {
+		Integer cantidadRepeticiones = 1;
+		Integer diferenciaEntreCaracteres = null;
+		
+		for(int i = 0; i < contrasenia.length() - 1 ; i++) {
+			int diferenciaNueva = contrasenia.charAt(i) - contrasenia.charAt(i + 1);
+			if(diferenciaEntreCaracteres != null && diferenciaEntreCaracteres == diferenciaNueva) {
+				if(++cantidadRepeticiones == 3) {
+					return true;
+				}
+			}else {
+				diferenciaEntreCaracteres = diferenciaNueva;
+				cantidadRepeticiones = 1;
+			}
+		}
+		return false;
+	}
 
 	private boolean esContraseniaDiccionario() {
 		return buscarContraseniaEn("./src/main/resources/" + NOMBRE_ARCHIVO_DICCIONARIO, false);
@@ -50,10 +69,10 @@ public class Usuario {
 	}
 
 	private boolean buscarContraseniaEn(String pathArchivo, boolean validacionObligatoria){
-		File peoresContraseniasFile = new File(pathArchivo);
+		File contraseniasFile = new File(pathArchivo);
 		try {
-			if (peoresContraseniasFile.exists()) {
-				return archivoContienePalabra(peoresContraseniasFile, contrasenia);
+			if (contraseniasFile.exists()) {
+				return archivoContienePalabra(contraseniasFile, contrasenia);
 			}
 		}catch (IOException exception) {
 			System.out.println("Hubo un error al buscar la contrasenia en el archivo" + pathArchivo);
