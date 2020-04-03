@@ -40,38 +40,37 @@ public class Usuario {
 	}
 
 	private boolean esPeorContrasenia() {
-		List<String> listadoPeoresContrasenias;
 		try {
-			listadoPeoresContrasenias = getTopContrasenias();
+			return buscarContraseniaEnTop();
 		} catch (IOException e) {
 			return false;
 		}
-		return listadoPeoresContrasenias.contains(contrasenia);
 	}
 	
-	private List<String> getTopContrasenias() throws IOException {
+	private boolean buscarContraseniaEnTop() throws IOException {
 		String pathArchivo = "./src/main/resources/" + NOMBRE_ARCHIVO_CONTRASENIAS;
 		File peoresContraseniasFile = new File(pathArchivo);
-
 		if (peoresContraseniasFile.exists()) {
-			return getContenidoArchivo(peoresContraseniasFile);
+			return archivoContienePalabra(peoresContraseniasFile, contrasenia);
 		} else {
 			throw new RuntimeException("El archivo de contraseñas no pudo ser encontrado en "
 					+ pathArchivo);
 		}
 	}
 
-	private List<String> getContenidoArchivo(File archivoALeer) throws IOException {
+	private boolean archivoContienePalabra(File archivoALeer, String palabra) throws IOException {
 		FileReader lectorArchivo = new FileReader(archivoALeer);
 		BufferedReader bufferedReader = new BufferedReader(lectorArchivo);
-		List<String> lineasArchivo = new ArrayList<String>();
 		String linea;
-
+		
 		while((linea = bufferedReader.readLine()) != null) {
-			lineasArchivo.add(linea);
+			if(linea.equals(palabra)) {
+				bufferedReader.close();
+				return false;
+			}
 		}
 		bufferedReader.close();
+		return true;
 		
-		return lineasArchivo;
 	}
 }
