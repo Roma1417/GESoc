@@ -1,0 +1,7 @@
+gestion
+informacion
+sistema
+proyecto
+empresa
+organizacion
+social
