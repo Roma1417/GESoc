@@ -3,7 +3,7 @@
 /**
  * @author Tomas
  * @version 1.0
- * @created 10-abr.-2020 17:39:45
+ * @created 10-abr.-2020 18:19:19
  */
 public class Presupuesto extends Operacion {
 
