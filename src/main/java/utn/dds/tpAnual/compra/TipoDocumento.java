@@ -1,3 +1,5 @@
+package utn.dds.tpAnual.compra;
+
 
 
 /**
@@ -8,13 +10,9 @@
 public class TipoDocumento {
 
 	private Long codigoDocumento;
-	public DocumentoComercial m_DocumentoComercial;
 
 	public TipoDocumento(){
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-}//end TipoDocumento
+}

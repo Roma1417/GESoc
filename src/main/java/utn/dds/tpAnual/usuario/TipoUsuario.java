@@ -1,3 +1,5 @@
+package utn.dds.tpAnual.usuario;
+
 
 
 /**
@@ -7,13 +9,8 @@
  */
 public abstract class TipoUsuario {
 
-	public UsuarioEntidad m_UsuarioEntidad;
-
 	public TipoUsuario(){
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-}//end TipoUsuario
+}

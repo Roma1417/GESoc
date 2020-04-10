@@ -1,3 +1,5 @@
+package utn.dds.tpAnual.afip;
+
 
 
 /**
@@ -9,13 +11,9 @@ public class TamanioEmpresa {
 
 	private int jerarquia;
 	private String nombre;
-	public RequisitoSectorEmpresa m_RequisitoSectorEmpresa;
 
 	public TamanioEmpresa(){
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-}//end TamanioEmpresa
+}

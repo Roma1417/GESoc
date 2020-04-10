@@ -1,4 +1,4 @@
-
+package utn.dds.tpAnual.usuario;
 
 /**
  * @author Daiana
@@ -11,7 +11,4 @@ public class Admin extends TipoUsuario {
 
 	}
 
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-}//end Admin
+}

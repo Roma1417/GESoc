@@ -1,3 +1,5 @@
+package utn.dds.tpAnual.entidad;
+
 
 
 /**
@@ -14,7 +16,4 @@ public class EntidadBase extends Entidad {
 
 	}
 
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-}//end EntidadBase
+}

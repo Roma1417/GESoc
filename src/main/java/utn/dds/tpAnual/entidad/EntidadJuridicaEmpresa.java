@@ -1,4 +1,10 @@
+package utn.dds.tpAnual.entidad;
 
+import java.util.List;
+
+import utn.dds.tpAnual.afip.Actividad;
+import utn.dds.tpAnual.afip.TamanioEmpresa;
+import utn.dds.tpAnual.afip.VentaAnual;
 
 /**
  * @author Daiana
@@ -15,10 +21,6 @@ public class EntidadJuridicaEmpresa extends EntidadJuridica {
 	public EntidadJuridicaEmpresa(){
 
 	}
-
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
 	/**
 	 * 
 	 * @param anio
@@ -30,4 +32,4 @@ public class EntidadJuridicaEmpresa extends EntidadJuridica {
 	public TamanioEmpresa getTamanioEmpresa(){
 		return null;
 	}
-}//end EntidadJuridicaEmpresa
+}

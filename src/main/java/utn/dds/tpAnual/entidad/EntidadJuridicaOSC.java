@@ -1,3 +1,5 @@
+package utn.dds.tpAnual.entidad;
+
 
 
 /**
@@ -11,7 +13,4 @@ public class EntidadJuridicaOSC extends EntidadJuridica {
 
 	}
 
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-}//end EntidadJuridicaOSC
+}

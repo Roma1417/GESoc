@@ -1,4 +1,8 @@
+package utn.dds.tpAnual.validador;
 
+import java.util.List;
+
+import utn.dds.tpAnual.compra.Presupuesto;
 
 /**
  * @author Tomas
@@ -11,14 +15,12 @@ public class CriterioMenorPrecio extends CriterioCompra {
 
 	}
 
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
 	/**
 	 * 
 	 * @param presupuestos
 	 */
+	@Override
 	public Presupuesto getPresupestoQueCumpla(List<Presupuesto> presupuestos){
 		return null;
 	}
-}//end CriterioMenorPrecio
+}

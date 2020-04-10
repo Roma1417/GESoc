@@ -1,3 +1,5 @@
+package utn.dds.tpAnual.compra;
+
 
 
 /**
@@ -9,13 +11,9 @@ public class MedioPago {
 
 	private Long codigo;
 	private String instrumentoPago;
-	public OperacionEfectuada m_OperacionEfectuada;
 
 	public MedioPago(){
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-}//end MedioPago
+}

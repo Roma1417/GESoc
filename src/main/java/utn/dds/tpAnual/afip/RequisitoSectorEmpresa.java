@@ -1,4 +1,4 @@
-
+package utn.dds.tpAnual.afip;
 
 /**
  * @author Tomas
@@ -15,19 +15,23 @@ public class RequisitoSectorEmpresa {
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
 	/**
 	 * 
 	 * @param cantidadEmpleados
 	 * @param facturacionMaxima
 	 */
-	public void excedeAlgunRequisito(int cantidadEmpleados, Float facturacionMaxima){
-		//return cantidadEmpleados >this.
-		//maximoEmpleados || facturacionMaximas >
-		//this.maximaFacturacion
-
-
+	public boolean excedeAlgunRequisito(int cantidadEmpleados, Float facturacionMaxima){
+		return cantidadEmpleados > this.maximoEmpleados 
+				|| facturacionMaxima > this.maximoFacturacion;
 	}
-}//end RequisitoSectorEmpresa
+
+	public TamanioEmpresa getTamanioEmpresa() {
+		return tamanioEmpresa;
+	}
+
+	public void setTamanioEmpresa(TamanioEmpresa tamanioEmpresa) {
+		this.tamanioEmpresa = tamanioEmpresa;
+	}
+	
+	
+}

@@ -1,3 +1,5 @@
+package utn.dds.tpAnual.usuario;
+
 
 
 /**
@@ -14,7 +16,4 @@ public class Mensaje {
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-}//end Mensaje
+}

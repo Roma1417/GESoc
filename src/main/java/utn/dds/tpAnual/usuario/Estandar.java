@@ -1,3 +1,5 @@
+package utn.dds.tpAnual.usuario;
+
 
 
 /**
@@ -11,7 +13,4 @@ public class Estandar extends TipoUsuario {
 
 	}
 
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-}//end Estandar
+}

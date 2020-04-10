@@ -1,3 +1,5 @@
+package utn.dds.tpAnual.proveedor;
+
 
 
 /**
@@ -14,7 +16,4 @@ public class ProveedorPersona extends Proveedor {
 
 	}
 
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-}//end ProveedorPersona
+}

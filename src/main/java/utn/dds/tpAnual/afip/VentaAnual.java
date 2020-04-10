@@ -1,3 +1,5 @@
+package utn.dds.tpAnual.afip;
+
 
 
 /**
@@ -14,7 +16,4 @@ public class VentaAnual {
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-}//end VentaAnual
+}

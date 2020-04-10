@@ -1,4 +1,10 @@
+package utn.dds.tpAnual.compra;
 
+import java.util.List;
+
+import utn.dds.tpAnual.proveedor.Proveedor;
+import utn.dds.tpAnual.usuario.Usuario;
+import utn.dds.tpAnual.validador.CriterioCompra;
 
 /**
  * @author Daiana
@@ -10,16 +16,10 @@ public class Egreso extends OperacionEfectuada {
 	private int cantidadPresupuestosMinimos;
 	private CriterioCompra criterioCompra;
 	private Proveedor proveedor;
-	private List<Usuarios> revisores;
-	public CriterioCompra m_CriterioCompra;
-	public Usuario m_Usuario;
-	public Proveedor m_Proveedor;
+	private List<Usuario> revisores;
 
 	public Egreso(){
 
 	}
 
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-}//end Egreso
+}

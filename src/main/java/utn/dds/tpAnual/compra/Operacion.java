@@ -1,4 +1,6 @@
+package utn.dds.tpAnual.compra;
 
+import utn.dds.tpAnual.entidad.Entidad;
 
 /**
  * @author Daiana
@@ -9,14 +11,10 @@ public abstract class Operacion {
 
 	private DocumentoComercial documentoComercial;
 	private Entidad entidadRealizadora;
-	public DocumentoComercial m_DocumentoComercial;
 
 	public Operacion(){
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
 	public abstract Float getTotal();
-}//end Operacion
+}

@@ -1,3 +1,5 @@
+package utn.dds.tpAnual.compra;
+
 
 
 /**
@@ -10,13 +12,8 @@ public class DetalleOperacion {
 	private int cantidad;
 	private Item item;
 	private Float precio;
-	public Item m_Item;
 
 	public DetalleOperacion(){
-
-	}
-
-	public void finalize() throws Throwable {
 
 	}
 	/**
@@ -25,7 +22,9 @@ public class DetalleOperacion {
 	 * @param precio
 	 * @param cantidad
 	 */
-	public DetalleOperacion(Item item, Float precio, Int cantidad){
-
+	public DetalleOperacion(Item item, Float precio, int cantidad){
+		this.item = item;
+		this.precio = precio;
+		this.cantidad = cantidad;
 	}
 }//end DetalleOperacion

@@ -1,4 +1,4 @@
-
+package utn.dds.tpAnual.compra;
 
 /**
  * @author Daiana
@@ -10,13 +10,9 @@ public class DocumentoComercial {
 	private Long codigoDocumento;
 	private Pais pais;
 	private TipoDocumento tipoDocumento;
-	public Pais m_Pais;
 
 	public DocumentoComercial(){
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-}//end DocumentoComercial
+}

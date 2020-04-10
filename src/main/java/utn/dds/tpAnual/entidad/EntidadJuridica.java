@@ -1,4 +1,6 @@
+package utn.dds.tpAnual.entidad;
 
+import java.util.List;
 
 /**
  * @author Daiana
@@ -12,13 +14,9 @@ public abstract class EntidadJuridica extends Entidad {
 	private int direccionPostal;
 	private List<EntidadBase> entidadesBase;
 	private String razonSocial;
-	public EntidadBase m_EntidadBase;
 
 	public EntidadJuridica(){
 
 	}
 
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-}//end EntidadJuridica
+}

@@ -1,3 +1,5 @@
+package utn.dds.tpAnual.compra;
+
 
 
 /**
@@ -13,7 +15,4 @@ public class Pais {
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-}//end Pais
+}

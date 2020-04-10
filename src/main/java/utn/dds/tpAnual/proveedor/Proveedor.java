@@ -1,3 +1,5 @@
+package utn.dds.tpAnual.proveedor;
+
 
 
 /**
@@ -13,7 +15,4 @@ public abstract class Proveedor {
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-}//end Proveedor
+}

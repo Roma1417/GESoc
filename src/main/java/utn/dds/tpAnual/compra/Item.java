@@ -1,3 +1,5 @@
+package utn.dds.tpAnual.compra;
+
 
 
 /**
@@ -14,7 +16,4 @@ public class Item {
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-}//end Item
+}

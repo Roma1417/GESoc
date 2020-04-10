@@ -1,3 +1,5 @@
+package utn.dds.tpAnual.entidad;
+
 
 
 /**
@@ -8,13 +10,10 @@
 public abstract class Entidad {
 
 	private String nombre;
-	public Operacion m_Operacion;
 
 	public Entidad(){
 
 	}
 
-	public void finalize() throws Throwable {
 
-	}
-}//end Entidad
+}

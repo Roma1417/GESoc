@@ -1,4 +1,6 @@
+package utn.dds.tpAnual.usuario;
 
+import utn.dds.tpAnual.entidad.Entidad;
 
 /**
  * @author Daiana
@@ -10,13 +12,9 @@ public class UsuarioEntidad {
 	private Entidad entidad;
 	private TipoUsuario tipoUsuario;
 	private Usuario usuario;
-	public Entidad m_Entidad;
 
 	public UsuarioEntidad(){
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-}//end UsuarioEntidad
+}

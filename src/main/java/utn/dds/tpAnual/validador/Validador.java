@@ -1,4 +1,9 @@
+package utn.dds.tpAnual.validador;
 
+import java.util.List;
+
+import utn.dds.tpAnual.compra.Egreso;
+import utn.dds.tpAnual.usuario.Usuario;
 
 /**
  * @author Tomas
@@ -11,9 +16,6 @@ public class Validador {
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
 	/**
 	 * 
 	 * @param egreso
@@ -42,7 +44,7 @@ public class Validador {
 	 * 
 	 * @param usuarios
 	 */
-	private void notificarRevisores(List<Usuarios> usuarios){
+	private void notificarRevisores(List<Usuario> usuarios){
 
 	}
 
@@ -53,4 +55,4 @@ public class Validador {
 	public boolean validarEgreso(Egreso egreso){
 		return false;
 	}
-}//end Validador
+}

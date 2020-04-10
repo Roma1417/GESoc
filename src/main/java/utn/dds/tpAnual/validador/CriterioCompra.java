@@ -1,4 +1,8 @@
+package utn.dds.tpAnual.validador;
 
+import java.util.List;
+
+import utn.dds.tpAnual.compra.Presupuesto;
 
 /**
  * @author Tomas
@@ -13,12 +17,9 @@ public abstract class CriterioCompra {
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
 	/**
 	 * 
 	 * @param presupuestos
 	 */
 	public abstract Presupuesto getPresupestoQueCumpla(List<Presupuesto> presupuestos);
-}//end CriterioCompra
+}

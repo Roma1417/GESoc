@@ -1,4 +1,6 @@
+package utn.dds.tpAnual.compra;
 
+import java.util.List;
 
 /**
  * @author Tomas
@@ -12,10 +14,6 @@ public class Presupuesto extends Operacion {
 	public Presupuesto(){
 
 	}
-
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
 	/**
 	 * 
 	 * @param detalles
@@ -27,4 +25,4 @@ public class Presupuesto extends Operacion {
 	public Float getTotal(){
 		return null;
 	}
-}//end Presupuesto
+}

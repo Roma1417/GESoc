@@ -1,4 +1,7 @@
+package utn.dds.tpAnual.compra;
 
+import java.time.LocalDate;
+import java.util.List;
 
 /**
  * @author Tomas
@@ -16,10 +19,7 @@ public abstract class OperacionEfectuada extends Operacion {
 
 	}
 
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
 	public Float getTotal(){
 		return null;
 	}
-}//end OperacionEfectuada
+}

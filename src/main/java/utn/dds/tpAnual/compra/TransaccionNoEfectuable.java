@@ -1,3 +1,5 @@
+package utn.dds.tpAnual.compra;
+
 
 
 /**
@@ -11,7 +13,4 @@ public class TransaccionNoEfectuable {
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-}//end TransaccionNoEfectuable
+}
