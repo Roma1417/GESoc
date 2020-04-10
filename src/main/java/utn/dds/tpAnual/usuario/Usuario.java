@@ -1,14 +1,25 @@
-package utn.dds.tpAnual.seguridad;
+package utn.dds.tpAnual.usuario;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.List;
 
+/**
+ * @author Daiana
+ * @version 1.0
+ * @created 10-abr.-2020 18:19:19
+ */
 public class Usuario {
 
-	private String nombre;
+	private List<Mensaje> bandejaMensajes;
+	private int cantidadIntentos;
 	private String contrasenia;
+	private LocalDateTime fechaEspera;
+	private String nombre;
+	
 	private final int LONGITUD_CONTRASENIA = 8;
 	private final String PATH = "./src/main/resources/";
 	private final String NOMBRE_ARCHIVO_CONTRASENIAS = "peoresContrasenias.txt";
@@ -16,6 +27,9 @@ public class Usuario {
 	private final String NOMBRE_ARCHIVO_PALABRAS_PROHIBIDAS = "palabrasProhibidas.txt";
 	private final int CANTIDAD_REPETICIONES_CARACTER_MAXIMA = 3;
 	
+	public Usuario(){
+
+	}
 	
 	public Usuario(String nombre, String contrasenia) {
 		this.nombre = nombre;
