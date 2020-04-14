@@ -21,8 +21,10 @@ public abstract class OperacionEfectuada extends Operacion {
 
 	public Float getTotal(){
 		Float total = 0F;
-		for (DetalleOperacion detalle : detalles) {
-			total += detalle.getTotal();
+		if(detalles!=null) {
+			for (DetalleOperacion detalle : detalles) {
+				total += detalle.getTotal();
+			}
 		}
 		return total;
 	}

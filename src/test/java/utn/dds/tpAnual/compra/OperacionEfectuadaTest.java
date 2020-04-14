@@ -25,4 +25,10 @@ public class OperacionEfectuadaTest {
     	assertTrue(egreso.getTotal().equals(390F));
     }
     
+    
+    @Test
+    public void getTotalDeOperacionEfectuadaSiNoHayDetalles() {
+    	Egreso egreso = new Egreso();
+    	assertTrue(egreso.getTotal().equals(0F));
+    }
 }
