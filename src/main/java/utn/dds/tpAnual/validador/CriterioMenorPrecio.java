@@ -21,6 +21,23 @@ public class CriterioMenorPrecio extends CriterioCompra {
 	 */
 	@Override
 	public Presupuesto getPresupestoQueCumpla(List<Presupuesto> presupuestos){
-		return null;
+		
+Presupuesto presupuestoMenorPrecio = presupuestos.get(0);
+		
+		for(int x = 1 ; x < presupuestos.size() ; x=x+1) {
+			presupuestoMenorPrecio = menorPrecio(presupuestoMenorPrecio, presupuestos.get(x));
+		}
+		return presupuestoMenorPrecio;
 	}
+	
+	private Presupuesto menorPrecio(Presupuesto presupuestoA, Presupuesto presupuestoB) { 
+		if (presupuestoA.getTotal() > presupuestoB.getTotal()) 
+		return presupuestoA;
+		else return presupuestoB;
+	}
+	
+
+	
+	
+	
 }
