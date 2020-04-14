@@ -12,8 +12,9 @@ public class Item {
 	private Long codigo;
 	private String descripcion;
 
-	public Item(){
-
+	public Item(Long codigo, String descripcion){
+		this.codigo = codigo;
+		this.descripcion = descripcion;
 	}
 
 }

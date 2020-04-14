@@ -27,4 +27,8 @@ public class DetalleOperacion {
 		this.precio = precio;
 		this.cantidad = cantidad;
 	}
+	
+	public Float getPrecio() {
+		return precio;
+	}
 }//end DetalleOperacion

@@ -11,18 +11,27 @@ public class Presupuesto extends Operacion {
 
 	private List<DetallePrecio> detalles;
 
-	public Presupuesto(){
-
+	public Presupuesto(List<DetallePrecio> detalles){
+		this.detalles = detalles;
 	}
 	/**
 	 * 
 	 * @param detalles
 	 */
-	public Presupuesto(List<DetallePrecio> detalles){
-
-	}
+	
 
 	public Float getTotal(){
-		return null;
+		
+		float total = 0;
+		
+		for(int x=0 ; x<detalles.size() ; x++) {
+		total += detalles.get(x).getPrecioTotal();
+		}	
+		
+		return total;
 	}
+	
+	
+	
+	
 }
