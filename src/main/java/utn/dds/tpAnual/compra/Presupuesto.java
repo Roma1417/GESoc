@@ -22,7 +22,7 @@ public class Presupuesto extends Operacion {
 
 	public Float getTotal(){
 		
-		float total = 0;
+		Float total = 0F;
 		
 		for(int x=0 ; x<detalles.size() ; x++) {
 		total += detalles.get(x).getPrecioTotal();

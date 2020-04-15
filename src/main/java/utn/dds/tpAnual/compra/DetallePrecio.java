@@ -28,8 +28,8 @@ public class DetallePrecio {
 	}
 	
 	
-	public float getPrecioTotal() {
-		return precio * detalleOperacion.getPrecio();
+	public Float getPrecioTotal() {
+		return precio * detalleOperacion.getCantidad();
 	}
 	
 }
