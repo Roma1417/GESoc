@@ -18,8 +18,18 @@ public class Egreso extends OperacionEfectuada {
 	private Proveedor proveedor;
 	private List<Usuario> revisores;
 
-	public Egreso(){
+	public Egreso(int codigoOperacion, int cantidadPresupuestosMinimos, CriterioCompra criterioCompra,
+			Proveedor proveedor, List<Usuario> revisores){
+		super(codigoOperacion);
+		this.cantidadPresupuestosMinimos = cantidadPresupuestosMinimos;
+		this.criterioCompra = criterioCompra;
+		this.proveedor = proveedor;
+		this.revisores = revisores;
+		
+	}
 
+	public List<Usuario> getRevisores() {
+		return revisores;
 	}
 
 }

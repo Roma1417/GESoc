@@ -13,10 +13,9 @@ public abstract class OperacionEfectuada extends Operacion {
 	private List<DetalleOperacion> detalles;
 	private LocalDate fechaOperacion;
 	private MedioPago medioPago;
-	public DetalleOperacion m_DetalleOperacion;
 
-	public OperacionEfectuada(){
-
+	public OperacionEfectuada(int codigoOperacion){
+		super(codigoOperacion);
 	}
 
 	public Float getTotal(){
