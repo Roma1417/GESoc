@@ -8,29 +8,28 @@ import java.util.List;
  * @created 10-abr.-2020 18:19:19
  */
 public class Presupuesto extends Operacion {
-
 	private List<DetallePrecio> detalles;
 
 	public Presupuesto(List<DetallePrecio> detalles){
 		this.detalles = detalles;
 	}
+	
 	/**
 	 * 
 	 * @param detalles
 	 */
 	
-
 	public Float getTotal(){
-		
 		Float total = 0F;
 		
-		for(int x=0 ; x<detalles.size() ; x++) {
-		total += detalles.get(x).getPrecioTotal();
+		if (detalles != null && detalles.size() != 0) {
+			for(DetallePrecio detalle : detalles) {
+				total += detalle.getPrecioTotal();
+			}
 		}	
-		
 		return total;
-	}
-	
+}
+
 	
 	
 	
