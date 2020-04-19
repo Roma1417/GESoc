@@ -21,26 +21,18 @@ public class CriterioMenorPrecio extends CriterioCompra {
 	 */
 	@Override
 	public Presupuesto getPresupuestoQueCumpla(List<Presupuesto> presupuestos){
-		Presupuesto presupuestoMenorPrecio;
-		
-		if (presupuestos == null || presupuestos.size() == 0) {
-			presupuestoMenorPrecio = null;
-			} else {
-				presupuestoMenorPrecio = presupuestos.get(0);
-				
-				for(Presupuesto presupuesto : presupuestos) {	
-					presupuestoMenorPrecio = menorPrecio(presupuestoMenorPrecio, presupuesto);
-				}
+		Presupuesto presupuestoQueCumple = null;
+
+		if (presupuestos != null && presupuestos.size() > 0){
+			presupuestoQueCumple = presupuestos.get(0);
+			for(Presupuesto presupuesto : presupuestos) {	
+				presupuestoQueCumple = presupuestoDeMenorPrecio(presupuestoQueCumple, presupuesto);
 			}
-		return presupuestoMenorPrecio;
+		}
+		return presupuestoQueCumple;
 	}
-	
-	private Presupuesto menorPrecio(Presupuesto unPresupuesto, Presupuesto otroPresupuesto){
+
+	private Presupuesto presupuestoDeMenorPrecio(Presupuesto unPresupuesto, Presupuesto otroPresupuesto){
 		return unPresupuesto.getTotal() < otroPresupuesto.getTotal() ? unPresupuesto : otroPresupuesto;
 	}
-	
-
-	
-	
-	
 }
