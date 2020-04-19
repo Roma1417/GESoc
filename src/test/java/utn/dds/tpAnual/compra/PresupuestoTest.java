@@ -44,6 +44,4 @@ public class PresupuestoTest {
 	public void precioTotalDelDetalle() {
 		assertEquals(30F, unDetallePrecio.getPrecioTotal(),0);
 	}
-
-	
 }

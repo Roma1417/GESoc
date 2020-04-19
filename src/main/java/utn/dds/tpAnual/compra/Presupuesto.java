@@ -13,24 +13,20 @@ public class Presupuesto extends Operacion {
 	public Presupuesto(List<DetallePrecio> detalles){
 		this.detalles = detalles;
 	}
-	
+
 	/**
 	 * 
 	 * @param detalles
 	 */
-	
+
 	public Float getTotal(){
 		Float total = 0F;
-		
-		if (detalles != null && detalles.size() != 0) {
+
+		if (detalles != null) {
 			for(DetallePrecio detalle : detalles) {
 				total += detalle.getPrecioTotal();
 			}
 		}	
 		return total;
-}
-
-	
-	
-	
+	}
 }
