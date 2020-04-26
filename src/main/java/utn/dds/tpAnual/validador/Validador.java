@@ -20,24 +20,42 @@ public class Validador {
 	 * 
 	 * @param egreso
 	 */
+	private boolean cumpleMinimoPresupuesto(Egreso egreso){
+		int presupuestosMinimos = egreso.getCantidadPresupuestosMinimos();
+		List<Presupuesto> presupuestos = egreso.getPresupuestos(); 
+		if(!presupuestosMinimos)		
+			return true;
+		else if(!presupuestos)
+			return false;
+		return presupuestosMinimos <= presupuestos.size();
+	}
+	
+	/**
+	 * 
+	 * @param egreso
+	 */
 	private boolean cumpleBasarseEnPresupuesto(Egreso egreso){
-		return false;
+		List<Presupuesto> presupuestos = egreso.getPresupuestos();
+		List<DetalleOperacion> detallesOperacion = egreso.getDetalles();
+		return presupuestos.stream().any(coincidenPrecios(pres -> pres.getDetalles(), detallesOperacion));
 	}
 
+	private boolean coincidenPrecios(List<DetallePrecio> detallesPrecio, List<DetalleOperacion> detallesOperacion) {
+		List<Float> preciosPresupuesto = detallesPrecio.stream().map(dPr -> dPr.getPrecio()).collect(Collectors.toList());
+		List<Float> preciosOperacion = detallesOperacion.stream().map(dOp -> dOp.getPrecioOperacion()).collect(Collectors.toList());
+		return preciosPresupuesto.equals(preciosOperacion);
+	}
+	
 	/**
 	 * 
 	 * @param egreso
 	 */
 	private boolean cumpleCriterio(Egreso egreso){
-		return false;
-	}
-
-	/**
-	 * 
-	 * @param egreso
-	 */
-	private boolean cumpleMinimoPresupuesto(Egreso egreso){
-		return false;
+		Presupuesto presupuestoCumplidor = egreso.getCriterioCompra().getPresupuestoQueCumpla();
+		List<DetalleOperacion> detallesOperacion = egreso.getDetalles();
+		if(!presupuestoCumplidor)
+			return true;
+		return coincidenPrecios(presupuestoCumplidor.getDetalles(), detallesOperacion);
 	}
 
 	/**

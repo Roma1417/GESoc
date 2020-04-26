@@ -22,4 +22,8 @@ public abstract class OperacionEfectuada extends Operacion {
 	public Float getTotal(){
 		return null;
 	}
+	
+	public List<DetalleOperacion> getDetalles() {
+		return detalles;
+	}
 }

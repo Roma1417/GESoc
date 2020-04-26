@@ -15,6 +15,7 @@ public class Egreso extends OperacionEfectuada {
 
 	private int cantidadPresupuestosMinimos;
 	private CriterioCompra criterioCompra;
+	private List<Presupuesto> presupuestos;
 	private Proveedor proveedor;
 	private List<Usuario> revisores;
 
@@ -22,4 +23,15 @@ public class Egreso extends OperacionEfectuada {
 
 	}
 
+	public int getCantidadPresupuestosMinimos() {
+		return cantidadPresupuestosMinimos;
+	}
+	
+	public CriterioCompra getCriterioCompra() {
+		return criterioCompra;
+	}
+	
+	public List<Presupuesto> getPresupuestos(){
+		return presupuestos;
+	}
 }

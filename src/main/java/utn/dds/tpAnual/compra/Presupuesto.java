@@ -25,4 +25,8 @@ public class Presupuesto extends Operacion {
 	public Float getTotal(){
 		return null;
 	}
+	
+	public List<DetallePrecio> getDetalles(){
+		return detalles;
+	}
 }
