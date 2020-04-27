@@ -21,5 +21,5 @@ public abstract class CriterioCompra {
 	 * 
 	 * @param presupuestos
 	 */
-	public abstract Presupuesto getPresupestoQueCumpla(List<Presupuesto> presupuestos);
+	public abstract Presupuesto getPresupuestoQueCumpla(List<Presupuesto> presupuestos);
 }

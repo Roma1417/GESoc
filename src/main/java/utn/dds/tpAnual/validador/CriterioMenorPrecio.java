@@ -20,7 +20,7 @@ public class CriterioMenorPrecio extends CriterioCompra {
 	 * @param presupuestos
 	 */
 	@Override
-	public Presupuesto getPresupestoQueCumpla(List<Presupuesto> presupuestos){
+	public Presupuesto getPresupuestoQueCumpla(List<Presupuesto> presupuestos){
 		return null;
 	}
 }
