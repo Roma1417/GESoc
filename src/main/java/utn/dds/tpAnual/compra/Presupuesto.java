@@ -2,6 +2,8 @@ package utn.dds.tpAnual.compra;
 
 import java.util.List;
 
+import utn.dds.tpAnual.entidad.Entidad;
+
 /**
  * @author Tomas
  * @version 1.0
@@ -10,16 +12,10 @@ import java.util.List;
 public class Presupuesto extends Operacion {
 
 	private List<DetallePrecio> detalles;
-
-	public Presupuesto(){
-
-	}
-	/**
-	 * 
-	 * @param detalles
-	 */
-	public Presupuesto(List<DetallePrecio> detalles){
-
+	
+	public Presupuesto(DocumentoComercial documentoComercial, Entidad entidadRealizadora, List<DetallePrecio> detalles) {
+		super(documentoComercial, entidadRealizadora);
+		this.detalles = detalles;
 	}
 
 	public Float getTotal(){

@@ -1,10 +1,12 @@
 package utn.dds.tpAnual.compra;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import utn.dds.tpAnual.proveedor.Proveedor;
 import utn.dds.tpAnual.usuario.Usuario;
 import utn.dds.tpAnual.validador.CriterioCompra;
+import utn.dds.tpAnual.entidad.Entidad;
 
 /**
  * @author Daiana
@@ -18,11 +20,19 @@ public class Egreso extends OperacionEfectuada {
 	private List<Presupuesto> presupuestos;
 	private Proveedor proveedor;
 	private List<Usuario> revisores;
-
-	public Egreso(){
-
+	
+	public Egreso(DocumentoComercial documentoComercial, Entidad entidadRealizadora, List<DetalleOperacion> detalles,
+			LocalDate fechaOperacion, MedioPago medioPago, DetalleOperacion m_DetalleOperacion,
+			int cantidadPresupuestosMinimos, CriterioCompra criterioCompra, List<Presupuesto> presupuestos,
+			Proveedor proveedor, List<Usuario> revisores) {
+		super(documentoComercial, entidadRealizadora, detalles, fechaOperacion, medioPago, m_DetalleOperacion);
+		this.cantidadPresupuestosMinimos = cantidadPresupuestosMinimos;
+		this.criterioCompra = criterioCompra;
+		this.presupuestos = presupuestos;
+		this.proveedor = proveedor;
+		this.revisores = revisores;
 	}
-
+	
 	public int getCantidadPresupuestosMinimos() {
 		return cantidadPresupuestosMinimos;
 	}

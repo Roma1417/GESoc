@@ -1,7 +1,6 @@
 package utn.dds.tpAnual.validador;
 
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import utn.dds.tpAnual.compra.DetalleOperacion;
@@ -26,10 +25,10 @@ public class Validador {
 	 * 
 	 * @param egreso
 	 */
-	private boolean cumpleMinimoPresupuesto(Egreso egreso){
+	protected boolean cumpleMinimoPresupuesto(Egreso egreso){
 		int presupuestosMinimos = egreso.getCantidadPresupuestosMinimos();
 		List<Presupuesto> presupuestos = egreso.getPresupuestos(); 
-		if(presupuestosMinimos == 0)		
+		if(presupuestosMinimos == 0)
 			return true;
 		else if(presupuestos == null)
 			return false;
@@ -40,13 +39,15 @@ public class Validador {
 	 * 
 	 * @param egreso
 	 */
-	private boolean cumpleBasarseEnPresupuesto(Egreso egreso){
+	protected boolean cumpleBasarseEnPresupuesto(Egreso egreso){
 		List<Presupuesto> presupuestos = egreso.getPresupuestos();
 		List<DetalleOperacion> detallesOperacion = egreso.getDetalles();
+		if(presupuestos == null)
+			return true;
 		return presupuestos.stream().anyMatch(p -> coincidenPrecios(p.getDetalles(), detallesOperacion));
 	}
 
-	private boolean coincidenPrecios(List<DetallePrecio> detallesPrecio, List<DetalleOperacion> detallesOperacion) {
+	private boolean coincidenPrecios(List<DetallePrecio> detallesPrecio, List<DetalleOperacion> detallesOperacion){
 		List<Float> preciosPresupuesto = detallesPrecio.stream().map(dPr -> dPr.getPrecio()).collect(Collectors.toList());
 		List<Float> preciosOperacion = detallesOperacion.stream().map(dOp -> dOp.getPrecioOperacion()).collect(Collectors.toList());
 		return preciosPresupuesto.equals(preciosOperacion);
@@ -56,7 +57,7 @@ public class Validador {
 	 * 
 	 * @param egreso
 	 */
-	private boolean cumpleCriterio(Egreso egreso){
+	protected boolean cumpleCriterio(Egreso egreso){
 		Presupuesto presupuestoCumplidor = egreso.getCriterioCompra().getPresupuestoQueCumpla(egreso.getPresupuestos());
 		List<DetalleOperacion> detallesOperacion = egreso.getDetalles();
 		if(presupuestoCumplidor == null)

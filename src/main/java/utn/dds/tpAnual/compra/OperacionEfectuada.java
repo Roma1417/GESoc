@@ -3,6 +3,8 @@ package utn.dds.tpAnual.compra;
 import java.time.LocalDate;
 import java.util.List;
 
+import utn.dds.tpAnual.entidad.Entidad;
+
 /**
  * @author Tomas
  * @version 1.0
@@ -10,13 +12,18 @@ import java.util.List;
  */
 public abstract class OperacionEfectuada extends Operacion {
 
-	private List<DetalleOperacion> detalles;
-	private LocalDate fechaOperacion;
-	private MedioPago medioPago;
+	protected List<DetalleOperacion> detalles;
+	protected LocalDate fechaOperacion;
+	protected MedioPago medioPago;
 	public DetalleOperacion m_DetalleOperacion;
-
-	public OperacionEfectuada(){
-
+	
+	public OperacionEfectuada(DocumentoComercial documentoComercial, Entidad entidadRealizadora,
+			List<DetalleOperacion> detalles, LocalDate fechaOperacion, MedioPago medioPago, DetalleOperacion m_DetalleOperacion) {
+		super(documentoComercial, entidadRealizadora);
+		this.detalles = detalles;
+		this.fechaOperacion = fechaOperacion;
+		this.medioPago = medioPago;
+		this.m_DetalleOperacion = m_DetalleOperacion;
 	}
 
 	public Float getTotal(){

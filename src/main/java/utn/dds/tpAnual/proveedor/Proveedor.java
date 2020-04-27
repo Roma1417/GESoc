@@ -9,10 +9,9 @@ package utn.dds.tpAnual.proveedor;
  */
 public abstract class Proveedor {
 
-	private int direccionPostal;
+	protected int direccionPostal;
 
-	public Proveedor(){
-
+	public Proveedor(int direccionPostal) {
+		this.direccionPostal = direccionPostal;
 	}
-
 }
