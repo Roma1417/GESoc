@@ -31,4 +31,8 @@ public class DetalleOperacion {
 	public int getCantidad() {
 		return cantidad;
 	}
+	
+	public Float getTotal() {
+		return cantidad * precio;
+	}
 }//end DetalleOperacion

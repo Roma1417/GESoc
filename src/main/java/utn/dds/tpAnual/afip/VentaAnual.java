@@ -12,8 +12,20 @@ public class VentaAnual {
 	private int anio;
 	private Float ventasTotales;
 
+	public VentaAnual(int anio, Float ventasTotales){
+		this.anio = anio;
+		this.ventasTotales = ventasTotales;
+	}
+
 	public VentaAnual(){
 
 	}
 
+	public Float getVentasTotales() {
+		return ventasTotales;
+	}
+	
+	public int getAnio() {
+		return anio;
+	}
 }
