@@ -45,6 +45,7 @@ public class ValidadorTest {
 	private Presupuesto otroPresupuesto = new Presupuesto(documentoComercialTest, entidadRealizadora, otrosDetallesPrecio);
 	private List<Presupuesto> listaPresupuestosVacia;
 	private List<Presupuesto> listaPresupuestos = Arrays.asList(unPresupuesto, otroPresupuesto);
+	private List<Presupuesto> otraListaPresupuestos = Arrays.asList(otroPresupuesto, otroPresupuesto);
 	private List<Presupuesto> listaVariosPresupuestos = Arrays.asList(unPresupuesto, unPresupuesto, otroPresupuesto, otroPresupuesto);
 
 	//CriterioCompra
@@ -75,7 +76,7 @@ public class ValidadorTest {
 	
 	private Egreso egresoNoBasadoEnPresupuesto = new Egreso(documentoComercialTest, entidadRealizadora,
 														otrosDetallesOperacion, fechaOperacion, medioPago,
-														2, unCriterioCompra, listaPresupuestos, proveedorTest, revisoresTest);
+														2, unCriterioCompra, otraListaPresupuestos, proveedorTest, revisoresTest);
 	
 	private Egreso egresoBasadoEnPresupuesto = new Egreso(documentoComercialTest, entidadRealizadora,
 														unosDetallesOperacion, fechaOperacion, medioPago,
@@ -105,10 +106,12 @@ public class ValidadorTest {
 		assertFalse(validadorTest.validarCumpleBasarse(egresoConDetallesDeDistintoTamanio));
 	}
 	
+	@Test
 	public void cumpleBasarseEnPresupuestoConEgresoNoBasado() {
 		assertFalse(validadorTest.validarCumpleBasarse(egresoNoBasadoEnPresupuesto));
 	}
 	
+	@Test
 	public void cumpleBasarseEnPresupuestoConEgresoBasado() {
 		assertTrue(validadorTest.validarCumpleBasarse(egresoBasadoEnPresupuesto));
 	}
