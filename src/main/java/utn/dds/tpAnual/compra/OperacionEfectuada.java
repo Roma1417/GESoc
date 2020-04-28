@@ -15,10 +15,6 @@ public abstract class OperacionEfectuada extends Operacion {
 	private LocalDate fechaOperacion;
 	private MedioPago medioPago;
 
-    public OperacionEfectuada(){
-
-	}
-	
 	public OperacionEfectuada(int codigoOperacion){
 		super(codigoOperacion);
 	}

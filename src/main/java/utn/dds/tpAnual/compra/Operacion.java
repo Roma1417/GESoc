@@ -13,6 +13,10 @@ public abstract class Operacion {
 	private Entidad entidadRealizadora;
 	private int codigoOperacion;
 
+	public Operacion() {
+		
+	}
+	
 	public Operacion(int codigoOperacion){
 		this.codigoOperacion = codigoOperacion;
 	}
