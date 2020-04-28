@@ -25,7 +25,16 @@ public class DetalleOperacion {
 		this.cantidad = cantidad;
 	}
 	
-	public Float getPrecio() {
+	public int getCantidad() {
+		return cantidad;
+	}
+	
+    public Float getPrecio() {
 		return precio;
 	}
+    
+	public Float getTotal() {
+		return cantidad * precio;
+	}
+	
 }//end DetalleOperacion

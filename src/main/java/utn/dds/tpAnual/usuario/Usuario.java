@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,6 +45,13 @@ public class Usuario {
 				&& !esContraseniaRepetitiva()
 				&& !tieneNombreEnContrasenia()
 				&& !esPalabraProhibida();
+	}
+	
+	public void recibirMensaje(Mensaje mensaje) {
+		if(bandejaMensajes == null) {
+			bandejaMensajes = new ArrayList<Mensaje>();
+		}
+		bandejaMensajes.add(mensaje);
 	}
 
 	private boolean validarNumerosLetras() {
@@ -120,5 +128,8 @@ public class Usuario {
 		}
 		bufferedReader.close();
 		return false;
+	}
+	public List<Mensaje> getBandejaMensajes() {
+		return bandejaMensajes;
 	}
 }

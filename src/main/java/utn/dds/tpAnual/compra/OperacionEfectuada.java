@@ -1,6 +1,7 @@
 package utn.dds.tpAnual.compra;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import utn.dds.tpAnual.entidad.Entidad;
@@ -25,10 +26,23 @@ public abstract class OperacionEfectuada extends Operacion {
 	}
 
 	public Float getTotal(){
-		return null;
+		Float total = 0F;
+		if(detalles!=null) {
+			for (DetalleOperacion detalle : detalles) {
+				total += detalle.getTotal();
+			}
+		}
+		return total;
 	}
 	
 	public List<DetalleOperacion> getDetallesOperacion() {
 		return detallesOperacion;
+	}
+	
+	public void addDetalleOperacion(DetalleOperacion detalle) {
+		if(detallesOperacion == null) {
+			detallesOperacion = new ArrayList<DetalleOperacion>();
+		}
+		detallesOperacion.add(detalle);
 	}
 }

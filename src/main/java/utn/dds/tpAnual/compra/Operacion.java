@@ -16,6 +16,14 @@ public abstract class Operacion {
 		this.documentoComercial = documentoComercial;
 		this.entidadRealizadora = entidadRealizadora;
 	}
+	
+	public Operacion(int codigoOperacion){
+		this.codigoOperacion = codigoOperacion;
+	}
+	
+	public int getCodigoOperacion() {
+		return codigoOperacion;
+	}
 
 	public abstract Float getTotal();
 }

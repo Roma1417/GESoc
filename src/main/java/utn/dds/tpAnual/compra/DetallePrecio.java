@@ -30,4 +30,8 @@ public class DetallePrecio {
 		return detalleOperacion;
 	}
 	
+	public Float getPrecioTotal() {
+		return precio * detalleOperacion.getCantidad();
+	}
+	
 }
