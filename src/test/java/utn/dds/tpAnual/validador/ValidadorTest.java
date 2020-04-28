@@ -26,24 +26,26 @@ public class ValidadorTest {
 	private Item itemTest = new Item();
 	private DetalleOperacion unDetalleOperacion = new DetalleOperacion(itemTest, 10F, 3);
 	private DetalleOperacion otroDetalleOperacion = new DetalleOperacion(itemTest, 20F, 4);
-	private List<DetalleOperacion> unosDetallesOperacion = Arrays.asList(unDetalleOperacion, otroDetalleOperacion);
+	private List<DetalleOperacion> unosDetallesOperacion = Arrays.asList(unDetalleOperacion, unDetalleOperacion);
+	private List<DetalleOperacion> otrosDetallesOperacion = Arrays.asList(unDetalleOperacion, otroDetalleOperacion);
 	
 	//OperacionEfectuada
 	private LocalDate fechaOperacion;
 	private MedioPago medioPago;
-	private DetalleOperacion m_DetalleOperacion;
 	
 	//DetallePrecio
 	private DetallePrecio unDetallePrecio = new DetallePrecio(unDetalleOperacion, 10F);
 	private DetallePrecio otroDetallePrecio = new DetallePrecio(otroDetalleOperacion, 12F);
-	private List<DetallePrecio> unosDetallesPrecio = Arrays.asList(unDetallePrecio, otroDetallePrecio);
-	private List<DetallePrecio> otrosDetallesPrecio = Arrays.asList(unDetallePrecio, unDetallePrecio, otroDetallePrecio, otroDetallePrecio);
+	private List<DetallePrecio> unosDetallesPrecio = Arrays.asList(unDetallePrecio, unDetallePrecio);
+	private List<DetallePrecio> otrosDetallesPrecio = Arrays.asList(unDetallePrecio, otroDetallePrecio);
+	//private List<DetallePrecio> variosDetallesPrecio = Arrays.asList(unDetallePrecio, unDetallePrecio, otroDetallePrecio, otroDetallePrecio);
 	
 	//Presupuesto
 	private Presupuesto unPresupuesto = new Presupuesto(documentoComercialTest, entidadRealizadora, unosDetallesPrecio);
 	private Presupuesto otroPresupuesto = new Presupuesto(documentoComercialTest, entidadRealizadora, otrosDetallesPrecio);
-	private List<Presupuesto> listaPresupuestos = Arrays.asList(unPresupuesto, otroPresupuesto);
 	private List<Presupuesto> listaPresupuestosVacia;
+	private List<Presupuesto> listaPresupuestos = Arrays.asList(unPresupuesto, otroPresupuesto);
+	private List<Presupuesto> listaVariosPresupuestos = Arrays.asList(unPresupuesto, unPresupuesto, otroPresupuesto, otroPresupuesto);
 
 	//CriterioCompra
 	private CriterioCompra unCriterioCompra;
@@ -55,44 +57,64 @@ public class ValidadorTest {
 	private Usuario otroRevisor = new Usuario("otroRevisor", "wuiefnwi471");
 	private List<Usuario> revisoresTest = Arrays.asList(unRevisor, otroRevisor);
 	
-	Egreso egresoSinPresupuestosMinimos = new Egreso(documentoComercialTest, entidadRealizadora,
-													unosDetallesOperacion, fechaOperacion, medioPago, m_DetalleOperacion,
+	private Egreso egresoSinPresupuestosMinimos = new Egreso(documentoComercialTest, entidadRealizadora,
+													unosDetallesOperacion, fechaOperacion, medioPago,
 													0, unCriterioCompra, listaPresupuestosVacia, proveedorTest, revisoresTest);
-	Egreso egresoSinPresupuestos = new Egreso(documentoComercialTest, entidadRealizadora,
-											unosDetallesOperacion, fechaOperacion, medioPago, m_DetalleOperacion,
+	
+	private Egreso egresoSinPresupuestos = new Egreso(documentoComercialTest, entidadRealizadora,
+											unosDetallesOperacion, fechaOperacion, medioPago,
 											2, unCriterioCompra, listaPresupuestosVacia, proveedorTest, revisoresTest);
-	Egreso egresoConPresupuestosSuficientes = new Egreso(documentoComercialTest, entidadRealizadora,
-														unosDetallesOperacion, fechaOperacion, medioPago, m_DetalleOperacion,
+	
+	private Egreso egresoConPresupuestosSuficientes = new Egreso(documentoComercialTest, entidadRealizadora,
+														unosDetallesOperacion, fechaOperacion, medioPago,
 														2, unCriterioCompra, listaPresupuestos, proveedorTest, revisoresTest);
-		
-	//----TESTS----
+	
+	private Egreso egresoConDetallesDeDistintoTamanio = new Egreso(documentoComercialTest, entidadRealizadora,
+														unosDetallesOperacion, fechaOperacion, medioPago,
+														2, unCriterioCompra, listaVariosPresupuestos, proveedorTest, revisoresTest);
+	
+	private Egreso egresoNoBasadoEnPresupuesto = new Egreso(documentoComercialTest, entidadRealizadora,
+														otrosDetallesOperacion, fechaOperacion, medioPago,
+														2, unCriterioCompra, listaPresupuestos, proveedorTest, revisoresTest);
+	
+	private Egreso egresoBasadoEnPresupuesto = new Egreso(documentoComercialTest, entidadRealizadora,
+														unosDetallesOperacion, fechaOperacion, medioPago,
+														2, unCriterioCompra, listaPresupuestos, proveedorTest, revisoresTest);
 	
 	//cumpleMinimoPresupuesto
 	
 	@Test
 	public void cumpleMinimoPresupuestoSinPresupuestosMinimos() {
-		assertTrue(validadorTest.cumpleMinimoPresupuesto(egresoSinPresupuestosMinimos));
+		assertTrue(validadorTest.validarCumpleMinimo(egresoSinPresupuestosMinimos));
 	}
 	
 	@Test
 	public void cumpleMinimoPresupuestoSinPresupuestos() {
-		assertFalse(validadorTest.cumpleMinimoPresupuesto(egresoSinPresupuestos));
+		assertFalse(validadorTest.validarCumpleMinimo(egresoSinPresupuestos));
 	}	
 
 	@Test
 	public void cumpleMinimoPresupuestoConSuficientesPresupuestos() {
-		assertTrue(validadorTest.cumpleMinimoPresupuesto(egresoConPresupuestosSuficientes));
+		assertTrue(validadorTest.validarCumpleMinimo(egresoConPresupuestosSuficientes));
 	}	
 	
 	//cumpleBasarseEnPresupuesto
 	
 	@Test
-	public void cumpleBasarseEnPresupuestoSinPresupuestos() {
-		assertFalse(validadorTest.cumpleBasarseEnPresupuesto(egresoSinPresupuestos));
+	public void cumpleBasarseEnPresupuestoConDetallesDeDistintoTamanio() {
+		assertFalse(validadorTest.validarCumpleBasarse(egresoConDetallesDeDistintoTamanio));
 	}
 	
-	//cumpleCriterio
+	public void cumpleBasarseEnPresupuestoConEgresoNoBasado() {
+		assertFalse(validadorTest.validarCumpleBasarse(egresoNoBasadoEnPresupuesto));
+	}
 	
-
+	public void cumpleBasarseEnPresupuestoConEgresoBasado() {
+		assertTrue(validadorTest.validarCumpleBasarse(egresoBasadoEnPresupuesto));
+	}
+	
+	//TODO:cumpleCriterio
+	
+	
 }
 

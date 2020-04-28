@@ -12,25 +12,23 @@ import utn.dds.tpAnual.entidad.Entidad;
  */
 public abstract class OperacionEfectuada extends Operacion {
 
-	protected List<DetalleOperacion> detalles;
+	protected List<DetalleOperacion> detallesOperacion;
 	protected LocalDate fechaOperacion;
 	protected MedioPago medioPago;
-	public DetalleOperacion m_DetalleOperacion;
 	
 	public OperacionEfectuada(DocumentoComercial documentoComercial, Entidad entidadRealizadora,
-			List<DetalleOperacion> detalles, LocalDate fechaOperacion, MedioPago medioPago, DetalleOperacion m_DetalleOperacion) {
+			List<DetalleOperacion> detallesOperacion, LocalDate fechaOperacion, MedioPago medioPago) {
 		super(documentoComercial, entidadRealizadora);
-		this.detalles = detalles;
+		this.detallesOperacion = detallesOperacion;
 		this.fechaOperacion = fechaOperacion;
 		this.medioPago = medioPago;
-		this.m_DetalleOperacion = m_DetalleOperacion;
 	}
 
 	public Float getTotal(){
 		return null;
 	}
 	
-	public List<DetalleOperacion> getDetalles() {
-		return detalles;
+	public List<DetalleOperacion> getDetallesOperacion() {
+		return detallesOperacion;
 	}
 }
