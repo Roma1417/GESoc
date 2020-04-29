@@ -13,10 +13,10 @@ public abstract class CriterioCompra {
 
 	private String nombreCriterio;
 
-	public CriterioCompra(){
-
+	public CriterioCompra() {
+		
 	}
-
+	
 	/**
 	 * 
 	 * @param presupuestos

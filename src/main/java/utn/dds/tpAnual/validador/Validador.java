@@ -33,6 +33,7 @@ public class Validador {
 		}
 		return instancia;
 	}
+	
 	/**
 	 * 
 	 * @param egreso
@@ -83,8 +84,7 @@ public class Validador {
 	 * 
 	 * @param usuarios
 	 */
-	//TODO: Pasar a private
-	protected void notificarRevisores(Egreso egreso, boolean resultado) {
+	private void notificarRevisores(Egreso egreso, boolean resultado) {
 		String asunto = ASUNTO_INICIO + egreso.getCodigoOperacion();
 		List<Usuario> usuarios = egreso.getRevisores();
 		
@@ -116,15 +116,19 @@ public class Validador {
 	
 	//--Test exclusive--
 	
-	protected boolean validarCumpleMinimo(Egreso egreso){
+	protected boolean testearCumpleMinimo(Egreso egreso){
 		return cumpleMinimoPresupuesto(egreso);
 	}
 	
-	protected boolean validarCumpleBasarse(Egreso egreso){
+	protected boolean testearCumpleBasarse(Egreso egreso){
 		return cumpleBasarseEnPresupuesto(egreso);
 	}
 	
-	protected boolean validarCumpleCriterio(Egreso egreso){
+	protected boolean testearCumpleCriterio(Egreso egreso){
 		return cumpleCriterio(egreso);
+	}
+	
+	protected void testearNotificar(Egreso egreso, boolean resultado) {
+		notificarRevisores(egreso, resultado);
 	}
 }
