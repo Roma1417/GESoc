@@ -63,8 +63,7 @@ public class ValidadorTest {
 	
 	private Egreso egresoSinPresupuestos = new Egreso(null, null, 542, null, null, null, 2, criterioMenorPrecio, listaPresupuestosVacia, null, null);
 	
-	private Egreso egresoRevisores = new Egreso(null, null, 0, null, null, null, 10, null, null, null, revisoresTest);
-	
+	private Egreso egresoCumplidor = new Egreso(null, null, 87, unosDetallesOperacion, null, null, 2, criterioMenorPrecio, unaListaPresupuestos, null, revisoresTest);
 	
 //	private Egreso egresoTest = new Egreso(documentoComercialTest, entidadRealizadora, codigoOperacion,
 //										unosDetallesOperacion, fechaOperacion, medioPago,
@@ -109,28 +108,45 @@ public class ValidadorTest {
 		assertTrue(validadorTest.testearCumpleBasarse(egresoBasadoEnPresupuesto));
 	}
 	
-	//TODO:cumpleCriterio
+	//cumpleCriterio
 	
 	@Test 
 	public void cumpleCriterioSinPresupuestoCumplidor() {
 		assertTrue(validadorTest.testearCumpleCriterio(egresoSinPresupuestos));
 	}
 	
+	@Test
 	public void cumpleCriterioSinCoincidenciaDePrecios() {
 		Egreso egresoIncumplidor = new Egreso(null, null, 87, unosDetallesOperacion, null, null, 2, criterioMenorPrecio, otraListaPresupuestos, null, null);
 		assertFalse(validadorTest.testearCumpleCriterio(egresoIncumplidor));
 	}
 	
+	@Test
 	public void cumpleCriterioMenorPrecio() {
-		Egreso egresoCumplidorDeCriterio = new Egreso(null, null, 87, unosDetallesOperacion, null, null, 2, criterioMenorPrecio, unaListaPresupuestos, null, null);
-		assertTrue(validadorTest.testearCumpleCriterio(egresoCumplidorDeCriterio));
+		assertTrue(validadorTest.testearCumpleCriterio(egresoCumplidor));
+	}
+	
+	//validarEgreso
+	
+	@Test
+	public void validarEgresoIncumplidor() {
+		boolean validez = validadorTest.validarEgreso(egresoSinPresupuestos);
+		List<Mensaje> mensajeUsuario = unRevisor.getBandejaMensajes();
+		assertFalse(validez && "Fallo de Validacion".equals(mensajeUsuario.get(0).getCuerpo()));
+	}
+
+	@Test
+	public void validarEgresoOk() {
+		boolean validez = validadorTest.validarEgreso(egresoCumplidor);
+		List<Mensaje> mensajeUsuario = unRevisor.getBandejaMensajes();
+		assertTrue(validez && "Validacion realizada con Exito".equals(mensajeUsuario.get(0).getCuerpo()));
 	}
 	
 	//notificarRevisores
     
     @Test
     public void notificarRevisoresEnvioOk() {
-    	validadorTest.testearNotificar(egresoRevisores, true);
+    	validadorTest.testearNotificar(egresoCumplidor, true);
     	List<Mensaje> mensajeUsuario = unRevisor.getBandejaMensajes();
     	List<Mensaje> mensajeOtroUsuario = otroRevisor.getBandejaMensajes();
     	
@@ -140,7 +156,7 @@ public class ValidadorTest {
     
     @Test
     public void notificarRevisoresEnvioError() {
-    	validadorTest.testearNotificar(egresoRevisores, false);
+    	validadorTest.testearNotificar(egresoCumplidor, false);
     	List<Mensaje> mensajeUsuario = unRevisor.getBandejaMensajes();
     	List<Mensaje> mensajeOtroUsuario = otroRevisor.getBandejaMensajes();
     	

@@ -95,14 +95,6 @@ public class Validador {
 			this.enviarMensajes(usuarios, asunto, MENSAJE_ERRONEO);
 		}
 	}
-
-	/**
-	 * 
-	 * @param egreso
-	 */
-	public boolean validarEgreso(Egreso egreso){
-		return cumpleMinimoPresupuesto(egreso) && cumpleBasarseEnPresupuesto(egreso) && cumpleCriterio(egreso);
-	}
 	
 	private void enviarMensajes(List<Usuario> usuarios, String asunto, String cuerpo) {
 		Mensaje mensaje = new Mensaje(asunto, cuerpo);
@@ -114,7 +106,24 @@ public class Validador {
 		}
 	}
 	
-	//--Test exclusive--
+	/**
+	 * 
+	 * @param egreso
+	 */
+	//TODO: Cambiar en el futuro a void cuando ya no se ejecute por consola
+	public boolean validarEgreso(Egreso egreso){
+		boolean validez = esEgresoValido(egreso);
+		notificarRevisores(egreso, validez);
+		return validez;
+	}
+	
+	private boolean esEgresoValido(Egreso egreso) {
+		return cumpleMinimoPresupuesto(egreso) && cumpleBasarseEnPresupuesto(egreso) && cumpleCriterio(egreso);
+	}
+	
+	//--------------------
+	//---Test exclusive---
+	//--------------------
 	
 	protected boolean testearCumpleMinimo(Egreso egreso){
 		return cumpleMinimoPresupuesto(egreso);
