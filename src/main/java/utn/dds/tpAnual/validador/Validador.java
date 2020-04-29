@@ -23,7 +23,7 @@ public class Validador {
 	private final String ASUNTO_INICIO = "Resultado Validacion Egreso: ";
 	private static Validador instancia;
 	
-	private Validador(){
+	public Validador(){
 
 	}
 	
@@ -84,7 +84,7 @@ public class Validador {
 	 * @param usuarios
 	 */
 	//TODO: Pasar a private
-	public void notificarRevisores(Egreso egreso, boolean resultado) {
+	protected void notificarRevisores(Egreso egreso, boolean resultado) {
 		String asunto = ASUNTO_INICIO + egreso.getCodigoOperacion();
 		List<Usuario> usuarios = egreso.getRevisores();
 		
@@ -114,7 +114,7 @@ public class Validador {
 		}
 	}
 	
-	//Test exclusive
+	//--Test exclusive--
 	
 	protected boolean validarCumpleMinimo(Egreso egreso){
 		return cumpleMinimoPresupuesto(egreso);

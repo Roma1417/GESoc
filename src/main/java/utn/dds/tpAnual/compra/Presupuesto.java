@@ -12,17 +12,18 @@ import utn.dds.tpAnual.entidad.Entidad;
 public class Presupuesto extends Operacion {
 
 	private List<DetallePrecio> detallesPrecio;
-	
-	public Presupuesto(DocumentoComercial documentoComercial, Entidad entidadRealizadora, List<DetallePrecio> detallesPrecio) {
-		super(documentoComercial, entidadRealizadora);
+
+	public Presupuesto(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,
+			List<DetallePrecio> detallesPrecio) {
+		super(documentoComercial, entidadRealizadora, codigoOperacion);
 		this.detallesPrecio = detallesPrecio;
 	}
-
+	
 	public Float getTotal(){
 		Float total = 0F;
 
-		if (detalles != null) {
-			for(DetallePrecio detalle : detalles) {
+		if (detallesPrecio != null) {
+			for(DetallePrecio detalle : detallesPrecio) {
 				total += detalle.getPrecioTotal();
 			}
 		}	

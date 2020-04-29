@@ -17,18 +17,18 @@ public abstract class OperacionEfectuada extends Operacion {
 	protected LocalDate fechaOperacion;
 	protected MedioPago medioPago;
 	
-	public OperacionEfectuada(DocumentoComercial documentoComercial, Entidad entidadRealizadora,
+	public OperacionEfectuada(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,
 			List<DetalleOperacion> detallesOperacion, LocalDate fechaOperacion, MedioPago medioPago) {
-		super(documentoComercial, entidadRealizadora);
+		super(documentoComercial, entidadRealizadora, codigoOperacion);
 		this.detallesOperacion = detallesOperacion;
 		this.fechaOperacion = fechaOperacion;
 		this.medioPago = medioPago;
 	}
-
+	
 	public Float getTotal(){
 		Float total = 0F;
-		if(detalles!=null) {
-			for (DetalleOperacion detalle : detalles) {
+		if(detallesOperacion!=null) {
+			for (DetalleOperacion detalle : detallesOperacion) {
 				total += detalle.getTotal();
 			}
 		}

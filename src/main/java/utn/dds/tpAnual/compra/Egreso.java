@@ -21,11 +21,11 @@ public class Egreso extends OperacionEfectuada {
 	private Proveedor proveedor;
 	private List<Usuario> revisores;
 	
-	public Egreso(DocumentoComercial documentoComercial, Entidad entidadRealizadora, List<DetalleOperacion> detallesOperacion,
-			LocalDate fechaOperacion, MedioPago medioPago,
+	public Egreso(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,
+			List<DetalleOperacion> detallesOperacion, LocalDate fechaOperacion, MedioPago medioPago,
 			int cantidadPresupuestosMinimos, CriterioCompra criterioCompra, List<Presupuesto> presupuestos,
 			Proveedor proveedor, List<Usuario> revisores) {
-		super(documentoComercial, entidadRealizadora, detallesOperacion, fechaOperacion, medioPago);
+		super(documentoComercial, entidadRealizadora, codigoOperacion, detallesOperacion, fechaOperacion, medioPago);
 		this.cantidadPresupuestosMinimos = cantidadPresupuestosMinimos;
 		this.criterioCompra = criterioCompra;
 		this.presupuestos = presupuestos;
@@ -43,5 +43,9 @@ public class Egreso extends OperacionEfectuada {
 	
 	public List<Presupuesto> getPresupuestos(){
 		return presupuestos;
+	}
+	
+	public List<Usuario> getRevisores() {
+		return revisores;
 	}
 }

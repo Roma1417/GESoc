@@ -3,7 +3,6 @@ package utn.dds.tpAnual.validador;
 import static org.junit.Assert.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,14 +17,15 @@ import utn.dds.tpAnual.usuario.Usuario;
 public class ValidadorTest {
 	
 	//Validador
-	private Validador validadorTest = new Validador();
+	private Validador validadorTest = Validador.getInstance();
 	
 	//Operacion
 	private DocumentoComercial documentoComercialTest;
 	private Entidad entidadRealizadora;
+	private int codigoOperacion;
 	
 	//DetalleOperacion
-	private Item itemTest = new Item();
+	private Item itemTest = new Item(123L, "itemTest");
 	private DetalleOperacion unDetalleOperacion = new DetalleOperacion(itemTest, 10F, 3);
 	private DetalleOperacion otroDetalleOperacion = new DetalleOperacion(itemTest, 20F, 4);
 	private List<DetalleOperacion> unosDetallesOperacion = Arrays.asList(unDetalleOperacion, unDetalleOperacion);
@@ -43,109 +43,89 @@ public class ValidadorTest {
 	//private List<DetallePrecio> variosDetallesPrecio = Arrays.asList(unDetallePrecio, unDetallePrecio, otroDetallePrecio, otroDetallePrecio);
 	
 	//Presupuesto
-	private Presupuesto unPresupuesto = new Presupuesto(documentoComercialTest, entidadRealizadora, unosDetallesPrecio);
-	private Presupuesto otroPresupuesto = new Presupuesto(documentoComercialTest, entidadRealizadora, otrosDetallesPrecio);
+	private Presupuesto unPresupuesto = new Presupuesto(documentoComercialTest, entidadRealizadora, codigoOperacion, unosDetallesPrecio);
+	private Presupuesto otroPresupuesto = new Presupuesto(documentoComercialTest, entidadRealizadora, codigoOperacion, otrosDetallesPrecio);
 	private List<Presupuesto> listaPresupuestosVacia;
 	private List<Presupuesto> listaPresupuestos = Arrays.asList(unPresupuesto, otroPresupuesto);
 	private List<Presupuesto> otraListaPresupuestos = Arrays.asList(otroPresupuesto, otroPresupuesto);
 	private List<Presupuesto> listaVariosPresupuestos = Arrays.asList(unPresupuesto, unPresupuesto, otroPresupuesto, otroPresupuesto);
 
-	//CriterioCompra
-	private CriterioCompra unCriterioCompra;
-	private CriterioMenorPrecio criterioMenorPrecio = new CriterioMenorPrecio();
-
 	//Egreso
+	private CriterioCompra unCriterioCompra;
 	private Proveedor proveedorTest;
 	private Usuario unRevisor = new Usuario("unRevisor", "asndihg382");
 	private Usuario otroRevisor = new Usuario("otroRevisor", "wuiefnwi471");
 	private List<Usuario> revisoresTest = Arrays.asList(unRevisor, otroRevisor);
 	
-	private Egreso egresoSinPresupuestosMinimos = new Egreso(documentoComercialTest, entidadRealizadora,
-													unosDetallesOperacion, fechaOperacion, medioPago,
-													0, unCriterioCompra, listaPresupuestosVacia, proveedorTest, revisoresTest);
+	Egreso egresoRevisores = new Egreso(null, null, 0, null, null, null, 10, null, null, null, revisoresTest);
 	
-	private Egreso egresoSinPresupuestos = new Egreso(documentoComercialTest, entidadRealizadora,
-											unosDetallesOperacion, fechaOperacion, medioPago,
-											2, unCriterioCompra, listaPresupuestosVacia, proveedorTest, revisoresTest);
 	
-	private Egreso egresoConPresupuestosSuficientes = new Egreso(documentoComercialTest, entidadRealizadora,
-														unosDetallesOperacion, fechaOperacion, medioPago,
-														2, unCriterioCompra, listaPresupuestos, proveedorTest, revisoresTest);
+//	private Egreso egresoTest = new Egreso(documentoComercialTest, entidadRealizadora, codigoOperacion,
+//										unosDetallesOperacion, fechaOperacion, medioPago,
+//										cantPresupMinimos, unCriterioCompra, listaPresupuestosVacia, proveedorTest, revisoresTest);
 	
-	private Egreso egresoConDetallesDeDistintoTamanio = new Egreso(documentoComercialTest, entidadRealizadora,
-														unosDetallesOperacion, fechaOperacion, medioPago,
-														2, unCriterioCompra, listaVariosPresupuestos, proveedorTest, revisoresTest);
-	
-	private Egreso egresoNoBasadoEnPresupuesto = new Egreso(documentoComercialTest, entidadRealizadora,
-														otrosDetallesOperacion, fechaOperacion, medioPago,
-														2, unCriterioCompra, otraListaPresupuestos, proveedorTest, revisoresTest);
-	
-	private Egreso egresoBasadoEnPresupuesto = new Egreso(documentoComercialTest, entidadRealizadora,
-														unosDetallesOperacion, fechaOperacion, medioPago,
-														2, unCriterioCompra, listaPresupuestos, proveedorTest, revisoresTest);
 	
 	//cumpleMinimoPresupuesto
 	
 	@Test
 	public void cumpleMinimoPresupuestoSinPresupuestosMinimos() {
+		Egreso egresoSinPresupuestosMinimos = new Egreso(null, null, 123, null, null, null, 0, null, null, null, null);
 		assertTrue(validadorTest.validarCumpleMinimo(egresoSinPresupuestosMinimos));
 	}
 	
 	@Test
 	public void cumpleMinimoPresupuestoSinPresupuestos() {
+		Egreso egresoSinPresupuestos = new Egreso(null, null, 542, null, null, null, 2, null, listaPresupuestosVacia, null, null);
 		assertFalse(validadorTest.validarCumpleMinimo(egresoSinPresupuestos));
 	}	
 
 	@Test
 	public void cumpleMinimoPresupuestoConSuficientesPresupuestos() {
+		Egreso egresoConPresupuestosSuficientes = new Egreso(null, null, 342, null, null, null, 2, null, listaPresupuestos, null, null);
 		assertTrue(validadorTest.validarCumpleMinimo(egresoConPresupuestosSuficientes));
-	}	
+	}
 	
 	//cumpleBasarseEnPresupuesto
 	
 	@Test
 	public void cumpleBasarseEnPresupuestoConDetallesDeDistintoTamanio() {
+		Egreso egresoConDetallesDeDistintoTamanio = new Egreso(null, null, 475, unosDetallesOperacion, null, null, 2, null, listaVariosPresupuestos, null, null);
 		assertFalse(validadorTest.validarCumpleBasarse(egresoConDetallesDeDistintoTamanio));
 	}
 	
 	@Test
 	public void cumpleBasarseEnPresupuestoConEgresoNoBasado() {
+		Egreso egresoNoBasadoEnPresupuesto = new Egreso(null, null, 345, otrosDetallesOperacion, null, null, 2, null, otraListaPresupuestos, null, null);
 		assertFalse(validadorTest.validarCumpleBasarse(egresoNoBasadoEnPresupuesto));
 	}
 	
 	@Test
 	public void cumpleBasarseEnPresupuestoConEgresoBasado() {
+		Egreso egresoBasadoEnPresupuesto = new Egreso(null, null, 493, unosDetallesOperacion, null, null, 2, null, listaPresupuestos, null, null);
 		assertTrue(validadorTest.validarCumpleBasarse(egresoBasadoEnPresupuesto));
 	}
 	
 	//TODO:cumpleCriterio
 	
 	
+	//notificarRevisores
     
     @Test
     public void notificarRevisoresEnvioOk() {
-    	Validador validador = Validador.getInstance();
-    	Usuario usuario = new Usuario("un usuario", "q1w2e3r4t5");
-    	Usuario otroUsuario = new Usuario("un usuario", "q1w2e3r4t5");
-    	List<Usuario> usuarios = Arrays.asList(usuario, otroUsuario);
-    	Egreso egreso = new Egreso(10, 0, null, null, usuarios);
-    	validador.notificarRevisores(egreso, true);
-    	List<Mensaje> mensajeUsuario = usuario.getBandejaMensajes();
-    	List<Mensaje> mensajeOtroUsuario = otroUsuario.getBandejaMensajes();
+    	validadorTest.notificarRevisores(egresoRevisores, true);
+    	List<Mensaje> mensajeUsuario = unRevisor.getBandejaMensajes();
+    	List<Mensaje> mensajeOtroUsuario = otroRevisor.getBandejaMensajes();
+    	
     	assertTrue("Validacion realizada con Exito".equals(mensajeUsuario.get(0).getCuerpo()) && 
     			"Validacion realizada con Exito".equals(mensajeOtroUsuario.get(0).getCuerpo()));
     }
     
     @Test
     public void notificarRevisoresEnvioError() {
-    	Validador validador = Validador.getInstance();
-    	Usuario usuario = new Usuario("un usuario", "q1w2e3r4t5");
-    	Usuario otroUsuario = new Usuario("un usuario", "q1w2e3r4t5");
-    	List<Usuario> usuarios = Arrays.asList(usuario, otroUsuario);
-    	Egreso egreso = new Egreso(10, 0, null, null, usuarios);
-    	validador.notificarRevisores(egreso, false);
-    	List<Mensaje> mensajeUsuario = usuario.getBandejaMensajes();
-    	List<Mensaje> mensajeOtroUsuario = otroUsuario.getBandejaMensajes();
+    	validadorTest.notificarRevisores(egresoRevisores, false);
+    	List<Mensaje> mensajeUsuario = unRevisor.getBandejaMensajes();
+    	List<Mensaje> mensajeOtroUsuario = otroRevisor.getBandejaMensajes();
+    	
     	assertTrue("Fallo de Validacion".equals(mensajeUsuario.get(0).getCuerpo()) && 
     			"Fallo de Validacion".equals(mensajeOtroUsuario.get(0).getCuerpo()));
     }
