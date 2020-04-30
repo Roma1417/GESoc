@@ -9,18 +9,20 @@ package utn.dds.tpAnual.afip.tamanios;
  */
 public abstract class TamanioEmpresa {
 
-	private int jerarquia;
-	private String nombre;
-
 	public TamanioEmpresa(){
 
 	}
 
-	public int getJerarquia() {
-		return jerarquia;
-	}
+	public abstract int getJerarquia();
 
-	public String getNombre() {
-		return nombre;
+	public abstract String getNombre();
+
+	@Override
+	public boolean equals(Object obj) {
+		
+		return obj instanceof TamanioEmpresa
+				&& this.getNombre().equals(((TamanioEmpresa)obj).getNombre());
 	}
+	
+	
 }

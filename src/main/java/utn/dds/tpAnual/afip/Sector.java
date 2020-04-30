@@ -1,5 +1,6 @@
 package utn.dds.tpAnual.afip;
 
+import java.util.Collections;
 import java.util.List;
 
 import utn.dds.tpAnual.afip.tamanios.TamanioEmpresa;
@@ -14,8 +15,10 @@ public class Sector {
 	private String nombreSector;
 	private List<RequisitoSectorEmpresa> requisitos;
 
-	public Sector(){
-
+	public Sector(String nombreSector, List<RequisitoSectorEmpresa> requisitos) {
+		super();
+		this.nombreSector = nombreSector;
+		this.requisitos = requisitos;
 	}
 
 	/**
@@ -30,7 +33,10 @@ public class Sector {
 			}
 		}
 		throw new RuntimeException("No hay ninguna categoria posible");
-
-
+	}
+	
+	private List<RequisitoSectorEmpresa> getRequisitosOrdenados(){
+		Collections.sort(requisitos);
+		return requisitos;
 	}
 }

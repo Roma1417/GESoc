@@ -17,4 +17,13 @@ public class MedianaTramo1 extends TamanioEmpresa{
 		return instance;
 	}
 	
+	@Override
+	public int getJerarquia() {
+		return jerarquia;
+	}
+
+	@Override
+	public String getNombre() {
+		return nombre;
+	}
 }

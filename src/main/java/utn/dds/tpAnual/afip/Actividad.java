@@ -12,12 +12,12 @@ public class Actividad {
 
 	private String nombreActividad;
 	private Sector sector;
-	public EntidadJuridicaEmpresa entidadJuridicaEmpresa;
 
-	public Actividad(){
-
+	public Actividad(String nombreActividad, Sector sector) {
+		super();
+		this.nombreActividad = nombreActividad;
+		this.sector = sector;
 	}
-
 	/**
 	 * 
 	 * @param cantidadEmpleados
