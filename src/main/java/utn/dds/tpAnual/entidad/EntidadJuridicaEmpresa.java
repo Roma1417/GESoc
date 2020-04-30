@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import utn.dds.tpAnual.afip.Actividad;
-import utn.dds.tpAnual.afip.TamanioEmpresa;
 import utn.dds.tpAnual.afip.VentaAnual;
+import utn.dds.tpAnual.afip.tamanios.TamanioEmpresa;
 import utn.dds.tpAnual.compra.DetalleOperacion;
 
 /**

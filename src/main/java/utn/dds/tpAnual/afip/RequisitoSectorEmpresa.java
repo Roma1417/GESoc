@@ -1,5 +1,7 @@
 package utn.dds.tpAnual.afip;
 
+import utn.dds.tpAnual.afip.tamanios.TamanioEmpresa;
+
 /**
  * @author Tomas
  * @version 1.0

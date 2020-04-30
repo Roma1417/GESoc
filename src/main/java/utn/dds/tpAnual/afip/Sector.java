@@ -2,6 +2,8 @@ package utn.dds.tpAnual.afip;
 
 import java.util.List;
 
+import utn.dds.tpAnual.afip.tamanios.TamanioEmpresa;
+
 /**
  * @author Tomas
  * @version 1.0
