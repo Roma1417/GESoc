@@ -17,8 +17,8 @@ public class ActividadTest {
 	private RequisitoSectorEmpresa requisito2 = new RequisitoSectorEmpresa(500, 800F, Pequenia.getInstance());
 	private RequisitoSectorEmpresa requisito3 = new RequisitoSectorEmpresa(10000, 800F, MedianaTramo1.getInstance());
 	private RequisitoSectorEmpresa requisito4 = new RequisitoSectorEmpresa(100000, 8000F, MedianaTramo2.getInstance());
-	private Sector sector = new Sector("Financiero", Arrays.asList(requisito1, requisito2, requisito3, requisito4));
-	private Actividad actividad = new Actividad("Prestamista", sector);
+	private Sector sectorConRequisitosOrdenados = new Sector("Financiero", Arrays.asList(requisito4, requisito3, requisito2, requisito1));
+	private Actividad actividad = new Actividad("Prestamista", sectorConRequisitosOrdenados);
 	
     @Test
     public void empresaValida() {

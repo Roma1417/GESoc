@@ -9,7 +9,7 @@ package utn.dds.tpAnual.afip.tamanios;
  */
 public class MedianaTramo2 extends TamanioEmpresa{
 
-	private final int jerarquia = 0;
+	private final int jerarquia = 3;
 	private final String nombre = "Mediana tramo 2";
 	private static MedianaTramo2 instance = new MedianaTramo2();
 	

@@ -9,7 +9,7 @@ package utn.dds.tpAnual.afip.tamanios;
  */
 public class Pequenia extends TamanioEmpresa{
 
-	private final int jerarquia = 0;
+	private final int jerarquia = 1;
 	private final String nombre = "Pequenia";
 	private static Pequenia instance = new Pequenia();
 	

@@ -32,7 +32,7 @@ public class EntidadJuridicaEmpresa extends EntidadJuridica {
 		int anioActual = LocalDate.now().getYear();
 		Float total = 0F;
 		Float cant = 0F;
-		if(ventasAnuales!=null){
+		if(ventasAnuales != null){
 			for (VentaAnual ventaAnual : ventasAnuales) {
 				if(ventaAnual.getAnio() >= anioActual - anios) {
 					total += ventaAnual.getVentasTotales();
@@ -51,7 +51,7 @@ public class EntidadJuridicaEmpresa extends EntidadJuridica {
 	}
 	
 	public TamanioEmpresa getTamanioEmpresa(){
-		return null;
+		return actividad.getTamanioEmpresa(cantidadPersonal, getPromedioVentasParaAnios(3));
 	}
 	
 }

@@ -26,9 +26,9 @@ public class Sector {
 	 * @param emplados
 	 * @param facturacion
 	 */
-	public TamanioEmpresa getTamanioPara(int emplados, Float facturacion){
-		for(RequisitoSectorEmpresa requisito :requisitos){
-			if(!requisito.excedeAlgunRequisito(emplados,facturacion)){
+	public TamanioEmpresa getTamanioPara(int empleados, Float facturacion){
+		for(RequisitoSectorEmpresa requisito : getRequisitosOrdenados()){
+			if(!requisito.excedeAlgunRequisito(empleados, facturacion)){
 				return requisito.getTamanioEmpresa();
 			}
 		}
