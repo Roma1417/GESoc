@@ -1,7 +1,6 @@
 package utn.dds.tpAnual.afip;
 
 import utn.dds.tpAnual.afip.tamanios.TamanioEmpresa;
-import utn.dds.tpAnual.entidad.EntidadJuridicaEmpresa;
 
 /**
  * @author Tomas

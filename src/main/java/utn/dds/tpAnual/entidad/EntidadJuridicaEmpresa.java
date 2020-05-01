@@ -51,7 +51,7 @@ public class EntidadJuridicaEmpresa extends EntidadJuridica {
 	}
 	
 	public TamanioEmpresa getTamanioEmpresa(){
-		return actividad.getTamanioEmpresa(cantidadPersonal, getPromedioVentasParaAnios(3));
+		return actividad.getTamanioEmpresaPara(cantidadPersonal, getPromedioVentasParaAnios(3));
 	}
 	
 }
