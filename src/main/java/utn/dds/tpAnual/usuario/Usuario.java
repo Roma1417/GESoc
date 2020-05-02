@@ -20,6 +20,7 @@ public class Usuario {
 	private String contrasenia;
 	private LocalDateTime fechaEspera;
 	private String nombre;
+	private List<UsuarioEntidad> usuariosEntidad;
 	
 	private final int LONGITUD_CONTRASENIA = 8;
 	private final String PATH = "./src/main/resources/";

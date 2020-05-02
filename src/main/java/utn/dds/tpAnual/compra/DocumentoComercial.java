@@ -10,7 +10,8 @@ public class DocumentoComercial {
 	private Long codigoDocumento;
 	private Pais pais;
 	private TipoDocumento tipoDocumento;
-
+	private String pais;
+	
 	public DocumentoComercial(){
 
 	}
