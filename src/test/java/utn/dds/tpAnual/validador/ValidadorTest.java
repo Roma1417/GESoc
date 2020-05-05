@@ -2,15 +2,12 @@ package utn.dds.tpAnual.validador;
 
 import static org.junit.Assert.*;
 
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
 
 import utn.dds.tpAnual.compra.*;
-import utn.dds.tpAnual.entidad.Entidad;
-import utn.dds.tpAnual.proveedor.Proveedor;
 import utn.dds.tpAnual.usuario.Mensaje;
 import utn.dds.tpAnual.usuario.Usuario;
 
@@ -19,11 +16,6 @@ public class ValidadorTest {
 	//Validador
 	private Validador validadorTest = Validador.getInstance();
 	
-	//Operacion
-	private DocumentoComercial documentoComercialTest;
-	private Entidad entidadRealizadora;
-	private int codigoOperacion;
-	
 	//DetalleOperacion
 	private Item itemTest = new Item(123L, "itemTest");
 	private DetalleOperacion unDetalleOperacion = new DetalleOperacion(itemTest, 10F, 3);
@@ -31,22 +23,16 @@ public class ValidadorTest {
 	private List<DetalleOperacion> unosDetallesOperacion = Arrays.asList(unDetalleOperacion, unDetalleOperacion);
 	private List<DetalleOperacion> otrosDetallesOperacion = Arrays.asList(unDetalleOperacion, otroDetalleOperacion);
 	
-	//OperacionEfectuada
-	private LocalDate fechaOperacion;
-	private MedioPago medioPago;
-	
 	//DetallePrecio
 	private DetallePrecio unDetallePrecio = new DetallePrecio(unDetalleOperacion, 10F);
 	private DetallePrecio otroDetallePrecio = new DetallePrecio(otroDetalleOperacion, 12F);
 	private List<DetallePrecio> unosDetallesPrecio = Arrays.asList(unDetallePrecio, unDetallePrecio);
 	private List<DetallePrecio> otrosDetallesPrecio = Arrays.asList(unDetallePrecio, otroDetallePrecio);
-	//private List<DetallePrecio> variosDetallesPrecio = Arrays.asList(unDetallePrecio, unDetallePrecio, otroDetallePrecio, otroDetallePrecio);
 	
 	//Presupuesto
-	private Presupuesto unPresupuesto = new Presupuesto(documentoComercialTest, entidadRealizadora, codigoOperacion, unosDetallesPrecio);
-	private Presupuesto otroPresupuesto = new Presupuesto(documentoComercialTest, entidadRealizadora, codigoOperacion, otrosDetallesPrecio);
+	private Presupuesto unPresupuesto = new Presupuesto(null, null, 1782, unosDetallesPrecio);
+	private Presupuesto otroPresupuesto = new Presupuesto(null, null, 1723, otrosDetallesPrecio);
 	private List<Presupuesto> listaPresupuestosVacia;
-	private List<Presupuesto> listaPresupuestos = Arrays.asList(unPresupuesto, otroPresupuesto);
 	private List<Presupuesto> unaListaPresupuestos = Arrays.asList(unPresupuesto, unPresupuesto);
 	private List<Presupuesto> otraListaPresupuestos = Arrays.asList(otroPresupuesto, otroPresupuesto);
 	private List<Presupuesto> listaVariosPresupuestos = Arrays.asList(unPresupuesto, unPresupuesto, otroPresupuesto, otroPresupuesto);
@@ -55,114 +41,54 @@ public class ValidadorTest {
 	private CriterioMenorPrecio criterioMenorPrecio = new CriterioMenorPrecio();
 	
 	//Egreso
-	//private CriterioCompra unCriterioCompra;
-	//private Proveedor proveedorTest;
 	private Usuario unRevisor = new Usuario("unRevisor", "asndihg382");
 	private Usuario otroRevisor = new Usuario("otroRevisor", "wuiefnwi471");
 	private List<Usuario> revisoresTest = Arrays.asList(unRevisor, otroRevisor);
 	
-	private Egreso egresoSinPresupuestos = new Egreso(null, null, 542, null, null, null, 2, criterioMenorPrecio, listaPresupuestosVacia, null, null);
-	
+	private Egreso egresoSinPresupuestos = new Egreso(null, null, 542, null, null, null, 2, criterioMenorPrecio, listaPresupuestosVacia, null, revisoresTest);
 	private Egreso egresoCumplidor = new Egreso(null, null, 87, unosDetallesOperacion, null, null, 2, criterioMenorPrecio, unaListaPresupuestos, null, revisoresTest);
 	
-//	private Egreso egresoTest = new Egreso(documentoComercialTest, entidadRealizadora, codigoOperacion,
-//										unosDetallesOperacion, fechaOperacion, medioPago,
-//										cantPresupMinimos, unCriterioCompra, listaPresupuestosVacia, proveedorTest, revisoresTest);
-	
-	//cumpleMinimoPresupuesto
-	
+
 	@Test
-	public void cumpleMinimoPresupuestoSinPresupuestosMinimos() {
+	public void egresoSinPresupuestosMinimos() {
 		Egreso egresoSinPresupuestosMinimos = new Egreso(null, null, 123, null, null, null, 0, null, null, null, null);
-		assertTrue(validadorTest.testearCumpleMinimo(egresoSinPresupuestosMinimos));
+		assertTrue(validadorTest.validarEgreso(egresoSinPresupuestosMinimos));
 	}
 	
 	@Test
-	public void cumpleMinimoPresupuestoSinPresupuestos() {
-		assertFalse(validadorTest.testearCumpleMinimo(egresoSinPresupuestos));
+	public void egresoInvalidoPorFaltaDePresupuestos() {
+		assertFalse(validadorTest.validarEgreso(egresoSinPresupuestos));
 	}	
-
-	@Test
-	public void cumpleMinimoPresupuestoConSuficientesPresupuestos() {
-		Egreso egresoConPresupuestosSuficientes = new Egreso(null, null, 342, null, null, null, 2, null, listaPresupuestos, null, null);
-		assertTrue(validadorTest.testearCumpleMinimo(egresoConPresupuestosSuficientes));
-	}
-	
-	//cumpleBasarseEnPresupuesto
 	
 	@Test
-	public void cumpleBasarseEnPresupuestoConDetallesDeDistintoTamanio() {
+	public void egresoConDetallesDeDistintoTamanio() {
 		Egreso egresoConDetallesDeDistintoTamanio = new Egreso(null, null, 475, unosDetallesOperacion, null, null, 2, null, listaVariosPresupuestos, null, null);
-		assertFalse(validadorTest.testearCumpleBasarse(egresoConDetallesDeDistintoTamanio));
+		assertFalse(validadorTest.validarEgreso(egresoConDetallesDeDistintoTamanio));
 	}
 	
 	@Test
-	public void cumpleBasarseEnPresupuestoConEgresoNoBasado() {
+	public void egresoConDistintosPrecios() {
 		Egreso egresoNoBasadoEnPresupuesto = new Egreso(null, null, 345, otrosDetallesOperacion, null, null, 2, null, otraListaPresupuestos, null, null);
-		assertFalse(validadorTest.testearCumpleBasarse(egresoNoBasadoEnPresupuesto));
+		assertFalse(validadorTest.validarEgreso(egresoNoBasadoEnPresupuesto));
 	}
 	
 	@Test
-	public void cumpleBasarseEnPresupuestoConEgresoBasado() {
-		Egreso egresoBasadoEnPresupuesto = new Egreso(null, null, 493, unosDetallesOperacion, null, null, 2, null, listaPresupuestos, null, null);
-		assertTrue(validadorTest.testearCumpleBasarse(egresoBasadoEnPresupuesto));
-	}
-	
-	//cumpleCriterio
-	
-	@Test 
-	public void cumpleCriterioSinPresupuestoCumplidor() {
-		assertTrue(validadorTest.testearCumpleCriterio(egresoSinPresupuestos));
-	}
-	
-	@Test
-	public void cumpleCriterioSinCoincidenciaDePrecios() {
-		Egreso egresoIncumplidor = new Egreso(null, null, 87, unosDetallesOperacion, null, null, 2, criterioMenorPrecio, otraListaPresupuestos, null, null);
-		assertFalse(validadorTest.testearCumpleCriterio(egresoIncumplidor));
-	}
-	
-	@Test
-	public void cumpleCriterioMenorPrecio() {
-		assertTrue(validadorTest.testearCumpleCriterio(egresoCumplidor));
-	}
-	
-	//validarEgreso
-	
-	@Test
-	public void validarEgresoIncumplidor() {
-		boolean validez = validadorTest.validarEgreso(egresoSinPresupuestos);
+	public void egresoInvalidoConNotificacionDeFallo() {
+		validadorTest.validarEgreso(egresoSinPresupuestos);
 		List<Mensaje> mensajeUsuario = unRevisor.getBandejaMensajes();
-		assertFalse(validez && "Fallo de Validacion".equals(mensajeUsuario.get(0).getCuerpo()));
+		List<Mensaje> mensajeOtroUsuario = otroRevisor.getBandejaMensajes();
+		assertTrue("Fallo de Validacion".equals(mensajeUsuario.get(0).getCuerpo())
+					&& "Fallo de Validacion".equals(mensajeOtroUsuario.get(0).getCuerpo()));
 	}
 
 	@Test
-	public void validarEgresoOk() {
+	public void egresoValidoConNotificacionDeExito() {
 		boolean validez = validadorTest.validarEgreso(egresoCumplidor);
 		List<Mensaje> mensajeUsuario = unRevisor.getBandejaMensajes();
-		assertTrue(validez && "Validacion realizada con Exito".equals(mensajeUsuario.get(0).getCuerpo()));
+		List<Mensaje> mensajeOtroUsuario = otroRevisor.getBandejaMensajes();
+		assertTrue(validez && "Validacion realizada con Exito".equals(mensajeUsuario.get(0).getCuerpo())
+							&& "Validacion realizada con Exito".equals(mensajeOtroUsuario.get(0).getCuerpo()));
 	}
 	
-	//notificarRevisores
-    
-    @Test
-    public void notificarRevisoresEnvioOk() {
-    	validadorTest.testearNotificar(egresoCumplidor, true);
-    	List<Mensaje> mensajeUsuario = unRevisor.getBandejaMensajes();
-    	List<Mensaje> mensajeOtroUsuario = otroRevisor.getBandejaMensajes();
-    	
-    	assertTrue("Validacion realizada con Exito".equals(mensajeUsuario.get(0).getCuerpo()) && 
-    			"Validacion realizada con Exito".equals(mensajeOtroUsuario.get(0).getCuerpo()));
-    }
-    
-    @Test
-    public void notificarRevisoresEnvioError() {
-    	validadorTest.testearNotificar(egresoCumplidor, false);
-    	List<Mensaje> mensajeUsuario = unRevisor.getBandejaMensajes();
-    	List<Mensaje> mensajeOtroUsuario = otroRevisor.getBandejaMensajes();
-    	
-    	assertTrue("Fallo de Validacion".equals(mensajeUsuario.get(0).getCuerpo()) && 
-    			"Fallo de Validacion".equals(mensajeOtroUsuario.get(0).getCuerpo()));
-    }
-    
 }
 

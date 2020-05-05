@@ -1,9 +1,7 @@
 package utn.dds.tpAnual.validador;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-import utn.dds.tpAnual.compra.DetalleOperacion;
 import utn.dds.tpAnual.compra.DetallePrecio;
 import utn.dds.tpAnual.compra.Egreso;
 import utn.dds.tpAnual.compra.Presupuesto;
@@ -23,7 +21,7 @@ public class Validador {
 	private final String ASUNTO_INICIO = "Resultado Validacion Egreso: ";
 	private static Validador instancia;
 	
-	public Validador(){
+	private Validador(){
 
 	}
 	
@@ -42,13 +40,8 @@ public class Validador {
 		int presupuestosMinimos = egreso.getCantidadPresupuestosMinimos();
 		List<Presupuesto> presupuestos = egreso.getPresupuestos(); 
 		
-		if(presupuestosMinimos == 0) {
-			return true;
-		}
-		else if(presupuestos == null) {
-			return false;
-		}
-		return presupuestosMinimos <= presupuestos.size();
+		return presupuestosMinimos == 0
+				|| (presupuestos != null && presupuestosMinimos <= presupuestos.size());
 	}
 	
 	/**
@@ -58,10 +51,9 @@ public class Validador {
 	private boolean cumpleBasarseEnPresupuesto(Egreso egreso){
 		List<Presupuesto> presupuestos = egreso.getPresupuestos();
 		
-		if(presupuestos.size() != egreso.getDetallesOperacion().size()) {
-			return false;
-		}
-		return presupuestos.stream().anyMatch(p -> coincidenPrecios(p.getDetallesPrecio()));
+		return egreso.getCantidadPresupuestosMinimos() == 0
+				|| (presupuestos.size() == egreso.getDetallesOperacion().size()
+					&& presupuestos.stream().anyMatch(p -> coincidenPrecios(p.getDetallesPrecio())));
 	}
 
 	private boolean coincidenPrecios(List<DetallePrecio> detallesPrecio){
@@ -73,11 +65,11 @@ public class Validador {
 	 * @param egreso
 	 */
 	private boolean cumpleCriterio(Egreso egreso){
-		Presupuesto presupuestoCumplidor = egreso.getCriterioCompra().getPresupuestoQueCumpla(egreso.getPresupuestos());
 		
-		if(presupuestoCumplidor == null)
-			return true;
-		return coincidenPrecios(presupuestoCumplidor.getDetallesPrecio());
+		return egreso.getCantidadPresupuestosMinimos() == 0
+				|| egreso.getCriterioCompra() == null
+				|| egreso.getCriterioCompra().getPresupuestoQueCumpla(egreso.getPresupuestos()) == null
+				|| coincidenPrecios(egreso.getCriterioCompra().getPresupuestoQueCumpla(egreso.getPresupuestos()).getDetallesPrecio());
 	}
 	
 	/**
@@ -99,7 +91,7 @@ public class Validador {
 	private void enviarMensajes(List<Usuario> usuarios, String asunto, String cuerpo) {
 		Mensaje mensaje = new Mensaje(asunto, cuerpo);
 		
-		if(usuarios!=null) {
+		if(usuarios != null) {
 			for (Usuario usuario : usuarios) {
 				usuario.recibirMensaje(mensaje);
 			}
@@ -121,23 +113,4 @@ public class Validador {
 		return cumpleMinimoPresupuesto(egreso) && cumpleBasarseEnPresupuesto(egreso) && cumpleCriterio(egreso);
 	}
 	
-	//--------------------
-	//---Test exclusive---
-	//--------------------
-	
-	protected boolean testearCumpleMinimo(Egreso egreso){
-		return cumpleMinimoPresupuesto(egreso);
-	}
-	
-	protected boolean testearCumpleBasarse(Egreso egreso){
-		return cumpleBasarseEnPresupuesto(egreso);
-	}
-	
-	protected boolean testearCumpleCriterio(Egreso egreso){
-		return cumpleCriterio(egreso);
-	}
-	
-	protected void testearNotificar(Egreso egreso, boolean resultado) {
-		notificarRevisores(egreso, resultado);
-	}
 }
