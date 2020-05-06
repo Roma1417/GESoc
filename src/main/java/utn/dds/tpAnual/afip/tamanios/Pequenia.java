@@ -13,6 +13,10 @@ public class Pequenia extends TamanioEmpresa{
 	private final String nombre = "Pequenia";
 	private static Pequenia instance = new Pequenia();
 	
+	private Pequenia() {
+		
+	}
+	
 	public static Pequenia getInstance() {
 		return instance;
 	}

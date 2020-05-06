@@ -38,7 +38,7 @@ public class ValidadorTest {
 	private List<Presupuesto> listaVariosPresupuestos = Arrays.asList(unPresupuesto, unPresupuesto, otroPresupuesto, otroPresupuesto);
 
 	//Criterio Compra
-	private CriterioMenorPrecio criterioMenorPrecio = new CriterioMenorPrecio();
+	private CriterioMenorPrecio criterioMenorPrecio = CriterioMenorPrecio.getInstance();
 	
 	//Egreso
 	private Usuario unRevisor = new Usuario("unRevisor", "asndihg382");

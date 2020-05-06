@@ -13,6 +13,10 @@ public class MedianaTramo2 extends TamanioEmpresa{
 	private final String nombre = "Mediana tramo 2";
 	private static MedianaTramo2 instance = new MedianaTramo2();
 	
+	private MedianaTramo2() {
+		
+	}
+	
 	public static MedianaTramo2 getInstance() {
 		return instance;
 	}

@@ -10,10 +10,17 @@ import utn.dds.tpAnual.compra.Presupuesto;
  * @created 10-abr.-2020 18:19:18
  */
 public class CriterioMenorPrecio extends CriterioCompra {
-
-	public CriterioMenorPrecio() {
-
+	
+	private static CriterioMenorPrecio instance = new CriterioMenorPrecio();
+	
+	private CriterioMenorPrecio() {
+		
 	}
+	
+	public static CriterioMenorPrecio getInstance() {
+		return instance;
+	}
+	
 
 	/**
 	 * 
