@@ -12,11 +12,6 @@ public class DetallePrecio {
 	private DetalleOperacion detalleOperacion;
 	private Float precio;
 
-	public DetallePrecio(){
-
-	}
-	
-	
 	/**
 	 * 
 	 * @param detalleOperacion
@@ -27,6 +22,13 @@ public class DetallePrecio {
 		this.precio = precio;
 	}
 	
+	public Float getPrecio() {
+		return precio;
+	}
+	
+	public DetalleOperacion getDetalleOperacion() {
+		return detalleOperacion;
+	}
 	
 	public Float getPrecioTotal() {
 		return precio * detalleOperacion.getCantidad();

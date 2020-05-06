@@ -1,6 +1,6 @@
 package utn.dds.tpAnual.afip;
 
-import utn.dds.tpAnual.entidad.EntidadJuridicaEmpresa;
+import utn.dds.tpAnual.afip.tamanios.TamanioEmpresa;
 
 /**
  * @author Tomas
@@ -11,18 +11,18 @@ public class Actividad {
 
 	private String nombreActividad;
 	private Sector sector;
-	public EntidadJuridicaEmpresa entidadJuridicaEmpresa;
 
-	public Actividad(){
-
+	public Actividad(String nombreActividad, Sector sector) {
+		super();
+		this.nombreActividad = nombreActividad;
+		this.sector = sector;
 	}
-
 	/**
 	 * 
 	 * @param cantidadEmpleados
 	 * @param ventasAnuales
 	 */
 	public TamanioEmpresa getTamanioEmpresaPara(int cantidadEmpleados, Float ventasAnuales){
-		return this.sector.getTamanioPara(cantidadEmpleados, ventasAnuales);
+		return sector.getTamanioPara(cantidadEmpleados, ventasAnuales);
 	}
 }

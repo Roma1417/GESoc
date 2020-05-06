@@ -12,8 +12,9 @@ public class ProveedorPersona extends Proveedor {
 	private Long dni;
 	private String nombre;
 
-	public ProveedorPersona(){
-
+	public ProveedorPersona(int direccionPostal, Long dni, String nombre) {
+		super(direccionPostal);
+		this.dni = dni;
+		this.nombre = nombre;
 	}
-
 }

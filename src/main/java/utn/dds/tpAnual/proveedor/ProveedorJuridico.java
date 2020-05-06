@@ -8,12 +8,12 @@ package utn.dds.tpAnual.proveedor;
  */
 public class ProveedorJuridico extends Proveedor {
 
-	private Long CUIT;
+	private Long cuit;
 	private String razonSocial;
 
-	public ProveedorJuridico(){
-
+	public ProveedorJuridico(int direccionPostal, Long cuit, String razonSocial) {
+		super(direccionPostal);
+		this.cuit = cuit;
+		this.razonSocial = razonSocial;
 	}
-
-
 }

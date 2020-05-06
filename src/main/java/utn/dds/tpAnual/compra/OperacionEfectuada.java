@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import utn.dds.tpAnual.entidad.Entidad;
+
 /**
  * @author Tomas
  * @version 1.0
@@ -11,28 +13,36 @@ import java.util.List;
  */
 public abstract class OperacionEfectuada extends Operacion {
 
-	private List<DetalleOperacion> detalles; 
-	private LocalDate fechaOperacion;
-	private MedioPago medioPago;
-
-	public OperacionEfectuada(int codigoOperacion){
-		super(codigoOperacion);
+	protected List<DetalleOperacion> detallesOperacion;
+	protected LocalDate fechaOperacion;
+	protected MedioPago medioPago;
+	
+	public OperacionEfectuada(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,
+			List<DetalleOperacion> detallesOperacion, LocalDate fechaOperacion, MedioPago medioPago) {
+		super(documentoComercial, entidadRealizadora, codigoOperacion);
+		this.detallesOperacion = detallesOperacion;
+		this.fechaOperacion = fechaOperacion;
+		this.medioPago = medioPago;
 	}
-
+	
 	public Float getTotal(){
 		Float total = 0F;
-		if(detalles!=null) {
-			for (DetalleOperacion detalle : detalles) {
+		if(detallesOperacion!=null) {
+			for (DetalleOperacion detalle : detallesOperacion) {
 				total += detalle.getTotal();
 			}
 		}
 		return total;
 	}
 	
+	public List<DetalleOperacion> getDetallesOperacion() {
+		return detallesOperacion;
+	}
+	
 	public void addDetalleOperacion(DetalleOperacion detalle) {
-		if(detalles == null) {
-			detalles = new ArrayList<DetalleOperacion>();
+		if(detallesOperacion == null) {
+			detallesOperacion = new ArrayList<DetalleOperacion>();
 		}
-		detalles.add(detalle);
+		detallesOperacion.add(detalle);
 	}
 }
