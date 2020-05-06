@@ -1,6 +1,6 @@
 package utn.dds.tpAnual.compra;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.List;
 import java.util.Arrays;
@@ -21,27 +21,27 @@ public class PresupuestoTest {
 	private List<DetallePrecio> listaDetallesNula;
 	private List<DetallePrecio> listaDetallesVacia = Arrays.asList();
 	
-	private Presupuesto presupuestoConListaCargada = new Presupuesto(listaDetalles);
-	private Presupuesto presupuestoConListaNula = new Presupuesto(listaDetallesNula);
-	private Presupuesto presupuestoConListaVacia = new Presupuesto(listaDetallesVacia);
+	private Presupuesto presupuestoConListaCargada = new Presupuesto(null, null, 1, listaDetalles);
+	private Presupuesto presupuestoConListaNula = new Presupuesto(null, null, 2, listaDetallesNula);
+	private Presupuesto presupuestoConListaVacia = new Presupuesto(null, null, 3, listaDetallesVacia);
 	
 	@Test
 	public void precioTotalDelPresupuestoConListaCargada(){
-		assertEquals(78F, presupuestoConListaCargada.getTotal(),0F);
+		assertEquals(78F, presupuestoConListaCargada.getTotal(), 0F);
 	}
 	
 	@Test
 	public void precioTotalDelPresupuestoConListaNula(){
-		assertEquals(0F, presupuestoConListaNula.getTotal(),0F);
+		assertEquals(0F, presupuestoConListaNula.getTotal(), 0F);
 	}
 	
 	@Test
 	public void precioTotalDelPresupuestoConListaVacia(){
-		assertEquals(0F, presupuestoConListaVacia.getTotal(),0F);
+		assertEquals(0F, presupuestoConListaVacia.getTotal(), 0F);
 	}
 	
 	@Test
 	public void precioTotalDelDetalle() {
-		assertEquals(30F, unDetallePrecio.getPrecioTotal(),0);
+		assertEquals(30F, unDetallePrecio.getPrecioTotal(), 0);
 	}
 }

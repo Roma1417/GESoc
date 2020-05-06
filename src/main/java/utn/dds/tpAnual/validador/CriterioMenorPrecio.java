@@ -11,7 +11,7 @@ import utn.dds.tpAnual.compra.Presupuesto;
  */
 public class CriterioMenorPrecio extends CriterioCompra {
 
-	public CriterioMenorPrecio(){
+	public CriterioMenorPrecio() {
 
 	}
 

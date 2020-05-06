@@ -13,9 +13,6 @@ public class DetalleOperacion {
 	private Item item;
 	private Float precio;
 
-	public DetalleOperacion(){
-
-	}
 	/**
 	 * 
 	 * @param item
@@ -32,7 +29,12 @@ public class DetalleOperacion {
 		return cantidad;
 	}
 	
+    public Float getPrecio() {
+		return precio;
+	}
+    
 	public Float getTotal() {
 		return cantidad * precio;
 	}
+	
 }//end DetalleOperacion
