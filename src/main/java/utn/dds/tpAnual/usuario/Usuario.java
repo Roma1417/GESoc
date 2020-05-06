@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,23 @@ public class Usuario {
 		this.nombre = nombre;
 		this.contrasenia = contrasenia;
 	}
-
+	
+	public boolean puedeLoguearse() {
+		return fechaEspera == null 
+				|| LocalDateTime.now().isAfter(fechaEspera);
+	}
+	
+	public void loginOk() {
+		cantidadIntentos = 0;
+	}
+	
+	public void intentoFallido() {
+		cantidadIntentos++;
+		LocalDateTime nuevaFechaEspera = LocalDateTime.now();
+		nuevaFechaEspera.plusHours(cantidadIntentos * 2);
+		fechaEspera = nuevaFechaEspera;
+	}
+	
 	public boolean validarContrasenia() {
 		return validarLongitud() 
 				&& validarNumerosLetras()
