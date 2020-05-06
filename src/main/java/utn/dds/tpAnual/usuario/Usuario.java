@@ -46,6 +46,7 @@ public class Usuario {
 	
 	public void loginOk() {
 		cantidadIntentos = 0;
+		fechaEspera = null;
 	}
 	
 	public void intentoFallido() {
