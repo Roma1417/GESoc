@@ -1,18 +1,30 @@
 package utn.dds.tpAnual.afip;
 
+import utn.dds.tpAnual.afip.tamanios.TamanioEmpresa;
+
 /**
  * @author Tomas
  * @version 1.0
  * @created 10-abr.-2020 18:19:19
  */
-public class RequisitoSectorEmpresa {
+public class RequisitoSectorEmpresa implements Comparable<RequisitoSectorEmpresa>{
 
 	private int maximoEmpleados;
 	private Float maximoFacturacion;
 	private TamanioEmpresa tamanioEmpresa;
+	
+	public RequisitoSectorEmpresa(int maximoEmpleados, Float maximoFacturacion, TamanioEmpresa tamanioEmpresa) {
+		this.maximoEmpleados = maximoEmpleados;
+		this.maximoFacturacion = maximoFacturacion;
+		this.tamanioEmpresa = tamanioEmpresa;
+	}
 
-	public RequisitoSectorEmpresa(){
+	public int getMaximoEmpleados() {
+		return maximoEmpleados;
+	}
 
+	public Float getMaximoFacturacion() {
+		return maximoFacturacion;
 	}
 
 	/**
@@ -32,6 +44,12 @@ public class RequisitoSectorEmpresa {
 	public void setTamanioEmpresa(TamanioEmpresa tamanioEmpresa) {
 		this.tamanioEmpresa = tamanioEmpresa;
 	}
-	
-	
+
+	public int compareTo(RequisitoSectorEmpresa requisitoSectorEmpresa) {       
+		int jerarquia = this.tamanioEmpresa.getJerarquia();
+		int otraJerarquia = requisitoSectorEmpresa.getTamanioEmpresa().getJerarquia();
+		return jerarquia == otraJerarquia ? 0 : 
+			jerarquia > otraJerarquia ? 1 : -1;
+	}    
+
 }
