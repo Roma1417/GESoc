@@ -30,10 +30,6 @@ public class Usuario {
 	private final String NOMBRE_ARCHIVO_PALABRAS_PROHIBIDAS = "palabrasProhibidas.txt";
 	private final int CANTIDAD_REPETICIONES_CARACTER_MAXIMA = 3;
 	
-	public Usuario(){
-
-	}
-	
 	public Usuario(String nombre, String contrasenia) {
 		this.nombre = nombre;
 		this.contrasenia = contrasenia;

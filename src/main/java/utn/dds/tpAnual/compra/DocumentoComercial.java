@@ -7,8 +7,8 @@ package utn.dds.tpAnual.compra;
  */
 public class DocumentoComercial {
 
-	private Long codigoDocumento;
-	private TipoDocumento tipoDocumento;
+	private Long idDocumento;
+	private int tipoDocumento;
 	private String pais;
 	
 	public DocumentoComercial(){

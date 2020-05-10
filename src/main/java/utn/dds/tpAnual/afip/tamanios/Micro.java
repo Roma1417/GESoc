@@ -13,6 +13,10 @@ public class Micro extends TamanioEmpresa{
 	private final String nombre = "Micro";
 	private static Micro instance = new Micro();
 	
+	private Micro() {
+		
+	}
+	
 	public static Micro getInstance() {
 		return instance;
 	}

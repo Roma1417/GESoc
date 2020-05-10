@@ -32,7 +32,7 @@ public class CriterioMenorPrecioTest {
 	private List<Presupuesto> listaPresupuestosNula;
 	private List<Presupuesto> listaSinPresupuestos = Arrays.asList(); 
 	
-	private CriterioMenorPrecio criterioMenorPrecio = new CriterioMenorPrecio();
+	private CriterioMenorPrecio criterioMenorPrecio = CriterioMenorPrecio.getInstance();
 	
 	@Test 
 	public void obtengoPresupuestoDeMenorPrecio(){

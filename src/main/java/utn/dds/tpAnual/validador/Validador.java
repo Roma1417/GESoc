@@ -19,17 +19,14 @@ public class Validador {
 	private final String MENSAJE_CORRECTO = "Validacion realizada con Exito";
 	private final String MENSAJE_ERRONEO = "Fallo de Validacion";
 	private final String ASUNTO_INICIO = "Resultado Validacion Egreso: ";
-	private static Validador instancia;
+	private static Validador instance = new Validador();
 	
 	private Validador(){
 
 	}
 	
 	public static Validador getInstance() {
-		if(instancia == null) {
-			instancia = new Validador();
-		}
-		return instancia;
+		return instance;
 	}
 	
 	/**
