@@ -13,9 +13,9 @@ import utn.dds.tpAnual.entidad.Entidad;
  */
 public abstract class OperacionEfectuada extends Operacion {
 
-	protected List<DetalleOperacion> detallesOperacion;
-	protected LocalDate fechaOperacion;
-	protected MedioPago medioPago;
+	private List<DetalleOperacion> detallesOperacion;
+	private LocalDate fechaOperacion;
+	private MedioPago medioPago;
 	
 	public OperacionEfectuada(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,
 			List<DetalleOperacion> detallesOperacion, LocalDate fechaOperacion, MedioPago medioPago) {

@@ -99,7 +99,6 @@ public class Validador {
 	 * 
 	 * @param egreso
 	 */
-	//TODO: Cambiar en el futuro a void cuando ya no se ejecute por consola
 	public boolean validarEgreso(Egreso egreso){
 		boolean validez = esEgresoValido(egreso);
 		notificarRevisores(egreso, validez);

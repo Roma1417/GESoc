@@ -9,17 +9,13 @@ import utn.dds.tpAnual.entidad.Entidad;
  */
 public abstract class Operacion {
 
-	protected DocumentoComercial documentoComercial;
-	protected Entidad entidadRealizadora;
+	private DocumentoComercial documentoComercial;
+	private Entidad entidadRealizadora;
 	private int codigoOperacion;
 	
 	public Operacion(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion) {
 		this.documentoComercial = documentoComercial;
 		this.entidadRealizadora = entidadRealizadora;
-		this.codigoOperacion = codigoOperacion;
-	}
-	
-	public Operacion(int codigoOperacion){
 		this.codigoOperacion = codigoOperacion;
 	}
 	
