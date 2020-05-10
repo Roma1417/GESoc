@@ -76,13 +76,8 @@ public class Validador {
 	private void notificarRevisores(Egreso egreso, boolean resultado) {
 		String asunto = ASUNTO_INICIO + egreso.getCodigoOperacion();
 		List<Usuario> usuarios = egreso.getRevisores();
-		
-		if(resultado) {
-			this.enviarMensajes(usuarios, asunto, MENSAJE_CORRECTO);
-		}
-        else {
-			this.enviarMensajes(usuarios, asunto, MENSAJE_ERRONEO);
-		}
+
+		this.enviarMensajes(usuarios, asunto,resultado ? MENSAJE_CORRECTO : MENSAJE_ERRONEO);
 	}
 	
 	private void enviarMensajes(List<Usuario> usuarios, String asunto, String cuerpo) {
