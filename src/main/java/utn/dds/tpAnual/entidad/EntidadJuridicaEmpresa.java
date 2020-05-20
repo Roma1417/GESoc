@@ -19,6 +19,7 @@ public class EntidadJuridicaEmpresa extends EntidadJuridica {
 	private Actividad actividad;
 	private int cantidadPersonal;
 	private List<VentaAnual> ventasAnuales;
+	private TamanioEmpresa tamanioEmpresa;
 
 	public EntidadJuridicaEmpresa(){
 
@@ -49,9 +50,13 @@ public class EntidadJuridicaEmpresa extends EntidadJuridica {
 		}
 		ventasAnuales.add(venta);
 	}
-	
+
 	public TamanioEmpresa getTamanioEmpresa(){
-		return actividad.getTamanioEmpresaPara(cantidadPersonal, getPromedioVentasParaAnios(3));
+		return this.tamanioEmpresa;
+	}
+	
+	public void recalcularTamanioEmpresa(){
+		this.tamanioEmpresa = actividad.getTamanioEmpresaPara(cantidadPersonal, getPromedioVentasParaAnios(3));
 	}
 	
 }
