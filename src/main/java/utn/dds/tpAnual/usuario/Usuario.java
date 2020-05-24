@@ -1,14 +1,28 @@
-package utn.dds.tpAnual.seguridad;
+package utn.dds.tpAnual.usuario;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * @author Daiana
+ * @version 1.0
+ * @created 10-abr.-2020 18:19:19
+ */
 public class Usuario {
 
-	private String nombre;
+	private List<Mensaje> bandejaMensajes;
+	private int cantidadIntentos;
 	private String contrasenia;
+	private LocalDateTime fechaEspera;
+	private String nombre;
+	private List<UsuarioEntidad> usuariosEntidad;
+	
 	private final int LONGITUD_CONTRASENIA = 8;
 	private final String PATH = "./src/main/resources/";
 	private final String NOMBRE_ARCHIVO_CONTRASENIAS = "peoresContrasenias.txt";
@@ -16,12 +30,28 @@ public class Usuario {
 	private final String NOMBRE_ARCHIVO_PALABRAS_PROHIBIDAS = "palabrasProhibidas.txt";
 	private final int CANTIDAD_REPETICIONES_CARACTER_MAXIMA = 3;
 	
-	
 	public Usuario(String nombre, String contrasenia) {
 		this.nombre = nombre;
 		this.contrasenia = contrasenia;
 	}
-
+	
+	public boolean puedeLoguearse() {
+		return fechaEspera == null 
+				|| LocalDateTime.now().isAfter(fechaEspera);
+	}
+	
+	public void loginOk() {
+		cantidadIntentos = 0;
+		fechaEspera = null;
+	}
+	
+	public void intentoFallido() {
+		cantidadIntentos++;
+		LocalDateTime nuevaFechaEspera = LocalDateTime.now();
+		nuevaFechaEspera.plusHours(cantidadIntentos * 2);
+		fechaEspera = nuevaFechaEspera;
+	}
+	
 	public boolean validarContrasenia() {
 		return validarLongitud() 
 				&& validarNumerosLetras()
@@ -30,6 +60,13 @@ public class Usuario {
 				&& !esContraseniaRepetitiva()
 				&& !tieneNombreEnContrasenia()
 				&& !esPalabraProhibida();
+	}
+	
+	public void recibirMensaje(Mensaje mensaje) {
+		if(bandejaMensajes == null) {
+			bandejaMensajes = new ArrayList<Mensaje>();
+		}
+		bandejaMensajes.add(mensaje);
 	}
 
 	private boolean validarNumerosLetras() {
@@ -106,5 +143,8 @@ public class Usuario {
 		}
 		bufferedReader.close();
 		return false;
+	}
+	public List<Mensaje> getBandejaMensajes() {
+		return bandejaMensajes;
 	}
 }
