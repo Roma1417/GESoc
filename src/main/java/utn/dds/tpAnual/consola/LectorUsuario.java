@@ -22,6 +22,7 @@ public class LectorUsuario extends  Lector {
 		String contrasenia = scanner.nextLine();
 		Usuario usuario = new Usuario(nombre, contrasenia);
 		System.out.println("Se ha generado el usuario: ");
-		System.out.println(usuario.toString());
+		System.out.println(usuario);
+		//validar.
 	}
 }

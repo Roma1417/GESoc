@@ -17,7 +17,7 @@ public class Consola {
 				leerYEjecutar();
 				repetir = false;
 			}catch(Exception e) {
-				System.out.println("Ha ingresado un valor inválido. Reintente nuevamente.");
+				System.out.println("Ha ingresado un valor inválido. Intente nuevamente.");
 				repetir = true;
 			}
 		}while(repetir);

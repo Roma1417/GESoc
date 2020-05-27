@@ -1,5 +1,6 @@
 package utn.dds.tpAnual.consola;
 
+import java.util.Scanner;
 
 public class LectorOrganizacion extends Lector{
 	
@@ -12,7 +13,8 @@ public class LectorOrganizacion extends Lector{
 			return instance;
 	}
 	
+	@Override
 	public void ejecutar(){
-		
-	};
+
+	}
 }
