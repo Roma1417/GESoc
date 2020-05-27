@@ -9,6 +9,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 /**
  * @author Daiana
  * @version 1.0
@@ -146,5 +148,14 @@ public class Usuario {
 	}
 	public List<Mensaje> getBandejaMensajes() {
 		return bandejaMensajes;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this)
+				.append("nombre", nombre)
+			    .append("contraseña", contrasenia)
+			    .toString();
 	}
 }
