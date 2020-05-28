@@ -146,11 +146,11 @@ public class Usuario {
 		bufferedReader.close();
 		return false;
 	}
+	
 	public List<Mensaje> getBandejaMensajes() {
 		return bandejaMensajes;
 	}
-	
-	
+		
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this)

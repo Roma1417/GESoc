@@ -1,6 +1,6 @@
 package utn.dds.tpAnual.compra;
 
-
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * @author Daiana
@@ -17,4 +17,11 @@ public class Item {
 		this.descripcion = descripcion;
 	}
 
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this)
+				.append("\ncodigo", codigo)
+			    .append("\ndescripcion", descripcion)
+			    .toString();
+	}
 }
