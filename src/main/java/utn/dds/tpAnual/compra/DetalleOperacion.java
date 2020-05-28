@@ -33,6 +33,14 @@ public class DetalleOperacion {
 		return precio;
 	}
     
+    public Item getItem() {
+		return item;
+	}
+    
+    public String getDescripcionItem() {
+    	return item.getDescripcion();
+    }
+    
 	public Float getTotal() {
 		return cantidad * precio;
 	}
