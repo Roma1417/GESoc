@@ -1,6 +1,6 @@
 package utn.dds.tpAnual.entidad;
 
-
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * @author Daiana
@@ -12,5 +12,9 @@ public class EntidadJuridicaOSC extends EntidadJuridica {
 	public EntidadJuridicaOSC(){
 
 	}
-
+	
+	public EntidadJuridicaOSC(String nombre){
+		super(nombre);
+	}
+	
 }
