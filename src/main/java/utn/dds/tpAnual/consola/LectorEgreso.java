@@ -44,45 +44,29 @@ public class LectorEgreso extends Lector{
 	private Integer getInteger(String mensaje){
 		System.out.println(mensaje);
 		String val = scanner.nextLine();
-		if (val.isEmpty()) {
-			return null;
-		}else {
-			return Integer.valueOf(val);
-		}   // operador ternario.
+			return (val.isEmpty())? null : Integer.valueOf(val);
 	}
 	
 	private String getString(String mensaje) {
 		System.out.println(mensaje);
 		String val = scanner.nextLine();
-		if (val.isEmpty()) {
-			return null;
-		}else {
-			return val;
-		} // idem
+		return (val.isEmpty())? null : val;
 	}
 	
 	private Long getLong(String mensaje){
 		System.out.println(mensaje);
 		String val = scanner.nextLine();
-		if (val.isEmpty()) {
-			return null;
-		}else {
-			return Long.valueOf(val);
-		}// Idem
+		return (val.isEmpty())? null : Long.valueOf(val);
 	}
 	
 	private Float getFloat(String mensaje){
 		System.out.println(mensaje);
 		String val = scanner.nextLine();
-		if (val.isEmpty()) {
-			return null;
-		}else {
-			return Float.valueOf(val);
-		}
+		return (val.isEmpty())? null : Float.valueOf(val);
 	}
 	
-	private boolean preguntar(String tipoDato) { // "consultarSobre"  RENOMBRAR, tipoDato tambien. 
-		String eleccion = getString("¿Desea registrar un " + tipoDato + "? Y/N");
+	private boolean consultarSobre(String nombreTipoDato) {
+		String eleccion = getString("¿Desea registrar un " + nombreTipoDato + "? Y/N");
 		return eleccion.equalsIgnoreCase("Y");
 	}
 	
@@ -90,7 +74,7 @@ public class LectorEgreso extends Lector{
 		List<DetalleOperacion> detallesOperacion = new ArrayList<DetalleOperacion>();
 		System.out.println("Se tomara registro de los detalles de items del egreso.");
 		while(true) {
-			if(preguntar("detalle de item")) {
+			if(consultarSobre("detalle de item")) {
 				DetalleOperacion detalleOperacion = getDetalleOperacion();
 				detallesOperacion.add(detalleOperacion);
 			} else {
@@ -103,35 +87,26 @@ public class LectorEgreso extends Lector{
 	private Item getItem() {
 		Long codigo = getLong("Ingrese el codigo del item");
 		String descripcion = getString("Ingrese la descripción del item");
-		if(codigo == null || descripcion == null) {
-			return null;
-		}
-		return new Item (codigo, descripcion);   // operador ternario
+		return (codigo == null || descripcion == null) ? null : new Item (codigo, descripcion);  
 	}
 	
 	private DetalleOperacion getDetalleOperacion() {
 		Integer cantidad = getInteger("Ingrese la cantidad de items");
 		Item item = getItem();
 		Float precio = getFloat("Ingrese el precio del item");
-		if(cantidad == null || item == null || precio == null) {
-			return null;
-		}
-		return new DetalleOperacion(item, precio, cantidad);  // idem
+		return (cantidad == null || item == null || precio == null) ? null : new DetalleOperacion(item, precio, cantidad);  
 	}
 	
 	private Usuario getRevisor() {
 		String nombre = getString("Ingrese el nombre del usuario");
-		if(nombre == null) {
-			return null;
-		}
-		return new Usuario(nombre, null);   // operadorTernario
+		return nombre == null? null : new Usuario(nombre, null);   
 	}
 	
 	private List<Usuario> getRevisores() {
 		List<Usuario> revisores = new ArrayList<Usuario>();
 		System.out.println("Se tomara registro de los revisores");
 		while(true) {
-			if(preguntar("revisor")) {
+			if(consultarSobre("revisor")) {
 				Usuario revisor = getRevisor();
 				revisores.add(revisor);
 			} else {
@@ -145,19 +120,14 @@ public class LectorEgreso extends Lector{
 		List<Presupuesto> presupuestos = new ArrayList<Presupuesto>();
 		System.out.println("Se tomara registro de los presupuestos");
 		while(true) {
-			if(preguntar("presupuesto")) {
-				Presupuesto presupuesto = getPresupuesto(detallesOperacion);
+			if(consultarSobre("presupuesto")) {
+				Presupuesto presupuesto = new Presupuesto(null, null, 0, getDetallesPrecio(detallesOperacion));  ;
 				presupuestos.add(presupuesto);
 			} else {
 				break;
 			}
 		}
 		return presupuestos;
-	}
-	
-	private Presupuesto getPresupuesto(List<DetalleOperacion> detallesOperacion) {
-		return new Presupuesto(null, null, 0, getDetallesPrecio(detallesOperacion));  
-		// Sacar, instanciar de una.
 	}
 	
 	private List<DetallePrecio> getDetallesPrecio(List<DetalleOperacion> detallesOperacion){
@@ -174,36 +144,4 @@ public class LectorEgreso extends Lector{
 		return new DetallePrecio(detalleOperacion, precio);
 	}
 	
-	// Todo esto que sigue, NO SE USA. Borrar. No se dejan cosas que no se usan (es lo que hiciste con Dai).
-	private Presupuesto leerPresupuesto(int numeroPresupuesto) {
-		return new Presupuesto(null, null, 0, leerDetallesPrecio(numeroPresupuesto));
-	}   // Sacar, no se usa . 
-	
-	private List<DetallePrecio> leerDetallesPrecio(int numeroPresupuesto){
-		System.out.println("Complete los siguientes datos del presupuesto numero " + numeroPresupuesto);
-		List<DetallePrecio> detallesPrecio = new ArrayList<DetallePrecio>();
-		DetallePrecio detallePrecio;
-		do{	
-			detallePrecio = leerDetallePrecio();
-			if (detallePrecio != null) {
-				detallesPrecio.add(detallePrecio);
-			}
-		}while(detallePrecio != null);
-		return null;
-	}
-	
-	private DetallePrecio leerDetallePrecio() {
-		System.out.println("Ingrese el codido del item:");
-		Long codigo = scanner.nextLong();
-		System.out.println("Ingrese precio del item:");
-		Float precio = scanner.nextFloat();
-		System.out.println("Ingrese la cantidad:");
-		int cantidad = scanner.nextInt();
-		System.out.println("Ingrese la descripcion del item:");
-		String descripcion = scanner.nextLine();
-		Item item = new Item(codigo, descripcion);
-		DetalleOperacion detalleOperacion = new DetalleOperacion(item, precio, cantidad);
-		DetallePrecio detallePrecio = new DetallePrecio(detalleOperacion, precio);
-		return detallePrecio;
-	}
 }
