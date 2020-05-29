@@ -24,7 +24,7 @@ public class LectorUsuario extends  Lector {
 		System.out.println("Se ha generado el usuario: ");
 		System.out.println(usuario);
 		
-		if(usuario.validarContrasenia();) {
+		if(usuario.validarContrasenia()) {
 			System.out.println("La validación del usuario fue exitosa.");			
 		}else {
 			System.out.println("Falló la validación del usuario.");
