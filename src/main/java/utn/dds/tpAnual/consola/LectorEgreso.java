@@ -32,13 +32,13 @@ public class LectorEgreso extends Lector{
 		List<Presupuesto> presupuestos = getPresupuestos(detallesOperacion);
 		List<Usuario> revisores = getRevisores();		
 		Egreso egreso = new Egreso(null, null, 0, null, null, null, cantidadMinimaPresupuestos, CriterioMenorPrecio.getInstance(), presupuestos, null, revisores);
-		
 		Validador validador = Validador.getInstance();
+
 		if(validador.validarEgreso(egreso)) {
 			System.out.println("La validación del egreso fue exitosa.");			
 		}else {
 			System.out.println("Falló la validación del egreso.");
-		};
+		}
 	}
 	
 	private Integer getInteger(String mensaje){
@@ -48,7 +48,7 @@ public class LectorEgreso extends Lector{
 			return null;
 		}else {
 			return Integer.valueOf(val);
-		}
+		}   // operador ternario.
 	}
 	
 	private String getString(String mensaje) {
@@ -58,7 +58,7 @@ public class LectorEgreso extends Lector{
 			return null;
 		}else {
 			return val;
-		}
+		} // idem
 	}
 	
 	private Long getLong(String mensaje){
@@ -68,7 +68,7 @@ public class LectorEgreso extends Lector{
 			return null;
 		}else {
 			return Long.valueOf(val);
-		}
+		}// Idem
 	}
 	
 	private Float getFloat(String mensaje){
@@ -81,7 +81,7 @@ public class LectorEgreso extends Lector{
 		}
 	}
 	
-	private boolean preguntar(String tipoDato) {
+	private boolean preguntar(String tipoDato) { // "consultarSobre"  RENOMBRAR, tipoDato tambien. 
 		String eleccion = getString("¿Desea registrar un " + tipoDato + "? Y/N");
 		return eleccion.equalsIgnoreCase("Y");
 	}
@@ -106,7 +106,7 @@ public class LectorEgreso extends Lector{
 		if(codigo == null || descripcion == null) {
 			return null;
 		}
-		return new Item (codigo, descripcion);
+		return new Item (codigo, descripcion);   // operador ternario
 	}
 	
 	private DetalleOperacion getDetalleOperacion() {
@@ -116,7 +116,7 @@ public class LectorEgreso extends Lector{
 		if(cantidad == null || item == null || precio == null) {
 			return null;
 		}
-		return new DetalleOperacion(item, precio, cantidad);
+		return new DetalleOperacion(item, precio, cantidad);  // idem
 	}
 	
 	private Usuario getRevisor() {
@@ -124,7 +124,7 @@ public class LectorEgreso extends Lector{
 		if(nombre == null) {
 			return null;
 		}
-		return new Usuario(nombre, null);
+		return new Usuario(nombre, null);   // operadorTernario
 	}
 	
 	private List<Usuario> getRevisores() {
@@ -156,7 +156,8 @@ public class LectorEgreso extends Lector{
 	}
 	
 	private Presupuesto getPresupuesto(List<DetalleOperacion> detallesOperacion) {
-		return new Presupuesto(null, null, 0, getDetallesPrecio(detallesOperacion));
+		return new Presupuesto(null, null, 0, getDetallesPrecio(detallesOperacion));  
+		// Sacar, instanciar de una.
 	}
 	
 	private List<DetallePrecio> getDetallesPrecio(List<DetalleOperacion> detallesOperacion){
@@ -173,9 +174,10 @@ public class LectorEgreso extends Lector{
 		return new DetallePrecio(detalleOperacion, precio);
 	}
 	
+	// Todo esto que sigue, NO SE USA. Borrar. No se dejan cosas que no se usan (es lo que hiciste con Dai).
 	private Presupuesto leerPresupuesto(int numeroPresupuesto) {
 		return new Presupuesto(null, null, 0, leerDetallesPrecio(numeroPresupuesto));
-	}
+	}   // Sacar, no se usa . 
 	
 	private List<DetallePrecio> leerDetallesPrecio(int numeroPresupuesto){
 		System.out.println("Complete los siguientes datos del presupuesto numero " + numeroPresupuesto);
