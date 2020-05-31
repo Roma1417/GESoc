@@ -8,7 +8,9 @@ import utn.dds.tpAnual.compra.DetallePrecio;
 import utn.dds.tpAnual.compra.Egreso;
 import utn.dds.tpAnual.compra.Item;
 import utn.dds.tpAnual.compra.Presupuesto;
+import utn.dds.tpAnual.usuario.Mensaje;
 import utn.dds.tpAnual.usuario.Usuario;
+import utn.dds.tpAnual.validador.CriterioCompra;
 import utn.dds.tpAnual.validador.CriterioMenorPrecio;
 import utn.dds.tpAnual.validador.Validador;
 
@@ -29,15 +31,23 @@ public class LectorEgreso extends Lector{
 		System.out.println("Se dará de alta un Egreso:");	
 		List<DetalleOperacion> detallesOperacion = getDetallesOperacion();
 		Integer cantidadMinimaPresupuestos = getInteger("Ingrese la cantidad minima de presupuestos");
+		CriterioCompra criterio = getCriterio();
 		List<Presupuesto> presupuestos = getPresupuestos(detallesOperacion);
-		List<Usuario> revisores = getRevisores();		
-		Egreso egreso = new Egreso(null, null, 0, null, null, null, cantidadMinimaPresupuestos, CriterioMenorPrecio.getInstance(), presupuestos, null, revisores);
+		List<Usuario> revisores = getRevisores();
+		Egreso egreso = new Egreso(null, null, 0, null, null, null, cantidadMinimaPresupuestos, criterio, presupuestos, null, revisores);
 		Validador validador = Validador.getInstance();
 
 		if(validador.validarEgreso(egreso)) {
 			System.out.println("La validación del egreso fue exitosa.");			
-		}else {
+		} else {
 			System.out.println("Falló la validación del egreso.");
+		}
+		
+		System.out.println("\nSe procedera a mostrar la bandeja de mensajes de cada usuario");
+		for(Usuario unRevisor : revisores){
+			System.out.println("Revisor: " + unRevisor + " ");
+			List<Mensaje> mensajeUsuario = unRevisor.getBandejaMensajes();
+			System.out.println("- " + mensajeUsuario.get(0).getCuerpo());
 		}
 	}
 	
@@ -95,6 +105,18 @@ public class LectorEgreso extends Lector{
 		Item item = getItem();
 		Float precio = getFloat("Ingrese el precio del item");
 		return (cantidad == null || item == null || precio == null) ? null : new DetalleOperacion(item, precio, cantidad);  
+	}
+	
+	private CriterioCompra getCriterio() {
+		System.out.println("Ingrese 1 para Criterio Menor Precio.\n"
+							+ "Ingrese 0 para ningun criterio.");
+		String criterio = scanner.nextLine();
+		
+		switch(Integer.valueOf(criterio)) {
+		case 0: return null;
+		case 1: return CriterioMenorPrecio.getInstance();
+		default: return null;
+		}
 	}
 	
 	private Usuario getRevisor() {
