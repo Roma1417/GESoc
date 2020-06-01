@@ -48,4 +48,6 @@ public class Egreso extends OperacionEfectuada {
 	public List<Usuario> getRevisores() {
 		return revisores;
 	}
+	
+	
 }

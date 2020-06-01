@@ -2,6 +2,8 @@ package utn.dds.tpAnual.compra;
 
 import java.util.List;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import utn.dds.tpAnual.entidad.Entidad;
 
 /**
@@ -32,5 +34,12 @@ public class Presupuesto extends Operacion {
 	
 	public List<DetallePrecio> getDetallesPrecio(){
 		return detallesPrecio;
+	}
+	
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this)
+			    .append("\ndetallesPrecio", detallesPrecio)
+			    .toString();
 	}
 }

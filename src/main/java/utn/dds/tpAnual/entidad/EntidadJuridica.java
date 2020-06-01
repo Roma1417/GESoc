@@ -19,4 +19,8 @@ public abstract class EntidadJuridica extends Entidad {
 
 	}
 
+	public EntidadJuridica(String nombre) {
+		super(nombre);
+	}
+
 }

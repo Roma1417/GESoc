@@ -1,6 +1,6 @@
 package utn.dds.tpAnual.afip;
 
-
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * @author Tomas
@@ -27,5 +27,10 @@ public class VentaAnual {
 	
 	public int getAnio() {
 		return anio;
+	}
+	
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
 	}
 }
