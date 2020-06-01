@@ -43,12 +43,15 @@ public class LectorEgreso extends Lector{
 			System.out.println("Falló la validación del egreso.");
 		}
 		
-		System.out.println("\nSe procedera a mostrar la bandeja de mensajes de cada usuario");
-		for(Usuario unRevisor : revisores){
-			System.out.println("Revisor: " + unRevisor + " ");
-			List<Mensaje> mensajeUsuario = unRevisor.getBandejaMensajes();
-			System.out.println("- " + mensajeUsuario.get(0).getCuerpo());
+		if(revisores != null && revisores.size() > 0) {
+			System.out.println("\nSe procedera a mostrar la bandeja de mensajes de cada usuario");
+			for(Usuario unRevisor : revisores){
+				System.out.println("Revisor: " + unRevisor);
+				List<Mensaje> mensajeUsuario = unRevisor.getBandejaMensajes();
+				System.out.println("- " + mensajeUsuario.get(0).getCuerpo());
+			}
 		}
+
 	}
 	
 	private Integer getInteger(String mensaje){
@@ -112,11 +115,7 @@ public class LectorEgreso extends Lector{
 							+ "Ingrese 0 para ningun criterio.");
 		String criterio = scanner.nextLine();
 		
-		switch(Integer.valueOf(criterio)) {
-		case 0: return null;
-		case 1: return CriterioMenorPrecio.getInstance();
-		default: return null;
-		}
+		return Integer.valueOf(criterio) == 0 ? null : CriterioMenorPrecio.getInstance();
 	}
 	
 	private Usuario getRevisor() {
@@ -143,7 +142,7 @@ public class LectorEgreso extends Lector{
 		System.out.println("Se tomara registro de los presupuestos");
 		while(true) {
 			if(consultarSobre("presupuesto")) {
-				Presupuesto presupuesto = new Presupuesto(null, null, 0, getDetallesPrecio(detallesOperacion));  ;
+				Presupuesto presupuesto = new Presupuesto(null, null, 0, getDetallesPrecio(detallesOperacion));
 				presupuestos.add(presupuesto);
 			} else {
 				break;
