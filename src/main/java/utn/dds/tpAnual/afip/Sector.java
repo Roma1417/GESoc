@@ -39,4 +39,8 @@ public class Sector {
 		Collections.sort(requisitos);
 		return requisitos;
 	}
+	
+	public String getNombre(){
+		return this.nombreSector;
+	}
 }

@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import utn.dds.tpAnual.afip.Actividad;
 import utn.dds.tpAnual.afip.VentaAnual;
 import utn.dds.tpAnual.afip.tamanios.TamanioEmpresa;
@@ -24,6 +26,18 @@ public class EntidadJuridicaEmpresa extends EntidadJuridica {
 	public EntidadJuridicaEmpresa(){
 
 	}
+	
+	
+	
+	public EntidadJuridicaEmpresa(Actividad actividad, int cantidadPersonal, List<VentaAnual> ventasAnuales, String nombre) {
+		super(nombre);
+		this.actividad = actividad;
+		this.cantidadPersonal = cantidadPersonal;
+		this.ventasAnuales = ventasAnuales;
+	}
+
+
+
 	/**
 	 * 
 	 * @param anio
@@ -57,6 +71,17 @@ public class EntidadJuridicaEmpresa extends EntidadJuridica {
 	
 	public void recalcularTamanioEmpresa(){
 		this.tamanioEmpresa = actividad.getTamanioEmpresaPara(cantidadPersonal, getPromedioVentasParaAnios(3));
+	}
+	
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this)
+				.append("nombre", getNombre())
+				.append("actividad", actividad.toString())
+				.append("cantidad personal", String.valueOf(cantidadPersonal))
+				.append("ventas anuales", ventasAnuales.toString())
+				.append("tamaño empresa", tamanioEmpresa.getNombre())
+			    .toString();
 	}
 	
 }
