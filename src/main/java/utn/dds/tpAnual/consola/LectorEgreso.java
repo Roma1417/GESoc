@@ -28,17 +28,17 @@ public class LectorEgreso extends Lector{
 
 	@Override
 	public void ejecutar(){
-		System.out.println("Se dará de alta un Egreso:");	
+		System.out.println("Se dará de alta un Egreso:");
 		List<DetalleOperacion> detallesOperacion = getDetallesOperacion();
 		Integer cantidadMinimaPresupuestos = getInteger("Ingrese la cantidad minima de presupuestos");
 		CriterioCompra criterio = getCriterio();
 		List<Presupuesto> presupuestos = getPresupuestos(detallesOperacion);
 		List<Usuario> revisores = getRevisores();
-		Egreso egreso = new Egreso(null, null, 0, null, null, null, cantidadMinimaPresupuestos, criterio, presupuestos, null, revisores);
+		Egreso egreso = new Egreso(null, null, 0, detallesOperacion, null, null, cantidadMinimaPresupuestos, criterio, presupuestos, null, revisores);
 		Validador validador = Validador.getInstance();
 
 		if(validador.validarEgreso(egreso)) {
-			System.out.println("La validación del egreso fue exitosa.");			
+			System.out.println("La validación del egreso fue exitosa.");		
 		} else {
 			System.out.println("Falló la validación del egreso.");
 		}
@@ -51,7 +51,6 @@ public class LectorEgreso extends Lector{
 				System.out.println("- " + mensajeUsuario.get(0).getCuerpo());
 			}
 		}
-
 	}
 	
 	private Integer getInteger(String mensaje){
@@ -86,14 +85,16 @@ public class LectorEgreso extends Lector{
 	private List<DetalleOperacion> getDetallesOperacion(){
 		List<DetalleOperacion> detallesOperacion = new ArrayList<DetalleOperacion>();
 		System.out.println("Se tomara registro de los detalles de items del egreso.");
-		while(true) {
+		do {
 			if(consultarSobre("detalle de item")) {
 				DetalleOperacion detalleOperacion = getDetalleOperacion();
 				detallesOperacion.add(detalleOperacion);
-			} else {
+			} else if (!detallesOperacion.isEmpty()){
 				break;
+			} else {
+				System.out.println("Debe ingresar al menos un item");
 			}
-		}
+		} while(true);
 		return detallesOperacion;
 	}
 	
