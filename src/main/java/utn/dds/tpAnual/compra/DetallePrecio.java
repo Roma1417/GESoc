@@ -1,6 +1,6 @@
 package utn.dds.tpAnual.compra;
 
-
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * @author Tomas
@@ -34,4 +34,11 @@ public class DetallePrecio {
 		return precio * detalleOperacion.getCantidad();
 	}
 	
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this)
+				.append("\ndetalleOperacion", detalleOperacion)
+			    .append("\nprecio", precio)
+			    .toString();
+	}
 }

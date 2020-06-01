@@ -1,5 +1,7 @@
 package utn.dds.tpAnual.afip;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import utn.dds.tpAnual.afip.tamanios.TamanioEmpresa;
 
 /**
@@ -24,5 +26,13 @@ public class Actividad {
 	 */
 	public TamanioEmpresa getTamanioEmpresaPara(int cantidadEmpleados, Float ventasAnuales){
 		return sector.getTamanioPara(cantidadEmpleados, ventasAnuales);
+	}
+	
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this)
+				.append("nombre", nombreActividad)
+			    .append("sector", sector.getNombre())
+			    .toString();
 	}
 }

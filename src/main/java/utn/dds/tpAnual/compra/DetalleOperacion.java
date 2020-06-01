@@ -1,6 +1,6 @@
 package utn.dds.tpAnual.compra;
 
-
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * @author Daiana
@@ -33,8 +33,25 @@ public class DetalleOperacion {
 		return precio;
 	}
     
+    public Item getItem() {
+		return item;
+	}
+    
+    public String getDescripcionItem() {
+    	return item.getDescripcion();
+    }
+    
 	public Float getTotal() {
 		return cantidad * precio;
 	}
 	
-}//end DetalleOperacion
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this)
+				.append("\nitem", item)
+			    .append("\nprecio", precio)
+			    .append("\ncantidad", cantidad)
+			    .toString();
+	}
+	
+}
