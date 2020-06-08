@@ -10,11 +10,13 @@ import org.junit.Test;
 import utn.dds.tpAnual.compra.*;
 import utn.dds.tpAnual.usuario.Mensaje;
 import utn.dds.tpAnual.usuario.Usuario;
+import utn.dds.tpAnual.validador.CriterioMenorPrecio;
+import utn.dds.tpAnual.validador.ValidadorEgreso;
 
-public class ValidadorTest {
+public class ValidadorEgresoTest {
 	
-	//Validador
-	private Validador validadorTest = Validador.getInstance();
+	//ValidadorEgreso
+	private ValidadorEgreso validadorTest = ValidadorEgreso.getInstance();
 	
 	//DetalleOperacion
 	private Item itemTest = new Item(123L, "itemTest");
