@@ -9,6 +9,7 @@ import utn.dds.tpAnual.compra.DetalleOperacion;
 import utn.dds.tpAnual.compra.DetallePrecio;
 import utn.dds.tpAnual.compra.Item;
 import utn.dds.tpAnual.compra.Presupuesto;
+import utn.dds.tpAnual.validador.CriterioMenorPrecio;
 
 import org.junit.Test;
 

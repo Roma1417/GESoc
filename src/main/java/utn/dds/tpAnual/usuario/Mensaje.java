@@ -1,6 +1,6 @@
 package utn.dds.tpAnual.usuario;
 
-
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * @author Tomas
@@ -25,6 +25,11 @@ public class Mensaje {
 		return cuerpo;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this)
+				.append("resultado", cuerpo)
+			    .toString();
+	}
 
 }

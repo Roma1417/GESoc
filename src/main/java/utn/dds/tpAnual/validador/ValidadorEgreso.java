@@ -14,18 +14,18 @@ import utn.dds.tpAnual.usuario.Usuario;
  * @version 1.0
  * @created 26-abr.-2020 19:46:27
  */
-public class Validador {
+public class ValidadorEgreso {
 	
 	private final String MENSAJE_CORRECTO = "Validacion realizada con Exito";
 	private final String MENSAJE_ERRONEO = "Fallo de Validacion";
 	private final String ASUNTO_INICIO = "Resultado Validacion Egreso: ";
-	private static Validador instance = new Validador();
+	private static ValidadorEgreso instance = new ValidadorEgreso();
 	
-	private Validador(){
+	private ValidadorEgreso(){
 
 	}
 	
-	public static Validador getInstance() {
+	public static ValidadorEgreso getInstance() {
 		return instance;
 	}
 	
