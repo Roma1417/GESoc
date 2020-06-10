@@ -12,7 +12,7 @@ import utn.dds.tpAnual.usuario.Mensaje;
 import utn.dds.tpAnual.usuario.Usuario;
 import utn.dds.tpAnual.validador.CriterioCompra;
 import utn.dds.tpAnual.validador.CriterioMenorPrecio;
-import utn.dds.tpAnual.validador.Validador;
+import utn.dds.tpAnual.validador.ValidadorEgreso;
 
 
 public class LectorEgreso extends Lector{
@@ -35,20 +35,18 @@ public class LectorEgreso extends Lector{
 		List<Presupuesto> presupuestos = getPresupuestos(detallesOperacion);
 		List<Usuario> revisores = getRevisores();
 		Egreso egreso = new Egreso(null, null, 0, detallesOperacion, null, null, cantidadMinimaPresupuestos, criterio, presupuestos, null, revisores);
-		Validador validador = Validador.getInstance();
+		ValidadorEgreso validadorEgreso = ValidadorEgreso.getInstance();
 
-		if(validador.validarEgreso(egreso)) {
+		if(validadorEgreso.validarEgreso(egreso)) {
 			System.out.println("La validación del egreso fue exitosa.");		
 		} else {
 			System.out.println("Falló la validación del egreso.");
 		}
 		
 		if(revisores != null && revisores.size() > 0) {
-			System.out.println("\nSe procedera a mostrar la bandeja de mensajes de cada usuario");
+			System.out.println("\nSe procedera a mostrar la bandeja de mensajes de cada usuario.");
 			for(Usuario unRevisor : revisores){
 				System.out.println("Revisor: " + unRevisor);
-				List<Mensaje> mensajeUsuario = unRevisor.getBandejaMensajes();
-				System.out.println("- " + mensajeUsuario.get(0).getCuerpo());
 			}
 		}
 	}
