@@ -32,8 +32,8 @@ public class ValidadorEgresoTest {
 	private List<DetallePrecio> otrosDetallesPrecio = Arrays.asList(unDetallePrecio, otroDetallePrecio);
 	
 	//Presupuesto
-	private Presupuesto unPresupuesto = new Presupuesto(null, null, 1782, unosDetallesPrecio);
-	private Presupuesto otroPresupuesto = new Presupuesto(null, null, 1723, otrosDetallesPrecio);
+	private Presupuesto unPresupuesto = new Presupuesto(null, null, 1782, unosDetallesPrecio, null);
+	private Presupuesto otroPresupuesto = new Presupuesto(null, null, 1723, otrosDetallesPrecio, null);
 	private List<Presupuesto> listaPresupuestosVacia;
 	private List<Presupuesto> unaListaPresupuestos = Arrays.asList(unPresupuesto, unPresupuesto);
 	private List<Presupuesto> otraListaPresupuestos = Arrays.asList(otroPresupuesto, otroPresupuesto);
@@ -47,13 +47,13 @@ public class ValidadorEgresoTest {
 	private Usuario otroRevisor = new Usuario("otroRevisor", "wuiefnwi471");
 	private List<Usuario> revisoresTest = Arrays.asList(unRevisor, otroRevisor);
 	
-	private Egreso egresoSinPresupuestos = new Egreso(null, null, 542, null, null, null, 2, criterioMenorPrecio, listaPresupuestosVacia, null, revisoresTest);
-	private Egreso egresoCumplidor = new Egreso(null, null, 87, unosDetallesOperacion, null, null, 2, criterioMenorPrecio, unaListaPresupuestos, null, revisoresTest);
+	private Egreso egresoSinPresupuestos = new Egreso(null, null, 542, null, null, null, 2, criterioMenorPrecio, listaPresupuestosVacia, null, revisoresTest, null);
+	private Egreso egresoCumplidor = new Egreso(null, null, 87, unosDetallesOperacion, null, null, 2, criterioMenorPrecio, unaListaPresupuestos, null, revisoresTest, null);
 	
 
 	@Test
 	public void egresoSinPresupuestosMinimos() {
-		Egreso egresoSinPresupuestosMinimos = new Egreso(null, null, 123, null, null, null, 0, null, null, null, null);
+		Egreso egresoSinPresupuestosMinimos = new Egreso(null, null, 123, null, null, null, 0, null, null, null, null, null);
 		assertTrue(validadorTest.validarEgreso(egresoSinPresupuestosMinimos));
 	}
 	
@@ -64,13 +64,13 @@ public class ValidadorEgresoTest {
 	
 	@Test
 	public void egresoConDetallesDeDistintoTamanio() {
-		Egreso egresoConDetallesDeDistintoTamanio = new Egreso(null, null, 475, unosDetallesOperacion, null, null, 2, null, listaVariosPresupuestos, null, null);
+		Egreso egresoConDetallesDeDistintoTamanio = new Egreso(null, null, 475, unosDetallesOperacion, null, null, 2, null, listaVariosPresupuestos, null, null, null);
 		assertFalse(validadorTest.validarEgreso(egresoConDetallesDeDistintoTamanio));
 	}
 	
 	@Test
 	public void egresoConDistintosPrecios() {
-		Egreso egresoNoBasadoEnPresupuesto = new Egreso(null, null, 345, otrosDetallesOperacion, null, null, 2, null, otraListaPresupuestos, null, null);
+		Egreso egresoNoBasadoEnPresupuesto = new Egreso(null, null, 345, otrosDetallesOperacion, null, null, 2, null, otraListaPresupuestos, null, null, null);
 		assertFalse(validadorTest.validarEgreso(egresoNoBasadoEnPresupuesto));
 	}
 	

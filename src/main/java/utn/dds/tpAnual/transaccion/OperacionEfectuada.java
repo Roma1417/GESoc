@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import utn.dds.tpAnual.categorizacion.criterioCategorizacion.CriterioCategorizacion;
 import utn.dds.tpAnual.entidad.Entidad;
 
 /**
@@ -18,8 +19,9 @@ public abstract class OperacionEfectuada extends Operacion {
 	private MedioPago medioPago;
 	
 	public OperacionEfectuada(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,
-			List<DetalleOperacion> detallesOperacion, LocalDate fechaOperacion, MedioPago medioPago) {
-		super(documentoComercial, entidadRealizadora, codigoOperacion);
+			List<DetalleOperacion> detallesOperacion, LocalDate fechaOperacion, MedioPago medioPago, 
+			CriterioCategorizacion primerCriterio) {
+		super(documentoComercial, entidadRealizadora, codigoOperacion, primerCriterio);
 		this.detallesOperacion = detallesOperacion;
 		this.fechaOperacion = fechaOperacion;
 		this.medioPago = medioPago;

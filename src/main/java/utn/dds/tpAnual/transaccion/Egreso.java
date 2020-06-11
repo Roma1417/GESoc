@@ -6,6 +6,7 @@ import java.util.List;
 import utn.dds.tpAnual.proveedor.Proveedor;
 import utn.dds.tpAnual.usuario.Usuario;
 import utn.dds.tpAnual.validador.CriterioCompra;
+import utn.dds.tpAnual.categorizacion.criterioCategorizacion.CriterioCategorizacion;
 import utn.dds.tpAnual.entidad.Entidad;
 
 /**
@@ -20,12 +21,13 @@ public class Egreso extends OperacionEfectuada {
 	private List<Presupuesto> presupuestos;
 	private Proveedor proveedor;
 	private List<Usuario> revisores;
+	private List<Ingreso> ingresosAsociados;
 	
 	public Egreso(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,
 			List<DetalleOperacion> detallesOperacion, LocalDate fechaOperacion, MedioPago medioPago,
 			int cantidadPresupuestosMinimos, CriterioCompra criterioCompra, List<Presupuesto> presupuestos,
-			Proveedor proveedor, List<Usuario> revisores) {
-		super(documentoComercial, entidadRealizadora, codigoOperacion, detallesOperacion, fechaOperacion, medioPago);
+			Proveedor proveedor, List<Usuario> revisores, CriterioCategorizacion primerCriterio) {
+		super(documentoComercial, entidadRealizadora, codigoOperacion, detallesOperacion, fechaOperacion, medioPago, primerCriterio);
 		this.cantidadPresupuestosMinimos = cantidadPresupuestosMinimos;
 		this.criterioCompra = criterioCompra;
 		this.presupuestos = presupuestos;
@@ -47,6 +49,14 @@ public class Egreso extends OperacionEfectuada {
 	
 	public List<Usuario> getRevisores() {
 		return revisores;
+	}
+
+	public List<Ingreso> getIngresosAsociados() {
+		return ingresosAsociados;
+	}
+
+	public void setIngresosAsociados(List<Ingreso> ingresosAsociados) {
+		this.ingresosAsociados = ingresosAsociados;
 	}
 	
 	

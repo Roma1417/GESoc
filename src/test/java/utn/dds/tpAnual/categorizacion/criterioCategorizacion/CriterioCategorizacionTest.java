@@ -1,4 +1,4 @@
-package utn.dds.tpAnual.compra;
+package utn.dds.tpAnual.categorizacion.criterioCategorizacion;
 
 import static org.junit.Assert.*;
 
@@ -12,7 +12,7 @@ import utn.dds.tpAnual.transaccion.DetallePrecio;
 import utn.dds.tpAnual.transaccion.Item;
 import utn.dds.tpAnual.transaccion.Presupuesto;
 
-public class PresupuestoTest {
+public class CriterioCategorizacionTest {
 	
 	private Item mesa = new Item(1L,"Mesa");
 	

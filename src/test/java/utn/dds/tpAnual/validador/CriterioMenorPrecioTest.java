@@ -26,8 +26,8 @@ public class CriterioMenorPrecioTest {
 	private List<DetallePrecio> unosDetalles = Arrays.asList(unDetallePrecio, otroDetallePrecio);
 	private List<DetallePrecio> otrosDetalles = Arrays.asList(unDetallePrecio, unDetallePrecio, otroDetallePrecio, otroDetallePrecio);
 	
-	private Presupuesto unPresupuesto = new Presupuesto(null, null, 1, unosDetalles);
-	private Presupuesto otroPresupuesto = new Presupuesto(null, null, 2, otrosDetalles);
+	private Presupuesto unPresupuesto = new Presupuesto(null, null, 1, unosDetalles, null);
+	private Presupuesto otroPresupuesto = new Presupuesto(null, null, 2, otrosDetalles, null);
 	
 	private List<Presupuesto> listaPresupuestos = Arrays.asList(unPresupuesto, otroPresupuesto);
 	private List<Presupuesto> listaPresupuestosNula;

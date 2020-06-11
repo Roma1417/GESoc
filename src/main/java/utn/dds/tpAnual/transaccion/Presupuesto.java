@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import utn.dds.tpAnual.categorizacion.criterioCategorizacion.CriterioCategorizacion;
 import utn.dds.tpAnual.entidad.Entidad;
 
 /**
@@ -16,8 +17,8 @@ public class Presupuesto extends Operacion {
 	private List<DetallePrecio> detallesPrecio;
 
 	public Presupuesto(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,
-			List<DetallePrecio> detallesPrecio) {
-		super(documentoComercial, entidadRealizadora, codigoOperacion);
+			List<DetallePrecio> detallesPrecio, CriterioCategorizacion primerCriterio) {
+		super(documentoComercial, entidadRealizadora, codigoOperacion, primerCriterio);
 		this.detallesPrecio = detallesPrecio;
 	}
 	
