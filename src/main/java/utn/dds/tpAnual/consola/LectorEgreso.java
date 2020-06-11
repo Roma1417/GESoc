@@ -3,11 +3,12 @@ package utn.dds.tpAnual.consola;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import utn.dds.tpAnual.compra.DetalleOperacion;
-import utn.dds.tpAnual.compra.DetallePrecio;
-import utn.dds.tpAnual.compra.Egreso;
-import utn.dds.tpAnual.compra.Item;
-import utn.dds.tpAnual.compra.Presupuesto;
+
+import utn.dds.tpAnual.transaccion.DetalleOperacion;
+import utn.dds.tpAnual.transaccion.DetallePrecio;
+import utn.dds.tpAnual.transaccion.Egreso;
+import utn.dds.tpAnual.transaccion.Item;
+import utn.dds.tpAnual.transaccion.Presupuesto;
 import utn.dds.tpAnual.usuario.Mensaje;
 import utn.dds.tpAnual.usuario.Usuario;
 import utn.dds.tpAnual.validador.CriterioCompra;

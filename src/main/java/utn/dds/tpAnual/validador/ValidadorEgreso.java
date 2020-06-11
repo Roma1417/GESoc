@@ -2,9 +2,9 @@ package utn.dds.tpAnual.validador;
 
 import java.util.List;
 
-import utn.dds.tpAnual.compra.DetallePrecio;
-import utn.dds.tpAnual.compra.Egreso;
-import utn.dds.tpAnual.compra.Presupuesto;
+import utn.dds.tpAnual.transaccion.DetallePrecio;
+import utn.dds.tpAnual.transaccion.Egreso;
+import utn.dds.tpAnual.transaccion.Presupuesto;
 import utn.dds.tpAnual.usuario.Mensaje;
 import utn.dds.tpAnual.usuario.Usuario;
 

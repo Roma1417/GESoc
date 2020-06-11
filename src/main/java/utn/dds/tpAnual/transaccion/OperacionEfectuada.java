@@ -1,4 +1,4 @@
-package utn.dds.tpAnual.compra;
+package utn.dds.tpAnual.transaccion;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

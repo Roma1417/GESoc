@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import utn.dds.tpAnual.*;
+import utn.dds.tpAnual.transaccion.DetalleOperacion;
+import utn.dds.tpAnual.transaccion.Egreso;
+import utn.dds.tpAnual.transaccion.Item;
 
 public class OperacionEfectuadaTest {
 

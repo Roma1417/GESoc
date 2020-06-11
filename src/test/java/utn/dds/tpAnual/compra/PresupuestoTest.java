@@ -7,6 +7,11 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
+import utn.dds.tpAnual.transaccion.DetalleOperacion;
+import utn.dds.tpAnual.transaccion.DetallePrecio;
+import utn.dds.tpAnual.transaccion.Item;
+import utn.dds.tpAnual.transaccion.Presupuesto;
+
 public class PresupuestoTest {
 	
 	private Item mesa = new Item(1L,"Mesa");

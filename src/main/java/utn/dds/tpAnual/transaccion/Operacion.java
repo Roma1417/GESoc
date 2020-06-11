@@ -1,4 +1,4 @@
-package utn.dds.tpAnual.compra;
+package utn.dds.tpAnual.transaccion;
 
 import utn.dds.tpAnual.entidad.Entidad;
 

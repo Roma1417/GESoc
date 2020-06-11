@@ -5,10 +5,10 @@ import static org.junit.Assert.assertEquals;
 import java.util.Arrays;
 import java.util.List;
 
-import utn.dds.tpAnual.compra.DetalleOperacion;
-import utn.dds.tpAnual.compra.DetallePrecio;
-import utn.dds.tpAnual.compra.Item;
-import utn.dds.tpAnual.compra.Presupuesto;
+import utn.dds.tpAnual.transaccion.DetalleOperacion;
+import utn.dds.tpAnual.transaccion.DetallePrecio;
+import utn.dds.tpAnual.transaccion.Item;
+import utn.dds.tpAnual.transaccion.Presupuesto;
 import utn.dds.tpAnual.validador.CriterioMenorPrecio;
 
 import org.junit.Test;
