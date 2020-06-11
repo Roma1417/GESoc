@@ -29,7 +29,7 @@ public class ProgramadorDeTareas {
 		Trigger trigger = TriggerBuilder
 				.newTrigger()
 				.withIdentity("Trigger desc 1", "Grupo 1")
-				.withSchedule(CronScheduleBuilder.cronSchedule("0/5 * * * * ?"))
+				.withSchedule(CronScheduleBuilder.cronSchedule("* 0/5 * * * ?")) // Ejecuta cada 5 minutos.
 				.build();
 		scheduler.start();
 		scheduler.scheduleJob(job,trigger);
