@@ -28,4 +28,8 @@ public class EgresosObserver {
 		colaEgresos.add(egreso);
 	}
 	
+	public int cantidadEgresos() {
+		return colaEgresos.size();
+	}
+	
 }

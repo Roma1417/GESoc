@@ -12,6 +12,7 @@ import org.quartz.impl.StdSchedulerFactory;
 public class ProgramadorDeTareas {
 	
 	private static ProgramadorDeTareas instance = new ProgramadorDeTareas();
+	private Scheduler scheduler;
 
 	private ProgramadorDeTareas() {
 	}
@@ -22,16 +23,20 @@ public class ProgramadorDeTareas {
 	
 	
 	public void iniciar() throws SchedulerException {
-		Scheduler scheduler = new StdSchedulerFactory().getScheduler();
+		scheduler = new StdSchedulerFactory().getScheduler();
 		JobDetail job = JobBuilder.newJob(ValidadorEgresosJob.class)
 				.withIdentity("ValidadorEgresosJob", "Grupo 1")
 				  .build();
 		Trigger trigger = TriggerBuilder
 				.newTrigger()
 				.withIdentity("Trigger desc 1", "Grupo 1")
-				.withSchedule(CronScheduleBuilder.cronSchedule("* 0/5 * * * ?")) // Ejecuta cada 5 minutos.
+				.withSchedule(CronScheduleBuilder.cronSchedule("0/15 * * * * ?")) // Ejecuta cada 15 segundos.
 				.build();
 		scheduler.start();
 		scheduler.scheduleJob(job,trigger);
+	}
+	
+	public void stop() throws SchedulerException {
+		scheduler.clear();
 	}
 }
