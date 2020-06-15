@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import utn.dds.tpAnual.afip.builders.UsuarioBuilder;
+import utn.dds.tpAnual.builders.UsuarioBuilder;
 import utn.dds.tpAnual.usuario.Usuario;
 import utn.dds.tpAnual.validador.ValidadorContrasenia;
 

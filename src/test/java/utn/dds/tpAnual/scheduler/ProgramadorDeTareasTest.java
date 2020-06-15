@@ -1,4 +1,4 @@
-package utn.dds.tpAnual.afip.scheduler;
+package utn.dds.tpAnual.scheduler;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import utn.dds.tpAnual.afip.builders.EgresoBuilder;
+import utn.dds.tpAnual.builders.EgresoBuilder;
 import utn.dds.tpAnual.scheduler.ProgramadorDeTareas;
 import utn.dds.tpAnual.transaccion.DetalleOperacion;
 import utn.dds.tpAnual.transaccion.DetallePrecio;

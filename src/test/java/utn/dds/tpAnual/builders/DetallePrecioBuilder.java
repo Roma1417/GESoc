@@ -1,4 +1,4 @@
-package utn.dds.tpAnual.afip.builders;
+package utn.dds.tpAnual.builders;
 
 import utn.dds.tpAnual.transaccion.DetalleOperacion;
 import utn.dds.tpAnual.transaccion.DetallePrecio;

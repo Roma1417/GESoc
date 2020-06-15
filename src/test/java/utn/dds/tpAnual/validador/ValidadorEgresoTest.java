@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import utn.dds.tpAnual.afip.builders.EgresoBuilder;
+import utn.dds.tpAnual.builders.EgresoBuilder;
 import utn.dds.tpAnual.transaccion.*;
 import utn.dds.tpAnual.usuario.Mensaje;
 import utn.dds.tpAnual.usuario.Usuario;

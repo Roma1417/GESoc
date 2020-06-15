@@ -7,9 +7,9 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import utn.dds.tpAnual.afip.builders.DetalleOperacionBuilder;
-import utn.dds.tpAnual.afip.builders.DetallePrecioBuilder;
-import utn.dds.tpAnual.afip.builders.PresupuestoBuilder;
+import utn.dds.tpAnual.builders.DetalleOperacionBuilder;
+import utn.dds.tpAnual.builders.DetallePrecioBuilder;
+import utn.dds.tpAnual.builders.PresupuestoBuilder;
 import utn.dds.tpAnual.transaccion.DetalleOperacion;
 import utn.dds.tpAnual.transaccion.DetallePrecio;
 import utn.dds.tpAnual.transaccion.Item;

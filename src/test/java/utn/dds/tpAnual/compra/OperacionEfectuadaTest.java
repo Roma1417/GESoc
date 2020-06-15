@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import utn.dds.tpAnual.*;
-import utn.dds.tpAnual.afip.builders.DetalleOperacionBuilder;
-import utn.dds.tpAnual.afip.builders.EgresoBuilder;
+import utn.dds.tpAnual.builders.DetalleOperacionBuilder;
+import utn.dds.tpAnual.builders.EgresoBuilder;
 import utn.dds.tpAnual.transaccion.DetalleOperacion;
 import utn.dds.tpAnual.transaccion.Egreso;
 import utn.dds.tpAnual.transaccion.Item;

@@ -1,4 +1,4 @@
-package utn.dds.tpAnual.afip.builders;
+package utn.dds.tpAnual.builders;
 
 import java.util.ArrayList;
 import java.util.List;
