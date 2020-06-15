@@ -40,8 +40,8 @@ public class ProgramadorDeTareasTest{
 	
 	@Test
 	public void programadorDeTareasValidaEgresosProcesados() throws InterruptedException {
-		Egreso egresoSinPresupuestos = EgresoBuilder.buildEgresoSinPresupuestos();
-		Egreso egresoCumplidor = EgresoBuilder.buildEgresoCumplidor();
+		Egreso egresoSinPresupuestos = new EgresoBuilder().buildEgresoSinPresupuestos();
+		Egreso egresoCumplidor = new EgresoBuilder().buildEgresoCumplidor();
 		EgresosObserver observer = EgresosObserver.getInstance();
 		observer.agregarEgreso(egresoSinPresupuestos);
 		observer.agregarEgreso(egresoCumplidor);

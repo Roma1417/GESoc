@@ -21,33 +21,33 @@ public class ValidadorEgresoTest {
 
 	@Test
 	public void egresoSinPresupuestosMinimos() {
-		Egreso egresoSinPresupuestosMinimos = EgresoBuilder.buildEgresoSinPresupuestosMinimos();
+		Egreso egresoSinPresupuestosMinimos = new EgresoBuilder().buildEgresoSinPresupuestosMinimos();
 		assertTrue(validadorTest.validarEgreso(egresoSinPresupuestosMinimos));
 	}
 	
 	@Test
 	public void egresoInvalidoPorFaltaDePresupuestos() {
-		Egreso egresoSinPresupuestos = EgresoBuilder.buildEgresoSinPresupuestos();
+		Egreso egresoSinPresupuestos = new EgresoBuilder().buildEgresoSinPresupuestos();
 		assertFalse(validadorTest.validarEgreso(egresoSinPresupuestos));
 	}	
 	
 	@Test
 	public void egresoConDetallesDeDistintoTamanio() {
-		Egreso egresoConDetallesDeDistintoTamanio = EgresoBuilder.buildEgresoConDetallesDeDistintoTamanio();
+		Egreso egresoConDetallesDeDistintoTamanio = new EgresoBuilder().buildEgresoConDetallesDeDistintoTamanio();
 		assertFalse(validadorTest.validarEgreso(egresoConDetallesDeDistintoTamanio));
 	}
 	
 	@Test
 	public void egresoConDistintosPrecios() {
-		Egreso egresoNoBasadoEnPresupuesto = EgresoBuilder.buildEgresoNoBasadoEnPresupuesto();
+		Egreso egresoNoBasadoEnPresupuesto = new EgresoBuilder().buildEgresoNoBasadoEnPresupuesto();
 		assertFalse(validadorTest.validarEgreso(egresoNoBasadoEnPresupuesto));
 	}
 	
 	@Test
 	public void egresoInvalidoConNotificacionDeFallo() {
-		Egreso egresoSinPresupuestos = EgresoBuilder.buildEgresoSinPresupuestos();
-		Usuario unRevisor = EgresoBuilder.getUnRevisor();
-		Usuario otroRevisor = EgresoBuilder.getOtroRevisor();
+		Egreso egresoSinPresupuestos = new EgresoBuilder().buildEgresoSinPresupuestos();
+		Usuario unRevisor = egresoSinPresupuestos.getRevisores().get(0);
+		Usuario otroRevisor = egresoSinPresupuestos.getRevisores().get(1);
 		validadorTest.validarEgreso(egresoSinPresupuestos);
 		List<Mensaje> mensajeUsuario = unRevisor.getBandejaMensajes();
 		List<Mensaje> mensajeOtroUsuario = otroRevisor.getBandejaMensajes();
@@ -57,14 +57,14 @@ public class ValidadorEgresoTest {
 
 	@Test
 	public void egresoValidoConNotificacionDeExito() {
-		Egreso egresoCumplidor = EgresoBuilder.buildEgresoCumplidor();
-		Usuario unRevisor = EgresoBuilder.getUnRevisor();
-		Usuario otroRevisor = EgresoBuilder.getOtroRevisor();
+		Egreso egresoCumplidor = new EgresoBuilder().buildEgresoCumplidor();
+		Usuario unRevisor = egresoCumplidor.getRevisores().get(0);
+		Usuario otroRevisor = egresoCumplidor.getRevisores().get(1);
 		boolean validez = validadorTest.validarEgreso(egresoCumplidor);
-		List<Mensaje> mensajeUsuario = unRevisor.getBandejaMensajes();
-		List<Mensaje> mensajeOtroUsuario = otroRevisor.getBandejaMensajes();
-		assertTrue(validez && "Validacion realizada con Exito".equals(mensajeUsuario.get(1).getCuerpo())
-							&& "Validacion realizada con Exito".equals(mensajeOtroUsuario.get(1).getCuerpo()));
+		List<Mensaje> mensajesUsuario = unRevisor.getBandejaMensajes();
+		List<Mensaje> mensajesOtroUsuario = otroRevisor.getBandejaMensajes();
+		assertTrue(validez && "Validacion realizada con Exito".equals(mensajesUsuario.get(0).getCuerpo())
+							&& "Validacion realizada con Exito".equals(mensajesOtroUsuario.get(0).getCuerpo()));
 	}
 	
 }

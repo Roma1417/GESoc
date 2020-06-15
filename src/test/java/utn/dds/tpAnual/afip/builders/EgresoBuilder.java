@@ -1,6 +1,6 @@
 package utn.dds.tpAnual.afip.builders;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import utn.dds.tpAnual.transaccion.DetalleOperacion;
@@ -9,60 +9,178 @@ import utn.dds.tpAnual.transaccion.Egreso;
 import utn.dds.tpAnual.transaccion.Item;
 import utn.dds.tpAnual.transaccion.Presupuesto;
 import utn.dds.tpAnual.usuario.Usuario;
+import utn.dds.tpAnual.validador.CriterioCompra;
 import utn.dds.tpAnual.validador.CriterioMenorPrecio;
 
 public class EgresoBuilder {
 	
-	//DetalleOperacion
-	private static Item itemTest = new Item(123L, "itemTest");
-	private static DetalleOperacion unDetalleOperacion = new DetalleOperacion(itemTest, 10F, 3);
-	private static DetalleOperacion otroDetalleOperacion = new DetalleOperacion(itemTest, 20F, 4);
-	private static List<DetalleOperacion> unosDetallesOperacion = Arrays.asList(unDetalleOperacion, unDetalleOperacion);
-	private static List<DetalleOperacion> otrosDetallesOperacion = Arrays.asList(unDetalleOperacion, otroDetalleOperacion);
-		
-	//DetallePrecio
-	private static DetallePrecio unDetallePrecio = new DetallePrecio(unDetalleOperacion, 10F);
-	private static DetallePrecio otroDetallePrecio = new DetallePrecio(otroDetalleOperacion, 12F);
-	private static List<DetallePrecio> unosDetallesPrecio = Arrays.asList(unDetallePrecio, unDetallePrecio);
-	private static List<DetallePrecio> otrosDetallesPrecio = Arrays.asList(unDetallePrecio, otroDetallePrecio);
-		
-	//Presupuesto
-	private static Presupuesto unPresupuesto = new Presupuesto(null, null, 1782, unosDetallesPrecio);
-	private static Presupuesto otroPresupuesto = new Presupuesto(null, null, 1723, otrosDetallesPrecio);
-	private static List<Presupuesto> listaPresupuestosVacia;
-	private static List<Presupuesto> unaListaPresupuestos = Arrays.asList(unPresupuesto, unPresupuesto);
-	private static List<Presupuesto> otraListaPresupuestos = Arrays.asList(otroPresupuesto, otroPresupuesto);
-	private static List<Presupuesto> listaVariosPresupuestos = Arrays.asList(unPresupuesto, unPresupuesto, otroPresupuesto, otroPresupuesto);
+	private int codigoOperacion;
+    private List<DetalleOperacion> detallesOperacion = new ArrayList<DetalleOperacion>();
+    private int cantidadPresupuestosMinimos;
+    private CriterioCompra criterioCompra;
+    private List<Presupuesto> presupuestos = new ArrayList<Presupuesto>();
+    private List<Usuario> revisores = new ArrayList<Usuario>();
 
-	//Criterio Compra
-	private static CriterioMenorPrecio criterioMenorPrecio = CriterioMenorPrecio.getInstance();
-		
-    public static Egreso buildEgresoSinPresupuestos(){
-        return new Egreso(null, null, 542, null, null, null, 2, criterioMenorPrecio, listaPresupuestosVacia, null, UsuarioBuilder.getDosRevisores());
+    public EgresoBuilder withCodigoOperacion(int codigoOperacion){
+        this.codigoOperacion = codigoOperacion;
+        return this;
+    }
+    public EgresoBuilder withDetalleOperacion(DetalleOperacion detalleOperacion){
+        this.detallesOperacion.add(detalleOperacion);
+        return this;
+    }
+    public EgresoBuilder withCantidadPresupuestosMinimos(int cantidadPresupuestosMinimos){
+        this.cantidadPresupuestosMinimos = cantidadPresupuestosMinimos;
+        return this;
+    }
+    public EgresoBuilder withCriterioCompra(CriterioCompra criterioCompra){
+        this.criterioCompra = criterioCompra;
+        return this;
+    }
+    public EgresoBuilder withPresupuesto(Presupuesto presupuesto){
+        this.presupuestos.add(presupuesto);
+        return this;
+    }
+    public EgresoBuilder withRevisor(Usuario revisor){
+        this.revisores.add(revisor);
+        return this;
+    }
+    public Egreso build(){
+        return new Egreso(null, null, codigoOperacion, detallesOperacion, null, null, cantidadPresupuestosMinimos, criterioCompra, presupuestos, null, revisores);
     }
     
-    public static Egreso buildEgresoSinPresupuestosMinimos() {
-    	return new Egreso(null, null, 123, null, null, null, 0, null, null, null, null);
+    public Egreso buildEgresoSinPresupuestos(){
+    	revisores.add(new UsuarioBuilder().withNombre("unRevisor").withContrasenia("asndihg382").build());
+    	revisores.add(new UsuarioBuilder().withNombre("otroRevisor").withContrasenia("wuiefnwi471").build());
+    	criterioCompra = CriterioMenorPrecio.getInstance();
+    	codigoOperacion = 542;
+    	cantidadPresupuestosMinimos = 2;
+    	return build();
+    }
+    public Egreso buildEgresoSinPresupuestosMinimos(){
+    	codigoOperacion = 123;
+    	cantidadPresupuestosMinimos = 0;
+    	return build();
+    }
+    public Egreso buildEgresoCumplidor(){
+    	codigoOperacion = 87;
+    	cantidadPresupuestosMinimos = 2;
+    	criterioCompra = CriterioMenorPrecio.getInstance();
+    	revisores.add(new UsuarioBuilder()
+    			.withNombre("unRevisor")
+    			.withContrasenia("asndihg382")
+    			.build());
+    	revisores.add(new UsuarioBuilder()
+    			.withNombre("otroRevisor")
+    			.withContrasenia("wuiefnwi471")
+    			.build());
+    	
+    	DetalleOperacion detalleOperacion = new DetalleOperacionBuilder()
+    		.withCantidad(3)
+    		.withItem(new Item(123L, "itemTest"))
+    		.withPrecio(10F)
+    		.build();
+    	
+    	detallesOperacion.add(detalleOperacion);
+    	detallesOperacion.add(detalleOperacion);
+    	
+    	DetallePrecio unDetallePrecio = new DetallePrecioBuilder()
+				.withPrecio(10F)
+				.withDetalleOperacion(detalleOperacion)
+				.build();
+    	
+    	Presupuesto unPresupuesto = new PresupuestoBuilder()
+    			.withCodigoOperacion(1782)
+    			.withDetallePrecio(unDetallePrecio)
+    			.withDetallePrecio(unDetallePrecio)
+    			.build();
+    	
+    	presupuestos.add(unPresupuesto);
+    	presupuestos.add(unPresupuesto);
+    	return build();
     }
     
-    public static Egreso buildEgresoCumplidor() {
-    	return new Egreso(null, null, 87, unosDetallesOperacion, null, null, 2, criterioMenorPrecio, unaListaPresupuestos, null, UsuarioBuilder.getDosRevisores());
+    public Egreso buildEgresoConDetallesDeDistintoTamanio(){
+    	codigoOperacion = 475;
+    	cantidadPresupuestosMinimos = 2;
+    	Item itemTest = new Item(123L, "itemTest");
+    	
+    	DetalleOperacion unDetalleOperacion = new DetalleOperacionBuilder()
+    		.withCantidad(3)
+    		.withItem(itemTest)
+    		.withPrecio(10F)
+    		.build();
+    	DetalleOperacion otroDetalleOperacion = new DetalleOperacionBuilder()
+        		.withCantidad(4)
+        		.withItem(itemTest)
+        		.withPrecio(20F)
+        		.build();
+    	
+    	DetallePrecio unDetallePrecio = new DetallePrecioBuilder()
+				.withPrecio(10F)
+				.withDetalleOperacion(unDetalleOperacion)
+				.build();
+    	DetallePrecio otroDetallePrecio = new DetallePrecioBuilder()
+				.withPrecio(12F)
+				.withDetalleOperacion(otroDetalleOperacion)
+				.build();
+
+    	Presupuesto unPresupuesto = new PresupuestoBuilder()
+    			.withCodigoOperacion(1782)
+    			.withDetallePrecio(unDetallePrecio)
+    			.withDetallePrecio(unDetallePrecio)
+    			.build();
+    	Presupuesto otroPresupuesto = new PresupuestoBuilder()
+    			.withCodigoOperacion(1723)
+    			.withDetallePrecio(unDetallePrecio)
+    			.withDetallePrecio(otroDetallePrecio)
+    			.build();
+    	
+    	detallesOperacion.add(unDetalleOperacion);
+    	detallesOperacion.add(unDetalleOperacion);
+    	
+    	presupuestos.add(unPresupuesto);
+    	presupuestos.add(unPresupuesto);
+    	presupuestos.add(otroPresupuesto);
+    	presupuestos.add(otroPresupuesto);
+    	return build();
     }
     
-    public static Egreso buildEgresoConDetallesDeDistintoTamanio() {
-		return new Egreso(null, null, 475, unosDetallesOperacion, null, null, 2, null, listaVariosPresupuestos, null, null);
-	}
-    
-    public static Egreso buildEgresoNoBasadoEnPresupuesto() {
-		return new Egreso(null, null, 345, otrosDetallesOperacion, null, null, 2, null, otraListaPresupuestos, null, null);
-	}
-    
-    public static Usuario getUnRevisor() {
-    	return unRevisor;
-    }
-    
-    public static Usuario getOtroRevisor() {
-    	return otroRevisor;
+    public Egreso buildEgresoNoBasadoEnPresupuesto(){
+    	codigoOperacion = 345;
+    	cantidadPresupuestosMinimos = 2;
+    	Item itemTest = new Item(123L, "itemTest");
+    	
+    	DetalleOperacion unDetalleOperacion = new DetalleOperacionBuilder()
+    		.withCantidad(3)
+    		.withItem(itemTest)
+    		.withPrecio(10F)
+    		.build();
+    	DetalleOperacion otroDetalleOperacion = new DetalleOperacionBuilder()
+        		.withCantidad(4)
+        		.withItem(itemTest)
+        		.withPrecio(20F)
+        		.build();
+    	
+    	DetallePrecio unDetallePrecio = new DetallePrecioBuilder()
+				.withPrecio(10F)
+				.withDetalleOperacion(unDetalleOperacion)
+				.build();
+    	DetallePrecio otroDetallePrecio = new DetallePrecioBuilder()
+				.withPrecio(12F)
+				.withDetalleOperacion(otroDetalleOperacion)
+				.build();
+
+    	Presupuesto otroPresupuesto = new PresupuestoBuilder()
+    			.withCodigoOperacion(1723)
+    			.withDetallePrecio(unDetallePrecio)
+    			.withDetallePrecio(otroDetallePrecio)
+    			.build();
+    	detallesOperacion.add(unDetalleOperacion);
+    	detallesOperacion.add(otroDetalleOperacion);
+    	
+    	presupuestos.add(otroPresupuesto);
+    	presupuestos.add(otroPresupuesto);
+    	return build();
     }
 }
-
