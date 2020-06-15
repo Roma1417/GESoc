@@ -1,6 +1,6 @@
 package utn.dds.tpAnual.afip.tamanios;
 
-import static org.junit.Assert.assertFalse;
+
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
@@ -10,7 +10,6 @@ import org.junit.Test;
 import utn.dds.tpAnual.afip.Actividad;
 import utn.dds.tpAnual.afip.RequisitoSectorEmpresa;
 import utn.dds.tpAnual.afip.Sector;
-import utn.dds.tpAnual.usuario.Usuario;
 
 public class ActividadTest {
 	private RequisitoSectorEmpresa requisito1 = new RequisitoSectorEmpresa(100, 200F, Micro.getInstance());

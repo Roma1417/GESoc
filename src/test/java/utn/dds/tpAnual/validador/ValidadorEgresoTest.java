@@ -2,7 +2,6 @@ package utn.dds.tpAnual.validador;
 
 import static org.junit.Assert.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
@@ -21,7 +20,7 @@ public class ValidadorEgresoTest {
 
 	@Test
 	public void egresoSinPresupuestosMinimos() {
-		Egreso egresoSinPresupuestosMinimos = new EgresoBuilder().buildEgresoSinPresupuestosMinimos();
+		Egreso egresoSinPresupuestosMinimos = new EgresoBuilder().buildEgresoSimple();
 		assertTrue(validadorTest.validarEgreso(egresoSinPresupuestosMinimos));
 	}
 	

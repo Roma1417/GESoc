@@ -57,7 +57,7 @@ public class EgresoBuilder {
     	cantidadPresupuestosMinimos = 2;
     	return build();
     }
-    public Egreso buildEgresoSinPresupuestosMinimos(){
+    public Egreso buildEgresoSimple(){
     	codigoOperacion = 123;
     	cantidadPresupuestosMinimos = 0;
     	return build();

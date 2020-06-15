@@ -18,6 +18,10 @@ public class PresupuestoBuilder {
         this.detallesPrecio.add(detallePrecio);
         return this;
     }
+	public PresupuestoBuilder withListaDetallesPrecio(List<DetallePrecio> detallesPrecio){
+        this.detallesPrecio = detallesPrecio;
+        return this;
+    }
 	public PresupuestoBuilder withDocumentoComercial(DocumentoComercial documentoComercial){
         this.documentoComercial = documentoComercial;
         return this;
