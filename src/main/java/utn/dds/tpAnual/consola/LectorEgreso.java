@@ -37,7 +37,7 @@ public class LectorEgreso extends Lector{
 		List<Presupuesto> presupuestos = getPresupuestos(detallesOperacion);
 		List<Usuario> revisores = getRevisores();
 		Egreso egreso = new Egreso(null, null, 0, detallesOperacion, null, null, cantidadMinimaPresupuestos, criterio, presupuestos, null, revisores);
-		EgresosObserver.getInstance().agregarEgreso(egreso);
+		EgresosObserver.getInstance().notificar(egreso);
 	}
 	
 	private Integer getInteger(String mensaje){

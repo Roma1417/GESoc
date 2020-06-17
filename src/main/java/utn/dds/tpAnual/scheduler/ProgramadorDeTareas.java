@@ -37,6 +37,6 @@ public class ProgramadorDeTareas {
 	}
 	
 	public void stop() throws SchedulerException {
-		scheduler.clear();
+		scheduler.shutdown();
 	}
 }
