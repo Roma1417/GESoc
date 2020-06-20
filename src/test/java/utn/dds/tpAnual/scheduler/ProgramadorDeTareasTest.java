@@ -34,7 +34,7 @@ public class ProgramadorDeTareasTest{
 		EgresosObserver observer = EgresosObserver.getInstance();
 		observer.notificar(egresoSinPresupuestos);
 		observer.notificar(egresoCumplidor);
-		TimeUnit.SECONDS.sleep(20);
+		TimeUnit.SECONDS.sleep(4);
 		assertEquals(ValidadorEgreso.getInstance().cantidadEgresos(), 0);
     }
 }

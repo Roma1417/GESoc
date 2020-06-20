@@ -30,7 +30,7 @@ public class ProgramadorDeTareas {
 		Trigger trigger = TriggerBuilder
 				.newTrigger()
 				.withIdentity("Trigger desc 1", "Grupo 1")
-				.withSchedule(CronScheduleBuilder.cronSchedule("0/15 * * * * ?")) // Ejecuta cada 15 segundos.
+				.withSchedule(CronScheduleBuilder.cronSchedule("0/2 * * * * ?")) // Ejecuta cada 2 segundos.
 				.build();
 		scheduler.start();
 		scheduler.scheduleJob(job,trigger);
