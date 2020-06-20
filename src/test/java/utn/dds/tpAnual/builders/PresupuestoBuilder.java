@@ -14,33 +14,33 @@ public class PresupuestoBuilder {
 	private DocumentoComercial documentoComercial;
 	private Entidad entidadRealizadora;
 	private int codigoOperacion;
-	private CriterioCategorizacion primerCriterio;
 	
 	public PresupuestoBuilder withDetallePrecio(DetallePrecio detallePrecio){
         this.detallesPrecio.add(detallePrecio);
         return this;
     }
+	
 	public PresupuestoBuilder withListaDetallesPrecio(List<DetallePrecio> detallesPrecio){
         this.detallesPrecio = detallesPrecio;
         return this;
     }
+	
 	public PresupuestoBuilder withDocumentoComercial(DocumentoComercial documentoComercial){
         this.documentoComercial = documentoComercial;
         return this;
     }
+	
     public PresupuestoBuilder withEntidadRealizadora(Entidad entidadRealizadora){
         this.entidadRealizadora = entidadRealizadora;
         return this;
     }
+    
 	public PresupuestoBuilder withCodigoOperacion(int codigoOperacion){
         this.codigoOperacion = codigoOperacion;
         return this;
     }
-	public PresupuestoBuilder withPrimerCriterio(CriterioCategorizacion primerCriterio){
-        this.primerCriterio = primerCriterio;
-        return this;
-    }
+
     public Presupuesto build(){
-        return new Presupuesto(documentoComercial, entidadRealizadora, codigoOperacion, detallesPrecio, primerCriterio);
+        return new Presupuesto(documentoComercial, entidadRealizadora, codigoOperacion, detallesPrecio);
     }
 }

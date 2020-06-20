@@ -1,52 +1,28 @@
 package utn.dds.tpAnual.categorizacion.criterioCategorizacion;
 
-import static org.junit.Assert.*;
-
-import java.util.List;
-import java.util.Arrays;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import utn.dds.tpAnual.transaccion.DetalleOperacion;
-import utn.dds.tpAnual.transaccion.DetallePrecio;
+import utn.dds.tpAnual.categorizacion.categoria.CategoriaNombreCorto;
+import utn.dds.tpAnual.categorizacion.categoria.CategoriaNombreLargo;
 import utn.dds.tpAnual.transaccion.Item;
-import utn.dds.tpAnual.transaccion.Presupuesto;
 
-public class CriterioCategorizacionTest {
-	
-	private Item mesa = new Item(1L,"Mesa");
-	
-	private DetalleOperacion unDetalleOperacion = new DetalleOperacion(mesa, 15F, 3);
-	private DetalleOperacion otroDetalleOperacion = new DetalleOperacion(mesa, 20F, 4);
-	
-	private DetallePrecio unDetallePrecio = new DetallePrecio(unDetalleOperacion, 10F);
-	private DetallePrecio otroDetallePrecio = new DetallePrecio(otroDetalleOperacion, 12F);
-	
-	private List<DetallePrecio> listaDetalles = Arrays.asList(unDetallePrecio, otroDetallePrecio);
-	private List<DetallePrecio> listaDetallesNula;
-	private List<DetallePrecio> listaDetallesVacia = Arrays.asList();
-	
-	private Presupuesto presupuestoConListaCargada = new Presupuesto(null, null, 1, listaDetalles, null);
-	private Presupuesto presupuestoConListaNula = new Presupuesto(null, null, 2, listaDetallesNula, null);
-	private Presupuesto presupuestoConListaVacia = new Presupuesto(null, null, 3, listaDetallesVacia, null);
-	
+
+
+public class CriterioCategorizacionTest {	
+
 	@Test
-	public void precioTotalDelPresupuestoConListaCargada(){
-		assertEquals(78F, presupuestoConListaCargada.getTotal(), 0F);
+	public void testCategorizacionSimple() {
+		Item item = new Item(0L,"Descripcion pepe", CriterioCategorizacionPorDescripcion.getInstance());
+		item.recategorizar();
+		assertTrue(item.getCategoria().equals(CategoriaNombreCorto.getInstance()));
 	}
 	
 	@Test
-	public void precioTotalDelPresupuestoConListaNula(){
-		assertEquals(0F, presupuestoConListaNula.getTotal(), 0F);
-	}
-	
-	@Test
-	public void precioTotalDelPresupuestoConListaVacia(){
-		assertEquals(0F, presupuestoConListaVacia.getTotal(), 0F);
-	}
-	
-	@Test
-	public void precioTotalDelDetalle() {
-		assertEquals(30F, unDetallePrecio.getPrecioTotal(), 0);
+	public void testCategorizacionLarga() {
+		Item item = new Item(0L,"Descripcion pepe muy largaaaaaa", CriterioCategorizacionPorDescripcion.getInstance());
+		item.recategorizar();
+		assertTrue(item.getCategoria().equals(CategoriaNombreLargo.getInstance()));
 	}
 }

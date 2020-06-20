@@ -14,24 +14,18 @@ public abstract class Operacion {
 	private DocumentoComercial documentoComercial;
 	private Entidad entidadRealizadora;
 	private int codigoOperacion;
-	private CriterioCategorizacion primerCriterio;
-	private Categoria categoria;
-	
+
 	public Operacion(DocumentoComercial documentoComercial, Entidad entidadRealizadora,
-			int codigoOperacion, CriterioCategorizacion primerCriterio ) {
+			int codigoOperacion) {
 		this.documentoComercial = documentoComercial;
 		this.entidadRealizadora = entidadRealizadora;
 		this.codigoOperacion = codigoOperacion;
-		this.primerCriterio = primerCriterio;
 	}
-	
+
 	public int getCodigoOperacion() {
 		return codigoOperacion;
 	}
 
 	public abstract Float getTotal();
-	
-	public void recategorizar() {
-		this.categoria = primerCriterio.clasificarSegun(this);
-	}
+
 }

@@ -19,9 +19,8 @@ public abstract class OperacionEfectuada extends Operacion {
 	private MedioPago medioPago;
 	
 	public OperacionEfectuada(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,
-			List<DetalleOperacion> detallesOperacion, LocalDate fechaOperacion, MedioPago medioPago, 
-			CriterioCategorizacion primerCriterio) {
-		super(documentoComercial, entidadRealizadora, codigoOperacion, primerCriterio);
+			List<DetalleOperacion> detallesOperacion, LocalDate fechaOperacion, MedioPago medioPago) {
+		super(documentoComercial, entidadRealizadora, codigoOperacion);
 		this.detallesOperacion = detallesOperacion;
 		this.fechaOperacion = fechaOperacion;
 		this.medioPago = medioPago;

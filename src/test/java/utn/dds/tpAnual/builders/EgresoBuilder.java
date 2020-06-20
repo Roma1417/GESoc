@@ -21,7 +21,6 @@ public class EgresoBuilder {
     private CriterioCompra criterioCompra;
     private List<Presupuesto> presupuestos = new ArrayList<Presupuesto>();
     private List<Usuario> revisores = new ArrayList<Usuario>();
-    private CriterioCategorizacion primerCriterio;
 
     public EgresoBuilder withCodigoOperacion(int codigoOperacion){
         this.codigoOperacion = codigoOperacion;
@@ -47,12 +46,9 @@ public class EgresoBuilder {
         this.revisores.add(revisor);
         return this;
     }
-    public EgresoBuilder withPrimerCriterio(CriterioCategorizacion primerCriterio){
-        this.primerCriterio= primerCriterio;
-        return this;
-    }
+    
     public Egreso build(){
-        return new Egreso(null, null, codigoOperacion, detallesOperacion, null, null, cantidadPresupuestosMinimos, criterioCompra, presupuestos, null, revisores, primerCriterio);
+        return new Egreso(null, null, codigoOperacion, detallesOperacion, null, null, cantidadPresupuestosMinimos, criterioCompra, presupuestos, null, revisores);
     }
     
     public Egreso buildEgresoSinPresupuestos(){
@@ -189,4 +185,5 @@ public class EgresoBuilder {
     	presupuestos.add(otroPresupuesto);
     	return build();
     }
+    
 }

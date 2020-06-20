@@ -9,8 +9,8 @@ public class Ingreso extends Operacion{
 	private String descripcion;
 	
 	public Ingreso(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,
-			Float total, String descripcion, CriterioCategorizacion primerCriterio) {
-		super(documentoComercial, entidadRealizadora, codigoOperacion, primerCriterio);
+			Float total, String descripcion) {
+		super(documentoComercial, entidadRealizadora, codigoOperacion);
 		this.total = total; 
 		this.descripcion = descripcion; 
 	}

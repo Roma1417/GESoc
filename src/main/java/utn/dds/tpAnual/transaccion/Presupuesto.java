@@ -17,8 +17,8 @@ public class Presupuesto extends Operacion {
 	private List<DetallePrecio> detallesPrecio;
 
 	public Presupuesto(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,
-			List<DetallePrecio> detallesPrecio, CriterioCategorizacion primerCriterio) {
-		super(documentoComercial, entidadRealizadora, codigoOperacion, primerCriterio);
+			List<DetallePrecio> detallesPrecio) {
+		super(documentoComercial, entidadRealizadora, codigoOperacion);
 		this.detallesPrecio = detallesPrecio;
 	}
 	

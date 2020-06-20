@@ -36,7 +36,7 @@ public class LectorEgreso extends Lector{
 		CriterioCompra criterio = getCriterio();
 		List<Presupuesto> presupuestos = getPresupuestos(detallesOperacion);
 		List<Usuario> revisores = getRevisores();
-		Egreso egreso = new Egreso(null, null, 0, detallesOperacion, null, null, cantidadMinimaPresupuestos, criterio, presupuestos, null, revisores, null);
+		Egreso egreso = new Egreso(null, null, 0, detallesOperacion, null, null, cantidadMinimaPresupuestos, criterio, presupuestos, null, revisores);
 		EgresosObserver.getInstance().notificar(egreso);
 	}
 	
@@ -130,7 +130,7 @@ public class LectorEgreso extends Lector{
 		System.out.println("Se tomara registro de los presupuestos");
 		while(true) {
 			if(consultarSobre("presupuesto")) {
-				Presupuesto presupuesto = new Presupuesto(null, null, 0, getDetallesPrecio(detallesOperacion), null);
+				Presupuesto presupuesto = new Presupuesto(null, null, 0, getDetallesPrecio(detallesOperacion));
 				presupuestos.add(presupuesto);
 			} else {
 				break;
