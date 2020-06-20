@@ -3,6 +3,7 @@ package utn.dds.tpAnual.builders;
 import java.util.ArrayList;
 import java.util.List;
 
+import utn.dds.tpAnual.categorizacion.criterioCategorizacion.CriterioCategorizacion;
 import utn.dds.tpAnual.transaccion.DetalleOperacion;
 import utn.dds.tpAnual.transaccion.DetallePrecio;
 import utn.dds.tpAnual.transaccion.Egreso;
@@ -45,6 +46,7 @@ public class EgresoBuilder {
         this.revisores.add(revisor);
         return this;
     }
+    
     public Egreso build(){
         return new Egreso(null, null, codigoOperacion, detallesOperacion, null, null, cantidadPresupuestosMinimos, criterioCompra, presupuestos, null, revisores);
     }
@@ -183,4 +185,5 @@ public class EgresoBuilder {
     	presupuestos.add(otroPresupuesto);
     	return build();
     }
+    
 }
