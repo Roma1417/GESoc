@@ -1,9 +1,10 @@
-package utn.dds.tpAnual.compra;
+package utn.dds.tpAnual.transaccion;
 
 import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import utn.dds.tpAnual.categorizacion.criterioCategorizacion.CriterioCategorizacion;
 import utn.dds.tpAnual.entidad.Entidad;
 
 /**

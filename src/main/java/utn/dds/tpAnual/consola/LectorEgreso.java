@@ -3,15 +3,17 @@ package utn.dds.tpAnual.consola;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import utn.dds.tpAnual.compra.DetalleOperacion;
-import utn.dds.tpAnual.compra.DetallePrecio;
-import utn.dds.tpAnual.compra.Egreso;
-import utn.dds.tpAnual.compra.Item;
-import utn.dds.tpAnual.compra.Presupuesto;
+
+import utn.dds.tpAnual.transaccion.DetalleOperacion;
+import utn.dds.tpAnual.transaccion.DetallePrecio;
+import utn.dds.tpAnual.transaccion.Egreso;
+import utn.dds.tpAnual.transaccion.Item;
+import utn.dds.tpAnual.transaccion.Presupuesto;
 import utn.dds.tpAnual.usuario.Mensaje;
 import utn.dds.tpAnual.usuario.Usuario;
 import utn.dds.tpAnual.validador.CriterioCompra;
 import utn.dds.tpAnual.validador.CriterioMenorPrecio;
+import utn.dds.tpAnual.validador.EgresosObserver;
 import utn.dds.tpAnual.validador.ValidadorEgreso;
 
 
@@ -35,20 +37,7 @@ public class LectorEgreso extends Lector{
 		List<Presupuesto> presupuestos = getPresupuestos(detallesOperacion);
 		List<Usuario> revisores = getRevisores();
 		Egreso egreso = new Egreso(null, null, 0, detallesOperacion, null, null, cantidadMinimaPresupuestos, criterio, presupuestos, null, revisores);
-		ValidadorEgreso validadorEgreso = ValidadorEgreso.getInstance();
-
-		if(validadorEgreso.validarEgreso(egreso)) {
-			System.out.println("La validación del egreso fue exitosa.");		
-		} else {
-			System.out.println("Falló la validación del egreso.");
-		}
-		
-		if(revisores != null && revisores.size() > 0) {
-			System.out.println("\nSe procedera a mostrar la bandeja de mensajes de cada usuario.");
-			for(Usuario unRevisor : revisores){
-				System.out.println("Revisor: " + unRevisor);
-			}
-		}
+		EgresosObserver.getInstance().notificar(egreso);
 	}
 	
 	private Integer getInteger(String mensaje){

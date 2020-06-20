@@ -1,6 +1,6 @@
 package utn.dds.tpAnual.afip.tamanios;
 
-import static org.junit.Assert.assertFalse;
+
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
@@ -10,17 +10,54 @@ import org.junit.Test;
 import utn.dds.tpAnual.afip.Actividad;
 import utn.dds.tpAnual.afip.RequisitoSectorEmpresa;
 import utn.dds.tpAnual.afip.Sector;
-import utn.dds.tpAnual.usuario.Usuario;
+import utn.dds.tpAnual.builders.ActividadBuilder;
+import utn.dds.tpAnual.builders.RequisitoSectorEmpresaBuilder;
+import utn.dds.tpAnual.builders.SectorBuilder;
 
 public class ActividadTest {
-	private RequisitoSectorEmpresa requisito1 = new RequisitoSectorEmpresa(100, 200F, Micro.getInstance());
-	private RequisitoSectorEmpresa requisito2 = new RequisitoSectorEmpresa(500, 800F, Pequenia.getInstance());
-	private RequisitoSectorEmpresa requisito3 = new RequisitoSectorEmpresa(10000, 800F, MedianaTramo1.getInstance());
-	private RequisitoSectorEmpresa requisito4 = new RequisitoSectorEmpresa(100000, 8000F, MedianaTramo2.getInstance());
-	private Sector sectorConRequisitosDesordenados = new Sector("Financiero", Arrays.asList(requisito4, requisito3, requisito1, requisito2));
-	private Actividad unaActividad = new Actividad("Prestamista", sectorConRequisitosDesordenados);
-	private Sector sectorConRequisitosMasDesordenados = new Sector("Indrustrial", Arrays.asList(requisito1, requisito2, requisito4, requisito3));
-	private Actividad otraActividad = new Actividad("Fabricacion de autos", sectorConRequisitosMasDesordenados);
+	private RequisitoSectorEmpresa requisito1 = new RequisitoSectorEmpresaBuilder()
+			.withMaximoEmpleados(100)
+			.withMaximoFacturacion(200F)
+			.withTamanioEmpresa(Micro.getInstance())
+			.build();
+	private RequisitoSectorEmpresa requisito2 = new RequisitoSectorEmpresaBuilder()
+			.withMaximoEmpleados(500)
+			.withMaximoFacturacion(800F)
+			.withTamanioEmpresa(Pequenia.getInstance())
+			.build();
+	private RequisitoSectorEmpresa requisito3 = new RequisitoSectorEmpresaBuilder()
+			.withMaximoEmpleados(10000)
+			.withMaximoFacturacion(800F)
+			.withTamanioEmpresa(MedianaTramo1.getInstance())
+			.build();
+	private RequisitoSectorEmpresa requisito4 = new RequisitoSectorEmpresaBuilder()
+			.withMaximoEmpleados(100000)
+			.withMaximoFacturacion(8000F)
+			.withTamanioEmpresa(MedianaTramo2.getInstance())
+			.build();
+	
+	private Sector sectorConRequisitosDesordenados = new SectorBuilder()
+			.withNombre("Financiero")
+			.withRequisitoSectorEmpresa(requisito4)
+			.withRequisitoSectorEmpresa(requisito3)
+			.withRequisitoSectorEmpresa(requisito1)
+			.withRequisitoSectorEmpresa(requisito2).build();
+	private Sector sectorConRequisitosMasDesordenados = new SectorBuilder()
+			.withNombre("Indrustrial")
+			.withRequisitoSectorEmpresa(requisito1)
+			.withRequisitoSectorEmpresa(requisito2)
+			.withRequisitoSectorEmpresa(requisito4)
+			.withRequisitoSectorEmpresa(requisito3)
+			.build();
+	
+	private Actividad unaActividad = new ActividadBuilder()
+			.withNombre("Prestamista")
+			.withSector(sectorConRequisitosDesordenados)
+			.build();
+	private Actividad otraActividad = new ActividadBuilder()
+			.withNombre("Fabricacion de autos")
+			.withSector(sectorConRequisitosMasDesordenados)
+			.build();
 
 	@Test
     public void empresaValida() {
