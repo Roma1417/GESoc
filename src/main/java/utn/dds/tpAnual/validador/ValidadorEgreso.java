@@ -1,6 +1,8 @@
 package utn.dds.tpAnual.validador;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 import utn.dds.tpAnual.transaccion.DetallePrecio;
 import utn.dds.tpAnual.transaccion.Egreso;
@@ -19,6 +21,8 @@ public class ValidadorEgreso {
 	private final String MENSAJE_CORRECTO = "Validacion realizada con Exito";
 	private final String MENSAJE_ERRONEO = "Fallo de Validacion";
 	private final String ASUNTO_INICIO = "Resultado Validacion Egreso: ";
+	private Queue<Egreso> colaEgresos = new LinkedList<>();
+	private ValidadorEgreso validador = ValidadorEgreso.getInstance();
 	private static ValidadorEgreso instance = new ValidadorEgreso();
 	
 	private ValidadorEgreso(){
@@ -28,6 +32,22 @@ public class ValidadorEgreso {
 	public static ValidadorEgreso getInstance() {
 		return instance;
 	}
+	
+	public void serNotificado(Egreso egreso) {
+		colaEgresos.add(egreso);
+	}
+	
+	public void validarEgresos() {
+		while(!colaEgresos.isEmpty()) {
+			Egreso egreso = colaEgresos.poll();
+			validador.validarEgreso(egreso);
+		}
+	}
+	
+	public int cantidadEgresos() {
+		return colaEgresos.size();
+	}
+	
 	
 	/**
 	 * 
