@@ -1,4 +1,4 @@
-package utn.dds.tpAnual.validador;
+package utn.dds.tpAnual.criterioCompra;
 
 import java.io.BufferedReader;
 import java.io.File;

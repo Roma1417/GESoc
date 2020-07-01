@@ -9,9 +9,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utn.dds.tpAnual.builders.EgresoBuilder;
+import utn.dds.tpAnual.criterioCompra.ValidadorEgreso;
 import utn.dds.tpAnual.transaccion.Egreso;
 import utn.dds.tpAnual.validador.EgresosObserver;
-import utn.dds.tpAnual.validador.ValidadorEgreso;
 
 public class ProgramadorDeTareasTest{
 	//ValidadorEgreso
