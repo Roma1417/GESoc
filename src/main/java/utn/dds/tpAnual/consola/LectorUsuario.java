@@ -2,8 +2,8 @@ package utn.dds.tpAnual.consola;
 
 import java.util.Scanner;
 
+import utn.dds.tpAnual.criterioCompra.ValidadorContrasenia;
 import utn.dds.tpAnual.usuario.Usuario;
-import utn.dds.tpAnual.validador.ValidadorContrasenia;
 
 public class LectorUsuario extends  Lector {
 	private static Scanner scanner = new Scanner(System.in);

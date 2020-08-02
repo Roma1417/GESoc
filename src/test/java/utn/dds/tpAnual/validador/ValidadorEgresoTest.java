@@ -7,11 +7,11 @@ import java.util.List;
 import org.junit.Test;
 
 import utn.dds.tpAnual.builders.EgresoBuilder;
+import utn.dds.tpAnual.criterioCompra.ValidadorEgreso;
 import utn.dds.tpAnual.transaccion.*;
 import utn.dds.tpAnual.usuario.Mensaje;
 import utn.dds.tpAnual.usuario.Usuario;
 import utn.dds.tpAnual.validador.CriterioMenorPrecio;
-import utn.dds.tpAnual.validador.ValidadorEgreso;
 
 public class ValidadorEgresoTest {
 	
