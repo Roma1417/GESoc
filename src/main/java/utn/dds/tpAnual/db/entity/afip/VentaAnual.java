@@ -1,4 +1,4 @@
-package utn.dds.tpAnual.afip;
+package utn.dds.tpAnual.db.entity.afip;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 

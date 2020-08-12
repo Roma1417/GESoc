@@ -1,4 +1,4 @@
-package utn.dds.tpAnual.afip.tamanios;
+package utn.dds.tpAnual.db.entity.afip.tamanios;
 
 
 

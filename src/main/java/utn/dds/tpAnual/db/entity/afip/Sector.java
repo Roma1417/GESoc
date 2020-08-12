@@ -1,23 +1,63 @@
-package utn.dds.tpAnual.afip;
+package utn.dds.tpAnual.db.entity.afip;
 
 import java.util.Collections;
 import java.util.List;
 
-import utn.dds.tpAnual.afip.tamanios.TamanioEmpresa;
+import utn.dds.tpAnual.db.entity.afip.tamanios.TamanioEmpresa;
 
 /**
  * @author Tomas
  * @version 1.0
  * @created 10-abr.-2020 18:19:19
  */
+import javax.persistence.*;
+
+@Entity
+@Table(name = "SECTOR")
 public class Sector {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID", unique = true, nullable = false)
+	private Long sectorId;
+
+	@Column(name = "NOMBRE", unique = true, nullable = false, length = 100)
 	private String nombreSector;
+
+	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	private List<RequisitoSectorEmpresa> requisitos;
 
 	public Sector(String nombreSector, List<RequisitoSectorEmpresa> requisitos) {
 		super();
 		this.nombreSector = nombreSector;
+		this.requisitos = requisitos;
+	}
+
+	public Sector(){
+
+	}
+
+	public Long getSectorId() {
+		return sectorId;
+	}
+
+	public void setSectorId(Long sectorId) {
+		this.sectorId = sectorId;
+	}
+
+	public String getNombreSector() {
+		return nombreSector;
+	}
+
+	public void setNombreSector(String nombreSector) {
+		this.nombreSector = nombreSector;
+	}
+
+	public List<RequisitoSectorEmpresa> getRequisitos() {
+		return requisitos;
+	}
+
+	public void setRequisitos(List<RequisitoSectorEmpresa> requisitos) {
 		this.requisitos = requisitos;
 	}
 

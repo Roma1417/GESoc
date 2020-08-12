@@ -3,9 +3,9 @@ package utn.dds.tpAnual.builders;
 import java.util.ArrayList;
 import java.util.List;
 
-import utn.dds.tpAnual.afip.Actividad;
-import utn.dds.tpAnual.afip.VentaAnual;
-import utn.dds.tpAnual.afip.tamanios.TamanioEmpresa;
+import utn.dds.tpAnual.db.entity.afip.Actividad;
+import utn.dds.tpAnual.db.entity.afip.VentaAnual;
+import utn.dds.tpAnual.db.entity.afip.tamanios.TamanioEmpresa;
 import utn.dds.tpAnual.entidad.EntidadBase;
 import utn.dds.tpAnual.entidad.EntidadJuridicaEmpresa;
 

@@ -3,16 +3,18 @@ package utn.dds.tpAnual.afip.tamanios;
 
 import static org.junit.Assert.assertTrue;
 
-import java.util.Arrays;
-
 import org.junit.Test;
 
-import utn.dds.tpAnual.afip.Actividad;
-import utn.dds.tpAnual.afip.RequisitoSectorEmpresa;
-import utn.dds.tpAnual.afip.Sector;
+import utn.dds.tpAnual.db.entity.afip.Actividad;
+import utn.dds.tpAnual.db.entity.afip.RequisitoSectorEmpresa;
+import utn.dds.tpAnual.db.entity.afip.Sector;
 import utn.dds.tpAnual.builders.ActividadBuilder;
 import utn.dds.tpAnual.builders.RequisitoSectorEmpresaBuilder;
 import utn.dds.tpAnual.builders.SectorBuilder;
+import utn.dds.tpAnual.db.entity.afip.tamanios.MedianaTramo1;
+import utn.dds.tpAnual.db.entity.afip.tamanios.MedianaTramo2;
+import utn.dds.tpAnual.db.entity.afip.tamanios.Micro;
+import utn.dds.tpAnual.db.entity.afip.tamanios.Pequenia;
 
 public class ActividadTest {
 	private RequisitoSectorEmpresa requisito1 = new RequisitoSectorEmpresaBuilder()

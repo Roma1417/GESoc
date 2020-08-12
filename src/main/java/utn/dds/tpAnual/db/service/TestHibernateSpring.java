@@ -25,7 +25,7 @@ import java.util.List;
 @ComponentScan(basePackages = "utn.dds.tpAnual.db.service")
 @EntityScan(basePackages = "utn.dds.tpAnual.db.entity")
 @EnableJpaRepositories("utn.dds.tpAnual.db.repository")
-public class TestHibernateSpring implements CommandLineRunner {
+public class TestHibernateSpring {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -39,7 +39,7 @@ public class TestHibernateSpring implements CommandLineRunner {
         SpringApplication.run(TestHibernateSpring.class, args);
     }
 
-    @Override
+    /*@Override
     public void run(String... args) throws Exception {
         TestEntity testEntity = new TestEntity("Prueba", "Prueba");
         List<TestEntityMany> many = Arrays.asList(new TestEntityMany("Prueba", "Prueba", testEntity));
@@ -62,5 +62,5 @@ public class TestHibernateSpring implements CommandLineRunner {
             logger.info("Sigue fallando");
         }
 
-    }
+    }*/
 }

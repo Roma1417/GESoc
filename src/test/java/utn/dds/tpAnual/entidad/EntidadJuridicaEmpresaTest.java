@@ -4,7 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import utn.dds.tpAnual.afip.VentaAnual;
+import utn.dds.tpAnual.db.entity.afip.VentaAnual;
 import utn.dds.tpAnual.builders.EntidadJuridicaEmpresaBuilder;
 
 public class EntidadJuridicaEmpresaTest {
