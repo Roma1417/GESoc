@@ -24,7 +24,7 @@ public class TamanioEmpresaServiceTest {
     public void persistenceTest() {
         tamanioEmpresaService.save(unTamanioEmpresa);
         TamanioEmpresa mismoTamanio = tamanioEmpresaService.getTamanioSameNombre("pequenia");
-        assertTrue(mismoTamanio.getNombre() == unTamanioEmpresa.getNombre());
+        assertTrue(mismoTamanio.getNombre().equals(unTamanioEmpresa.getNombre()));
     }
 
 }

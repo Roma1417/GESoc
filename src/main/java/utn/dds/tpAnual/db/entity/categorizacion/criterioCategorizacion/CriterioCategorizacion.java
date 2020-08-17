@@ -1,8 +1,7 @@
-package utn.dds.tpAnual.categorizacion.criterioCategorizacion;
+package utn.dds.tpAnual.db.entity.categorizacion.criterioCategorizacion;
 
-import utn.dds.tpAnual.categorizacion.categoria.Categoria;
+import utn.dds.tpAnual.db.entity.categorizacion.categoria.Categoria;
 import utn.dds.tpAnual.transaccion.Item;
-import utn.dds.tpAnual.transaccion.Operacion;
 
 public abstract class CriterioCategorizacion {
 	

@@ -1,7 +1,5 @@
 package utn.dds.tpAnual.transaccion;
 
-import utn.dds.tpAnual.categorizacion.categoria.Categoria;
-import utn.dds.tpAnual.categorizacion.criterioCategorizacion.CriterioCategorizacion;
 import utn.dds.tpAnual.entidad.Entidad;
 
 /**

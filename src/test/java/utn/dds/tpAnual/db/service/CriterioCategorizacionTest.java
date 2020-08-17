@@ -1,11 +1,12 @@
-package utn.dds.tpAnual.categorizacion.criterioCategorizacion;
+package utn.dds.tpAnual.db.service;
 
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import utn.dds.tpAnual.categorizacion.categoria.CategoriaNombreCorto;
-import utn.dds.tpAnual.categorizacion.categoria.CategoriaNombreLargo;
+import utn.dds.tpAnual.db.entity.categorizacion.categoria.CategoriaNombreCorto;
+import utn.dds.tpAnual.db.entity.categorizacion.categoria.CategoriaNombreLargo;
+import utn.dds.tpAnual.db.entity.categorizacion.criterioCategorizacion.CriterioCategorizacionPorDescripcion;
 import utn.dds.tpAnual.transaccion.Item;
 
 

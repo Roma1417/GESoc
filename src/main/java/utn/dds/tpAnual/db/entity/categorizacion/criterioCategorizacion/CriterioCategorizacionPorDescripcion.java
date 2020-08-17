@@ -1,8 +1,8 @@
-package utn.dds.tpAnual.categorizacion.criterioCategorizacion;
+package utn.dds.tpAnual.db.entity.categorizacion.criterioCategorizacion;
 
-import utn.dds.tpAnual.categorizacion.categoria.Categoria;
-import utn.dds.tpAnual.categorizacion.categoria.CategoriaNombreCorto;
-import utn.dds.tpAnual.categorizacion.categoria.CategoriaNombreLargo;
+import utn.dds.tpAnual.db.entity.categorizacion.categoria.Categoria;
+import utn.dds.tpAnual.db.entity.categorizacion.categoria.CategoriaNombreCorto;
+import utn.dds.tpAnual.db.entity.categorizacion.categoria.CategoriaNombreLargo;
 import utn.dds.tpAnual.transaccion.Item;
 
 public class CriterioCategorizacionPorDescripcion extends CriterioCategorizacion{

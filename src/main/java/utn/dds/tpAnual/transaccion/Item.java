@@ -2,8 +2,8 @@ package utn.dds.tpAnual.transaccion;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import utn.dds.tpAnual.categorizacion.categoria.Categoria;
-import utn.dds.tpAnual.categorizacion.criterioCategorizacion.CriterioCategorizacion;
+import utn.dds.tpAnual.db.entity.categorizacion.categoria.Categoria;
+import utn.dds.tpAnual.db.entity.categorizacion.criterioCategorizacion.CriterioCategorizacion;
 
 /**
  * @author Daiana
