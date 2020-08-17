@@ -25,7 +25,7 @@ public class RequisitoSectorEmpresa implements Comparable<RequisitoSectorEmpresa
 	@Column(name = "MAXIMO_FACTURACION", nullable = false)
 	private Float maximoFacturacion;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private TamanioEmpresa tamanioEmpresa;
 	
 	public RequisitoSectorEmpresa(int maximoEmpleados, Float maximoFacturacion, TamanioEmpresa tamanioEmpresa) {
