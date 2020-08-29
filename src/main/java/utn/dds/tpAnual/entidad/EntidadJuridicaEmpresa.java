@@ -9,7 +9,6 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import utn.dds.tpAnual.db.entity.afip.Actividad;
 import utn.dds.tpAnual.db.entity.afip.VentaAnual;
 import utn.dds.tpAnual.db.entity.afip.tamanios.TamanioEmpresa;
-import utn.dds.tpAnual.transaccion.DetalleOperacion;
 
 /**
  * @author Daiana

@@ -4,9 +4,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import utn.dds.tpAnual.transaccion.DetallePrecio;
-import utn.dds.tpAnual.transaccion.Egreso;
-import utn.dds.tpAnual.transaccion.Presupuesto;
+import utn.dds.tpAnual.db.entity.transaccion.DetallePrecio;
+import utn.dds.tpAnual.db.entity.transaccion.Egreso;
+import utn.dds.tpAnual.db.entity.transaccion.Presupuesto;
 import utn.dds.tpAnual.usuario.Mensaje;
 import utn.dds.tpAnual.usuario.Usuario;
 

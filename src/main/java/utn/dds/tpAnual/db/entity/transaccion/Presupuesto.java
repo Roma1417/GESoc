@@ -1,4 +1,4 @@
-package utn.dds.tpAnual.transaccion;
+package utn.dds.tpAnual.db.entity.transaccion;
 
 import java.util.List;
 

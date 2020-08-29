@@ -1,4 +1,4 @@
-package utn.dds.tpAnual.transaccion;
+package utn.dds.tpAnual.db.entity.transaccion;
 
 import java.time.LocalDate;
 import java.util.List;

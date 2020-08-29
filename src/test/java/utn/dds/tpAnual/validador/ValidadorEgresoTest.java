@@ -8,10 +8,9 @@ import org.junit.Test;
 
 import utn.dds.tpAnual.builders.EgresoBuilder;
 import utn.dds.tpAnual.criterioCompra.ValidadorEgreso;
-import utn.dds.tpAnual.transaccion.*;
+import utn.dds.tpAnual.db.entity.transaccion.*;
 import utn.dds.tpAnual.usuario.Mensaje;
 import utn.dds.tpAnual.usuario.Usuario;
-import utn.dds.tpAnual.validador.CriterioMenorPrecio;
 
 public class ValidadorEgresoTest {
 	

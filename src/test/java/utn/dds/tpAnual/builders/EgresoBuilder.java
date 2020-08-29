@@ -3,11 +3,11 @@ package utn.dds.tpAnual.builders;
 import java.util.ArrayList;
 import java.util.List;
 
-import utn.dds.tpAnual.transaccion.DetalleOperacion;
-import utn.dds.tpAnual.transaccion.DetallePrecio;
-import utn.dds.tpAnual.transaccion.Egreso;
-import utn.dds.tpAnual.transaccion.Item;
-import utn.dds.tpAnual.transaccion.Presupuesto;
+import utn.dds.tpAnual.db.entity.transaccion.DetalleOperacion;
+import utn.dds.tpAnual.db.entity.transaccion.DetallePrecio;
+import utn.dds.tpAnual.db.entity.transaccion.Egreso;
+import utn.dds.tpAnual.db.entity.transaccion.Item;
+import utn.dds.tpAnual.db.entity.transaccion.Presupuesto;
 import utn.dds.tpAnual.usuario.Usuario;
 import utn.dds.tpAnual.validador.CriterioCompra;
 import utn.dds.tpAnual.validador.CriterioMenorPrecio;

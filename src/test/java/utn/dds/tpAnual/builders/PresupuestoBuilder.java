@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import utn.dds.tpAnual.entidad.Entidad;
-import utn.dds.tpAnual.transaccion.DetallePrecio;
-import utn.dds.tpAnual.transaccion.DocumentoComercial;
-import utn.dds.tpAnual.transaccion.Presupuesto;
+import utn.dds.tpAnual.db.entity.transaccion.DetallePrecio;
+import utn.dds.tpAnual.db.entity.transaccion.DocumentoComercial;
+import utn.dds.tpAnual.db.entity.transaccion.Presupuesto;
 
 public class PresupuestoBuilder {
 	private List<DetallePrecio> detallesPrecio = new ArrayList<DetallePrecio>();

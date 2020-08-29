@@ -2,7 +2,7 @@ package utn.dds.tpAnual.validador;
 
 import java.util.List;
 
-import utn.dds.tpAnual.transaccion.Presupuesto;
+import utn.dds.tpAnual.db.entity.transaccion.Presupuesto;
 
 /**
  * @author Tomas

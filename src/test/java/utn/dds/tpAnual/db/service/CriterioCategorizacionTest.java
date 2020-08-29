@@ -7,7 +7,7 @@ import org.junit.Test;
 import utn.dds.tpAnual.db.entity.categorizacion.categoria.CategoriaNombreCorto;
 import utn.dds.tpAnual.db.entity.categorizacion.categoria.CategoriaNombreLargo;
 import utn.dds.tpAnual.db.entity.categorizacion.criterioCategorizacion.CriterioCategorizacionPorDescripcion;
-import utn.dds.tpAnual.transaccion.Item;
+import utn.dds.tpAnual.db.entity.transaccion.Item;
 
 
 

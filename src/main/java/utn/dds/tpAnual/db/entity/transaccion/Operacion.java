@@ -1,4 +1,4 @@
-package utn.dds.tpAnual.transaccion;
+package utn.dds.tpAnual.db.entity.transaccion;
 
 import utn.dds.tpAnual.entidad.Entidad;
 

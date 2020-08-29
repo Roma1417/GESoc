@@ -1,7 +1,7 @@
 package utn.dds.tpAnual.builders;
 
-import utn.dds.tpAnual.transaccion.DetalleOperacion;
-import utn.dds.tpAnual.transaccion.Item;
+import utn.dds.tpAnual.db.entity.transaccion.DetalleOperacion;
+import utn.dds.tpAnual.db.entity.transaccion.Item;
 
 public class DetalleOperacionBuilder {
 	private int cantidad;
