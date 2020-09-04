@@ -17,7 +17,7 @@ import utn.dds.tpAnual.db.repository.TestEntityRepository;
 @Configuration
 @EnableTransactionManagement
 @EnableScheduling
-@ComponentScan(basePackages = {"utn.dds.tpAnual.db.service","utn.dds.tpAnual.db.scheduler"})
+@ComponentScan(basePackages = {"utn.dds.tpAnual.db.service","utn.dds.tpAnual.db.scheduler", "utn.dds.tpAnual.db.api.service"})
 @EntityScan(basePackages = "utn.dds.tpAnual.db.entity")
 @EnableJpaRepositories("utn.dds.tpAnual.db.repository")
 public class TestHibernateSpring {
