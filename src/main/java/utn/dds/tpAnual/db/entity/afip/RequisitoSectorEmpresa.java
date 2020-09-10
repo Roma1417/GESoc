@@ -27,6 +27,9 @@ public class RequisitoSectorEmpresa implements Comparable<RequisitoSectorEmpresa
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private TamanioEmpresa tamanioEmpresa;
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	private Sector sector;
 	
 	public RequisitoSectorEmpresa(int maximoEmpleados, Float maximoFacturacion, TamanioEmpresa tamanioEmpresa) {
 		this.maximoEmpleados = maximoEmpleados;
@@ -61,11 +64,14 @@ public class RequisitoSectorEmpresa implements Comparable<RequisitoSectorEmpresa
 		return maximoFacturacion;
 	}
 
-	/**
-	 * 
-	 * @param cantidadEmpleados
-	 * @param facturacionMaxima
-	 */
+	public Sector getSector() {
+		return sector;
+	}
+
+	public void setSector(Sector sector) {
+		this.sector = sector;
+	}
+
 	public boolean excedeAlgunRequisito(int cantidadEmpleados, Float facturacionMaxima){
 		return cantidadEmpleados > this.maximoEmpleados 
 				|| facturacionMaxima > this.maximoFacturacion;

@@ -24,7 +24,7 @@ public class Sector {
 	@Column(name = "NOMBRE", unique = true, nullable = false, length = 100)
 	private String nombreSector;
 
-	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="sector", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	private List<RequisitoSectorEmpresa> requisitos;
 
 	public Sector(String nombreSector, List<RequisitoSectorEmpresa> requisitos) {
@@ -78,4 +78,5 @@ public class Sector {
 	public String getNombre(){
 		return this.nombreSector;
 	}
+
 }
