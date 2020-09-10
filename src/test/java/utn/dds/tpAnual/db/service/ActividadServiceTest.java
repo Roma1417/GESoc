@@ -25,6 +25,9 @@ public class ActividadServiceTest {
     @Autowired
     private ActividadService actividadService;
 
+    @Autowired
+    private SectorService sectorService;
+
     private RequisitoSectorEmpresa requisito1 = new RequisitoSectorEmpresaBuilder()
             .withMaximoEmpleados(100)
             .withMaximoFacturacion(200F)
@@ -55,12 +58,18 @@ public class ActividadServiceTest {
 
     private Actividad actividad = new ActividadBuilder()
             .withNombre("Ganaderia")
-            .withSector(sectorConRequisitosDesordenados)
             .build();
 
     @Test
     public void persistenceTest() {
+        sectorService.save(sectorConRequisitosDesordenados);
+        Sector sector = sectorService.getPrimerSectorByNombre("Financiero");
+        requisito1.setSector(sector);
+        requisito2.setSector(sector);
+        requisito3.setSector(sector);
+        requisito4.setSector(sector);
         actividadService.save(actividad);
+        // falta
         Actividad mismaActividad = actividadService.getPrimeraActividadByNombre("Ganaderia");
         assertTrue(mismaActividad.getActividadId() == actividad.getActividadId());
     }

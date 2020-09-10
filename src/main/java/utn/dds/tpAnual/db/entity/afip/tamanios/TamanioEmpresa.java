@@ -19,10 +19,10 @@ public abstract class TamanioEmpresa {
 	@Column(name ="ID")
 	private Long tamanioId;
 
-	@Column(name = "JERARQUIA", unique = true, nullable = false)
+	@Column(name = "JERARQUIA", nullable = false)
 	private int jerarquia;
 
-	@Column(name = "NOMBRE", unique = true, nullable = false, length = 100)
+	@Column(name = "NOMBRE", nullable = false, length = 100)
 	private String nombre;
 
 	public TamanioEmpresa(){

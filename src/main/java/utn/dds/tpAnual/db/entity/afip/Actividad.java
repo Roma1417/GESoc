@@ -21,7 +21,7 @@ public class Actividad {
 	@Column(name = "ID", unique = true, nullable = false)
 	private Long actividadId;
 
-	@Column(name = "NOMBRE", unique = true, nullable = false, length = 100)
+	@Column(name = "NOMBRE", nullable = false, length = 100)
 	private String nombreActividad;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
@@ -65,6 +65,7 @@ public class Actividad {
 	public TamanioEmpresa getTamanioEmpresaPara(int cantidadEmpleados, Float ventasAnuales){
 		return sector.getTamanioPara(cantidadEmpleados, ventasAnuales);
 	}
+
 
 	@Override
 	public String toString() {
