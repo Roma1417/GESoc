@@ -1,10 +1,26 @@
-package utn.dds.tpAnual.ubicacion;
+package utn.dds.tpAnual.db.entity.ubicacion;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "DIRECCION_POSTAL")
 public class DireccionPostal {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID", unique = true, nullable = false)
+	private Long direccionPostalId;
+
+	@Column(name = "CALLE", nullable = false, length = 100)
 	private String calle;
+
+	@Column(name = "ALTURA", nullable = false)
 	private int altura;
+
+	@Column(name = "PISO")
 	private int piso;
+
+	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	private Ciudad ciudad;
 
 	public DireccionPostal() {
@@ -47,5 +63,13 @@ public class DireccionPostal {
 
 	public void setCiudad(Ciudad ciudad) {
 		this.ciudad = ciudad;
+	}
+
+	public Long getDireccionPostalId() {
+		return direccionPostalId;
+	}
+
+	public void setDireccionPostalId(Long direccionPostalId) {
+		this.direccionPostalId = direccionPostalId;
 	}
 }

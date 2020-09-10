@@ -9,7 +9,7 @@ public abstract class Categoria {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID", nullable = false, length = 100)
+	@Column(name = "ID", unique = true, nullable = false)
 	private Long idCategoria;
 
 	@OneToOne(cascade = CascadeType.REFRESH)
@@ -28,24 +28,27 @@ public abstract class Categoria {
 
 	}
 
-	public Long getIdCategoria() {
+	public Long getIdCategoria () {
 		return idCategoria;
 	}
 
-	public void setIdCategoria(Long idCategoria) {
+	public void setIdCategoria (Long idCategoria) {
 		this.idCategoria = idCategoria;
 	}
 
 	public Categoria getCategoriaHija() {
 		return categoriaHija;
 	}
-	public void setCategoriaHija(Categoria categoriaHija) {
+
+	public void setCategoriaHija (Categoria categoriaHija) {
 		this.categoriaHija = categoriaHija;
 	}
-	public String getDescripcion() {
+
+	public String getDescripcion () {
 		return descripcion;
 	}
-	public void setDescripcion(String descripcion) {
+
+	public void setDescripcion (String descripcion) {
 		this.descripcion = descripcion;
 	}
 	

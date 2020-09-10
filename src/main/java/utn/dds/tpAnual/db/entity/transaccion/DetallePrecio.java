@@ -11,9 +11,13 @@ import javax.persistence.*;
  */
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "DETALLE_PRECIO")
 public class DetallePrecio {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID", unique = true, nullable = false)
+	private Long detallePrecioId;
 
 	@OneToOne(cascade = CascadeType.REFRESH)
 	private DetalleOperacion detalleOperacion;
@@ -49,7 +53,15 @@ public class DetallePrecio {
 	public Float getPrecioTotal() {
 		return precio * detalleOperacion.getCantidad();
 	}
-	
+
+	public Long getDetallePrecioId() {
+		return detallePrecioId;
+	}
+
+	public void setDetallePrecioId(Long detallePrecioId) {
+		this.detallePrecioId = detallePrecioId;
+	}
+
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this)

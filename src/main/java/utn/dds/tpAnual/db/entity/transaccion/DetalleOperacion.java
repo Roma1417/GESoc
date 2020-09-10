@@ -11,16 +11,15 @@ import javax.persistence.*;
  */
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "DETALLE_OPERACION")
 public class DetalleOperacion {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID", nullable = false, length = 100)
+	@Column(name = "ID", unique = true, nullable = false)
 	private Long idDetalleOperacion;
 
-	@Column(name = "CANTIDAD", nullable = false)
+	@Column(name = "CANTIDAD")
 	private int cantidad;
 
 	@ManyToOne(cascade = CascadeType.REFRESH)

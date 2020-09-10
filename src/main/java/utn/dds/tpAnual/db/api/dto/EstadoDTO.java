@@ -2,7 +2,7 @@ package utn.dds.tpAnual.db.api.dto;
 
 import java.util.List;
 
-import utn.dds.tpAnual.ubicacion.Estado;
+import utn.dds.tpAnual.db.entity.ubicacion.Estado;
 
 public class EstadoDTO {
 
