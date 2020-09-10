@@ -61,11 +61,7 @@ public class Actividad {
 		this.sector = sector;
 	}
 
-	/**
-	 * 
-	 * @param cantidadEmpleados
-	 * @param ventasAnuales
-	 */
+
 	public TamanioEmpresa getTamanioEmpresaPara(int cantidadEmpleados, Float ventasAnuales){
 		return sector.getTamanioPara(cantidadEmpleados, ventasAnuales);
 	}

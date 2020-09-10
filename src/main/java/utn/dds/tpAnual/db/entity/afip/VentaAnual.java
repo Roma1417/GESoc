@@ -17,7 +17,7 @@ public class VentaAnual {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", unique = true, nullable = false)
-	private Long id;
+	private Long ventaAnualId;
 
 	@Column(name = "ANIO", unique = true, nullable = false)
 	private int anio;
@@ -34,12 +34,12 @@ public class VentaAnual {
 
 	}
 
-	public Long getId() {
-		return id;
+	public Long getVentaAnualId() {
+		return ventaAnualId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setVentaAnualId(Long ventaAnualId) {
+		this.ventaAnualId = ventaAnualId;
 	}
 
 	public void setAnio(int anio) {

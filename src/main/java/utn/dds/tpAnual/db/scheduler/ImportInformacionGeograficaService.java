@@ -2,15 +2,13 @@ package utn.dds.tpAnual.db.scheduler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import utn.dds.tpAnual.db.api.dto.CiudadDTO;
 import utn.dds.tpAnual.db.api.dto.EstadoDTO;
 import utn.dds.tpAnual.db.api.dto.PaisDTO;
 import utn.dds.tpAnual.db.api.service.MercadoLibreAPIService;
 import utn.dds.tpAnual.db.service.PaisService;
-import utn.dds.tpAnual.ubicacion.Estado;
-import utn.dds.tpAnual.ubicacion.Pais;
+import utn.dds.tpAnual.db.entity.ubicacion.Estado;
+import utn.dds.tpAnual.db.entity.ubicacion.Pais;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

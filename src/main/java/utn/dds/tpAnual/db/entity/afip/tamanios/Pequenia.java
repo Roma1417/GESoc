@@ -11,6 +11,7 @@ import javax.persistence.Entity;
  */
 
 @Entity(name = "Pequenia")
+@DiscriminatorValue("Pequenia")
 public class Pequenia extends TamanioEmpresa{
 
 	private final int jerarquia = 1;

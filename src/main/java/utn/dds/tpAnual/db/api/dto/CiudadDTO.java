@@ -1,6 +1,6 @@
 package utn.dds.tpAnual.db.api.dto;
 
-import utn.dds.tpAnual.ubicacion.Ciudad;
+import utn.dds.tpAnual.db.entity.ubicacion.Ciudad;
 
 public class CiudadDTO {
 

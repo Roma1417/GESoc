@@ -1,10 +1,9 @@
 package utn.dds.tpAnual.db.api.dto;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import utn.dds.tpAnual.ubicacion.Pais;
+import utn.dds.tpAnual.db.entity.ubicacion.Pais;
 
 public class PaisDTO {
 
