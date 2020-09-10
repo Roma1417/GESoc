@@ -4,9 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import utn.dds.tpAnual.db.entity.afip.Actividad;
-import utn.dds.tpAnual.db.entity.categorizacion.categoria.Categoria;
-import utn.dds.tpAnual.ubicacion.Pais;
+import utn.dds.tpAnual.db.entity.ubicacion.Pais;
 
 import java.util.Collection;
 import java.util.List;

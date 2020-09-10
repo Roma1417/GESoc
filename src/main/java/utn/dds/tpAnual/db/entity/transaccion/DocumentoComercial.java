@@ -9,13 +9,12 @@ import javax.persistence.*;
  */
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "DOCUMENTO_COMERCIAL")
 public class DocumentoComercial {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID", nullable = false, length = 100)
+	@Column(name = "ID", unique = true, nullable = false)
 	private Long idDocumento;
 
 	@Column(name = "TIPO_DOCUMENTO", nullable = false)

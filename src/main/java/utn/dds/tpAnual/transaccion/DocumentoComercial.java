@@ -1,6 +1,6 @@
 package utn.dds.tpAnual.transaccion;
 
-import utn.dds.tpAnual.ubicacion.Pais;
+import utn.dds.tpAnual.db.entity.ubicacion.Pais;
 
 /**
  * @author Daiana

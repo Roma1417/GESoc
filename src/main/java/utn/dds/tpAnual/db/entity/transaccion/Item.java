@@ -14,16 +14,15 @@ import javax.persistence.*;
  */
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "ITEM")
 public class Item {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "CODIGO", nullable = false, length = 100)
-	private Long codigo;
+	@Column(name = "ID", unique = true, nullable = false)
+	private Long itemId;
 
-	@Column(name = "DESCRIPCION", length = 100)
+	@Column(name = "DESCRIPCION", length = 255)
 	private String descripcion;
 
 	@Transient
@@ -32,14 +31,14 @@ public class Item {
 	@ManyToOne(cascade = CascadeType.REFRESH)
 	private Categoria categoria;
 
-	public Item(Long codigo, String descripcion, CriterioCategorizacion primerCriterio){
-		this.codigo = codigo;
+	public Item(Long itemId, String descripcion, CriterioCategorizacion primerCriterio){
+		this.itemId = itemId;
 		this.descripcion = descripcion;
 		this.primerCriterio = primerCriterio; 
 	}
 	
-	public Item(Long codigo, String descripcion){
-		this.codigo = codigo;
+	public Item(Long itemId, String descripcion){
+		this.itemId = itemId;
 		this.descripcion = descripcion;
 	}
 
@@ -47,12 +46,12 @@ public class Item {
 
 	}
 
-	public Long getCodigo() {
-		return codigo;
+	public Long getItemId() {
+		return itemId;
 	}
 
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
+	public void setItemId(Long itemId) {
+		this.itemId = itemId;
 	}
 
 	public void setDescripcion(String descripcion) {
@@ -78,7 +77,7 @@ public class Item {
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this)
-				.append("\ncodigo", codigo)
+				.append("\ncodigo", itemId)
 			    .append("\ndescripcion", descripcion)
 			    .toString();
 	}

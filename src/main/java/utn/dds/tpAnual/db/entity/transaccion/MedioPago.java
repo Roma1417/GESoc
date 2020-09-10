@@ -9,14 +9,13 @@ import javax.persistence.*;
  */
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "MEDIO_PAGO")
 public class MedioPago {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "CODIGO", nullable = false, length = 100)
-	private Long codigo;
+	@Column(name = "ID", unique = true, nullable = false)
+	private Long medioPagoId;
 
 	@Column(name = "INSTRUMENTO_PAGO", nullable = false, length = 100)
 	private String instrumentoPago;
@@ -25,12 +24,12 @@ public class MedioPago {
 
 	}
 
-	public Long getCodigo() {
-		return codigo;
+	public Long getMedioPagoId() {
+		return medioPagoId;
 	}
 
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
+	public void setMedioPagoId(Long medioPagoId) {
+		this.medioPagoId = medioPagoId;
 	}
 
 	public String getInstrumentoPago() {
