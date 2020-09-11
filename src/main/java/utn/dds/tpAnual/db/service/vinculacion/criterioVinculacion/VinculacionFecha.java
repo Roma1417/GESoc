@@ -2,7 +2,6 @@ package utn.dds.tpAnual.db.service.vinculacion.criterioVinculacion;
 
 import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.entity.transaccion.Ingreso;
-import utn.dds.tpAnual.entidad.Entidad;
 
 import java.util.List;
 

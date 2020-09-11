@@ -1,6 +1,6 @@
 package utn.dds.tpAnual.usuario;
 
-import utn.dds.tpAnual.entidad.Entidad;
+import utn.dds.tpAnual.db.entity.entidad.Entidad;
 
 /**
  * @author Daiana

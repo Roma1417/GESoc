@@ -3,12 +3,8 @@ package utn.dds.tpAnual.db.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
-import utn.dds.tpAnual.db.entity.afip.Actividad;
-import utn.dds.tpAnual.db.repository.ActividadRepository;
 import utn.dds.tpAnual.db.repository.EntitdadRepository;
-import utn.dds.tpAnual.entidad.Entidad;
-
-import java.util.List;
+import utn.dds.tpAnual.db.entity.entidad.Entidad;
 
 @Service
     public class EntidadService extends CustomJPAService<Entidad> {

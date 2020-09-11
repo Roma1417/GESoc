@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import utn.dds.tpAnual.entidad.Entidad;
+import utn.dds.tpAnual.db.entity.entidad.Entidad;
 
 /**
  * @author Tomas

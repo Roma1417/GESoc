@@ -1,6 +1,4 @@
-package utn.dds.tpAnual.entidad;
-
-import org.apache.commons.lang3.builder.ToStringBuilder;
+package utn.dds.tpAnual.db.entity.entidad;
 
 /**
  * @author Daiana

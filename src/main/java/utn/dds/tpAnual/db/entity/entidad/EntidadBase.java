@@ -1,4 +1,4 @@
-package utn.dds.tpAnual.entidad;
+package utn.dds.tpAnual.db.entity.entidad;
 
 
 

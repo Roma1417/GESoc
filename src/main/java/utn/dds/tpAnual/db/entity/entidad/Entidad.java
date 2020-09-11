@@ -1,13 +1,17 @@
-package utn.dds.tpAnual.entidad;
+package utn.dds.tpAnual.db.entity.entidad;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import utn.dds.tpAnual.db.service.vinculacion.criterioVinculacion.CriterioVinculacion;
 
-/**
- * @author Daiana
- * @version 1.0
- * @created 10-abr.-2020 18:19:18
- */
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Table(name = "TAMANIO_EMPRESA")
 public abstract class Entidad {
 
 	private String nombre;

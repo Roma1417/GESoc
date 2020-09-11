@@ -6,7 +6,7 @@ import java.util.List;
 import utn.dds.tpAnual.db.entity.proveedor.Proveedor;
 import utn.dds.tpAnual.usuario.Usuario;
 import utn.dds.tpAnual.validador.CriterioCompra;
-import utn.dds.tpAnual.entidad.Entidad;
+import utn.dds.tpAnual.db.entity.entidad.Entidad;
 
 /**
  * @author Daiana

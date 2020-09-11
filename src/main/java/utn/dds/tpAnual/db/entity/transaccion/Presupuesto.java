@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import utn.dds.tpAnual.entidad.Entidad;
+import utn.dds.tpAnual.db.entity.entidad.Entidad;
 
 /**
  * @author Tomas

@@ -42,7 +42,7 @@ public class ProgramadorDeTareas {
 		importInformacionGeograficaService.importProvincias();
 	}
 
-	@Scheduled(fixedDelay = 10000)
+	//@Scheduled(fixedDelay = 10000)
 	public void vincularSistema(){
 		vinculador.vincularSistema();
 	}

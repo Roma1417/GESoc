@@ -3,7 +3,7 @@ package utn.dds.tpAnual.builders;
 import java.util.ArrayList;
 import java.util.List;
 
-import utn.dds.tpAnual.entidad.Entidad;
+import utn.dds.tpAnual.db.entity.entidad.Entidad;
 import utn.dds.tpAnual.db.entity.transaccion.DetallePrecio;
 import utn.dds.tpAnual.db.entity.transaccion.DocumentoComercial;
 import utn.dds.tpAnual.db.entity.transaccion.Presupuesto;

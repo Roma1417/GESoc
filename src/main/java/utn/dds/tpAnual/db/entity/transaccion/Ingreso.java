@@ -1,6 +1,6 @@
 package utn.dds.tpAnual.db.entity.transaccion;
 
-import utn.dds.tpAnual.entidad.Entidad;
+import utn.dds.tpAnual.db.entity.entidad.Entidad;
 
 public class Ingreso extends Operacion{
 	
