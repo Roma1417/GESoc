@@ -4,7 +4,8 @@ import utn.dds.tpAnual.db.entity.configuracion.Configuracion;
 
 public enum ConfiguracionEnum {
 
-    DIAS_ACEPTABLE_VINCULACION("DIAS_ACEPTABLE_VINCULACION", "30");
+    DIAS_ACEPTABLE_VINCULACION("DIAS_ACEPTABLE_VINCULACION", "30"),
+    MENSAJE_CORRECTO("MENSAJE_CORRECTO", "Validacion realizada con Exito");
 
     private String key;
     private String defaultValue;

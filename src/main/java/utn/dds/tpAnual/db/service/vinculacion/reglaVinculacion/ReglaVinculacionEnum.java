@@ -1,4 +1,4 @@
-package utn.dds.tpAnual.vinculacion.regla;
+package utn.dds.tpAnual.db.service.vinculacion.reglaVinculacion;
 
 public enum ReglaVinculacionEnum {
 
