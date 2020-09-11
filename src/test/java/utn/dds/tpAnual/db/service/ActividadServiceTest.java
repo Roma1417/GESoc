@@ -62,14 +62,12 @@ public class ActividadServiceTest {
 
     @Test
     public void persistenceTest() {
-        sectorService.save(sectorConRequisitosDesordenados);
-        Sector sector = sectorService.getPrimerSectorByNombre("Financiero");
-        requisito1.setSector(sector);
-        requisito2.setSector(sector);
-        requisito3.setSector(sector);
-        requisito4.setSector(sector);
+        requisito1.setSector(sectorConRequisitosDesordenados);
+        requisito2.setSector(sectorConRequisitosDesordenados);
+        requisito3.setSector(sectorConRequisitosDesordenados);
+        requisito4.setSector(sectorConRequisitosDesordenados);
+        actividad.setSector(sectorConRequisitosDesordenados);
         actividadService.save(actividad);
-        // falta
         Actividad mismaActividad = actividadService.getPrimeraActividadByNombre("Ganaderia");
         assertTrue(mismaActividad.getActividadId() == actividad.getActividadId());
     }
