@@ -24,7 +24,7 @@ public class Actividad {
 	@Column(name = "NOMBRE", nullable = false, length = 100)
 	private String nombreActividad;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Sector sector;
 
 	public Actividad(String nombreActividad, Sector sector) {

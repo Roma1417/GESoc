@@ -12,7 +12,9 @@ import java.util.List;
 @Repository
 public interface SectorRepository extends JpaRepository<Sector, Long> {
 
-    @Query("SELECT s FROM Sector s WHERE s.nombreSector LIKE :nombre")
+    @Query("SELECT s FROM Sector s" +
+            " JOIN FETCH s.requisitos " +
+            " WHERE s.nombreSector LIKE :nombre")
     List<Sector> getSectorByNombre(@Param("nombre") String nombre);
 
 }
