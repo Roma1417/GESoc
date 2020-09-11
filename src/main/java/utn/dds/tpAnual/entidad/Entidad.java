@@ -1,6 +1,7 @@
 package utn.dds.tpAnual.entidad;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import utn.dds.tpAnual.db.service.vinculacion.criterioVinculacion.CriterioVinculacion;
 
 /**
  * @author Daiana
@@ -10,6 +11,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public abstract class Entidad {
 
 	private String nombre;
+
+	private CriterioVinculacion criterioVinculacion;
 
 	public Entidad(){
 
@@ -30,4 +33,11 @@ public abstract class Entidad {
 			    .toString();
 	}
 
+	public CriterioVinculacion getCriterioVinculacion() {
+		return criterioVinculacion;
+	}
+
+	public void setCriterioVinculacion(CriterioVinculacion criterioVinculacion) {
+		this.criterioVinculacion = criterioVinculacion;
+	}
 }

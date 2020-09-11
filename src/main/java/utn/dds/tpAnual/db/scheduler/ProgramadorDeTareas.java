@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import utn.dds.tpAnual.criterioCompra.ValidadorEgreso;
+import utn.dds.tpAnual.db.service.vinculacion.vinculador.Vinculador;
 
 @Component
 public class ProgramadorDeTareas {
@@ -15,6 +16,9 @@ public class ProgramadorDeTareas {
 
 	@Autowired
 	private ImportInformacionGeograficaService importInformacionGeograficaService;
+
+	@Autowired
+	private Vinculador vinculador;
 
 	private ProgramadorDeTareas() {
 	}
@@ -36,5 +40,10 @@ public class ProgramadorDeTareas {
 	//@Scheduled(fixedDelay = 10000)
 	public void importProvincias(){
 		importInformacionGeograficaService.importProvincias();
+	}
+
+	@Scheduled(fixedDelay = 10000)
+	public void vincularSistema(){
+		vinculador.vincularSistema();
 	}
 }

@@ -4,9 +4,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import utn.dds.tpAnual.db.configuracion.ConfiguracionEnum;
 import utn.dds.tpAnual.db.entity.transaccion.DetallePrecio;
 import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.entity.transaccion.Presupuesto;
+import utn.dds.tpAnual.db.service.ConfiguracionService;
 import utn.dds.tpAnual.usuario.Mensaje;
 import utn.dds.tpAnual.usuario.Usuario;
 
@@ -16,9 +20,13 @@ import utn.dds.tpAnual.usuario.Usuario;
  * @version 1.0
  * @created 26-abr.-2020 19:46:27
  */
+
+@Service
 public class ValidadorEgreso {
 
-	private final String MENSAJE_CORRECTO = "Validacion realizada con Exito";
+	@Autowired
+	private ConfiguracionService configuracionService;
+
 	private final String MENSAJE_ERRONEO = "Fallo de Validacion";
 	private final String ASUNTO_INICIO = "Resultado Validacion Egreso: ";
 	private Queue<Egreso> colaEgresos = new LinkedList<>();
@@ -99,7 +107,8 @@ public class ValidadorEgreso {
 		String asunto = ASUNTO_INICIO + egreso.getCodigoOperacion();
 		List<Usuario> usuarios = egreso.getRevisores();
 
-		this.enviarMensajes(usuarios, asunto,resultado ? MENSAJE_CORRECTO : MENSAJE_ERRONEO);
+		this.enviarMensajes(usuarios, asunto,resultado ? configuracionService.getValue(ConfiguracionEnum.MENSAJE_CORRECTO)
+				: MENSAJE_ERRONEO);
 	}
 
 	private void enviarMensajes(List<Usuario> usuarios, String asunto, String cuerpo) {
