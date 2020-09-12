@@ -12,6 +12,7 @@ import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Service;
 import utn.dds.tpAnual.db.api.dto.CiudadDTO;
 import utn.dds.tpAnual.db.api.dto.EstadoDTO;
+import utn.dds.tpAnual.db.api.dto.MonedaDTO;
 import utn.dds.tpAnual.db.api.dto.PaisDTO;
 import utn.dds.tpAnual.db.api.interfaces.GetGeographicalAPI;
 
@@ -26,6 +27,7 @@ public class MercadoLibreAPIService implements GetGeographicalAPI {
     private final String PAISES_ENDPOINT = "/classified_locations/countries/";
     private final String ESTADO_ENDPOINT = "/classified_locations/states/";
     private final String CIUDAD_ENDPOINT = "/classified_locations/cities/";
+    private final String MONEDA_ENDPOINT = "/currencies/";
     private final Gson gson = new Gson();
     @Override
     public List<PaisDTO> getPaises() {
@@ -53,6 +55,13 @@ public class MercadoLibreAPIService implements GetGeographicalAPI {
         String json = get(URL_MERCADO_LIBRE + CIUDAD_ENDPOINT + id);
         CiudadDTO ciudad = gson.fromJson(json, CiudadDTO.class);
         return ciudad;
+    }
+
+    @Override
+    public List<MonedaDTO> getMonedas(){
+        String json = get(URL_MERCADO_LIBRE + MONEDA_ENDPOINT);
+        List<MonedaDTO> monedas = gson.fromJson(json, new TypeToken<List<MonedaDTO>>(){}.getType());
+        return monedas;
     }
 
     private String get(String url) {

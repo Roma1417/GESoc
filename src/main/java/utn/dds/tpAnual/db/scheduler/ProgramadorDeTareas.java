@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import utn.dds.tpAnual.criterioCompra.ValidadorEgreso;
+import utn.dds.tpAnual.db.service.ImportInformacionGeograficaService;
 
 @Component
 public class ProgramadorDeTareas {
@@ -28,13 +29,14 @@ public class ProgramadorDeTareas {
 		ValidadorEgreso.getInstance().validarEgresos();
 	}
 
-	//@Scheduled(fixedDelay = 10000)
+	@Scheduled(fixedDelay = 10000)
 	public void importPaises(){
 		importInformacionGeograficaService.importPaises();
 	}
 
-	//@Scheduled(fixedDelay = 10000)
-	public void importProvincias(){
-		importInformacionGeograficaService.importProvincias();
+	@Scheduled(fixedDelay = 10000)
+	public void importEstados(){
+		importInformacionGeograficaService.importEstados();
 	}
+	
 }

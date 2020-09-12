@@ -6,10 +6,7 @@ import org.springframework.stereotype.Service;
 import utn.dds.tpAnual.db.repository.PaisRepository;
 import utn.dds.tpAnual.db.entity.ubicacion.Pais;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class PaisService extends CustomJPAService<Pais> {
@@ -35,5 +32,14 @@ public class PaisService extends CustomJPAService<Pais> {
 
         Collection<Pais> paisesRestantes = paisMap.values();
         paisRepository.saveAll(paisesRestantes);
+    }
+
+    public Pais getPrimerPaisByNombre(String nombrePais){
+        List<Pais> paises = paisRepository.getAllByDescripciones(Arrays.asList(nombrePais));
+        return paises.isEmpty() ? null : paises.get(0);
+    }
+
+    public List<Pais> getPaisesByNombre(String nombrePais){
+        return paisRepository.getAllByDescripciones(Arrays.asList(nombrePais));
     }
 }
