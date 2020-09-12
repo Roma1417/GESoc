@@ -11,7 +11,7 @@ public class Estado {
 	@Column(name = "ID", unique = true, nullable = false)
 	private Long estadoId;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	private Pais pais;
 
 	@Column(name = "ID_API", unique = true, nullable = false, length = 100)

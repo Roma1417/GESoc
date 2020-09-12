@@ -3,9 +3,12 @@ package utn.dds.tpAnual.db.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import utn.dds.tpAnual.db.repository.PaisRepository;
 import utn.dds.tpAnual.db.entity.ubicacion.Pais;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.*;
 
 @Service
@@ -18,7 +21,6 @@ public class PaisService extends CustomJPAService<Pais> {
     public JpaRepository<Pais, Long> getRepository() {
         return paisRepository;
     }
-
 
     public void guardarSiNoExiste(List<Pais> paisesAGuardar) {
         HashMap<String, Pais> paisMap = new HashMap<>();
