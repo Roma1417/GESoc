@@ -1,4 +1,4 @@
-package utn.dds.tpAnual.usuario;
+package utn.dds.tpAnual.db.entity.usuario;
 
 /**
  * @author Daiana

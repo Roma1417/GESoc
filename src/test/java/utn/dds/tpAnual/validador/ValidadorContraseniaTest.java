@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import utn.dds.tpAnual.builders.UsuarioBuilder;
 import utn.dds.tpAnual.criterioCompra.ValidadorContrasenia;
-import utn.dds.tpAnual.usuario.Usuario;
+import utn.dds.tpAnual.db.entity.usuario.Usuario;
 
 public class ValidadorContraseniaTest {
 

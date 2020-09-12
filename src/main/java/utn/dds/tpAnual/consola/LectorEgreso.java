@@ -9,7 +9,7 @@ import utn.dds.tpAnual.db.entity.transaccion.DetallePrecio;
 import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.entity.transaccion.Item;
 import utn.dds.tpAnual.db.entity.transaccion.Presupuesto;
-import utn.dds.tpAnual.usuario.Usuario;
+import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.validador.CriterioCompra;
 import utn.dds.tpAnual.validador.CriterioMenorPrecio;
 import utn.dds.tpAnual.validador.EgresosObserver;

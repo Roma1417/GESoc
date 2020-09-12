@@ -17,9 +17,10 @@ public class Ingreso extends Operacion{
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Egreso> EgresosAsociados;
-	
+
+
 	public Ingreso(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,
-			Float total, String descripcion) {
+				   Float total, String descripcion) {
 		super(documentoComercial, entidadRealizadora, codigoOperacion);
 		this.total = total; 
 		this.descripcion = descripcion; 
@@ -33,6 +34,14 @@ public class Ingreso extends Operacion{
 		return total;
 	}
 
+	public List<Egreso> getEgresosAsociados() {
+		return EgresosAsociados;
+	}
+
+	public void setEgresosAsociados(List<Egreso> egresosAsociados) {
+		EgresosAsociados = egresosAsociados;
+	}
+
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -44,4 +53,6 @@ public class Ingreso extends Operacion{
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
+
 }

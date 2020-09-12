@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-import utn.dds.tpAnual.usuario.Usuario;
+import utn.dds.tpAnual.db.entity.usuario.Usuario;
 
 public class ValidadorContrasenia {
 

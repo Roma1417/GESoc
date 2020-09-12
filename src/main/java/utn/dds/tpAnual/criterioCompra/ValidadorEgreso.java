@@ -11,8 +11,8 @@ import utn.dds.tpAnual.db.entity.transaccion.DetallePrecio;
 import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.entity.transaccion.Presupuesto;
 import utn.dds.tpAnual.db.service.ConfiguracionService;
-import utn.dds.tpAnual.usuario.Mensaje;
-import utn.dds.tpAnual.usuario.Usuario;
+import utn.dds.tpAnual.db.entity.usuario.Mensaje;
+import utn.dds.tpAnual.db.entity.usuario.Usuario;
 
 
 /**
