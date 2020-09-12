@@ -2,9 +2,7 @@ package utn.dds.tpAnual.db.service.vinculacion.criterioVinculacion;
 
 import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.entity.transaccion.Ingreso;
-
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class CriterioVinculacionMix extends CriterioVinculacion{
 
@@ -12,15 +10,18 @@ public class CriterioVinculacionMix extends CriterioVinculacion{
 
     @Override
     public RestanteVinculacion ejecutarAlgoritmoVinculacion(List<Ingreso> ingresos, List<Egreso> egresos) {
-        AtomicReference<RestanteVinculacion> restanteVinculacion = new AtomicReference<>(new RestanteVinculacion(ingresos, egresos));
+        RestanteVinculacion restanteVinculacion = new RestanteVinculacion(ingresos, egresos);
         if (criteriosVinculacion != null){
-            criteriosVinculacion.forEach(criterioVinculacion -> {
-                restanteVinculacion.set(criterioVinculacion
-                        .ejecutarAlgoritmoVinculacion(restanteVinculacion.get().getIngresoList(),
-                                restanteVinculacion.get().getEgresoList()));
-            });
+            for (CriterioVinculacion criterioVinculacion : criteriosVinculacion){
+                restanteVinculacion = criterioVinculacion
+                        .ejecutarAlgoritmoVinculacion(restanteVinculacion.getIngresoList(),
+                                restanteVinculacion.getEgresoList());
+                if (restanteVinculacion.getEgresoList().isEmpty() || restanteVinculacion.getIngresoList().isEmpty()){
+                    return restanteVinculacion;
+                }
+            }
         }
-        return restanteVinculacion.get();
+        return restanteVinculacion;
     }
 
     public List<CriterioVinculacion> getCriteriosVinculacion() {

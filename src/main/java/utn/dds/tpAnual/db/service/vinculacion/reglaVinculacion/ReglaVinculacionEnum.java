@@ -9,4 +9,12 @@ public enum ReglaVinculacionEnum {
     ReglaVinculacionEnum(ReglaVinculacion reglaVinculacion){
        this.reglaVinculacion = reglaVinculacion;
     }
+
+    public ReglaVinculacion getReglaVinculacion() {
+        return reglaVinculacion;
+    }
+
+    public void setReglaVinculacion(ReglaVinculacion reglaVinculacion) {
+        this.reglaVinculacion = reglaVinculacion;
+    }
 }

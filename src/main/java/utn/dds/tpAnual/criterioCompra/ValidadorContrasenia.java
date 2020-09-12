@@ -5,16 +5,21 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import utn.dds.tpAnual.db.configuracion.ConfiguracionEnum;
+import utn.dds.tpAnual.db.service.ConfiguracionService;
 import utn.dds.tpAnual.usuario.Usuario;
 
 public class ValidadorContrasenia {
 
-	private final int LONGITUD_CONTRASENIA = 8;
 	private final String PATH = "./src/main/resources/";
 	private final String NOMBRE_ARCHIVO_CONTRASENIAS = "peoresContrasenias.txt";
 	private final String NOMBRE_ARCHIVO_DICCIONARIO = "dictionaryPasswords.txt";
 	private final String NOMBRE_ARCHIVO_PALABRAS_PROHIBIDAS = "palabrasProhibidas.txt";
 	private final int CANTIDAD_REPETICIONES_CARACTER_MAXIMA = 3;
+
+	@Autowired
+	private ConfiguracionService configuracionService;
 	
 	private static ValidadorContrasenia instance = new ValidadorContrasenia();
 	
@@ -27,7 +32,7 @@ public class ValidadorContrasenia {
 	}
 	
 	private boolean validarLongitud(String contrasenia) {
-		return contrasenia.length() >= LONGITUD_CONTRASENIA;
+		return contrasenia.length() >= configuracionService.getIntValue(ConfiguracionEnum.LONGITUD_CONTRASENIA);
 	}
 	
 	private boolean validarNumerosLetras(String contrasenia) {

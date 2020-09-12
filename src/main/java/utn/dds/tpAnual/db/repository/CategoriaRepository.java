@@ -11,4 +11,5 @@ public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
 
     @Query("SELECT c FROM Categoria c WHERE c.descripcion LIKE :descripcion")
     Categoria getCategoriaByDescripcion(@Param("descripcion") String descripcion);
+
 }
