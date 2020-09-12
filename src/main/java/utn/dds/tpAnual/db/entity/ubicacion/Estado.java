@@ -20,7 +20,6 @@ public class Estado {
 	@Column(name = "DESCRIPCION", unique = false, nullable = false, length = 100)
 	private String descripcion;
 
-
 	public Estado() {
 	}
 
