@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import utn.dds.tpAnual.db.entity.ubicacion.Ciudad;
 import utn.dds.tpAnual.db.entity.ubicacion.Estado;
 import utn.dds.tpAnual.db.entity.ubicacion.Moneda;
 import utn.dds.tpAnual.db.entity.ubicacion.Pais;
@@ -27,6 +28,9 @@ public class ImportInformacionGeograficaServiceTest {
 
     @Autowired
     private EstadoService estadoService;
+
+    @Autowired
+    private CiudadService ciudadService;
 
     @Autowired
     private MonedaService monedaService;
@@ -52,6 +56,15 @@ public class ImportInformacionGeograficaServiceTest {
         importInformacionGeograficaService.importEstados();
         Estado estado = estadoService.getPrimerEstadoByIdAPI("TUxBUENBVGFiY2Fm");
         assertTrue(estado != null);
+    }
+
+    @Test
+    public void importaAvellaneda(){
+        importInformacionGeograficaService.importPaises();
+        importInformacionGeograficaService.importEstados();
+        importInformacionGeograficaService.importCiudades();
+        Ciudad ciudad = ciudadService.getPrimeraCiudadByIdAPI("TUxBQ0FWRTc5OTQ1");
+        assertTrue(ciudad != null);
     }
 
     @Test

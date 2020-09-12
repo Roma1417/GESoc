@@ -2,10 +2,12 @@ package utn.dds.tpAnual.db.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import utn.dds.tpAnual.db.api.dto.CiudadDTO;
 import utn.dds.tpAnual.db.api.dto.EstadoDTO;
 import utn.dds.tpAnual.db.api.dto.MonedaDTO;
 import utn.dds.tpAnual.db.api.dto.PaisDTO;
 import utn.dds.tpAnual.db.api.service.MercadoLibreAPIService;
+import utn.dds.tpAnual.db.entity.ubicacion.Ciudad;
 import utn.dds.tpAnual.db.entity.ubicacion.Moneda;
 import utn.dds.tpAnual.db.service.EstadoService;
 import utn.dds.tpAnual.db.service.PaisService;
@@ -26,6 +28,9 @@ public class ImportInformacionGeograficaService {
     
     @Autowired
     private EstadoService estadoService;
+
+    @Autowired
+    private CiudadService ciudadService;
 
     @Autowired
     private MonedaService monedaService;
@@ -50,6 +55,21 @@ public class ImportInformacionGeograficaService {
         // guardo si no existe para estado
         estados.forEach(estado -> estado.setPais(pais));
         estadoService.guardarSiNoExiste(estados);
+    }
+
+    public void importCiudades(){
+        List<Estado> estados = estadoService.findAll();
+        estados.forEach(estado -> importarCiudadesDe(estado));
+    }
+
+    private void importarCiudadesDe(Estado estado){
+        EstadoDTO estadoDTO = informacionGeograficaService.getEstadoDetail(estado.getIdAPI());
+        List<CiudadDTO> ciudadesAGuardar = estadoDTO.getCities();
+        List<Ciudad> ciudades = ciudadesAGuardar.stream()
+                .map(ciudadDTO -> ciudadDTO.toCiudad())
+                .collect(Collectors.toList());
+        ciudades.forEach(ciudad -> ciudad.setEstado(estado));
+        ciudadService.guardarSiNoExiste(ciudades);
     }
 
     public void importMonedas(){

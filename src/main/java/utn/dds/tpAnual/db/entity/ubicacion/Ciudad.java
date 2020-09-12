@@ -14,7 +14,7 @@ public class Ciudad {
 	@Column(name = "ID_API", unique = true, nullable = false, length = 100)
 	private String idAPI;
 
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	private Estado estado;
 
 	@Column(name = "DESCRIPCION", nullable = false, length = 100)
