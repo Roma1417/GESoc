@@ -14,4 +14,7 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long> {
 
     @Query("SELECT e FROM Egreso e WHERE e.entidadRealizadora = :entidad")
     List<Egreso> getEgresosByEntidadRealizadora(@Param("entidad") Entidad entidad);
+
+    @Query("SELECT e FROM Egreso e WHERE e.operacionId = :operacionId")
+    Egreso getEgresoById(Long operacionId);
 }

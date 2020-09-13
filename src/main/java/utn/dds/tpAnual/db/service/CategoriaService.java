@@ -17,7 +17,7 @@ public class CategoriaService extends CustomJPAService<Categoria> {
         return categoriaRepository;
     }
 
-    public Categoria getCategoriaSameDescripcion(String descripcion){
+    public Categoria getCategoriaByDescripcion(String descripcion){
         Categoria categoria = categoriaRepository.getCategoriaByDescripcion(descripcion);
         return categoria;
     }

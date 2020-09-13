@@ -21,7 +21,7 @@ import java.util.List;
     }
 
     public List<Ingreso> getIngresoVinculableByEntidadRealidador(Entidad entidad){
-        return ingresoRepository.getEgresoByEntidadRealizadora(entidad);
+        return ingresoRepository.getIngresosByEntidadRealizadora(entidad);
     }
 
 }

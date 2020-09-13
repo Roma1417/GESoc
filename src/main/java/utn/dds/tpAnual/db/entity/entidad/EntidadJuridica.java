@@ -10,9 +10,8 @@ import java.util.List;
  * @version 1.0
  * @created 10-abr.-2020 18:19:18
  */
-@Entity(name = "EntidadJuridica")
-@DiscriminatorValue("EntidadJuridica")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Entity
+@Table(name = "ENTIDAD_JURIDICA")
 public abstract class EntidadJuridica extends Entidad {
 
 	@Column(name = "CODIGO_IGJ", length = 100)

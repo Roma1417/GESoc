@@ -9,12 +9,12 @@ import java.util.List;
 
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "ENTIDAD")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Entidad {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Column(name = "ID", unique = true, nullable = false)
 	private Long entidadId;
 

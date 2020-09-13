@@ -24,4 +24,7 @@ import java.util.List;
         return egresoRepository.getEgresosByEntidadRealizadora(entidad);
     }
 
+    public Egreso getEgresoById(Long operacionId) {
+        return egresoRepository.getEgresoById(operacionId);
+    }
 }
