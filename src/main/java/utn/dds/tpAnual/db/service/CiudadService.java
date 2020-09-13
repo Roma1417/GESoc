@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import utn.dds.tpAnual.db.entity.ubicacion.Ciudad;
+import utn.dds.tpAnual.db.entity.ubicacion.Moneda;
 import utn.dds.tpAnual.db.repository.CiudadRepository;
 
 @Service
@@ -37,6 +38,10 @@ public class CiudadService extends CustomJPAService<Ciudad> {
 	public Ciudad getPrimeraCiudadByIdAPI(String idAPI){
         List<Ciudad> ciudades = ciudadRepository.getAllByIdAPI(Arrays.asList(idAPI));
         return ciudades.isEmpty()? null : ciudades.get(0);
+    }
+
+    public List<Ciudad> getCiudadesByIdAPI(String idAPI){
+        return ciudadRepository.getAllByIdAPI(Arrays.asList(idAPI));
     }
 
 }

@@ -11,7 +11,7 @@ public class Ciudad {
 	@Column(name = "ID", unique = true, nullable = false)
 	private Long direccionPostalId;
 
-	@Column(name = "ID_API", unique = true, nullable = false, length = 100)
+	@Column(name = "ID_API", unique = false, nullable = false, length = 100)
 	private String idAPI;
 
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)

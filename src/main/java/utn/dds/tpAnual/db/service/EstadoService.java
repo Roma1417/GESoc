@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import utn.dds.tpAnual.db.entity.ubicacion.Estado;
+import utn.dds.tpAnual.db.entity.ubicacion.Moneda;
 import utn.dds.tpAnual.db.repository.EstadoRepository;
 
 @Service
@@ -37,6 +38,10 @@ public class EstadoService extends CustomJPAService<Estado> {
 	public Estado getPrimerEstadoByIdAPI(String idAPI){
         List<Estado> estados = estadoRepository.getAllByIdAPI(Arrays.asList(idAPI));
         return estados.isEmpty()? null : estados.get(0);
+    }
+
+    public List<Estado> getEstadosByIdAPI(String idAPI){
+        return estadoRepository.getAllByIdAPI(Arrays.asList(idAPI));
     }
 
 }

@@ -63,6 +63,14 @@ public class ImportInformacionGeograficaServiceTest {
     }
 
     @Test
+    public void importaEstadosSinRepetir(){
+        importInformacionGeograficaService.importEstados();
+        importInformacionGeograficaService.importEstados();
+        List<Estado> estados = estadoService.getEstadosByIdAPI("TUxBUENBVGFiY2Fm");
+        assertTrue(estados.size() == 1);
+    }
+
+    @Test
     public void importaAvellaneda(){
         importInformacionGeograficaService.importPaises();
         importInformacionGeograficaService.importEstados();
@@ -72,10 +80,26 @@ public class ImportInformacionGeograficaServiceTest {
     }
 
     @Test
+    public void importaCiudadesSinRepetir(){
+        importInformacionGeograficaService.importCiudades();
+        importInformacionGeograficaService.importCiudades();
+        List<Ciudad> ciudades = ciudadService.getCiudadesByIdAPI("TUxBQ0FWRTc5OTQ1");
+        assertTrue(ciudades.size() == 1);
+    }
+
+    @Test
     public void importaPesoArgentino(){
         importInformacionGeograficaService.importMonedas();
         Moneda moneda = monedaService.getPrimerMonedaByIdAPI("ARS");
         assertTrue(moneda != null);
+    }
+
+    @Test
+    public void importaMonedasSinRepetir(){
+        importInformacionGeograficaService.importMonedas();
+        importInformacionGeograficaService.importMonedas();
+        List<Moneda> monedas = monedaService.getMonedasByIdAPI("ARS");
+        assertTrue(monedas.size() == 1);
     }
 
 }

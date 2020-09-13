@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import utn.dds.tpAnual.db.entity.ubicacion.Moneda;
+import utn.dds.tpAnual.db.entity.ubicacion.Pais;
 import utn.dds.tpAnual.db.repository.MonedaRepository;
 
 @Service
@@ -37,6 +38,10 @@ public class MonedaService extends CustomJPAService<Moneda>{
     public Moneda getPrimerMonedaByIdAPI(String idAPI){
         List<Moneda> monedas = monedaRepository.getAllByIdAPI(Arrays.asList(idAPI));
         return monedas.isEmpty()? null : monedas.get(0);
+    }
+
+    public List<Moneda> getMonedasByIdAPI(String idAPI){
+        return monedaRepository.getAllByIdAPI(Arrays.asList(idAPI));
     }
 
 }
