@@ -16,7 +16,7 @@ import java.time.LocalDate;
 public abstract class Operacion {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	@Column(name ="ID")
 	private Long operacionId;
 
@@ -29,7 +29,7 @@ public abstract class Operacion {
 	@Column(name = "CODIGO")
 	private int codigoOperacion;
 
-	@Column(name = "FECHA")
+	@Column(name = "FECHA_CREACION")
 	private LocalDate fecha;
 
 

@@ -17,6 +17,7 @@ import utn.dds.tpAnual.db.entity.afip.tamanios.Micro;
 import utn.dds.tpAnual.db.entity.afip.tamanios.Pequenia;
 import utn.dds.tpAnual.db.entity.proveedor.Proveedor;
 import utn.dds.tpAnual.db.entity.proveedor.ProveedorPersona;
+import utn.dds.tpAnual.db.entity.ubicacion.DireccionPostal;
 
 import static org.junit.Assert.assertTrue;
 
@@ -27,7 +28,8 @@ public class ProveedorServiceTest {
     @Autowired
     private ProveedorService proveedorService;
 
-    private Proveedor unProveedor = new ProveedorPersona(123, 0L,"Frongi");
+    private Proveedor unProveedor =
+            new ProveedorPersona(new DireccionPostal("Calle falsa", 123, 0, null), 0L,"Frongi");
 
     @Test
     public void persistenceTest() {

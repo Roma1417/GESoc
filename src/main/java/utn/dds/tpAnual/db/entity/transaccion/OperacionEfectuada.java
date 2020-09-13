@@ -22,7 +22,7 @@ public abstract class OperacionEfectuada extends Operacion {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<DetalleOperacion> detallesOperacion;
 
-	@Column(name = "FECHA")
+	@Column(name = "FECHA_OPERACION_EFECTUADA")
 	private LocalDate fechaOperacion;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

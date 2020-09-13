@@ -1,5 +1,7 @@
 package utn.dds.tpAnual.db.entity.proveedor;
 
+import utn.dds.tpAnual.db.entity.ubicacion.DireccionPostal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -23,7 +25,7 @@ public class ProveedorPersona extends Proveedor {
 
 	}
 
-	public ProveedorPersona(int direccionPostal, Long dni, String nombre) {
+	public ProveedorPersona(DireccionPostal direccionPostal, Long dni, String nombre) {
 		super(direccionPostal);
 		this.dni = dni;
 		this.nombre = nombre;

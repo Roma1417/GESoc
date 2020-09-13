@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import utn.dds.tpAnual.db.entity.afip.RequisitoSectorEmpresa;
 
 import javax.persistence.*;
 
@@ -34,10 +35,10 @@ public class Usuario {
 	@Column(name = "NOMBRE", nullable = false)
 	private String nombre;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<UsuarioEntidad> usuariosEntidad;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Mensaje> bandejaMensajes;
 	
 	public Usuario(String nombre, String contrasenia) {

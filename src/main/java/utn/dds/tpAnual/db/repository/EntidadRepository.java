@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
 
 @Repository
-public interface EntitdadRepository extends JpaRepository<Entidad, Long> {
+public interface EntidadRepository extends JpaRepository<Entidad, Long> {
 }

@@ -9,7 +9,7 @@ public class Ciudad {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", unique = true, nullable = false)
-	private Long direccionPostalId;
+	private Long ciudadId;
 
 	@Column(name = "ID_API", unique = true, nullable = false, length = 100)
 	private String idAPI;
@@ -30,6 +30,13 @@ public class Ciudad {
 		this.idAPI = idAPI;
 	}
 
+	public Long getCiudadId() {
+		return ciudadId;
+	}
+
+	public void setCiudadId(Long ciudadId) {
+		this.ciudadId = ciudadId;
+	}
 	public Estado getEstado() {
 		return estado;
 	}
@@ -54,11 +61,4 @@ public class Ciudad {
 		this.idAPI = idAPI;
 	}
 
-	public Long getDireccionPostalId() {
-		return direccionPostalId;
-	}
-
-	public void setDireccionPostalId(Long direccionPostalId) {
-		this.direccionPostalId = direccionPostalId;
-	}
 }

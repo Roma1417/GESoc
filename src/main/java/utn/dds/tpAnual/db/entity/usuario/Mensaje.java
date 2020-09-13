@@ -4,6 +4,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
 
+
 /**
  * @author Tomas
  * @version 1.0
@@ -23,6 +24,9 @@ public class Mensaje {
 
 	@Column(name = "CUERPO")
 	private String cuerpo;
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Usuario usuario;
 
 	public Mensaje(String asunto, String cuerpo){
 		this.asunto = asunto;
@@ -54,6 +58,14 @@ public class Mensaje {
 
 	public void setCuerpo(String cuerpo) {
 		this.cuerpo = cuerpo;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	@Override

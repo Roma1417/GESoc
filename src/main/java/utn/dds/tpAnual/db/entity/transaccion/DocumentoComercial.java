@@ -19,6 +19,9 @@ public class DocumentoComercial {
 	@Column(name = "ID", unique = true, nullable = false)
 	private Long idDocumento;
 
+	@Column(name = "NUMERO", nullable = false)
+	private int numero;
+
 	@Column(name = "TIPO_DOCUMENTO", nullable = false)
 	private int tipoDocumento;
 
@@ -53,4 +56,11 @@ public class DocumentoComercial {
 		this.pais = pais;
 	}
 
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
 }

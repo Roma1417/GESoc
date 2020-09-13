@@ -20,8 +20,8 @@ import java.util.List;
         return egresoRepository;
     }
 
-    public List<Egreso> getEgresoVinculableByEntidadRealizadora(Entidad entidad){
-        return egresoRepository.getEgresoByEntidadRealizadora(entidad);
+    public List<Egreso> getEgresosVinculablesByEntidadRealizadora(Entidad entidad){
+        return egresoRepository.getEgresosByEntidadRealizadora(entidad);
     }
 
 }

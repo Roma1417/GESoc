@@ -18,7 +18,6 @@ public class Ingreso extends Operacion{
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Egreso> EgresosAsociados;
 
-
 	public Ingreso(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,
 				   Float total, String descripcion) {
 		super(documentoComercial, entidadRealizadora, codigoOperacion);

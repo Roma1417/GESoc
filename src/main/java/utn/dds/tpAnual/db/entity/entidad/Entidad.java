@@ -1,9 +1,11 @@
 package utn.dds.tpAnual.db.entity.entidad;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import utn.dds.tpAnual.db.entity.usuario.UsuarioEntidad;
 import utn.dds.tpAnual.db.service.vinculacion.criterioVinculacion.CriterioVinculacion;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -21,6 +23,9 @@ public abstract class Entidad {
 
 	@Transient
 	private CriterioVinculacion criterioVinculacion;
+
+	@OneToMany(mappedBy="entidad", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<UsuarioEntidad> usuariosEntidad;
 
 	public Entidad(){
 
