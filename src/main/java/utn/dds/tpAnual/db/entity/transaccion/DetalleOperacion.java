@@ -22,7 +22,7 @@ public class DetalleOperacion {
 	@Column(name = "CANTIDAD")
 	private int cantidad;
 
-	@ManyToOne(cascade = CascadeType.REFRESH)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Item item;
 
 	@Column(name = "PRECIO", nullable = false)

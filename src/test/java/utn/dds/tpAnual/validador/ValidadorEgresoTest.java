@@ -1,17 +1,5 @@
 package utn.dds.tpAnual.validador;
 
-import static org.junit.Assert.*;
-
-import java.util.List;
-
-import org.junit.Test;
-
-import utn.dds.tpAnual.builders.EgresoBuilder;
-import utn.dds.tpAnual.criterioCompra.ValidadorEgreso;
-import utn.dds.tpAnual.db.entity.transaccion.*;
-import utn.dds.tpAnual.db.entity.usuario.Mensaje;
-import utn.dds.tpAnual.db.entity.usuario.Usuario;
-
 public class ValidadorEgresoTest {
 	/*
 	//ValidadorEgreso

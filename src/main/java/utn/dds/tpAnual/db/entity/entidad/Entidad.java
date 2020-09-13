@@ -2,7 +2,7 @@ package utn.dds.tpAnual.db.entity.entidad;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import utn.dds.tpAnual.db.entity.usuario.UsuarioEntidad;
-import utn.dds.tpAnual.db.service.vinculacion.criterioVinculacion.CriterioVinculacion;
+import utn.dds.tpAnual.db.entity.categorizacion.criterioVinculacion.CriterioVinculacion;
 
 import javax.persistence.*;
 import java.util.List;

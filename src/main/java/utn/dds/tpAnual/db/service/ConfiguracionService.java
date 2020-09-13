@@ -29,7 +29,7 @@ public class ConfiguracionService extends CustomJPAService<Configuracion> {
     public String getValue(ConfiguracionEnum configuracionEnum){
         Configuracion configuracion = configuracionRepository.getConfiguracionByKey(configuracionEnum.getKey());
         if (configuracion == null){
-            configuracion = new Configuracion(configuracionEnum.getKey(), configuracion.getValue());
+            configuracion = new Configuracion(configuracionEnum.getKey(), configuracionEnum.getDefaultValue());
             configuracionRepository.save(configuracion);
         }
         return configuracion.getValue();

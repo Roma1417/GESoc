@@ -1,6 +1,5 @@
-package utn.dds.tpAnual.db.service.vinculacion.criterioVinculacion;
+package utn.dds.tpAnual.db.entity.categorizacion.criterioVinculacion;
 
-import org.springframework.stereotype.Service;
 import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.entity.transaccion.Ingreso;
 

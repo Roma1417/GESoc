@@ -19,7 +19,7 @@ public class DetallePrecio {
 	@Column(name = "ID", unique = true, nullable = false)
 	private Long detallePrecioId;
 
-	@OneToOne(cascade = CascadeType.REFRESH)
+	@OneToOne(cascade = CascadeType.PERSIST)
 	private DetalleOperacion detalleOperacion;
 
 	@Column(name = "PRECIO", nullable = false)

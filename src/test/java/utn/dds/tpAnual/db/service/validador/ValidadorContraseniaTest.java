@@ -1,17 +1,23 @@
-package utn.dds.tpAnual.validador;
+package utn.dds.tpAnual.db.service.validador;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import utn.dds.tpAnual.builders.UsuarioBuilder;
-import utn.dds.tpAnual.criterioCompra.ValidadorContrasenia;
+import utn.dds.tpAnual.db.service.validador.ValidadorContrasenia;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
-
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class ValidadorContraseniaTest {
 
-	private ValidadorContrasenia validadorTest = ValidadorContrasenia.getInstance();
+	@Autowired
+	private ValidadorContrasenia validadorTest;
 	
     @Test
     public void contraseniaEnTop() {

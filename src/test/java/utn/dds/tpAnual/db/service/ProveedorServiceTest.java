@@ -28,13 +28,13 @@ public class ProveedorServiceTest {
     @Autowired
     private ProveedorService proveedorService;
 
-    private Proveedor unProveedor =
-            new ProveedorPersona(new DireccionPostal("Calle falsa", 123, 0, null), 0L,"Frongi");
+    private DireccionPostal direccionPostal = new DireccionPostal("Calle falsa", 123111, 0, null);
+    private Proveedor unProveedor = new ProveedorPersona(direccionPostal, 0L,"Frongi");
 
     @Test
     public void persistenceTest() {
         proveedorService.save(unProveedor);
-        Proveedor mismoProveedor = proveedorService.getFirstProveedorByCP(123);
+        Proveedor mismoProveedor = proveedorService.getFirstProveedorByDireccionPostal(direccionPostal);
         assertTrue(mismoProveedor.getProveedorId() == unProveedor.getProveedorId());
     }
 

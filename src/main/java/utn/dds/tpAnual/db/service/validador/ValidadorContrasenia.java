@@ -1,4 +1,4 @@
-package utn.dds.tpAnual.criterioCompra;
+package utn.dds.tpAnual.db.service.validador;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,12 +6,13 @@ import java.io.FileReader;
 import java.io.IOException;
 
 
+import org.springframework.stereotype.Service;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import utn.dds.tpAnual.db.configuracion.ConfiguracionEnum;
 import utn.dds.tpAnual.db.service.ConfiguracionService;
 
-
+@Service
 public class ValidadorContrasenia {
 
 	private final String PATH = "./src/main/resources/";
@@ -23,14 +24,8 @@ public class ValidadorContrasenia {
 	@Autowired
 	private ConfiguracionService configuracionService;
 	
-	private static ValidadorContrasenia instance = new ValidadorContrasenia();
-	
-	private ValidadorContrasenia(){
+	public ValidadorContrasenia(){
 
-	}
-	
-	public static ValidadorContrasenia getInstance() {
-		return instance;
 	}
 	
 	private boolean validarLongitud(String contrasenia) {

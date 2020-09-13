@@ -1,4 +1,4 @@
-package utn.dds.tpAnual.criterioCompra;
+package utn.dds.tpAnual.db.service.validador;
 
 import java.util.LinkedList;
 import java.util.List;

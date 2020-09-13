@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import utn.dds.tpAnual.criterioCompra.ValidadorEgreso;
+import utn.dds.tpAnual.db.service.validador.ValidadorEgreso;
 import utn.dds.tpAnual.db.service.vinculacion.vinculador.Vinculador;
 
 @Component

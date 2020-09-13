@@ -2,7 +2,8 @@ package utn.dds.tpAnual.consola;
 
 import java.util.Scanner;
 
-import utn.dds.tpAnual.criterioCompra.ValidadorContrasenia;
+import org.springframework.beans.factory.annotation.Autowired;
+import utn.dds.tpAnual.db.service.validador.ValidadorContrasenia;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 
 public class LectorUsuario extends  Lector {
@@ -12,7 +13,10 @@ public class LectorUsuario extends  Lector {
 	private LectorUsuario() {
 		
 	}
-	
+
+	@Autowired
+	ValidadorContrasenia validadorContrasenia;
+
 	public static LectorUsuario getInstance() {
 			return instance;
 	}
@@ -26,7 +30,6 @@ public class LectorUsuario extends  Lector {
 		Usuario usuario = new Usuario(nombre, contrasenia);
 		System.out.println("Se ha generado el usuario: ");
 		System.out.println(usuario);
-		ValidadorContrasenia validadorContrasenia = ValidadorContrasenia.getInstance();
 		
 		if(validadorContrasenia.esContraseniaValida(usuario)) {
 			System.out.println("La validación del usuario fue exitosa.");			
