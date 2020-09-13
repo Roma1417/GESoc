@@ -21,7 +21,7 @@ public abstract class Entidad {
 	@Column(name = "NOMBRE", unique = true, nullable = false)
 	private String nombre;
 
-	@Transient
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private CriterioVinculacion criterioVinculacion;
 
 	@OneToMany(mappedBy="entidad", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

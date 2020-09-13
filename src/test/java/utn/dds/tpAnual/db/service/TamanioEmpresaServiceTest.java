@@ -17,7 +17,7 @@ public class TamanioEmpresaServiceTest {
 
     @Autowired
     private TamanioEmpresaService tamanioEmpresaService;
-/*
+
     private Pequenia unTamanioEmpresa = Pequenia.getInstance();
 
     @Test
@@ -25,6 +25,6 @@ public class TamanioEmpresaServiceTest {
         tamanioEmpresaService.save(unTamanioEmpresa);
         TamanioEmpresa mismoTamanio = tamanioEmpresaService.getTamanioSameNombre("pequenia");
         assertTrue(mismoTamanio.getNombre().equals(unTamanioEmpresa.getNombre()));
-    }  */
+    }
 
 }

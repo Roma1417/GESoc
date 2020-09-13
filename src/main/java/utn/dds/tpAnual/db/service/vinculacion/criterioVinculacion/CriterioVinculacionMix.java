@@ -3,11 +3,14 @@ package utn.dds.tpAnual.db.service.vinculacion.criterioVinculacion;
 import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.entity.transaccion.Ingreso;
 
+import javax.persistence.*;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
-
+@Entity(name = "CriterioVinculacionMix")
+@DiscriminatorValue("CriterioVinculacionMix")
 public class CriterioVinculacionMix extends CriterioVinculacion{
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<CriterioVinculacion> criteriosVinculacion;
 
     @Override

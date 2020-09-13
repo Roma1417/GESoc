@@ -5,7 +5,7 @@ import java.util.List;
 
 import utn.dds.tpAnual.db.entity.proveedor.Proveedor;
 import utn.dds.tpAnual.db.entity.usuario.*;
-import utn.dds.tpAnual.validador.CriterioCompra;
+import utn.dds.tpAnual.db.entity.categorizacion.criterioCompra.CriterioCompra;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
 
 import javax.persistence.*;
@@ -23,7 +23,7 @@ public class Egreso extends OperacionEfectuada {
 	@Column(name = "CANTIDAD_PRESUPUESTOS_MINIMOS")
 	private int cantidadPresupuestosMinimos;
 
-	@Transient
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private CriterioCompra criterioCompra;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
