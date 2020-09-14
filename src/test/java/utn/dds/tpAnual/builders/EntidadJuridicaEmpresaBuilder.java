@@ -6,8 +6,8 @@ import java.util.List;
 import utn.dds.tpAnual.db.entity.afip.Actividad;
 import utn.dds.tpAnual.db.entity.afip.VentaAnual;
 import utn.dds.tpAnual.db.entity.afip.tamanios.TamanioEmpresa;
-import utn.dds.tpAnual.entidad.EntidadBase;
-import utn.dds.tpAnual.entidad.EntidadJuridicaEmpresa;
+import utn.dds.tpAnual.db.entity.entidad.EntidadBase;
+import utn.dds.tpAnual.db.entity.entidad.EntidadJuridicaEmpresa;
 
 public class EntidadJuridicaEmpresaBuilder {
 	

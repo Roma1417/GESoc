@@ -25,7 +25,7 @@ public class Item {
 	@Column(name = "DESCRIPCION", length = 255)
 	private String descripcion;
 
-	@Transient
+	@ManyToOne(cascade = CascadeType.REFRESH)
 	private CriterioCategorizacion primerCriterio;
 
 	@ManyToOne(cascade = CascadeType.REFRESH)

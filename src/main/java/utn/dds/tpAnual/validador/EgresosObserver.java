@@ -1,6 +1,6 @@
 package utn.dds.tpAnual.validador;
 
-import utn.dds.tpAnual.criterioCompra.ValidadorEgreso;
+import utn.dds.tpAnual.db.service.validador.ValidadorEgreso;
 import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 
 public class EgresosObserver {

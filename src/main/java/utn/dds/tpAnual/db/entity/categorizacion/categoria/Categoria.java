@@ -18,13 +18,13 @@ public abstract class Categoria {
 	@Column(name = "DESCRIPCION", nullable = false, length = 100)
 	private String descripcion;
 	
-	protected Categoria(Categoria categoriaHija, String descripcion) {
+	public Categoria(Categoria categoriaHija, String descripcion) {
 		super();
 		this.categoriaHija = categoriaHija;
 		this.descripcion = descripcion;
 	}
 
-	public Categoria() {
+	public Categoria(){
 
 	}
 

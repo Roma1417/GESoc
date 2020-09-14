@@ -17,12 +17,11 @@ public class CategoriaServiceTest {
     @Autowired
     private CategoriaService categoriaService;
 
-    private CategoriaNombreCorto unaCategoria = new CategoriaNombreCorto("prueba");
-
     @Test
     public void persistenceTest() {
+        Categoria unaCategoria = CategoriaNombreCorto.getInstance();
         categoriaService.save(unaCategoria);
-        Categoria mismaCategoria = categoriaService.getCategoriaSameDescripcion("prueba");
+        Categoria mismaCategoria = categoriaService.getCategoriaByDescripcion(unaCategoria.getDescripcion());
         assertTrue(mismaCategoria.getDescripcion().equals(unaCategoria.getDescripcion()));
     }
 

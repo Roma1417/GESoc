@@ -17,12 +17,12 @@ public class DetalleOperacion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", unique = true, nullable = false)
-	private Long idDetalleOperacion;
+	private Long detalleOperacionId;
 
 	@Column(name = "CANTIDAD")
 	private int cantidad;
 
-	@ManyToOne(cascade = CascadeType.REFRESH)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Item item;
 
 	@Column(name = "PRECIO", nullable = false)
@@ -38,12 +38,12 @@ public class DetalleOperacion {
 
 	}
 
-	public Long getIdDetalleOperacion() {
-		return idDetalleOperacion;
+	public Long getDetalleOperacionId() {
+		return detalleOperacionId;
 	}
 
-	public void setIdDetalleOperacion(Long idDetalleOperacion) {
-		this.idDetalleOperacion = idDetalleOperacion;
+	public void setDetalleOperacionId(Long detalleOperacionId) {
+		this.detalleOperacionId = detalleOperacionId;
 	}
 
 	public void setCantidad(int cantidad) {
