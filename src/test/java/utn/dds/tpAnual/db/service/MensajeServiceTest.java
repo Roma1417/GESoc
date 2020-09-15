@@ -6,30 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import utn.dds.tpAnual.builders.UsuarioBuilder;
-import utn.dds.tpAnual.db.entity.usuario.Estandar;
-import utn.dds.tpAnual.db.entity.usuario.TipoUsuario;
+import utn.dds.tpAnual.db.entity.usuario.Mensaje;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
-import utn.dds.tpAnual.db.service.TipoUsuarioService;
 
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UsuarioServiceTest {
+public class MensajeServiceTest {
 
     @Autowired
-    private UsuarioService usuarioService;
+    private MensajeService mensajeService;
 
-    Usuario unUsuario = new UsuarioBuilder().
-            withContrasenia("contraseña").
-            withNombre("Roma")
-            .build();
+    Mensaje unMensaje = new Mensaje("Compra", "Esto es un cuerpo de mensaje");
 
     @Test
     public void persistenceTest() {
-        usuarioService.save(unUsuario);
-        Usuario otroUsuario = usuarioService.getFirstUsuarioByNombre("Roma");
-        assertTrue(unUsuario.getUsuarioId() == otroUsuario.getUsuarioId());
+        mensajeService.save(unMensaje);
+        Mensaje otroMensaje = mensajeService.getFirstMensajeByAsunto("Compra");
+        assertTrue(unMensaje.getMensajeId() == otroMensaje.getMensajeId());
     }
 
 }

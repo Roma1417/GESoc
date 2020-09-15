@@ -7,13 +7,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
-import utn.dds.tpAnual.db.api.service.MercadoLibreAPIService;
+
 import utn.dds.tpAnual.db.entity.ubicacion.Ciudad;
 import utn.dds.tpAnual.db.entity.ubicacion.Estado;
 import utn.dds.tpAnual.db.entity.ubicacion.Moneda;
 import utn.dds.tpAnual.db.entity.ubicacion.Pais;
-import utn.dds.tpAnual.db.service.ImportInformacionGeograficaService;
-import utn.dds.tpAnual.db.service.PaisService;
+
 
 import java.util.List;
 

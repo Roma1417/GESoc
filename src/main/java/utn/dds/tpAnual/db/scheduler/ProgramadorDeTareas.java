@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import utn.dds.tpAnual.db.service.ImportInformacionGeograficaService;
 import utn.dds.tpAnual.db.service.validador.ValidadorEgreso;
 import utn.dds.tpAnual.db.service.vinculacion.vinculador.Vinculador;
 
@@ -42,15 +43,11 @@ public class ProgramadorDeTareas {
 		importInformacionGeograficaService.importEstados();
 	}
 
-	//@Scheduled(fixedDelay = 10000)
-	public void importProvincias(){
-		importInformacionGeograficaService.importProvincias();
-	}
+	@Scheduled(fixedDelay = 10000)
+	public void importCiudades(){importInformacionGeograficaService.importCiudades();}
 
 	//@Scheduled(fixedDelay = 10000)
 	public void vincularSistema(){
 		vinculador.vincularSistema();
 	}
-	@Scheduled(fixedDelay = 10000)
-	public void importCiudades(){importInformacionGeograficaService.importCiudades();}
 }

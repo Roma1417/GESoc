@@ -3,29 +3,27 @@ package utn.dds.tpAnual.db.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
-import utn.dds.tpAnual.db.entity.proveedor.Proveedor;
-import utn.dds.tpAnual.db.entity.ubicacion.DireccionPostal;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
-import utn.dds.tpAnual.db.repository.ProveedorRepository;
-import utn.dds.tpAnual.db.repository.UsuarioRepository;
+import utn.dds.tpAnual.db.entity.usuario.UsuarioEntidad;
+import utn.dds.tpAnual.db.repository.UsuarioEntidadRepository;
 
 import java.util.List;
 
 @Service
-public class UsuarioService extends CustomJPAService<Usuario> {
+public class UsuarioEntidadService extends CustomJPAService<UsuarioEntidad> {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UsuarioEntidadRepository usuarioEntidadRepository;
 
     @Override
-    public JpaRepository<Usuario, Long> getRepository() {
-        return usuarioRepository;
+    public JpaRepository<UsuarioEntidad, Long> getRepository() {
+        return usuarioEntidadRepository;
     }
 
-    public Usuario getFirstUsuarioByNombre(String nombreUsuario){
+    public UsuarioEntidad getFirstUsuarioEntidadById(Long id){
 
-        List<Usuario> usuarios = usuarioRepository.getUsuarioByNombre(nombreUsuario);
-        return usuarios.isEmpty() ? null : usuarios.get(0);
+        List<UsuarioEntidad> usuariosEntidad = usuarioEntidadRepository.getUsuarioEntidadById(id);
+        return usuariosEntidad.isEmpty() ? null : usuariosEntidad.get(0);
 
     }
 }
