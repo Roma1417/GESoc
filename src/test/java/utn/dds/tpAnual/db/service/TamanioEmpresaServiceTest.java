@@ -8,7 +8,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import utn.dds.tpAnual.db.entity.afip.tamanios.Pequenia;
 import utn.dds.tpAnual.db.entity.afip.tamanios.TamanioEmpresa;
 
-import static org.junit.Assert.assertSame;
+
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)

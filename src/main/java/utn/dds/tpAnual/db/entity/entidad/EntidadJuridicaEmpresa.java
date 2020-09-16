@@ -28,6 +28,7 @@ public class EntidadJuridicaEmpresa extends EntidadJuridica {
 	private Actividad actividad;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "ENTIDAD_JURIDICA_EMPRESA_ID")
 	private List<VentaAnual> ventasAnuales;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

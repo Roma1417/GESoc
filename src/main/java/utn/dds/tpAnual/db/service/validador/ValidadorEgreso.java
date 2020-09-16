@@ -13,6 +13,7 @@ import utn.dds.tpAnual.db.entity.transaccion.Presupuesto;
 import utn.dds.tpAnual.db.service.ConfiguracionService;
 import utn.dds.tpAnual.db.entity.usuario.Mensaje;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
+import utn.dds.tpAnual.db.service.EgresoService;
 
 
 /**
@@ -27,8 +28,9 @@ public class ValidadorEgreso {
 	@Autowired
 	private ConfiguracionService configuracionService;
 
-	private final String MENSAJE_ERRONEO = "Fallo de Validacion";
-	private final String ASUNTO_INICIO = "Resultado Validacion Egreso: ";
+	@Autowired
+	private EgresoService egresoService;
+
 	private Queue<Egreso> colaEgresos = new LinkedList<>();
 	private ValidadorEgreso validador = ValidadorEgreso.getInstance();
 	private static ValidadorEgreso instance = new ValidadorEgreso();
@@ -46,7 +48,7 @@ public class ValidadorEgreso {
 	}
 
 	public void validarEgresos() {
-		while(!colaEgresos.isEmpty()) {
+		while(!colaEgresos.isEmpty()) {   // TODO DAI: leer de BD.
 			Egreso egreso = colaEgresos.poll();
 			if (egreso != null) {
 				ValidadorEgreso.getInstance().validarEgreso(egreso);
@@ -99,16 +101,13 @@ public class ValidadorEgreso {
 				|| coincidenPrecios(egreso.getCriterioCompra().getPresupuestoQueCumpla(egreso.getPresupuestos()).getDetallesPrecio());
 	}
 
-	/**
-	 *
-	 * @param usuarios
-	 */
+
 	private void notificarRevisores(Egreso egreso, boolean resultado) {
-		String asunto = ASUNTO_INICIO + egreso.getCodigoOperacion();
+		String asunto = configuracionService.getValue(ConfiguracionEnum.ASUNTO_INICIO) + egreso.getCodigoOperacion();
 		List<Usuario> usuarios = egreso.getRevisores();
 
 		this.enviarMensajes(usuarios, asunto,resultado ? configuracionService.getValue(ConfiguracionEnum.MENSAJE_CORRECTO)
-				: MENSAJE_ERRONEO);
+				: configuracionService.getValue(ConfiguracionEnum.MENSAJE_ERRONEO));
 	}
 
 	private void enviarMensajes(List<Usuario> usuarios, String asunto, String cuerpo) {
@@ -125,9 +124,11 @@ public class ValidadorEgreso {
 	 *
 	 * @param egreso
 	 */
-	public boolean validarEgreso(Egreso egreso){
+	public boolean validarEgreso(Egreso egreso) {
 		boolean validez = esEgresoValido(egreso);
 		notificarRevisores(egreso, validez);
+		egreso.setResultadoValidacion(validez ? "OK" : "NO OK");
+		egresoService.save(egreso);
 		return validez;
 	}
 

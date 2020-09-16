@@ -27,7 +27,7 @@ public class Vinculador {
         List<Entidad> entidadesAVincular = entidadService.findAll();
         entidadesAVincular.forEach(entidad -> {
             List<Egreso> egresos = egresoService.getEgresosVinculablesByEntidadRealizadora(entidad);
-            List<Ingreso> ingresos = ingresoService.getIngresoVinculableByEntidadRealidador(entidad);
+            List<Ingreso> ingresos = ingresoService.getIngresoVinculableByEntidadRealidadora(entidad);
             entidad.getCriterioVinculacion().ejecutarAlgoritmoVinculacion(ingresos, egresos);
             egresoService.saveAll(egresos);
             ingresoService.saveAll(ingresos);

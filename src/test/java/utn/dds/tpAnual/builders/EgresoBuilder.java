@@ -1,13 +1,11 @@
 package utn.dds.tpAnual.builders;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import utn.dds.tpAnual.db.entity.transaccion.DetalleOperacion;
-import utn.dds.tpAnual.db.entity.transaccion.DetallePrecio;
-import utn.dds.tpAnual.db.entity.transaccion.Egreso;
-import utn.dds.tpAnual.db.entity.transaccion.Item;
-import utn.dds.tpAnual.db.entity.transaccion.Presupuesto;
+import utn.dds.tpAnual.db.entity.categorizacion.categoria.CategoriaNombreCorto;
+import utn.dds.tpAnual.db.entity.transaccion.*;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.entity.categorizacion.criterioCompra.CriterioCompra;
 import utn.dds.tpAnual.db.entity.categorizacion.criterioCompra.CriterioMenorPrecio;
@@ -20,11 +18,36 @@ public class EgresoBuilder {
     private CriterioCompra criterioCompra;
     private List<Presupuesto> presupuestos = new ArrayList<Presupuesto>();
     private List<Usuario> revisores = new ArrayList<Usuario>();
+	private LocalDate fechaOperacion;
+	private LocalDate fecha;
+	private MedioPago medioPago;
+	private DocumentoComercial documentoComercial;
 
     public EgresoBuilder withCodigoOperacion(int codigoOperacion){
         this.codigoOperacion = codigoOperacion;
         return this;
     }
+
+	public EgresoBuilder withFechaOperacion(LocalDate fechaOperacion) {
+		this.fechaOperacion = fechaOperacion;
+		return this;
+	}
+
+	public EgresoBuilder withFecha(LocalDate fecha) {
+		this.fecha = fecha;
+		return this;
+	}
+
+	public EgresoBuilder withMedioPago(MedioPago medioPago) {
+		this.medioPago = medioPago;
+		return this;
+	}
+
+	public EgresoBuilder withDocumentoComercial(DocumentoComercial documentoComercial) {
+		this.documentoComercial = documentoComercial;
+		return this;
+	}
+
     public EgresoBuilder withDetalleOperacion(DetalleOperacion detalleOperacion){
         this.detallesOperacion.add(detalleOperacion);
         return this;
@@ -47,7 +70,7 @@ public class EgresoBuilder {
     }
     
     public Egreso build(){
-        return new Egreso(null, null, codigoOperacion, detallesOperacion, null, null, cantidadPresupuestosMinimos, criterioCompra, presupuestos, null, revisores);
+        return new Egreso(documentoComercial, null, codigoOperacion, detallesOperacion, fechaOperacion, null, cantidadPresupuestosMinimos, criterioCompra, presupuestos, null, revisores);
     }
     
     public Egreso buildEgresoSinPresupuestos(){
@@ -184,5 +207,103 @@ public class EgresoBuilder {
     	presupuestos.add(otroPresupuesto);
     	return build();
     }
-    
+
+	public Egreso buildUnEgresoCompleto(){
+		codigoOperacion = 111;
+		cantidadPresupuestosMinimos = 3;
+		documentoComercial = new DocumentoComercial();
+		documentoComercial.setNumero(6784);
+		documentoComercial.setTipoDocumento(5);
+
+		fechaOperacion = LocalDate.now();
+		fecha = LocalDate.now();
+
+		Item itemTest = new Item();
+		itemTest.setDescripcion("Item de prueba 2");
+		itemTest.setCategoria(CategoriaNombreCorto.getInstance());
+
+		DetalleOperacion unDetalleOperacion = new DetalleOperacionBuilder()
+				.withCantidad(3)
+				.withItem(itemTest)
+				.withPrecio(10F)
+				.build();
+
+		DetalleOperacion otroDetalleOperacion = new DetalleOperacionBuilder()
+				.withCantidad(4)
+				.withItem(itemTest)
+				.withPrecio(20F)
+				.build();
+
+		DetallePrecio unDetallePrecio = new DetallePrecioBuilder()
+				.withPrecio(10F)
+				.withDetalleOperacion(unDetalleOperacion)
+				.build();
+
+		DetallePrecio otroDetallePrecio = new DetallePrecioBuilder()
+				.withPrecio(12F)
+				.withDetalleOperacion(otroDetalleOperacion)
+				.build();
+
+		Presupuesto unPresupuesto = new PresupuestoBuilder()
+				.withCodigoOperacion(1723)
+				.withDetallePrecio(unDetallePrecio)
+				.withDetallePrecio(otroDetallePrecio)
+				.build();
+
+		detallesOperacion.add(unDetalleOperacion);
+		detallesOperacion.add(otroDetalleOperacion);
+
+		presupuestos.add(unPresupuesto);
+		return build();
+	}
+
+	public Egreso buildOtroEgresoCompleto(){
+		codigoOperacion = 22223;
+		cantidadPresupuestosMinimos = 1;
+		documentoComercial = new DocumentoComercial();
+		documentoComercial.setNumero(3473);
+		documentoComercial.setTipoDocumento(1);
+
+		fechaOperacion = LocalDate.now();
+		fecha = LocalDate.now();
+
+		Item itemTest = new Item();
+		itemTest.setDescripcion("Item de prueba 3");
+		itemTest.setCategoria(CategoriaNombreCorto.getInstance());
+
+		DetalleOperacion unDetalleOperacion = new DetalleOperacionBuilder()
+				.withCantidad(2)
+				.withItem(itemTest)
+				.withPrecio(100F)
+				.build();
+
+		DetalleOperacion otroDetalleOperacion = new DetalleOperacionBuilder()
+				.withCantidad(6)
+				.withItem(itemTest)
+				.withPrecio(260F)
+				.build();
+
+		DetallePrecio unDetallePrecio = new DetallePrecioBuilder()
+				.withPrecio(103F)
+				.withDetalleOperacion(unDetalleOperacion)
+				.build();
+
+		DetallePrecio otroDetallePrecio = new DetallePrecioBuilder()
+				.withPrecio(123F)
+				.withDetalleOperacion(otroDetalleOperacion)
+				.build();
+
+		Presupuesto unPresupuesto = new PresupuestoBuilder()
+				.withCodigoOperacion(7654)
+				.withDetallePrecio(unDetallePrecio)
+				.withDetallePrecio(otroDetallePrecio)
+				.build();
+
+		detallesOperacion.add(unDetalleOperacion);
+		detallesOperacion.add(otroDetalleOperacion);
+
+		presupuestos.add(unPresupuesto);
+		return build();
+	}
+
 }

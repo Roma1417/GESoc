@@ -10,6 +10,7 @@ import java.util.List;
 public class CriterioVinculacionMix extends CriterioVinculacion{
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "CRITERIO_VINCULACION_MIX_ID")
     private List<CriterioVinculacion> criteriosVinculacion;
 
     @Override

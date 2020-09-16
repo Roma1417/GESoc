@@ -6,7 +6,9 @@ public enum ConfiguracionEnum {
 
     DIAS_ACEPTABLE_VINCULACION("DIAS_ACEPTABLE_VINCULACION", "30"),
     LONGITUD_CONTRASENIA("LONGITUD_CONTRASENIA", "8"),
-    MENSAJE_CORRECTO("MENSAJE_CORRECTO", "Validacion realizada con Exito");
+    MENSAJE_CORRECTO("MENSAJE_CORRECTO", "Validacion realizada con Exito"),
+    MENSAJE_ERRONEO("MENSAJE_ERRONEO", "Fallo de Validacion"),
+    ASUNTO_INICIO("ASUNTO_INICIO", "Resultado Validacion Egreso: ");
 
     private String key;
     private String defaultValue;
