@@ -20,6 +20,7 @@ import javax.persistence.*;
 public abstract class OperacionEfectuada extends Operacion {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "OPERACION_EFECTUADA_ID")
 	private List<DetalleOperacion> detallesOperacion;
 
 	@Column(name = "FECHA_OPERACION_EFECTUADA")

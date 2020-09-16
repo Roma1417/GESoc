@@ -16,13 +16,15 @@ public class Ingreso extends Operacion{
 	private String descripcion;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "INGRESO_ID")
 	private List<Egreso> EgresosAsociados;
 
 	public Ingreso(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,
-				   Float total, String descripcion) {
+				   Float total, String descripcion, List<Egreso> EgresosAsociados) {
 		super(documentoComercial, entidadRealizadora, codigoOperacion);
 		this.total = total; 
-		this.descripcion = descripcion; 
+		this.descripcion = descripcion;
+		setEgresosAsociados(EgresosAsociados);
 	}
 
 	public Ingreso() {

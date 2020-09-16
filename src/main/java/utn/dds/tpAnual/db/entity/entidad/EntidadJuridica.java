@@ -27,6 +27,7 @@ public abstract class EntidadJuridica extends Entidad {
 	private DireccionPostal direccionPostal;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "ENTIDAD_JURIDIDA_ID")
 	private List<EntidadBase> entidadesBase;
 
 	public EntidadJuridica(){

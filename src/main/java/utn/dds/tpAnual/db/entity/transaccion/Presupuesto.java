@@ -18,6 +18,7 @@ import javax.persistence.*;
 public class Presupuesto extends Operacion {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "PRESUPUESTO_ID")
 	private List<DetallePrecio> detallesPrecio;
 
 	public Presupuesto(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,

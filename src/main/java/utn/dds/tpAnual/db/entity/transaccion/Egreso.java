@@ -27,14 +27,19 @@ public class Egreso extends OperacionEfectuada {
 	private CriterioCompra criterioCompra;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "EGRESO_ID")
 	private List<Presupuesto> presupuestos;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Proveedor proveedor;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "EGRESO_ID")
 	private List<Usuario> revisores;
-	
+
+	@Column(name = "RESULTADO_VALIDACION")
+	private String resultadoValidacion;
+
 	public Egreso(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,
 			List<DetalleOperacion> detallesOperacion, LocalDate fechaOperacion, MedioPago medioPago,
 			int cantidadPresupuestosMinimos, CriterioCompra criterioCompra, List<Presupuesto> presupuestos,
@@ -90,4 +95,11 @@ public class Egreso extends OperacionEfectuada {
 		return revisores;
 	}
 
+	public void setResultadoValidacion(String resultadoValidacion) {
+		this.resultadoValidacion = resultadoValidacion;
+	}
+
+	public String getResultadoValidacion() {
+		return this.resultadoValidacion;
+	}
 }

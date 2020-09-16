@@ -14,4 +14,7 @@ public interface IngresoRepository extends JpaRepository<Ingreso, Long> {
 
     @Query("SELECT i FROM Ingreso i WHERE i.entidadRealizadora = :entidad")
     List<Ingreso> getIngresosByEntidadRealizadora(@Param("entidad") Entidad entidad);
+
+    @Query("SELECT i FROM Ingreso i WHERE i.codigoOperacion = :codigo")
+    List<Ingreso> getIngresoByCodigoOperacion(@Param("codigo") int codigo);
 }
