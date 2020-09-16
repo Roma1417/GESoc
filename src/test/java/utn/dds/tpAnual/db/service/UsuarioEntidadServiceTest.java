@@ -6,30 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import utn.dds.tpAnual.builders.UsuarioBuilder;
-import utn.dds.tpAnual.db.entity.usuario.Estandar;
-import utn.dds.tpAnual.db.entity.usuario.TipoUsuario;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
-import utn.dds.tpAnual.db.service.TipoUsuarioService;
+import utn.dds.tpAnual.db.entity.usuario.UsuarioEntidad;
 
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UsuarioServiceTest {
+public class UsuarioEntidadServiceTest {
 
     @Autowired
-    private UsuarioService usuarioService;
+    private UsuarioEntidadService usuarioEntidadService;
 
-    Usuario unUsuario = new UsuarioBuilder().
-            withContrasenia("contraseña").
-            withNombre("Roma")
-            .build();
+    UsuarioEntidad unUsuarioEntidad = new UsuarioEntidad();
 
     @Test
     public void persistenceTest() {
-        usuarioService.save(unUsuario);
-        Usuario otroUsuario = usuarioService.getFirstUsuarioByNombre("Roma");
-        assertTrue(unUsuario.getUsuarioId() == otroUsuario.getUsuarioId());
+        usuarioEntidadService.save(unUsuarioEntidad);
+        UsuarioEntidad otroUsuarioEntidad = usuarioEntidadService.getFirstUsuarioEntidadById(unUsuarioEntidad.getUsuarioEntidadId());
+        assertTrue(unUsuarioEntidad.getUsuarioEntidadId().equals(otroUsuarioEntidad.getUsuarioEntidadId()));
     }
 
 }

@@ -25,14 +25,11 @@ public class DireccionPostalServiceTest {
     DireccionPostalService direccionPostalService;
 
 
-    /*@Test
+    @Test
     public void persistenceTest(){
-    importInformacionGeograficaService.importPaises();
-    importInformacionGeograficaService.importEstados();
-    importInformacionGeograficaService.importCiudades();
-    DireccionPostal direccionPostal = new DireccionPostal("Ventura de la vega", 2267, 0, ciudadService.getPrimeraCiudadByIdAPI("'TUNPQ0lUQThkMzc5'"));
-    direccionPostalService.save(direccionPostal);
-    List<DireccionPostal> direcciones = direccionPostalService.findAll();
-    assertTrue(direcciones.isEmpty());
-    }*/
+    DireccionPostal unaDireccionPostal = new DireccionPostal("Ventura de la vega", 2267, 0, null);
+    direccionPostalService.save(unaDireccionPostal);
+    DireccionPostal otraDireccionPostal = direccionPostalService.getFirstDireccionByCalle("Ventura de la vega");
+    assertTrue(unaDireccionPostal.getCalle().equals(otraDireccionPostal.getCalle()));
+    }
 }

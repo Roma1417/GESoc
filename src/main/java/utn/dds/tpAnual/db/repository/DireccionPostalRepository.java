@@ -5,14 +5,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import utn.dds.tpAnual.db.entity.ubicacion.DireccionPostal;
-import utn.dds.tpAnual.db.entity.ubicacion.Estado;
 
-import java.util.Collection;
 import java.util.List;
 
 @Repository
 public interface DireccionPostalRepository extends JpaRepository<DireccionPostal, Long> {
 
-
+    @Query("SELECT d FROM DireccionPostal d WHERE d.calle = :calle")
+    List<DireccionPostal> getDireccionPostalByCalle(@Param("calle") String Calle);
 
 }

@@ -8,6 +8,8 @@ import utn.dds.tpAnual.db.entity.ubicacion.Estado;
 import utn.dds.tpAnual.db.repository.DireccionPostalRepository;
 import utn.dds.tpAnual.db.repository.EstadoRepository;
 
+import java.util.List;
+
 @Service
 public class DireccionPostalService extends CustomJPAService<DireccionPostal> {
 
@@ -17,6 +19,11 @@ public class DireccionPostalService extends CustomJPAService<DireccionPostal> {
     @Override
     public JpaRepository<DireccionPostal, Long> getRepository() {
         return direccionPostalRepository;
+    }
+
+    public DireccionPostal getFirstDireccionByCalle(String calle){
+        List<DireccionPostal> direcciones = direccionPostalRepository.getDireccionPostalByCalle(calle);
+        return direcciones.isEmpty()? null : direcciones.get(0);
     }
 
 }
