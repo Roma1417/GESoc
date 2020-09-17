@@ -41,14 +41,6 @@ public class ProgramadorDeTareas {
 		importInformacionGeograficaService.importPaises();
 	}
 
-	@Scheduled(fixedDelay = 600000)
-	public void importEstados(){
-		importInformacionGeograficaService.importEstados();
-	}
-
-	@Scheduled(fixedDelay = 10000)
-	public void importCiudades(){importInformacionGeograficaService.importCiudades();}
-
 	@Scheduled(fixedDelay = 10000)
 	public void importCiudades(){
 		importInformacionGeograficaService.importCiudades();
