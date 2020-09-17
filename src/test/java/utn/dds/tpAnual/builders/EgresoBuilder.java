@@ -283,7 +283,6 @@ public class EgresoBuilder {
 
 		Item itemTest = new Item();
 		itemTest.setDescripcion("Item de prueba 3");
-		itemTest.setCategoria(CategoriaNombreCorto.getInstance());
 
 		DetalleOperacion unDetalleOperacion = new DetalleOperacionBuilder()
 				.withCantidad(2)

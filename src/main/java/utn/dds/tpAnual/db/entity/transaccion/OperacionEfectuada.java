@@ -21,7 +21,7 @@ public abstract class OperacionEfectuada extends Operacion {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "OPERACION_EFECTUADA_ID")
-	private List<DetalleOperacion> detallesOperacion;
+	private Set<DetalleOperacion> detallesOperacion;
 
 	@Column(name = "FECHA_OPERACION_EFECTUADA")
 	private LocalDate fechaOperacion;
@@ -30,7 +30,7 @@ public abstract class OperacionEfectuada extends Operacion {
 	private MedioPago medioPago;
 	
 	public OperacionEfectuada(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,
-			List<DetalleOperacion> detallesOperacion, LocalDate fechaOperacion, MedioPago medioPago) {
+							  Set<DetalleOperacion> detallesOperacion, LocalDate fechaOperacion, MedioPago medioPago) {
 		super(documentoComercial, entidadRealizadora, codigoOperacion);
 		this.detallesOperacion = detallesOperacion;
 		this.fechaOperacion = fechaOperacion;
