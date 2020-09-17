@@ -11,15 +11,14 @@ public class Estado {
 	@Column(name = "ID", unique = true, nullable = false)
 	private Long estadoId;
 
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	private Pais pais;
 
 	@Column(name = "ID_API", unique = true, nullable = false, length = 100)
 	private String idAPI;
 
-	@Column(name = "DESCRIPCION", unique = true, nullable = false, length = 100)
+	@Column(name = "DESCRIPCION", unique = false, nullable = false, length = 100)
 	private String descripcion;
-
 
 	public Estado() {
 	}

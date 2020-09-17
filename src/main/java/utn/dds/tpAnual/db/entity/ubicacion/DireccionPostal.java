@@ -20,7 +20,7 @@ public class DireccionPostal {
 	@Column(name = "PISO")
 	private int piso;
 
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	private Ciudad ciudad;
 
 	public DireccionPostal() {
