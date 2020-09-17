@@ -20,6 +20,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan(basePackages = {"utn.dds.tpAnual.db.service","utn.dds.tpAnual.db.scheduler", "utn.dds.tpAnual.db.api.service"})
 @EntityScan(basePackages = "utn.dds.tpAnual.db.entity")
 @EnableJpaRepositories("utn.dds.tpAnual.db.repository")
+@ConditionalOnProperty(
+        value = "app.scheduling.enable", havingValue = "true", matchIfMissing = true
+)
 public class TestHibernateSpring {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());

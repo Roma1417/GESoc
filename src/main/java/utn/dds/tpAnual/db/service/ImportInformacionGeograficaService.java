@@ -60,7 +60,9 @@ public class ImportInformacionGeograficaService {
 
     public void importCiudades(){
         List<Estado> estados = estadoService.findAll();
-        estados.forEach(estado -> importarCiudadesDe(estado));
+        if (estados != null){
+            estados.forEach(estado -> importarCiudadesDe(estado));
+        }
     }
 
     private void importarCiudadesDe(Estado estado){
