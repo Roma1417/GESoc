@@ -41,6 +41,9 @@ public class Egreso extends OperacionEfectuada {
 	@Column(name = "RESULTADO_VALIDACION")
 	private String resultadoValidacion;
 
+	@Column(name = "ES_VALIDACION_CORRECTA")
+	private Boolean esValidacionCorrecta;
+
 	public Egreso(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,
 			List<DetalleOperacion> detallesOperacion, LocalDate fechaOperacion, MedioPago medioPago,
 			int cantidadPresupuestosMinimos, CriterioCompra criterioCompra, List<Presupuesto> presupuestos,
@@ -54,6 +57,14 @@ public class Egreso extends OperacionEfectuada {
 	}
 
 	public Egreso() {
+	}
+
+	public Boolean getEsValidacionCorrecta() {
+		return esValidacionCorrecta;
+	}
+
+	public void setEsValidacionCorrecta(Boolean esValidacionCorrecta) {
+		this.esValidacionCorrecta = esValidacionCorrecta;
 	}
 
 	public void setCantidadPresupuestosMinimos(int cantidadPresupuestosMinimos) {

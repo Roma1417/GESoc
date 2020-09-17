@@ -18,7 +18,7 @@ import org.junit.Test;
 
 public class CriterioMenorPrecioTest {
 	
-	private Item mesa = new Item(1L, "Mesa");
+	private Item mesa = new Item("Mesa");
 	
 	private DetalleOperacion unDetalleOperacion = new DetalleOperacionBuilder()
 			.withItem(mesa).withPrecio(15F).withCantidad(3).build();

@@ -83,7 +83,7 @@ public class LectorEgreso extends Lector{
 	private Item getItem() {
 		Long codigo = getLong("Ingrese el codigo del item");
 		String descripcion = getString("Ingrese la descripción del item");
-		return (codigo == null || descripcion == null) ? null : new Item (codigo, descripcion);  
+		return (codigo == null || descripcion == null) ? null : new Item (descripcion);
 	}
 	
 	private DetalleOperacion getDetalleOperacion() {

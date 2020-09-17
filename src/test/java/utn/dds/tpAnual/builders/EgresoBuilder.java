@@ -116,7 +116,7 @@ public class EgresoBuilder {
     	
     	DetalleOperacion detalleOperacion = new DetalleOperacionBuilder()
     		.withCantidad(3)
-    		.withItem(new Item(12213L, "itemTest"))
+    		.withItem(new Item("itemTest"))
     		.withPrecio(10F)
     		.build();
     	
@@ -142,7 +142,7 @@ public class EgresoBuilder {
     public Egreso buildEgresoConDetallesDeDistintoTamanio(){
     	codigoOperacion = 47587;
     	cantidadPresupuestosMinimos = 2;
-    	Item itemTest = new Item(123987L, "item Test Test");
+    	Item itemTest = new Item("item Test Test");
     	
     	DetalleOperacion unDetalleOperacion = new DetalleOperacionBuilder()
     		.withCantidad(3)
@@ -188,7 +188,7 @@ public class EgresoBuilder {
     public Egreso buildEgresoNoBasadoEnPresupuesto(){
     	codigoOperacion = 34555;
     	cantidadPresupuestosMinimos = 25;
-    	Item itemTest = new Item(55123L, "itemTestTest");
+    	Item itemTest = new Item("itemTestTest");
     	
     	DetalleOperacion unDetalleOperacion = new DetalleOperacionBuilder()
     		.withCantidad(53)

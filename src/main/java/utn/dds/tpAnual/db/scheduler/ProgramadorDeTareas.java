@@ -31,32 +31,27 @@ public class ProgramadorDeTareas {
 		return instance;
 	}
 
-	@Scheduled(fixedDelay = 2000)
+	@Scheduled(fixedDelay = 600000)
 	public void validarEgresos(){
 		validadorEgresos.validarEgresos();
 	}
 
-	@Scheduled(fixedDelay = 10000)
+	@Scheduled(fixedDelay = 600000)
 	public void importPaises(){
 		importInformacionGeograficaService.importPaises();
 	}
 
-	@Scheduled(fixedDelay = 10000)
+	@Scheduled(fixedDelay = 600000)
 	public void importCiudades(){
 		importInformacionGeograficaService.importCiudades();
 	}
 
-	@Scheduled(fixedDelay = 10000)
-	public void importProvincias(){
-		importInformacionGeograficaService.importProvincias();
-	}
-
-	@Scheduled(fixedDelay = 10000)
+	@Scheduled(fixedDelay = 600000)
 	public void importEstados(){
 		importInformacionGeograficaService.importEstados();
 	}
 
-	@Scheduled(fixedDelay = 10000)
+	@Scheduled(fixedDelay = 600000)
 	public void vincularSistema(){
 		vinculador.vincularSistema();
 	}

@@ -25,9 +25,6 @@ public class Mensaje {
 	@Column(name = "CUERPO")
 	private String cuerpo;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Usuario usuario;
-
 	public Mensaje(String asunto, String cuerpo){
 		this.asunto = asunto;
 		this.cuerpo = cuerpo;
@@ -60,13 +57,6 @@ public class Mensaje {
 		this.cuerpo = cuerpo;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
 
 	@Override
 	public String toString() {

@@ -25,10 +25,10 @@ public class Item {
 	@Column(name = "DESCRIPCION", length = 255)
 	private String descripcion;
 
-	@ManyToOne(cascade = CascadeType.REFRESH)
+	@ManyToOne(cascade = CascadeType.ALL)
 	private CriterioCategorizacion primerCriterio;
 
-	@ManyToOne(cascade = CascadeType.REFRESH)
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Categoria categoria;
 
 	public Item(Long itemId, String descripcion, CriterioCategorizacion primerCriterio){
@@ -37,8 +37,7 @@ public class Item {
 		this.primerCriterio = primerCriterio; 
 	}
 	
-	public Item(Long itemId, String descripcion){
-		this.itemId = itemId;
+	public Item(String descripcion){
 		this.descripcion = descripcion;
 	}
 

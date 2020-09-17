@@ -25,7 +25,7 @@ import java.util.List;
     }
 
     public List<Egreso> getEgresosSinValidar(){
-        return null;
+        return egresoRepository.getEgresosSinValidar();
     }
 
     public Egreso getEgresoById(Long operacionId) {

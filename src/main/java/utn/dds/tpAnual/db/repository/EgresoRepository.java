@@ -16,14 +16,16 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long> {
     List<Egreso> getEgresosByEntidadRealizadora(@Param("entidad") Entidad entidad);
 
     @Query("SELECT e FROM Egreso e " +
-            " JOIN FETCH e.revisores us " +
-            " JOIN FETCH us.bandejaMensajes m " +
-            " WHERE e.operacionId = :ooperacionId")
-    List<Egreso> getEgresoById(@Param("ooperacionId")Long operacionId);
+            " LEFT JOIN FETCH e.presupuestos p " +
+            " LEFT JOIN FETCH e.revisores us " +
+            " LEFT JOIN FETCH us.bandejaMensajes m " +
+            " WHERE e.operacionId = :operacionIdEgreso")
+    List<Egreso> getEgresoById(@Param("operacionIdEgreso")Long operacionId);
 
-    /*@Query("SELECT e FROM Egreso e " +
+    @Query("SELECT e FROM Egreso e " +
+            " LEFT JOIN FETCH e.presupuestos p " +
             " LEFT JOIN FETCH e.revisores u " +
             " LEFT JOIN FETCH u.bandejaMensajes m" +
             " WHERE e.resultadoValidacion is null")
-    List<Egreso> getEgresosSinValidar();*/
+    List<Egreso> getEgresosSinValidar();
 }

@@ -15,6 +15,7 @@ import utn.dds.tpAnual.db.service.ConfiguracionService;
 import utn.dds.tpAnual.db.entity.usuario.Mensaje;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.service.EgresoService;
+import utn.dds.tpAnual.db.service.UsuarioService;
 
 
 /**
@@ -31,6 +32,9 @@ public class ValidadorEgreso {
 
 	@Autowired
 	private EgresoService egresoService;
+
+	@Autowired
+	private UsuarioService usuarioService;
 
 	private ValidadorEgreso(){
 
@@ -94,6 +98,7 @@ public class ValidadorEgreso {
 		if(usuarios != null) {
 			for (Usuario usuario : usuarios) {
 				usuario.recibirMensaje(mensaje);
+				usuarioService.save(usuario);
 			}
 		}
 	}
@@ -102,7 +107,10 @@ public class ValidadorEgreso {
 	public boolean validarEgreso(Egreso egreso) {
 		boolean validez = esEgresoValido(egreso);
 		notificarRevisores(egreso, validez);
-		egreso.setResultadoValidacion(validez ? "OK" : "NO OK");
+		egreso.setResultadoValidacion(validez ?
+				ConfiguracionEnum.MENSAJE_CORRECTO.getDefaultValue():
+				ConfiguracionEnum.MENSAJE_ERRONEO.getDefaultValue());
+		egreso.setEsValidacionCorrecta(validez);
 		egresoService.save(egreso);
 		return validez;
 	}

@@ -40,7 +40,8 @@ public class Usuario {
 	@OneToMany(mappedBy="usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<UsuarioEntidad> usuariosEntidad;
 
-	@OneToMany(mappedBy="usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "USUARIO_ID")
 	private Set<Mensaje> bandejaMensajes;
 	
 	public Usuario(String nombre, String contrasenia) {
@@ -125,9 +126,6 @@ public class Usuario {
 	}
 	
 	public void recibirMensaje(Mensaje mensaje) {
-		if(bandejaMensajes == null) {
-			bandejaMensajes = new HashSet<>();
-		}
 		bandejaMensajes.add(mensaje);
 	}
 		
