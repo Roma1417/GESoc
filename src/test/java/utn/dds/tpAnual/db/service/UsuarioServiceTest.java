@@ -29,7 +29,7 @@ public class UsuarioServiceTest {
     public void persistenceTest() {
         usuarioService.save(unUsuario);
         Usuario otroUsuario = usuarioService.getFirstUsuarioByNombre("Roma");
-        assertTrue(unUsuario.getUsuarioId() == otroUsuario.getUsuarioId());
+        assertTrue(unUsuario.getUsuarioId().equals(otroUsuario.getUsuarioId()));
     }
 
 }

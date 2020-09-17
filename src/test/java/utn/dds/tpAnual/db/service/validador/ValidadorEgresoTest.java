@@ -33,7 +33,7 @@ public class ValidadorEgresoTest {
 		egresoService.save(egresoSinPresupuestosMinimos);
 		validador.validarEgresos();
 		Egreso egresoObtenido = egresoService.getEgresoById(egresoSinPresupuestosMinimos.getOperacionId());
-		assertTrue(egresoObtenido.getResultadoValidacion().);
+		assertTrue(egresoObtenido.getResultadoValidacion().equals(egresoSinPresupuestosMinimos.getResultadoValidacion()));
 	}
 
 	@Test
