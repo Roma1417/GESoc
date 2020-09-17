@@ -2,6 +2,7 @@ package utn.dds.tpAnual.db.entity.transaccion;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import utn.dds.tpAnual.db.entity.proveedor.Proveedor;
 import utn.dds.tpAnual.db.entity.usuario.*;
@@ -35,7 +36,7 @@ public class Egreso extends OperacionEfectuada {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "EGRESO_ID")
-	private List<Usuario> revisores;
+	private Set<Usuario> revisores;
 
 	@Column(name = "RESULTADO_VALIDACION")
 	private String resultadoValidacion;
@@ -43,7 +44,7 @@ public class Egreso extends OperacionEfectuada {
 	public Egreso(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,
 			List<DetalleOperacion> detallesOperacion, LocalDate fechaOperacion, MedioPago medioPago,
 			int cantidadPresupuestosMinimos, CriterioCompra criterioCompra, List<Presupuesto> presupuestos,
-			Proveedor proveedor, List<Usuario> revisores) {
+			Proveedor proveedor, Set<Usuario> revisores) {
 		super(documentoComercial, entidadRealizadora, codigoOperacion, detallesOperacion, fechaOperacion, medioPago);
 		this.cantidadPresupuestosMinimos = cantidadPresupuestosMinimos;
 		this.criterioCompra = criterioCompra;
@@ -75,7 +76,7 @@ public class Egreso extends OperacionEfectuada {
 		this.proveedor = proveedor;
 	}
 
-	public void setRevisores(List<Usuario> revisores) {
+	public void setRevisores(Set<Usuario> revisores) {
 		this.revisores = revisores;
 	}
 
@@ -91,7 +92,7 @@ public class Egreso extends OperacionEfectuada {
 		return presupuestos;
 	}
 	
-	public List<Usuario> getRevisores() {
+	public Set<Usuario> getRevisores() {
 		return revisores;
 	}
 

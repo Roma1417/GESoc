@@ -2,7 +2,9 @@ package utn.dds.tpAnual.db.entity.usuario;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import utn.dds.tpAnual.db.entity.afip.RequisitoSectorEmpresa;
@@ -39,7 +41,7 @@ public class Usuario {
 	private List<UsuarioEntidad> usuariosEntidad;
 
 	@OneToMany(mappedBy="usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Mensaje> bandejaMensajes;
+	private Set<Mensaje> bandejaMensajes;
 	
 	public Usuario(String nombre, String contrasenia) {
 		this.nombre = nombre;
@@ -57,7 +59,7 @@ public class Usuario {
 		return contrasenia;
 	}
 
-	public List<Mensaje> getBandejaMensajes() {
+	public Set<Mensaje> getBandejaMensajes() {
 		return bandejaMensajes;
 	}
 
@@ -101,7 +103,7 @@ public class Usuario {
 		this.usuariosEntidad = usuariosEntidad;
 	}
 
-	public void setBandejaMensajes(List<Mensaje> bandejaMensajes) {
+	public void setBandejaMensajes(Set<Mensaje> bandejaMensajes) {
 		this.bandejaMensajes = bandejaMensajes;
 	}
 
@@ -124,7 +126,7 @@ public class Usuario {
 	
 	public void recibirMensaje(Mensaje mensaje) {
 		if(bandejaMensajes == null) {
-			bandejaMensajes = new ArrayList<Mensaje>();
+			bandejaMensajes = new HashSet<>();
 		}
 		bandejaMensajes.add(mensaje);
 	}

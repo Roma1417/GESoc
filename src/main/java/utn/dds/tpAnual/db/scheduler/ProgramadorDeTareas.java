@@ -20,6 +20,9 @@ public class ProgramadorDeTareas {
 	@Autowired
 	private Vinculador vinculador;
 
+	@Autowired
+	private ValidadorEgreso validadorEgresos;
+
 	private ProgramadorDeTareas() {
 	}
 
@@ -29,20 +32,20 @@ public class ProgramadorDeTareas {
 
 	@Scheduled(fixedDelay = 2000)
 	public void validarEgresos(){
-		ValidadorEgreso.getInstance().validarEgresos();
+		validadorEgresos.validarEgresos();
 	}
 
-	//@Scheduled(fixedDelay = 10000)
+	@Scheduled(fixedDelay = 10000)
 	public void importPaises(){
 		importInformacionGeograficaService.importPaises();
 	}
 
-	//@Scheduled(fixedDelay = 10000)
+	@Scheduled(fixedDelay = 10000)
 	public void importProvincias(){
 		importInformacionGeograficaService.importProvincias();
 	}
 
-	//@Scheduled(fixedDelay = 10000)
+	@Scheduled(fixedDelay = 10000)
 	public void vincularSistema(){
 		vinculador.vincularSistema();
 	}

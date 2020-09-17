@@ -2,7 +2,9 @@ package utn.dds.tpAnual.builders;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import utn.dds.tpAnual.db.entity.categorizacion.categoria.CategoriaNombreCorto;
 import utn.dds.tpAnual.db.entity.transaccion.*;
@@ -17,7 +19,7 @@ public class EgresoBuilder {
     private int cantidadPresupuestosMinimos;
     private CriterioCompra criterioCompra;
     private List<Presupuesto> presupuestos = new ArrayList<Presupuesto>();
-    private List<Usuario> revisores = new ArrayList<Usuario>();
+    private Set<Usuario> revisores = new HashSet<Usuario>();
 	private LocalDate fechaOperacion;
 	private LocalDate fecha;
 	private MedioPago medioPago;
@@ -70,7 +72,8 @@ public class EgresoBuilder {
     }
     
     public Egreso build(){
-        return new Egreso(documentoComercial, null, codigoOperacion, detallesOperacion, fechaOperacion, null, cantidadPresupuestosMinimos, criterioCompra, presupuestos, null, revisores);
+        return new Egreso(documentoComercial, null, codigoOperacion, detallesOperacion, fechaOperacion,
+				null, cantidadPresupuestosMinimos, criterioCompra, presupuestos, null, revisores);
     }
     
     public Egreso buildEgresoSinPresupuestos(){
@@ -79,13 +82,25 @@ public class EgresoBuilder {
     	criterioCompra = CriterioMenorPrecio.getInstance();
     	codigoOperacion = 542;
     	cantidadPresupuestosMinimos = 2;
+		documentoComercial = new DocumentoComercial();
+		documentoComercial.setNumero(765);
+		documentoComercial.setTipoDocumento(1);
+
+		fechaOperacion = LocalDate.now();
+		fecha = LocalDate.now();
     	return build();
     }
     public Egreso buildEgresoSimple(){
     	codigoOperacion = 123;
     	cantidadPresupuestosMinimos = 0;
-    	return build();
-    }
+		documentoComercial = new DocumentoComercial();
+		documentoComercial.setNumero(765);
+		documentoComercial.setTipoDocumento(1);
+
+		fechaOperacion = LocalDate.now();
+		fecha = LocalDate.now();
+		return build();
+	}
     public Egreso buildEgresoCumplidor(){
     	codigoOperacion = 87;
     	cantidadPresupuestosMinimos = 2;
@@ -101,7 +116,7 @@ public class EgresoBuilder {
     	
     	DetalleOperacion detalleOperacion = new DetalleOperacionBuilder()
     		.withCantidad(3)
-    		.withItem(new Item(123L, "itemTest"))
+    		.withItem(new Item(12213L, "itemTest"))
     		.withPrecio(10F)
     		.build();
     	
@@ -114,7 +129,7 @@ public class EgresoBuilder {
 				.build();
     	
     	Presupuesto unPresupuesto = new PresupuestoBuilder()
-    			.withCodigoOperacion(1782)
+    			.withCodigoOperacion(45532)
     			.withDetallePrecio(unDetallePrecio)
     			.withDetallePrecio(unDetallePrecio)
     			.build();
@@ -125,9 +140,9 @@ public class EgresoBuilder {
     }
     
     public Egreso buildEgresoConDetallesDeDistintoTamanio(){
-    	codigoOperacion = 475;
+    	codigoOperacion = 47587;
     	cantidadPresupuestosMinimos = 2;
-    	Item itemTest = new Item(123L, "itemTest");
+    	Item itemTest = new Item(123987L, "item Test Test");
     	
     	DetalleOperacion unDetalleOperacion = new DetalleOperacionBuilder()
     		.withCantidad(3)
@@ -150,12 +165,12 @@ public class EgresoBuilder {
 				.build();
 
     	Presupuesto unPresupuesto = new PresupuestoBuilder()
-    			.withCodigoOperacion(1782)
+    			.withCodigoOperacion(178662)
     			.withDetallePrecio(unDetallePrecio)
     			.withDetallePrecio(unDetallePrecio)
     			.build();
     	Presupuesto otroPresupuesto = new PresupuestoBuilder()
-    			.withCodigoOperacion(1723)
+    			.withCodigoOperacion(176623)
     			.withDetallePrecio(unDetallePrecio)
     			.withDetallePrecio(otroDetallePrecio)
     			.build();
@@ -171,32 +186,32 @@ public class EgresoBuilder {
     }
     
     public Egreso buildEgresoNoBasadoEnPresupuesto(){
-    	codigoOperacion = 345;
-    	cantidadPresupuestosMinimos = 2;
-    	Item itemTest = new Item(123L, "itemTest");
+    	codigoOperacion = 34555;
+    	cantidadPresupuestosMinimos = 25;
+    	Item itemTest = new Item(55123L, "itemTestTest");
     	
     	DetalleOperacion unDetalleOperacion = new DetalleOperacionBuilder()
-    		.withCantidad(3)
+    		.withCantidad(53)
     		.withItem(itemTest)
-    		.withPrecio(10F)
+    		.withPrecio(510F)
     		.build();
     	DetalleOperacion otroDetalleOperacion = new DetalleOperacionBuilder()
-        		.withCantidad(4)
+        		.withCantidad(45)
         		.withItem(itemTest)
-        		.withPrecio(20F)
+        		.withPrecio(250F)
         		.build();
     	
     	DetallePrecio unDetallePrecio = new DetallePrecioBuilder()
-				.withPrecio(10F)
+				.withPrecio(105F)
 				.withDetalleOperacion(unDetalleOperacion)
 				.build();
     	DetallePrecio otroDetallePrecio = new DetallePrecioBuilder()
-				.withPrecio(12F)
+				.withPrecio(152F)
 				.withDetalleOperacion(otroDetalleOperacion)
 				.build();
 
     	Presupuesto otroPresupuesto = new PresupuestoBuilder()
-    			.withCodigoOperacion(1723)
+    			.withCodigoOperacion(1752553)
     			.withDetallePrecio(unDetallePrecio)
     			.withDetallePrecio(otroDetallePrecio)
     			.build();

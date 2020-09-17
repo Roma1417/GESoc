@@ -24,7 +24,12 @@ import java.util.List;
         return egresoRepository.getEgresosByEntidadRealizadora(entidad);
     }
 
+    public List<Egreso> getEgresosSinValidar(){
+        return null;
+    }
+
     public Egreso getEgresoById(Long operacionId) {
-        return egresoRepository.getEgresoById(operacionId);
+        List<Egreso> egresos = egresoRepository.getEgresoById(operacionId);
+        return egresos.isEmpty() ? null : egresos.get(0);
     }
 }
