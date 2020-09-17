@@ -21,6 +21,9 @@ public class ProgramadorDeTareas {
 	@Autowired
 	private Vinculador vinculador;
 
+	@Autowired
+	private ValidadorEgreso validadorEgresos;
+
 	private ProgramadorDeTareas() {
 	}
 
@@ -30,7 +33,7 @@ public class ProgramadorDeTareas {
 
 	@Scheduled(fixedDelay = 2000)
 	public void validarEgresos(){
-		ValidadorEgreso.getInstance().validarEgresos();
+		validadorEgresos.validarEgresos();
 	}
 
 	@Scheduled(fixedDelay = 10000)
@@ -39,6 +42,7 @@ public class ProgramadorDeTareas {
 	}
 
 	@Scheduled(fixedDelay = 10000)
+<<<<<<< HEAD
 	public void importEstados(){
 		importInformacionGeograficaService.importEstados();
 	}
@@ -47,6 +51,23 @@ public class ProgramadorDeTareas {
 	public void importCiudades(){importInformacionGeograficaService.importCiudades();}
 
 	//@Scheduled(fixedDelay = 10000)
+=======
+	public void importCiudades(){
+		importInformacionGeograficaService.importCiudades();
+	}
+
+	@Scheduled(fixedDelay = 10000)
+	public void importProvincias(){
+		importInformacionGeograficaService.importProvincias();
+	}
+
+	@Scheduled(fixedDelay = 10000)
+	public void importEstados(){
+		importInformacionGeograficaService.importEstados();
+	}
+
+	@Scheduled(fixedDelay = 10000)
+>>>>>>> origin/feature/E4_ORM_Transaccion
 	public void vincularSistema(){
 		vinculador.vincularSistema();
 	}

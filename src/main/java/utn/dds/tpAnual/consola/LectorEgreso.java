@@ -1,8 +1,6 @@
 package utn.dds.tpAnual.consola;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 import utn.dds.tpAnual.db.entity.transaccion.DetalleOperacion;
 import utn.dds.tpAnual.db.entity.transaccion.DetallePrecio;
@@ -12,7 +10,6 @@ import utn.dds.tpAnual.db.entity.transaccion.Presupuesto;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.entity.categorizacion.criterioCompra.CriterioCompra;
 import utn.dds.tpAnual.db.entity.categorizacion.criterioCompra.CriterioMenorPrecio;
-import utn.dds.tpAnual.validador.EgresosObserver;
 
 
 public class LectorEgreso extends Lector{
@@ -33,9 +30,9 @@ public class LectorEgreso extends Lector{
 		Integer cantidadMinimaPresupuestos = getInteger("Ingrese la cantidad minima de presupuestos");
 		CriterioCompra criterio = getCriterio();
 		List<Presupuesto> presupuestos = getPresupuestos(detallesOperacion);
-		List<Usuario> revisores = getRevisores();
+		Set<Usuario> revisores = getRevisores();
 		Egreso egreso = new Egreso(null, null, 0, detallesOperacion, null, null, cantidadMinimaPresupuestos, criterio, presupuestos, null, revisores);
-		EgresosObserver.getInstance().notificar(egreso);
+		//EgresosObserver.getInstance().notificar(egreso);
 	}
 	
 	private Integer getInteger(String mensaje){
@@ -109,8 +106,8 @@ public class LectorEgreso extends Lector{
 		return nombre == null? null : new Usuario(nombre, null);   
 	}
 	
-	private List<Usuario> getRevisores() {
-		List<Usuario> revisores = new ArrayList<Usuario>();
+	private Set<Usuario> getRevisores() {
+		Set<Usuario> revisores = new HashSet<>();
 		System.out.println("Se tomara registro de los revisores");
 		while(true) {
 			if(consultarSobre("revisor")) {

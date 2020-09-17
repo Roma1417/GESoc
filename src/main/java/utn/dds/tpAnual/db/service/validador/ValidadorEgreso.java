@@ -3,6 +3,7 @@ package utn.dds.tpAnual.db.service.validador;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,40 +32,17 @@ public class ValidadorEgreso {
 	@Autowired
 	private EgresoService egresoService;
 
-	private Queue<Egreso> colaEgresos = new LinkedList<>();
-	private ValidadorEgreso validador = ValidadorEgreso.getInstance();
-	private static ValidadorEgreso instance = new ValidadorEgreso();
-
 	private ValidadorEgreso(){
 
 	}
 
-	public static ValidadorEgreso getInstance() {
-		return instance;
-	}
-
-	public void serNotificado(Egreso egreso) {
-		colaEgresos.add(egreso);
-	}
-
 	public void validarEgresos() {
-		while(!colaEgresos.isEmpty()) {   // TODO DAI: leer de BD.
-			Egreso egreso = colaEgresos.poll();
-			if (egreso != null) {
-				ValidadorEgreso.getInstance().validarEgreso(egreso);
-			}
+		List<Egreso> egresos = egresoService.getEgresosSinValidar();
+		for (Egreso egreso: egresos) {
+			validarEgreso(egreso);
 		}
 	}
 
-	public int cantidadEgresos() {
-		return colaEgresos.size();
-	}
-
-
-	/**
-	 *
-	 * @param egreso
-	 */
 	private boolean cumpleMinimoPresupuesto(Egreso egreso){
 		int presupuestosMinimos = egreso.getCantidadPresupuestosMinimos();
 		List<Presupuesto> presupuestos = egreso.getPresupuestos();
@@ -104,13 +82,13 @@ public class ValidadorEgreso {
 
 	private void notificarRevisores(Egreso egreso, boolean resultado) {
 		String asunto = configuracionService.getValue(ConfiguracionEnum.ASUNTO_INICIO) + egreso.getCodigoOperacion();
-		List<Usuario> usuarios = egreso.getRevisores();
+		Set<Usuario> usuarios = egreso.getRevisores();
 
 		this.enviarMensajes(usuarios, asunto,resultado ? configuracionService.getValue(ConfiguracionEnum.MENSAJE_CORRECTO)
 				: configuracionService.getValue(ConfiguracionEnum.MENSAJE_ERRONEO));
 	}
 
-	private void enviarMensajes(List<Usuario> usuarios, String asunto, String cuerpo) {
+	private void enviarMensajes(Set<Usuario> usuarios, String asunto, String cuerpo) {
 		Mensaje mensaje = new Mensaje(asunto, cuerpo);
 
 		if(usuarios != null) {
@@ -120,10 +98,7 @@ public class ValidadorEgreso {
 		}
 	}
 
-	/**
-	 *
-	 * @param egreso
-	 */
+
 	public boolean validarEgreso(Egreso egreso) {
 		boolean validez = esEgresoValido(egreso);
 		notificarRevisores(egreso, validez);
