@@ -15,6 +15,7 @@ import utn.dds.tpAnual.builders.IngresoBuilder;
 import utn.dds.tpAnual.db.entity.categorizacion.criterioVinculacion.CriterioVinculacionFecha;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
 import utn.dds.tpAnual.db.entity.entidad.EntidadJuridicaEmpresa;
+import utn.dds.tpAnual.db.entity.transaccion.DetalleOperacion;
 import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.entity.transaccion.Ingreso;
 import utn.dds.tpAnual.db.entity.ubicacion.Pais;
@@ -90,6 +91,29 @@ public class VinculadorTest {
         vinculador.vincularEntidad(entidad);
         assertTrue(ingreso.getEgresosAsociados().contains(egreso));
     }
+
+    @Test
+    public void vincularEgresoPorOrdenValorPrimerEgreso(){
+        EntidadJuridicaEmpresa entidad = new EntidadJuridicaEmpresaBuilder().withNombre("Entidad2").build();
+        entidadService.save(entidad);
+        Egreso egreso = new EgresoBuilder().buildOtroEgresoCompleto();
+        egreso.setEntidadRealizadora(entidad);
+
+        Egreso egreso2 = new EgresoBuilder().buildOtroEgresoCompleto();
+        egreso2.addDetalleOperacion(new DetalleOperacion(null, 1000F, 2));
+        egreso2.setEntidadRealizadora(entidad);
+
+        entidad.setCriterioVinculacion(CriterioVinculacionFecha.getInstance());
+        egresoService.saveAll(Arrays.asList(egreso, egreso2));
+
+        Ingreso ingreso = new IngresoBuilder().buildIngresoCompleto();
+        ingreso.setEntidadRealizadora(entidad);
+
+        ingresoService.save(ingreso);
+        vinculador.vincularEntidad(entidad);
+        assertTrue(ingreso.getEgresosAsociados().contains(egreso));
+    }
+
 
 
 }
