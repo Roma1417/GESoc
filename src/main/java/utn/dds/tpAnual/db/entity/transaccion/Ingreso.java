@@ -37,6 +37,9 @@ public class Ingreso extends Operacion{
 	}
 
 	public List<Egreso> getEgresosAsociados() {
+		if (egresosAsociados == null) {
+			egresosAsociados = new ArrayList<>();
+		}
 		return egresosAsociados;
 	}
 

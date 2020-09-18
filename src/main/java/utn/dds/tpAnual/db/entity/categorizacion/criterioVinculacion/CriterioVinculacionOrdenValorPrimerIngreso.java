@@ -10,20 +10,20 @@ import javax.persistence.Entity;
 import java.util.Comparator;
 import java.util.List;
 
-@Entity(name = "CriterioVinculacionOrdenValorPrimerEgreso")
-@DiscriminatorValue("CriterioVinculacionOrdenValorPrimerEgreso")
-public class CriterioVinculacionOrdenValorPrimerEgreso extends CriterioVinculacion{
+@Entity(name = "CriterioVinculacionOrdenValorPrimerIngreso")
+@DiscriminatorValue("CriterioVinculacionOrdenValorPrimerIngreso")
+public class CriterioVinculacionOrdenValorPrimerIngreso extends CriterioVinculacion{
 
-    private static CriterioVinculacionOrdenValorPrimerEgreso instance;
+    private static CriterioVinculacionOrdenValorPrimerIngreso instance;
 
     public static CriterioVinculacion getInstance(){
         if (instance == null) {
-            instance = new CriterioVinculacionOrdenValorPrimerEgreso();
+            instance = new CriterioVinculacionOrdenValorPrimerIngreso();
         }
         return instance;
     }
 
-    public CriterioVinculacionOrdenValorPrimerEgreso(){
+    public CriterioVinculacionOrdenValorPrimerIngreso(){
 
     }
 
@@ -32,8 +32,10 @@ public class CriterioVinculacionOrdenValorPrimerEgreso extends CriterioVinculaci
                                                             List<ReglaVinculacion> reglas) {
         sortIngresosByTotal(ingresos);
         sortEgresosByTotal(egresos);
-        return vincularListasYaOrdenadasPrimerEgreso(ingresos, egresos, reglas);
+        return vincularListasYaOrdenadasPrimerIngreso(ingresos, egresos, reglas);
     }
+
+
 
 
 }

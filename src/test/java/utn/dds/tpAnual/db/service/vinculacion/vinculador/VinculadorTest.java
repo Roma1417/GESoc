@@ -114,6 +114,33 @@ public class VinculadorTest {
         assertTrue(ingreso.getEgresosAsociados().contains(egreso));
     }
 
+    @Test
+    public void vincularEgresoPorOrdenValorPrimerIngreso(){
+        EntidadJuridicaEmpresa entidad = new EntidadJuridicaEmpresaBuilder().withNombre("Entidad2").build();
+        entidadService.save(entidad);
+        Egreso egreso = new EgresoBuilder().buildOtroEgresoCompleto();
+        egreso.setEntidadRealizadora(entidad);
+
+        Egreso egreso2 = new EgresoBuilder().buildOtroEgresoCompleto();
+        egreso2.addDetalleOperacion(new DetalleOperacion(null, 1000F, 2));
+        egreso2.setEntidadRealizadora(entidad);
+
+        entidad.setCriterioVinculacion(CriterioVinculacionFecha.getInstance());
+        egresoService.saveAll(Arrays.asList(egreso, egreso2));
+
+        Ingreso ingreso = new IngresoBuilder().buildIngresoCompleto();
+        ingreso.setEntidadRealizadora(entidad);
+        Ingreso ingreso2 = new IngresoBuilder().buildIngresoCompleto();
+        ingreso2.setFecha(LocalDate.now().minusYears(2L));
+        ingreso2.setTotal(5000F);
+        ingreso.setEntidadRealizadora(entidad);
+
+        ingresoService.saveAll(Arrays.asList(ingreso, ingreso2));
+        vinculador.vincularEntidad(entidad);
+        assertTrue(ingreso.getEgresosAsociados().contains(egreso) &&
+                ingreso2.getEgresosAsociados().isEmpty());
+    }
+
 
 
 }
