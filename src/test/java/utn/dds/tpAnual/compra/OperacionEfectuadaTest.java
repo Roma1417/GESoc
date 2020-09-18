@@ -4,18 +4,17 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import utn.dds.tpAnual.*;
 import utn.dds.tpAnual.builders.DetalleOperacionBuilder;
 import utn.dds.tpAnual.builders.EgresoBuilder;
-import utn.dds.tpAnual.transaccion.DetalleOperacion;
-import utn.dds.tpAnual.transaccion.Egreso;
-import utn.dds.tpAnual.transaccion.Item;
+import utn.dds.tpAnual.db.entity.transaccion.DetalleOperacion;
+import utn.dds.tpAnual.db.entity.transaccion.Egreso;
+import utn.dds.tpAnual.db.entity.transaccion.Item;
 
 public class OperacionEfectuadaTest {
 
     @Test
     public void getTotalDeOperacionEfectuada() {
-    	Item itemTest = new Item(null, null);
+    	Item itemTest = new Item( null);
     	DetalleOperacion d1 = new DetalleOperacionBuilder()
     			.withItem(itemTest).withPrecio(50F).withCantidad(3).build();
     	DetalleOperacion d2 = new DetalleOperacionBuilder()

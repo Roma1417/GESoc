@@ -3,8 +3,8 @@ package utn.dds.tpAnual.builders;
 import java.util.ArrayList;
 import java.util.List;
 
-import utn.dds.tpAnual.afip.RequisitoSectorEmpresa;
-import utn.dds.tpAnual.afip.Sector;
+import utn.dds.tpAnual.db.entity.afip.RequisitoSectorEmpresa;
+import utn.dds.tpAnual.db.entity.afip.Sector;
 
 public class SectorBuilder {
 	private String nombreSector;

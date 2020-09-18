@@ -10,14 +10,14 @@ import org.junit.Test;
 import utn.dds.tpAnual.builders.DetalleOperacionBuilder;
 import utn.dds.tpAnual.builders.DetallePrecioBuilder;
 import utn.dds.tpAnual.builders.PresupuestoBuilder;
-import utn.dds.tpAnual.transaccion.DetalleOperacion;
-import utn.dds.tpAnual.transaccion.DetallePrecio;
-import utn.dds.tpAnual.transaccion.Item;
-import utn.dds.tpAnual.transaccion.Presupuesto;
+import utn.dds.tpAnual.db.entity.transaccion.DetalleOperacion;
+import utn.dds.tpAnual.db.entity.transaccion.DetallePrecio;
+import utn.dds.tpAnual.db.entity.transaccion.Item;
+import utn.dds.tpAnual.db.entity.transaccion.Presupuesto;
 
 public class PresupuestoTest {
 	
-	private Item mesa = new Item(1L,"Mesa");
+	private Item mesa = new Item("Mesa");
 	
 	private DetalleOperacion unDetalleOperacion = new DetalleOperacionBuilder()
 			.withItem(mesa).withPrecio(15F).withCantidad(3).build();

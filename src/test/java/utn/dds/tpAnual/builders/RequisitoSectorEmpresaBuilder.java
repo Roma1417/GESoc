@@ -1,7 +1,7 @@
 package utn.dds.tpAnual.builders;
 
-import utn.dds.tpAnual.afip.RequisitoSectorEmpresa;
-import utn.dds.tpAnual.afip.tamanios.TamanioEmpresa;
+import utn.dds.tpAnual.db.entity.afip.RequisitoSectorEmpresa;
+import utn.dds.tpAnual.db.entity.afip.tamanios.TamanioEmpresa;
 
 public class RequisitoSectorEmpresaBuilder {
 	private int maximoEmpleados;

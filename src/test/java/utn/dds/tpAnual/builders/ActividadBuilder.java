@@ -1,7 +1,7 @@
 package utn.dds.tpAnual.builders;
 
-import utn.dds.tpAnual.afip.Actividad;
-import utn.dds.tpAnual.afip.Sector;
+import utn.dds.tpAnual.db.entity.afip.Actividad;
+import utn.dds.tpAnual.db.entity.afip.Sector;
 
 public class ActividadBuilder {
 	private String nombreActividad;

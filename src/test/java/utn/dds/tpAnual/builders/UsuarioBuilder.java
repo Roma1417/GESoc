@@ -1,6 +1,6 @@
 package utn.dds.tpAnual.builders;
 
-import utn.dds.tpAnual.usuario.Usuario;
+import utn.dds.tpAnual.db.entity.usuario.Usuario;
 
 public class UsuarioBuilder {
 	private String nombre;
