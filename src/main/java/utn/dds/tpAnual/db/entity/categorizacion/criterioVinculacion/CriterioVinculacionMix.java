@@ -5,13 +5,14 @@ import utn.dds.tpAnual.db.entity.transaccion.Ingreso;
 import utn.dds.tpAnual.db.service.vinculacion.reglaVinculacion.ReglaVinculacion;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "CriterioVinculacionMix")
 @DiscriminatorValue("CriterioVinculacionMix")
 public class CriterioVinculacionMix extends CriterioVinculacion{
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name = "CRITERIO_VINCULACION_MIX_ID")
     private List<CriterioVinculacion> criteriosVinculacion;
 
@@ -37,7 +38,10 @@ public class CriterioVinculacionMix extends CriterioVinculacion{
         return criteriosVinculacion;
     }
 
-    public void setCriteriosVinculacion(List<CriterioVinculacion> criteriosVinculacion) {
-        this.criteriosVinculacion = criteriosVinculacion;
+    public void addCriterioVinculacion(CriterioVinculacion criterioVinculacion){
+        if (criteriosVinculacion == null){
+            criteriosVinculacion = new ArrayList<>();
+        }
+        criteriosVinculacion.add(criterioVinculacion);
     }
 }

@@ -75,11 +75,11 @@ public abstract class CriterioVinculacion {
                         satisfaceRestante(ingreso, egreso)) {
                     ingreso.vincularEgreso(egreso);
                     egresosARemover.add(egreso);
+                    break;
                 }
             }
-            egresos.removeAll(egresosARemover);
-            egresosARemover.clear();
         }
+        egresos.removeAll(egresosARemover);
         return new RestanteVinculacion(ingresos, egresos);
     }
 

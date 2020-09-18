@@ -40,9 +40,7 @@ import java.util.List;
 
     @Override
     public void save(Ingreso entity) {
-        if (entity.getEntidadRealizadora() != null) {
-            entidadService.save(entity.getEntidadRealizadora());
-        }
+        entidadService.saveIfNotExists(entity.getEntidadRealizadora());
         super.save(entity);
     }
 

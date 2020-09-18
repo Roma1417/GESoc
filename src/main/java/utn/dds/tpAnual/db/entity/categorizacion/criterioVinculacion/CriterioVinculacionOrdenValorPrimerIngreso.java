@@ -10,8 +10,8 @@ import javax.persistence.Entity;
 import java.util.Comparator;
 import java.util.List;
 
-@Entity(name = "CriterioVinculacionOrdenValorPrimerIngreso")
-@DiscriminatorValue("CriterioVinculacionOrdenValorPrimerIngreso")
+@Entity(name = "OrdenValorPrimerIngreso")
+@DiscriminatorValue("OrdenValorPrimerIngreso")
 public class CriterioVinculacionOrdenValorPrimerIngreso extends CriterioVinculacion{
 
     private static CriterioVinculacionOrdenValorPrimerIngreso instance;

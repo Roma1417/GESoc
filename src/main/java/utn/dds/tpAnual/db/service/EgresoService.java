@@ -7,6 +7,8 @@ import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.repository.EgresoRepository;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.Collection;
 import java.util.List;
 
@@ -39,9 +41,7 @@ import java.util.List;
 
     @Override
     public void save(Egreso entity) {
-        if (entity.getEntidadRealizadora() != null) {
-            entidadService.save(entity.getEntidadRealizadora());
-        }
+        entidadService.saveIfNotExists(entity.getEntidadRealizadora());
         super.save(entity);
     }
 

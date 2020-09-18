@@ -23,7 +23,7 @@ public abstract class CustomJPAService <T> {
     }
 
     public boolean existsById(Long id) {
-        return getRepository().findById(id) != null;
+        return getRepository().findById(id).isPresent();
     }
 
     public void deleteAllInBatch (){

@@ -12,14 +12,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 import utn.dds.tpAnual.builders.EgresoBuilder;
 import utn.dds.tpAnual.builders.EntidadJuridicaEmpresaBuilder;
 import utn.dds.tpAnual.builders.IngresoBuilder;
-import utn.dds.tpAnual.db.entity.categorizacion.criterioVinculacion.CriterioVinculacionFecha;
-import utn.dds.tpAnual.db.entity.entidad.Entidad;
+import utn.dds.tpAnual.db.entity.categorizacion.criterioVinculacion.*;
 import utn.dds.tpAnual.db.entity.entidad.EntidadJuridicaEmpresa;
 import utn.dds.tpAnual.db.entity.transaccion.DetalleOperacion;
 import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.entity.transaccion.Ingreso;
-import utn.dds.tpAnual.db.entity.ubicacion.Pais;
 import utn.dds.tpAnual.db.scheduler.ProgramadorDeTareas;
+import utn.dds.tpAnual.db.service.CriterioVinculacionService;
 import utn.dds.tpAnual.db.service.EgresoService;
 import utn.dds.tpAnual.db.service.EntidadService;
 import utn.dds.tpAnual.db.service.IngresoService;
@@ -48,6 +47,9 @@ public class VinculadorTest {
     @Autowired
     private IngresoService ingresoService;
 
+    @Autowired
+    private CriterioVinculacionService criterioVinculacionService;
+
     @Before
     public void beforeEachTest(){
         entidadService.deleteAllInBatch();
@@ -66,7 +68,7 @@ public class VinculadorTest {
     @Test
     public void vincularEntidadSinOperacionesConCriterioVinculacion(){
         EntidadJuridicaEmpresa entidad = new EntidadJuridicaEmpresaBuilder().withNombre("Entidad1").build();
-        entidad.setCriterioVinculacion(CriterioVinculacionFecha.getInstance());
+        entidad.setCriterioVinculacion(criterioVinculacionService.getFecha());
         entidadService.save(entidad);
         vinculador.vincularEntidad(entidad);
         assertTrue(true);
@@ -76,13 +78,12 @@ public class VinculadorTest {
     public void vincularEgresosPorFecha(){
         EntidadJuridicaEmpresa entidad = new EntidadJuridicaEmpresaBuilder().withNombre("Entidad2").build();
         entidadService.save(entidad);
+        entidad.setCriterioVinculacion(criterioVinculacionService.getFecha());
         Egreso egreso = new EgresoBuilder().buildOtroEgresoCompleto();
         egreso.setEntidadRealizadora(entidad);
-
         Egreso egreso2 = new EgresoBuilder().buildEgresoCompletoConFecha(LocalDate.now().minusYears(1l));
         egreso2.setEntidadRealizadora(entidad);
 
-        entidad.setCriterioVinculacion(CriterioVinculacionFecha.getInstance());
         egresoService.saveAll(Arrays.asList(egreso, egreso2));
 
         Ingreso ingreso = new IngresoBuilder().buildIngresoCompleto();
@@ -103,7 +104,7 @@ public class VinculadorTest {
         egreso2.addDetalleOperacion(new DetalleOperacion(null, 1000F, 2));
         egreso2.setEntidadRealizadora(entidad);
 
-        entidad.setCriterioVinculacion(CriterioVinculacionFecha.getInstance());
+        entidad.setCriterioVinculacion(criterioVinculacionService.getValorPrimerEgreso());
         egresoService.saveAll(Arrays.asList(egreso, egreso2));
 
         Ingreso ingreso = new IngresoBuilder().buildIngresoCompleto();
@@ -125,7 +126,39 @@ public class VinculadorTest {
         egreso2.addDetalleOperacion(new DetalleOperacion(null, 1000F, 2));
         egreso2.setEntidadRealizadora(entidad);
 
-        entidad.setCriterioVinculacion(CriterioVinculacionFecha.getInstance());
+        entidad.setCriterioVinculacion(criterioVinculacionService.getValorPrimerIngreso());
+        egresoService.saveAll(Arrays.asList(egreso, egreso2));
+
+        Ingreso ingreso = new IngresoBuilder().buildIngresoCompleto();
+        ingreso.setEntidadRealizadora(entidad);
+        Ingreso ingreso2 = new IngresoBuilder().buildIngresoCompleto();
+        ingreso2.setFecha(LocalDate.now().minusYears(2L));
+        ingreso2.setTotal(5000F);
+        ingreso.setEntidadRealizadora(entidad);
+
+        ingresoService.save(ingreso);
+        ingresoService.save(ingreso2);
+        vinculador.vincularEntidad(entidad);
+        assertTrue(ingreso.getEgresosAsociados().contains(egreso) &&
+                ingreso2.getEgresosAsociados().isEmpty());
+    }
+
+    @Test
+    public void vincularPorCriterioVinculacionMix(){
+        EntidadJuridicaEmpresa entidad = new EntidadJuridicaEmpresaBuilder().withNombre("Entidad2").build();
+        CriterioVinculacionMix criterioVinculacion = new CriterioVinculacionMix();
+
+        criterioVinculacion.addCriterioVinculacion(criterioVinculacionService.getValorPrimerIngreso());
+        criterioVinculacion.addCriterioVinculacion(criterioVinculacionService.getFecha());
+        entidad.setCriterioVinculacion(criterioVinculacion);
+
+        entidadService.save(entidad);
+        Egreso egreso = new EgresoBuilder().buildOtroEgresoCompleto();
+        egreso.setEntidadRealizadora(entidad);
+
+        Egreso egreso2 = new EgresoBuilder().buildOtroEgresoCompleto();
+        egreso2.addDetalleOperacion(new DetalleOperacion(null, 1000F, 2));
+        egreso2.setEntidadRealizadora(entidad);
         egresoService.saveAll(Arrays.asList(egreso, egreso2));
 
         Ingreso ingreso = new IngresoBuilder().buildIngresoCompleto();

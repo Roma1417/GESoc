@@ -44,4 +44,13 @@ import java.util.List;
     public void saveAll(Collection<Entidad> entities) {
         entities.forEach(this::save);
     }
+
+    public void saveIfNotExists(Entidad entidad){
+        if (entidad != null) {
+            if (entidad.getEntidadId() == null ||
+                    !existsById(entidad.getEntidadId())){
+                save(entidad);
+            }
+        }
+    }
 }
