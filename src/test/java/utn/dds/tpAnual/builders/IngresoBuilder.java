@@ -7,6 +7,7 @@ import utn.dds.tpAnual.db.entity.entidad.Entidad;
 import utn.dds.tpAnual.db.entity.transaccion.*;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +58,9 @@ public class IngresoBuilder {
 	}
     
     public Ingreso build(){
-        return new Ingreso(documentoComercial, entidadRealizadora, codigoOperacion, total, descripcion, EgresosAsociados);
+		Ingreso ingreso = new Ingreso(documentoComercial, entidadRealizadora, codigoOperacion, total, descripcion, EgresosAsociados);
+		ingreso.setFecha(fecha);
+        return ingreso;
     }
     
 

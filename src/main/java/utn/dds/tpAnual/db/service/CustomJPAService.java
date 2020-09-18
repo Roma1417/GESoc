@@ -22,6 +22,10 @@ public abstract class CustomJPAService <T> {
         return getRepository().findAll();
     }
 
+    public boolean existsById(Long id) {
+        return getRepository().findById(id) != null;
+    }
+
     public void deleteAllInBatch (){
         getRepository().deleteAllInBatch();
     }

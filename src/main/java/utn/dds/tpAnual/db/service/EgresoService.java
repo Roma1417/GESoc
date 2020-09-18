@@ -7,6 +7,7 @@ import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.repository.EgresoRepository;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -14,6 +15,9 @@ import java.util.List;
 
     @Autowired
     private EgresoRepository egresoRepository;
+
+    @Autowired
+    private EntidadService entidadService;
 
     @Override
     public JpaRepository<Egreso, Long> getRepository() {
@@ -31,5 +35,18 @@ import java.util.List;
     public Egreso getEgresoById(Long operacionId) {
         List<Egreso> egresos = egresoRepository.getEgresoById(operacionId);
         return egresos.isEmpty() ? null : egresos.get(0);
+    }
+
+    @Override
+    public void save(Egreso entity) {
+        if (entity.getEntidadRealizadora() != null) {
+            entidadService.save(entity.getEntidadRealizadora());
+        }
+        super.save(entity);
+    }
+
+    @Override
+    public void saveAll(Collection<Egreso> entities) {
+        entities.forEach(this::save);
     }
 }

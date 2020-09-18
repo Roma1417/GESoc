@@ -22,15 +22,15 @@ public class ConfiguracionCache {
     }
 
     public static String getValue(ConfiguracionEnum configuracionEnum){
-        return instance.configuracionesCacheadas.get(configuracionEnum.getKey());
+        return getInstance().configuracionesCacheadas.get(configuracionEnum.getKey());
     }
 
 
     public static void addToCache(Configuracion configuracion){
-        instance.configuracionesCacheadas.put(configuracion.getKey(), configuracion.getValue());
+        getInstance().configuracionesCacheadas.put(configuracion.getKey(), configuracion.getValue());
     }
 
     public static void cleanCache(){
-        instance.configuracionesCacheadas.clear();
+        getInstance().configuracionesCacheadas.clear();
     }
 }

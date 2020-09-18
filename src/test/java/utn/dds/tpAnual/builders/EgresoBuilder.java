@@ -72,8 +72,10 @@ public class EgresoBuilder {
     }
     
     public Egreso build(){
-        return new Egreso(documentoComercial, null, codigoOperacion, detallesOperacion, fechaOperacion,
+    	Egreso egreso = new Egreso(documentoComercial, null, codigoOperacion, detallesOperacion, fechaOperacion,
 				null, cantidadPresupuestosMinimos, criterioCompra, presupuestos, null, revisores);
+    	egreso.setFecha(fecha);
+        return egreso;
     }
     
     public Egreso buildEgresoSinPresupuestos(){
@@ -278,7 +280,7 @@ public class EgresoBuilder {
 		documentoComercial.setTipoDocumento(1);
 
 		fechaOperacion = localDate;
-		fecha = LocalDate.now();
+		fecha = localDate;
 
 		Item itemTest = new Item();
 		itemTest.setDescripcion("Item de prueba 3");

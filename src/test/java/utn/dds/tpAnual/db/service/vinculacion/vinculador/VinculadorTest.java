@@ -74,20 +74,19 @@ public class VinculadorTest {
     @Test
     public void vincularEgresosPorFecha(){
         EntidadJuridicaEmpresa entidad = new EntidadJuridicaEmpresaBuilder().withNombre("Entidad2").build();
+        entidadService.save(entidad);
         Egreso egreso = new EgresoBuilder().buildOtroEgresoCompleto();
         egreso.setEntidadRealizadora(entidad);
 
-        LocalDate yearAgo = LocalDate.now();
-        yearAgo.minusYears(1l);
-        Egreso egreso2 = new EgresoBuilder().buildEgresoCompletoConFecha(yearAgo);
+        Egreso egreso2 = new EgresoBuilder().buildEgresoCompletoConFecha(LocalDate.now().minusYears(1l));
         egreso2.setEntidadRealizadora(entidad);
 
         entidad.setCriterioVinculacion(CriterioVinculacionFecha.getInstance());
         egresoService.saveAll(Arrays.asList(egreso, egreso2));
 
         Ingreso ingreso = new IngresoBuilder().buildIngresoCompleto();
+        ingreso.setEntidadRealizadora(entidad);
         ingresoService.save(ingreso);
-        egresoService.findAll();
         vinculador.vincularEntidad(entidad);
         assertTrue(ingreso.getEgresosAsociados().contains(egreso));
     }

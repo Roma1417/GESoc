@@ -12,11 +12,14 @@ import java.util.List;
 @Repository
 public interface EgresoRepository extends JpaRepository<Egreso, Long> {
 
-    @Query("SELECT e FROM Egreso e " +
+    @Query("SELECT DISTINCT e FROM Egreso e " +
+            " JOIN FETCH e.detallesOperacion do " +
+            " JOIN FETCH do.item i " +
             " WHERE e.entidadRealizadora = :entidad " +
             " AND NOT EXISTS (SELECT i FROM Ingreso i " +
-            "   INNER JOIN i.EgresosAsociados eg " +
-            "   WHERE eg = e)")
+            "   INNER JOIN i.egresosAsociados eg " +
+            "   WHERE eg = e) " +
+            " AND e.fecha IS NOT NULL ")
     List<Egreso> getEgresosByEntidadRealizadora(@Param("entidad") Entidad entidad);
 
     @Query("SELECT e FROM Egreso e " +

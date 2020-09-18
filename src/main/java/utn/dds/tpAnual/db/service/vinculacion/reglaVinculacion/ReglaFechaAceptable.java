@@ -30,8 +30,11 @@ public class ReglaFechaAceptable extends ReglaVinculacion{
     public boolean puedeVincularse(Ingreso ingreso, Egreso egreso) {
         if (ingreso.getFecha() != null && egreso.getFecha() != null){
             Long diferenciaEnDias = ingreso.getFecha().until(egreso.getFecha(), ChronoUnit.DAYS);
-            return Integer.compareUnsigned(configuracionService.getIntValue(ConfiguracionEnum.DIAS_ACEPTABLE_VINCULACION),
-                    diferenciaEnDias.intValue()) >= 0;
+            if (diferenciaEnDias < 0L) {
+                diferenciaEnDias *= -1;
+            }
+            return Integer.toUnsignedLong(configuracionService.getIntValue(ConfiguracionEnum.DIAS_ACEPTABLE_VINCULACION))
+                    >= diferenciaEnDias;
         } else {
             return false;
         }

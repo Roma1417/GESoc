@@ -3,6 +3,7 @@ package utn.dds.tpAnual.db.entity.transaccion;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,7 +18,7 @@ public class Ingreso extends Operacion{
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "INGRESO_ID")
-	private List<Egreso> EgresosAsociados;
+	private List<Egreso> egresosAsociados;
 
 	public Ingreso(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,
 				   Float total, String descripcion, List<Egreso> EgresosAsociados) {
@@ -36,11 +37,11 @@ public class Ingreso extends Operacion{
 	}
 
 	public List<Egreso> getEgresosAsociados() {
-		return EgresosAsociados;
+		return egresosAsociados;
 	}
 
 	public void setEgresosAsociados(List<Egreso> egresosAsociados) {
-		EgresosAsociados = egresosAsociados;
+		egresosAsociados = egresosAsociados;
 	}
 
 	public String getDescripcion() {
@@ -56,4 +57,10 @@ public class Ingreso extends Operacion{
 	}
 
 
+	public void vincularEgreso(Egreso egreso) {
+		if (egresosAsociados == null) {
+			egresosAsociados = new ArrayList<>();
+		}
+		egresosAsociados.add(egreso);
+	}
 }
