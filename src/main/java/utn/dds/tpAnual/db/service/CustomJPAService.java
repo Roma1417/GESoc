@@ -14,10 +14,15 @@ public abstract class CustomJPAService <T> {
     }
 
     public void saveAll (Collection<T> entities){
-        getRepository().saveAll(entities);
+        if (entities != null)
+            getRepository().saveAll(entities);
     }
 
     public List<T> findAll (){
         return getRepository().findAll();
+    }
+
+    public void deleteAllInBatch (){
+        getRepository().deleteAllInBatch();
     }
 }

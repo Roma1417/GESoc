@@ -270,14 +270,14 @@ public class EgresoBuilder {
 		return build();
 	}
 
-	public Egreso buildOtroEgresoCompleto(){
+	public Egreso buildEgresoCompletoConFecha(LocalDate localDate){
 		codigoOperacion = 22223;
 		cantidadPresupuestosMinimos = 1;
 		documentoComercial = new DocumentoComercial();
 		documentoComercial.setNumero(3473);
 		documentoComercial.setTipoDocumento(1);
 
-		fechaOperacion = LocalDate.now();
+		fechaOperacion = localDate;
 		fecha = LocalDate.now();
 
 		Item itemTest = new Item();
@@ -316,6 +316,10 @@ public class EgresoBuilder {
 
 		presupuestos.add(unPresupuesto);
 		return build();
+	}
+
+	public Egreso buildOtroEgresoCompleto(){
+		return buildEgresoCompletoConFecha(LocalDate.now());
 	}
 
 }

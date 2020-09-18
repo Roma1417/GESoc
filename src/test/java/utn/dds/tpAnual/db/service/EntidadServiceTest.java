@@ -26,8 +26,6 @@ public class EntidadServiceTest {
     @Autowired
     private EntidadService entidadService;
 
-
-
     EntidadJuridicaEmpresa unaEmpresa = new EntidadJuridicaEmpresaBuilder()
             .withNombre("EmpresaGenerica")
             .withVentaAnual(new VentaAnual(2012, 15f))

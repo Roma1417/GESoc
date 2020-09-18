@@ -2,6 +2,8 @@ package utn.dds.tpAnual.db.entity.categorizacion.criterioVinculacion;
 
 import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.entity.transaccion.Ingreso;
+import utn.dds.tpAnual.db.service.vinculacion.reglaVinculacion.ReglaVinculacion;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,14 +16,16 @@ public class CriterioVinculacionMix extends CriterioVinculacion{
     private List<CriterioVinculacion> criteriosVinculacion;
 
     @Override
-    public RestanteVinculacion ejecutarAlgoritmoVinculacion(List<Ingreso> ingresos, List<Egreso> egresos) {
+    public RestanteVinculacion ejecutarAlgoritmoVinculacion(List<Ingreso> ingresos, List<Egreso> egresos,
+                                                            List<ReglaVinculacion> reglas) {
         RestanteVinculacion restanteVinculacion = new RestanteVinculacion(ingresos, egresos);
         if (criteriosVinculacion != null){
             for (CriterioVinculacion criterioVinculacion : criteriosVinculacion){
                 restanteVinculacion = criterioVinculacion
                         .ejecutarAlgoritmoVinculacion(restanteVinculacion.getIngresoList(),
-                                restanteVinculacion.getEgresoList());
-                if (restanteVinculacion.getEgresoList().isEmpty() || restanteVinculacion.getIngresoList().isEmpty()){
+                                restanteVinculacion.getEgresoList(), reglas);
+                if (restanteVinculacion == null || restanteVinculacion.getEgresoList().isEmpty() ||
+                        restanteVinculacion.getIngresoList().isEmpty()){
                     return restanteVinculacion;
                 }
             }

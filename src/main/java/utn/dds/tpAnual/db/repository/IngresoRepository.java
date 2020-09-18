@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface IngresoRepository extends JpaRepository<Ingreso, Long> {
 
-    @Query("SELECT i FROM Ingreso i WHERE i.entidadRealizadora = :entidad")
+    @Query("SELECT i FROM Ingreso i WHERE i.entidadRealizadora = :entidad AND i.EgresosAsociados IS EMPTY")
     List<Ingreso> getIngresosByEntidadRealizadora(@Param("entidad") Entidad entidad);
 
     @Query("SELECT i FROM Ingreso i WHERE i.codigoOperacion = :codigo")

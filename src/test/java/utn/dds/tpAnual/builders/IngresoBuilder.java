@@ -1,5 +1,6 @@
 package utn.dds.tpAnual.builders;
 
+import org.apache.tomcat.jni.Local;
 import utn.dds.tpAnual.db.entity.categorizacion.criterioCompra.CriterioCompra;
 import utn.dds.tpAnual.db.entity.categorizacion.criterioCompra.CriterioMenorPrecio;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
@@ -60,8 +61,7 @@ public class IngresoBuilder {
     }
     
 
-
-	public Ingreso buildIngresoCompleto(){
+    public Ingreso buildIngresoCompletoWithFecha(LocalDate localDate){
 		codigoOperacion = 124312;
 
 		documentoComercial = new DocumentoComercial();
@@ -69,13 +69,14 @@ public class IngresoBuilder {
 		documentoComercial.setTipoDocumento(5);
 
 		entidadRealizadora = null;
-		fecha = LocalDate.now();
+		fecha = localDate;
 		descripcion = "Ingreso de prueba";
 		total = 100000F;
 
-		Egreso otroEgreso = new EgresoBuilder().buildOtroEgresoCompleto();
-		EgresosAsociados.add(otroEgreso);
-
 		return build();
+	}
+
+	public Ingreso buildIngresoCompleto(){
+		return buildIngresoCompletoWithFecha(LocalDate.now());
 	}
 }
