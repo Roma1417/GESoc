@@ -16,7 +16,6 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long> {
     List<Egreso> getEgresosByEntidadRealizadora(@Param("entidad") Entidad entidad);
 
     @Query("SELECT e FROM Egreso e " +
-            " LEFT JOIN FETCH e.detallesOperacion do " +
             " LEFT JOIN FETCH e.presupuestos p " +
             " LEFT JOIN FETCH e.revisores us " +
             " LEFT JOIN FETCH us.bandejaMensajes m " +
@@ -24,7 +23,6 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long> {
     List<Egreso> getEgresoById(@Param("operacionIdEgreso")Long operacionId);
 
     @Query("SELECT e FROM Egreso e " +
-            " LEFT JOIN FETCH e.detallesOperacion do " +
             " LEFT JOIN FETCH e.presupuestos p " +
             " LEFT JOIN FETCH e.revisores u " +
             " LEFT JOIN FETCH u.bandejaMensajes m " +

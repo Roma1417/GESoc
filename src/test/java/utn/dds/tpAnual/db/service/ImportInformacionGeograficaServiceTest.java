@@ -1,14 +1,22 @@
 package utn.dds.tpAnual.db.service;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import utn.dds.tpAnual.db.api.dto.PaisDTO;
 import utn.dds.tpAnual.db.api.service.MercadoLibreAPIService;
 import utn.dds.tpAnual.db.entity.ubicacion.Ciudad;
 import utn.dds.tpAnual.db.entity.ubicacion.Estado;
@@ -18,13 +26,17 @@ import utn.dds.tpAnual.db.repository.PaisRepository;
 import utn.dds.tpAnual.db.scheduler.ProgramadorDeTareas;
 
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
 @MockBean(ProgramadorDeTareas.class)
+@DataJpaTest(showSql=false)
+@DirtiesContext
+@AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
 public class ImportInformacionGeograficaServiceTest {
 
     @Autowired
@@ -32,6 +44,9 @@ public class ImportInformacionGeograficaServiceTest {
 
     @Autowired
     private PaisService paisService;
+
+    @MockBean
+    private MercadoLibreAPIService mercadoLibreAPIService;
 
     @Autowired
     private EstadoService estadoService;
@@ -41,6 +56,19 @@ public class ImportInformacionGeograficaServiceTest {
 
     @Autowired
     private MonedaService monedaService;
+
+    @Before
+    public void setUp() {
+        MockitoAnnotations.initMocks(this);
+        PaisDTO argentina = new PaisDTO();
+        argentina.setId("AR");
+        argentina.setName("Argentina");
+        Mockito.when(mercadoLibreAPIService.getPaises()).thenReturn(Arrays.asList(argentina));
+        Mockito.when(mercadoLibreAPIService.getMonedas()).thenCallRealMethod();
+        Mockito.when(mercadoLibreAPIService.getCiudadDetail(any(String.class))).thenCallRealMethod();
+        Mockito.when(mercadoLibreAPIService.getPaisDetail(any(String.class))).thenCallRealMethod();
+        Mockito.when(mercadoLibreAPIService.getEstadoDetail(any(String.class))).thenCallRealMethod();
+    }
 
     @Test
     public void importaArgentina(){
@@ -67,6 +95,7 @@ public class ImportInformacionGeograficaServiceTest {
 
     @Test
     public void importaEstadosSinRepetir(){
+        importInformacionGeograficaService.importPaises();
         importInformacionGeograficaService.importEstados();
         importInformacionGeograficaService.importEstados();
         List<Estado> estados = estadoService.getEstadosByIdAPI("TUxBUENBVGFiY2Fm");
@@ -84,6 +113,8 @@ public class ImportInformacionGeograficaServiceTest {
 
     @Test
     public void importaCiudadesSinRepetir(){
+        importInformacionGeograficaService.importPaises();
+        importInformacionGeograficaService.importEstados();
         importInformacionGeograficaService.importCiudades();
         List<Ciudad> ciudades = ciudadService.getCiudadesByIdAPI("TUxBQ0FWRTc5OTQ1");
         assertTrue(ciudades.size() == 1);

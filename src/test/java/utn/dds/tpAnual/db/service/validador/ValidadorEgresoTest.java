@@ -3,8 +3,11 @@ package utn.dds.tpAnual.db.service.validador;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import utn.dds.tpAnual.builders.EgresoBuilder;
@@ -18,8 +21,10 @@ import utn.dds.tpAnual.db.service.EgresoService;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
 @MockBean(ProgramadorDeTareas.class)
+@DataJpaTest(showSql=false)
+@DirtiesContext
+@AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
 public class ValidadorEgresoTest {
 
     @Autowired

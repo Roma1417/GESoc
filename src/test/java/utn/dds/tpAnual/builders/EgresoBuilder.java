@@ -79,7 +79,6 @@ public class EgresoBuilder {
     public Egreso buildEgresoSinPresupuestos(){
     	revisores.add(new UsuarioBuilder().withNombre("unRevisor").withContrasenia("asndihg382").build());
     	revisores.add(new UsuarioBuilder().withNombre("otroRevisor").withContrasenia("wuiefnwi471").build());
-    	criterioCompra = CriterioMenorPrecio.getInstance();
     	codigoOperacion = 542;
     	cantidadPresupuestosMinimos = 2;
 		documentoComercial = new DocumentoComercial();

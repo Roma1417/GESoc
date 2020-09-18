@@ -126,6 +126,9 @@ public class Usuario {
 	}
 	
 	public void recibirMensaje(Mensaje mensaje) {
+		if (bandejaMensajes == null){
+			bandejaMensajes = new HashSet<>();
+		}
 		bandejaMensajes.add(mensaje);
 	}
 		

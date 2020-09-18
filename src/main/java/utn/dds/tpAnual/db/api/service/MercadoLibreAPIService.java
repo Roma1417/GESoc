@@ -28,39 +28,42 @@ public class MercadoLibreAPIService implements GetGeographicalAPI {
     private final String ESTADO_ENDPOINT = "/classified_locations/states/";
     private final String CIUDAD_ENDPOINT = "/classified_locations/cities/";
     private final String MONEDA_ENDPOINT = "/currencies/";
-    private final Gson gson = new Gson();
+    
+    private Gson getGson(){
+        return new Gson();
+    }
     @Override
     public List<PaisDTO> getPaises() {
         String json = get(URL_MERCADO_LIBRE + PAISES_ENDPOINT);
-        List<PaisDTO> paises = gson.fromJson(json, new TypeToken<List<PaisDTO>>(){}.getType());
+        List<PaisDTO> paises = getGson().fromJson(json, new TypeToken<List<PaisDTO>>(){}.getType());
         return paises;
     }
     
     @Override
     public PaisDTO getPaisDetail(String id) {
     	String json = get(URL_MERCADO_LIBRE + PAISES_ENDPOINT + id);
-    	PaisDTO pais = gson.fromJson(json, PaisDTO.class);
+    	PaisDTO pais = getGson().fromJson(json, PaisDTO.class);
     	return pais;
     }
 
     @Override
     public EstadoDTO getEstadoDetail(String id) {
         String json = get(URL_MERCADO_LIBRE + ESTADO_ENDPOINT + id);
-        EstadoDTO estado = gson.fromJson(json, EstadoDTO.class);
+        EstadoDTO estado = getGson().fromJson(json, EstadoDTO.class);
         return estado;
     }
 
     @Override
     public CiudadDTO getCiudadDetail(String id) {
         String json = get(URL_MERCADO_LIBRE + CIUDAD_ENDPOINT + id);
-        CiudadDTO ciudad = gson.fromJson(json, CiudadDTO.class);
+        CiudadDTO ciudad = getGson().fromJson(json, CiudadDTO.class);
         return ciudad;
     }
 
     @Override
     public List<MonedaDTO> getMonedas(){
         String json = get(URL_MERCADO_LIBRE + MONEDA_ENDPOINT);
-        List<MonedaDTO> monedas = gson.fromJson(json, new TypeToken<List<MonedaDTO>>(){}.getType());
+        List<MonedaDTO> monedas = getGson().fromJson(json, new TypeToken<List<MonedaDTO>>(){}.getType());
         return monedas;
     }
 
