@@ -13,9 +13,9 @@ import utn.dds.tpAnual.db.entity.afip.tamanios.MedianaTramo1;
 import utn.dds.tpAnual.db.entity.afip.tamanios.MedianaTramo2;
 import utn.dds.tpAnual.db.entity.afip.tamanios.Micro;
 import utn.dds.tpAnual.db.entity.afip.tamanios.Pequenia;
-import utn.dds.tpAnual.entidad.EntidadJuridica;
-import utn.dds.tpAnual.entidad.EntidadJuridicaEmpresa;
-import utn.dds.tpAnual.entidad.EntidadJuridicaOSC;
+import utn.dds.tpAnual.db.entity.entidad.EntidadJuridica;
+import utn.dds.tpAnual.db.entity.entidad.EntidadJuridicaEmpresa;
+import utn.dds.tpAnual.db.entity.entidad.EntidadJuridicaOSC;
 
 public class LectorOrganizacion extends Lector{
 	

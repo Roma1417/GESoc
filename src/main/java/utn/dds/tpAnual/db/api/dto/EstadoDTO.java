@@ -56,6 +56,6 @@ public class EstadoDTO {
 	}
 	
 	public Estado toEstado() {
-		return new Estado(country.toPais(), name, id);
+		return new Estado(this.country == null? null : country.toPais(), name, id);
 	}
 }

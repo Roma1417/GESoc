@@ -3,13 +3,13 @@ package utn.dds.tpAnual.db.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import utn.dds.tpAnual.db.repository.PaisRepository;
 import utn.dds.tpAnual.db.entity.ubicacion.Pais;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.*;
 
 @Service
 public class PaisService extends CustomJPAService<Pais> {
@@ -21,7 +21,6 @@ public class PaisService extends CustomJPAService<Pais> {
     public JpaRepository<Pais, Long> getRepository() {
         return paisRepository;
     }
-
 
     public void guardarSiNoExiste(List<Pais> paisesAGuardar) {
         HashMap<String, Pais> paisMap = new HashMap<>();
@@ -35,5 +34,14 @@ public class PaisService extends CustomJPAService<Pais> {
 
         Collection<Pais> paisesRestantes = paisMap.values();
         paisRepository.saveAll(paisesRestantes);
+    }
+
+    public Pais getPrimerPaisByNombre(String nombrePais){
+        List<Pais> paises = paisRepository.getAllByDescripciones(Arrays.asList(nombrePais));
+        return paises.isEmpty() ? null : paises.get(0);
+    }
+
+    public List<Pais> getPaisesByNombre(String nombrePais){
+        return paisRepository.getAllByDescripciones(Arrays.asList(nombrePais));
     }
 }

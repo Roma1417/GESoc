@@ -1,5 +1,7 @@
 package utn.dds.tpAnual.db.entity.proveedor;
 
+import utn.dds.tpAnual.db.entity.ubicacion.DireccionPostal;
+
 import javax.persistence.*;
 
 /**
@@ -17,11 +19,19 @@ public abstract class Proveedor {
 	@Column(name = "ID", unique = true, nullable = false)
 	private Long proveedorId;
 
-	@Column(name = "DIR_POSTAL", nullable = false)
-	private int direccionPostal;
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private DireccionPostal direccionPostal;
 
 	public Proveedor() {
 
+	}
+
+	public DireccionPostal getDireccionPostal() {
+		return direccionPostal;
+	}
+
+	public void setDireccionPostal(DireccionPostal direccionPostal) {
+		this.direccionPostal = direccionPostal;
 	}
 
 	public Long getProveedorId() {
@@ -32,15 +42,7 @@ public abstract class Proveedor {
 		this.proveedorId = proveedorId;
 	}
 
-	public int getDireccionPostal() {
-		return direccionPostal;
-	}
-
-	public void setDireccionPostal(int direccionPostal) {
-		this.direccionPostal = direccionPostal;
-	}
-
-	public Proveedor(int direccionPostal) {
+	public Proveedor(DireccionPostal direccionPostal) {
 		this.direccionPostal = direccionPostal;
 	}
 }

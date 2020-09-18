@@ -14,7 +14,7 @@ public class OperacionEfectuadaTest {
 
     @Test
     public void getTotalDeOperacionEfectuada() {
-    	Item itemTest = new Item(null, null);
+    	Item itemTest = new Item( null);
     	DetalleOperacion d1 = new DetalleOperacionBuilder()
     			.withItem(itemTest).withPrecio(50F).withCantidad(3).build();
     	DetalleOperacion d2 = new DetalleOperacionBuilder()

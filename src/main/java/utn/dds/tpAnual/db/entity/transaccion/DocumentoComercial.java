@@ -1,5 +1,8 @@
 package utn.dds.tpAnual.db.entity.transaccion;
 
+import utn.dds.tpAnual.db.entity.ubicacion.Moneda;
+import utn.dds.tpAnual.db.entity.ubicacion.Pais;
+
 import javax.persistence.*;
 
 /**
@@ -17,14 +20,27 @@ public class DocumentoComercial {
 	@Column(name = "ID", unique = true, nullable = false)
 	private Long idDocumento;
 
+	@Column(name = "NUMERO", nullable = false)
+	private int numero;
+
 	@Column(name = "TIPO_DOCUMENTO", nullable = false)
 	private int tipoDocumento;
 
-	@Column(name = "PAIS", nullable = false, length = 100)
-	private String pais;
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Pais pais;
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Moneda moneda;
 
 	public DocumentoComercial(){
 
+	}
+
+	public DocumentoComercial(int numero, int tipoDocumento, Pais pais, Moneda moneda) {
+		this.numero = numero;
+		this.tipoDocumento = tipoDocumento;
+		this.pais = pais;
+		this.moneda = moneda;
 	}
 
 	public Long getIdDocumento() {
@@ -43,11 +59,28 @@ public class DocumentoComercial {
 		this.tipoDocumento = tipoDocumento;
 	}
 
-	public String getPais() {
+	public Pais getPais() {
 		return pais;
 	}
 
-	public void setPais(String pais) {
+	public void setPais(Pais pais) {
 		this.pais = pais;
 	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+	public Moneda getMoneda() {
+		return moneda;
+	}
+
+	public void setMoneda(Moneda moneda) {
+		this.moneda = moneda;
+	}
+
 }

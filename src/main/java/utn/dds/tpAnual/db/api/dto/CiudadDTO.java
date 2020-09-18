@@ -54,7 +54,7 @@ public class CiudadDTO {
 	}
 
 	public Ciudad toCiudad() {
-		return new Ciudad(state.toEstado(), name, id);
+		return new Ciudad(this.state == null? null : state.toEstado(), name, id);
 	}
 
 }

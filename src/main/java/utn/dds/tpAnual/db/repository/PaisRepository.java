@@ -15,4 +15,6 @@ public interface PaisRepository extends JpaRepository<Pais, Long> {
     @Query("SELECT p FROM Pais p WHERE p.descripcion IN (:listadoNombres)")
     List<Pais> getAllByDescripciones(@Param("listadoNombres") Collection<String> descripciones);
 
+
+
 }
