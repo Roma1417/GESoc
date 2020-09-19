@@ -11,6 +11,7 @@ import utn.dds.tpAnual.db.entity.entidad.Entidad;
 import utn.dds.tpAnual.db.service.vinculacion.reglaVinculacion.ReglaFechaAceptable;
 import utn.dds.tpAnual.db.service.vinculacion.reglaVinculacion.ReglaVinculacion;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -41,11 +42,15 @@ public class Vinculador {
     }
     public void vincularEntidad(Entidad entidad){
         List<Egreso> egresos = egresoService.getEgresosVinculablesByEntidadRealizadora(entidad);
+        List<Egreso> backupEgresos = new ArrayList<>();
+        backupEgresos.addAll(egresos);
         List<Ingreso> ingresos = ingresoService.getIngresoVinculableByEntidadRealidadora(entidad);
+        List<Ingreso> backupIngresos = new ArrayList<>();
+        backupIngresos.addAll(ingresos);
         if (entidad.getCriterioVinculacion() != null) {
             entidad.getCriterioVinculacion().ejecutarAlgoritmoVinculacion(ingresos, egresos, getReglas());
-            egresoService.saveAll(egresos);
-            ingresoService.saveAll(ingresos);
+            egresoService.saveAll(backupEgresos);
+            ingresoService.saveAll(backupIngresos);
         }
     }
 }
