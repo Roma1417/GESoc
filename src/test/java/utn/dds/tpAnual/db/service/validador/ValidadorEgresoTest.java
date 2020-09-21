@@ -57,17 +57,7 @@ public class ValidadorEgresoTest {
 				egresoObtenido.getResultadoValidacion()
 						.equals(configuracionService.getValue(ConfiguracionEnum.MENSAJE_ERRONEO)));
 	}	
-/*
-	@Test
-	public void egresoConDetallesDeDistintoTamanio() {
-		Egreso egresoConDetallesDeDistintoTamanio = new EgresoBuilder().buildEgresoConDetallesDeDistintoTamanio();
-		egresoService.save(egresoConDetallesDeDistintoTamanio);
-		validador.validarEgresos();
-		Egreso egresoObtenido = egresoService.getEgresoById(egresoConDetallesDeDistintoTamanio.getOperacionId());
-		assertTrue(!egresoObtenido.getEsValidacionCorrecta() &&
-				egresoObtenido.getResultadoValidacion()
-						.equals(configuracionService.getValue(ConfiguracionEnum.MENSAJE_ERRONEO)));
-	}/// error de Transcient algo   */
+
 
 	@Test
 	public void egresoConDistintosPrecios() {
@@ -89,16 +79,6 @@ public class ValidadorEgresoTest {
 		String mensaje = egresoObtenido.getRevisores().stream().findAny().get().getBandejaMensajes().stream().findAny().get().getCuerpo();
 		assertTrue( mensaje.equals(ConfiguracionEnum.MENSAJE_ERRONEO.getDefaultValue()));
 	}
-/*
-	@Test
-	public void egresoValidoConNotificacionDeExito() {
-		Egreso egresoCumplidor = new EgresoBuilder().buildEgresoCumplidor();
-		egresoService.save(egresoCumplidor);
-		validador.validarEgresos();
-		Egreso egresoObtenido = egresoService.getEgresoById(egresoCumplidor.getOperacionId());
-		String mensaje = egresoObtenido.getRevisores().stream().findAny().get().getBandejaMensajes().stream().findAny().get().getCuerpo();
-		assertTrue( mensaje.equals(ConfiguracionEnum.MENSAJE_CORRECTO.getDefaultValue()));
-	} /// error en size() De detalles operacion  del egreso*/
 
 }
 
