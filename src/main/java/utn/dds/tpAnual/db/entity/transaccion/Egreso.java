@@ -35,7 +35,6 @@ public class Egreso extends OperacionEfectuada {
 	private Proveedor proveedor;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "EGRESO_ID")
 	private Set<Usuario> revisores;
 
 	@Column(name = "RESULTADO_VALIDACION")
