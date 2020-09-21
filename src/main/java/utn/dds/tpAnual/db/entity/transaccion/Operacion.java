@@ -26,7 +26,7 @@ public abstract class Operacion {
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Entidad entidadRealizadora;
 
-	@Column(name = "CODIGO")
+	@Column(name = "CODIGO_OPERACION")
 	private int codigoOperacion;
 
 	@Column(name = "FECHA_CREACION")
