@@ -18,10 +18,10 @@ import utn.dds.tpAnual.db.entity.transaccion.DetalleOperacion;
 import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.entity.transaccion.Ingreso;
 import utn.dds.tpAnual.db.scheduler.ProgramadorDeTareas;
-import utn.dds.tpAnual.db.service.CriterioVinculacionService;
-import utn.dds.tpAnual.db.service.EgresoService;
-import utn.dds.tpAnual.db.service.EntidadService;
-import utn.dds.tpAnual.db.service.IngresoService;
+import utn.dds.tpAnual.db.service.jpaService.CriterioVinculacionService;
+import utn.dds.tpAnual.db.service.jpaService.EgresoService;
+import utn.dds.tpAnual.db.service.jpaService.EntidadService;
+import utn.dds.tpAnual.db.service.jpaService.IngresoService;
 
 import java.time.LocalDate;
 import java.util.Arrays;

@@ -9,12 +9,13 @@ import utn.dds.tpAnual.db.api.dto.PaisDTO;
 import utn.dds.tpAnual.db.api.service.MercadoLibreAPIService;
 import utn.dds.tpAnual.db.entity.ubicacion.Ciudad;
 import utn.dds.tpAnual.db.entity.ubicacion.Moneda;
-import utn.dds.tpAnual.db.service.EstadoService;
-import utn.dds.tpAnual.db.service.PaisService;
+import utn.dds.tpAnual.db.service.jpaService.CiudadService;
+import utn.dds.tpAnual.db.service.jpaService.EstadoService;
+import utn.dds.tpAnual.db.service.jpaService.MonedaService;
+import utn.dds.tpAnual.db.service.jpaService.PaisService;
 import utn.dds.tpAnual.db.entity.ubicacion.Estado;
 import utn.dds.tpAnual.db.entity.ubicacion.Pais;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
