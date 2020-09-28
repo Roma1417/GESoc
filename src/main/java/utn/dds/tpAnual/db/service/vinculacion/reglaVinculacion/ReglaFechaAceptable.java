@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import utn.dds.tpAnual.db.configuracion.ConfiguracionEnum;
 import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.entity.transaccion.Ingreso;
-import utn.dds.tpAnual.db.service.ConfiguracionService;
+import utn.dds.tpAnual.db.service.jpaService.ConfiguracionService;
 
 import java.time.temporal.ChronoUnit;
 

@@ -3,17 +3,13 @@ package utn.dds.tpAnual.db.service;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import utn.dds.tpAnual.db.api.dto.PaisDTO;
@@ -22,8 +18,11 @@ import utn.dds.tpAnual.db.entity.ubicacion.Ciudad;
 import utn.dds.tpAnual.db.entity.ubicacion.Estado;
 import utn.dds.tpAnual.db.entity.ubicacion.Moneda;
 import utn.dds.tpAnual.db.entity.ubicacion.Pais;
-import utn.dds.tpAnual.db.repository.PaisRepository;
 import utn.dds.tpAnual.db.scheduler.ProgramadorDeTareas;
+import utn.dds.tpAnual.db.service.jpaService.CiudadService;
+import utn.dds.tpAnual.db.service.jpaService.EstadoService;
+import utn.dds.tpAnual.db.service.jpaService.MonedaService;
+import utn.dds.tpAnual.db.service.jpaService.PaisService;
 
 
 import java.util.Arrays;
