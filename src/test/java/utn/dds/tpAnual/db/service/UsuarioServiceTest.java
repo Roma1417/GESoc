@@ -7,11 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import utn.dds.tpAnual.builders.UsuarioBuilder;
-import utn.dds.tpAnual.db.entity.usuario.Estandar;
-import utn.dds.tpAnual.db.entity.usuario.TipoUsuario;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.scheduler.ProgramadorDeTareas;
-import utn.dds.tpAnual.db.service.TipoUsuarioService;
+import utn.dds.tpAnual.db.service.jpaService.UsuarioService;
 
 import static org.junit.Assert.assertTrue;
 

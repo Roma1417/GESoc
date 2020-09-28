@@ -1,8 +1,6 @@
 package utn.dds.tpAnual.db.service.validador;
 
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +9,11 @@ import utn.dds.tpAnual.db.configuracion.ConfiguracionEnum;
 import utn.dds.tpAnual.db.entity.transaccion.DetallePrecio;
 import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.entity.transaccion.Presupuesto;
-import utn.dds.tpAnual.db.service.ConfiguracionService;
+import utn.dds.tpAnual.db.service.jpaService.ConfiguracionService;
 import utn.dds.tpAnual.db.entity.usuario.Mensaje;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
-import utn.dds.tpAnual.db.service.EgresoService;
-import utn.dds.tpAnual.db.service.UsuarioService;
+import utn.dds.tpAnual.db.service.jpaService.EgresoService;
+import utn.dds.tpAnual.db.service.jpaService.UsuarioService;
 
 
 /**

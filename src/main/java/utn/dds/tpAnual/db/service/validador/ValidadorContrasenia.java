@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import utn.dds.tpAnual.db.configuracion.ConfiguracionEnum;
-import utn.dds.tpAnual.db.service.ConfiguracionService;
+import utn.dds.tpAnual.db.service.jpaService.ConfiguracionService;
 
 @Service
 public class ValidadorContrasenia {
