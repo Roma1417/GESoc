@@ -47,6 +47,7 @@ public class JettyHibernateSpring {
                     .addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
                     .authorizeRequests()
                     .antMatchers(HttpMethod.POST, "/user").permitAll()
+                    .antMatchers(HttpMethod.GET, "/hi").permitAll()
                     .anyRequest().authenticated();
         }
     }
