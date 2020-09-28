@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import utn.dds.tpAnual.db.dto.UserDTO;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,7 +32,19 @@ public class UserController {
         String token = getJWTToken(username);
         UserDTO user = new UserDTO(username, token);
         return user;
+    }
 
+    //TODO: httponly
+    @PostMapping("login")
+    public String loginHttpOnly(@RequestParam("user") String username, @RequestParam("password") String pwd, HttpServletResponse response) {
+        //valido
+
+        // create a cookie
+        String token = getJWTToken(username);
+        Cookie cookie = new Cookie("Authorization", token);
+        //add cookie to response
+        response.addCookie(cookie);
+        return "Hecho";
     }
 
     private String getJWTToken(String username) {
