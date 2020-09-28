@@ -18,15 +18,16 @@ import java.util.stream.Collectors;
 public class UserController {
 
     @RequestMapping("test")
-    public String test(@RequestParam("id") String id){
-        return "Hi! "+ id;
+    public String test(@RequestParam("name") String name){
+        return "Hi! "+ name;
     }
 
     @PostMapping("user")
     public UserDTO login(@RequestParam("user") String username, @RequestParam("password") String pwd) {
         //Acá se validaría el usuario
+
+        //Si da ok
         String token = getJWTToken(username);
-        //Si ok
         UserDTO user = new UserDTO(username, token);
         return user;
 
