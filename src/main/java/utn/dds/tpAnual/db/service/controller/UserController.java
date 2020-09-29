@@ -2,6 +2,7 @@ package utn.dds.tpAnual.db.service.controller;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping("/api/user")
 public class UserController {
 
     @RequestMapping("hi")
@@ -26,11 +28,11 @@ public class UserController {
     }
 
     @RequestMapping("test")
-    public String test(@RequestParam("name") String name){
-        return "Hi! "+ name;
+    public String testPermission(){
+        return "Allowed!";
     }
 
-    @PostMapping("user")
+    @PostMapping("auth")
     public UserDTO login(@RequestParam("user") String username, @RequestParam("password") String pwd) {
         //Acá se validaría el usuario
 
@@ -40,21 +42,22 @@ public class UserController {
         return user;
     }
 
-    //TODO: httponly
-    @PostMapping("login")
-    public String loginHttpOnly(@RequestParam("user") String username, @RequestParam("password") String pwd, HttpServletResponse response) {
-        //valido
-
-        // create a cookie
-        String token = getJWTToken(username);
-        Cookie cookie = new Cookie("Authorization", token);
-        //add cookie to response
-        response.addCookie(cookie);
-        return "Hecho";
-    }
+//    //TODO: httponly
+//    @PostMapping("login")
+//    public String loginHttpOnly(@RequestParam("user") String username, @RequestParam("password") String pwd, HttpServletResponse response) {
+//        //valido
+//
+//        // create a cookie
+//        String token = getJWTToken(username);
+//        Cookie cookie = new Cookie("Authorization", token);
+//        //add cookie to response
+//        response.addCookie(cookie);
+//        return "Hecho";
+//    }
 
     private String getJWTToken(String username) {
         String secretKey = SecurityData.getInstance().getKey();
+        secretKey = "pepe";
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils
                 .commaSeparatedStringToAuthorityList("ROLE_USER");
 

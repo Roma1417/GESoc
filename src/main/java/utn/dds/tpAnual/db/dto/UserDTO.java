@@ -8,9 +8,9 @@ public class UserDTO {
 
     }
 
-    public UserDTO(String token, String username) {
-        this.token = token;
+    public UserDTO(String username, String token) {
         this.username = username;
+        this.token = token;
     }
 
     public String getToken() {
