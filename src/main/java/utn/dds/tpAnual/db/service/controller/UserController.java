@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import utn.dds.tpAnual.db.dto.UserDTO;
+import utn.dds.tpAnual.db.repository.UsuarioRepository;
+import utn.dds.tpAnual.db.service.business.UsuarioResourceBean;
+import utn.dds.tpAnual.db.service.jpaService.UsuarioService;
 import utn.dds.tpAnual.db.service.security.SecurityData;
 
 import javax.servlet.http.Cookie;
@@ -21,6 +24,9 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
+
+    @Autowired
+    private UsuarioResourceBean usuarioResourceBean;
 
     @RequestMapping("hi")
     public String helloMessage(){
@@ -34,46 +40,13 @@ public class UserController {
 
     @PostMapping("auth")
     public UserDTO login(@RequestParam("user") String username, @RequestParam("password") String pwd) {
-        //Acá se validaría el usuario
+        try{
+            return usuarioResourceBean.login(username, pwd);
+        } catch (SecurityException securityException){
+            throw securityException;
+        }
 
-        //Si da ok
-        String token = getJWTToken(username);
-        UserDTO user = new UserDTO(username, token);
-        return user;
     }
 
-//    //TODO: httponly
-//    @PostMapping("login")
-//    public String loginHttpOnly(@RequestParam("user") String username, @RequestParam("password") String pwd, HttpServletResponse response) {
-//        //valido
-//
-//        // create a cookie
-//        String token = getJWTToken(username);
-//        Cookie cookie = new Cookie("Authorization", token);
-//        //add cookie to response
-//        response.addCookie(cookie);
-//        return "Hecho";
-//    }
 
-    private String getJWTToken(String username) {
-        String secretKey = SecurityData.getInstance().getKey();
-        secretKey = "pepe";
-        List<GrantedAuthority> grantedAuthorities = AuthorityUtils
-                .commaSeparatedStringToAuthorityList("ROLE_USER");
-
-        String token = Jwts
-                .builder()
-                .setId("utn")
-                .setSubject(username)
-                .claim("authorities",
-                        grantedAuthorities.stream()
-                                .map(GrantedAuthority::getAuthority)
-                                .collect(Collectors.toList()))
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 600000))
-                .signWith(SignatureAlgorithm.HS512,
-                        secretKey.getBytes()).compact();
-
-        return "Bearer " + token;
-    }
 }

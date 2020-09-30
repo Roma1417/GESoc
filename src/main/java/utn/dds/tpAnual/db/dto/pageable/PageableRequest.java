@@ -1,6 +1,7 @@
 package utn.dds.tpAnual.db.dto.pageable;
 
 public class PageableRequest {
+    private String user;
     private Long itemsPerPage;
     private Long page;
 
@@ -8,7 +9,8 @@ public class PageableRequest {
 
     }
 
-    public PageableRequest(Long itemsPerPage, Long page) {
+    public PageableRequest(String user, Long itemsPerPage, Long page) {
+        this.user = user;
         this.itemsPerPage = itemsPerPage;
         this.page = page;
     }
@@ -27,5 +29,13 @@ public class PageableRequest {
 
     public void setPage(Long page) {
         this.page = page;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 }

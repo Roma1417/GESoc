@@ -20,9 +20,12 @@ public class UsuarioService extends CustomJPAService<Usuario> {
     }
 
     public Usuario getFirstUsuarioByNombre(String nombreUsuario){
-
         List<Usuario> usuarios = usuarioRepository.getUsuarioByNombre(nombreUsuario);
         return usuarios.isEmpty() ? null : usuarios.get(0);
 
+    }
+
+    public Usuario getUsuarioByUsername(String usuario) {
+        return usuarioRepository.getUsuarioByUsuario(usuario);
     }
 }
