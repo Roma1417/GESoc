@@ -49,5 +49,7 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long> {
                                       @Param("dontFilterCompany") boolean dontFilterByCompany,
                                       @Param("dateFrom")LocalDate from,
                                       @Param("dateTo") LocalDate to);
-
+    @Query("SELECT e FROM Egreso e " +
+            " WHERE (:cantidadPresupuestosMinimos IS NULL OR e.cantidadPresupuestosMinimos = :cantMinimos )")
+    Page<Egreso> getEgresosByCantidadPresupuestosMinimos(@Param("cantMinimos")Integer cantidadPresupuestosMinimos, Pageable pageable);
 }

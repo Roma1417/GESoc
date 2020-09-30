@@ -59,9 +59,9 @@ import java.util.List;
         return egresoRepository.getEgresoByCompanias(entidadesJuridicas, entidadesJuridicas.isEmpty(), from, to);
     }
 
-    public Page<Egreso> getEgresos(PageableRequest pageableRequest){
+    public Page<Egreso> getEgresosByCantidadPresupuestosMinimos(Integer cantidadPresupuestosMinimos, PageableRequest pageableRequest){
         Pageable pageable = PageRequest.of(pageableRequest.getPage().intValue(), pageableRequest.getItemsPerPage().intValue()
             , Sort.by(Sort.Order.desc("fechaOperacion")));
-        return egresoRepository.findAll(pageable);
+        return egresoRepository.getEgresosByCantidadPresupuestosMinimos(cantidadPresupuestosMinimos,pageable);
     }
 }
