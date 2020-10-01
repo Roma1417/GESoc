@@ -1,16 +1,16 @@
 package utn.dds.tpAnual.db.dto;
 
 public class UserDTO {
-    private String token;
     private String username;
+    private String token;
 
     public UserDTO(){
 
     }
 
-    public UserDTO(String token, String username) {
-        this.token = token;
+    public UserDTO(String username, String token) {
         this.username = username;
+        this.token = token;
     }
 
     public String getToken() {

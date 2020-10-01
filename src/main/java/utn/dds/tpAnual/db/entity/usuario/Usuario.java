@@ -28,6 +28,9 @@ public class Usuario {
 	@Column(name = "CANTIDAD_INTENTOS")
 	private int cantidadIntentos;
 
+	@Column(name = "USUARIO", unique = true, nullable = false)
+	private String usuario;
+
 	@Column(name = "CONTRASENIA", nullable = false)
 	private String contrasenia;
 
@@ -58,6 +61,11 @@ public class Usuario {
 	
 	public String getContrasenia() {
 		return contrasenia;
+	}
+
+	public boolean matchContrasenia(String contraseniaAComparar) {
+		//TODO hash
+		return contraseniaAComparar.equals(contrasenia);
 	}
 
 	public Set<Mensaje> getBandejaMensajes() {
@@ -106,6 +114,14 @@ public class Usuario {
 
 	public void setBandejaMensajes(Set<Mensaje> bandejaMensajes) {
 		this.bandejaMensajes = bandejaMensajes;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 	public boolean puedeLoguearse() {
