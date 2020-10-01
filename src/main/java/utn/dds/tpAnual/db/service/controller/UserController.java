@@ -5,6 +5,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,12 +41,13 @@ public class UserController {
 
     @PostMapping("auth")
     public UserDTO login(@RequestParam("user") String username, @RequestParam("password") String pwd) {
-        try{
-            return usuarioResourceBean.login(username, pwd);
-        } catch (SecurityException securityException){
-            throw securityException;
-        }
+        return usuarioResourceBean.login(username, pwd);
+    }
 
+    @RequestMapping("mensajes")
+    public UserDTO getMensajes() {
+        String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return usuarioResourceBean.getMensajes(username);
     }
 
 

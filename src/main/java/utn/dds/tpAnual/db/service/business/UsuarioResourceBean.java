@@ -49,4 +49,8 @@ public class UsuarioResourceBean {
 
         return "Bearer " + token;
     }
+
+    public UserDTO getMensajes(String username) {
+        return null;
+    }
 }
