@@ -29,7 +29,7 @@ public class ItemController {
     }
 
     @PatchMapping("categoria")
-    public ItemDTO vincularItemCategoria(ItemDTO itemDTO){
+    public ItemDTO vincularItemCategoria(@RequestBody ItemDTO itemDTO){
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ItemDTO itemVinculado = itemResourceBean.vincularCategoria(itemDTO);
         return itemVinculado;

@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 public abstract class CustomJPAService <T> {
 
@@ -28,5 +29,9 @@ public abstract class CustomJPAService <T> {
 
     public void deleteAllInBatch (){
         getRepository().deleteAllInBatch();
+    }
+
+    public Optional<T> findById(Long id){
+        return getRepository().findById(id);
     }
 }

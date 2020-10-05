@@ -40,8 +40,14 @@ public class UserController {
     }
 
     @PostMapping("auth")
-    public UserDTO login(@RequestParam("user") String username, @RequestParam("password") String pwd) {
-        return usuarioResourceBean.login(username, pwd);
+    public String login(@RequestParam("user") String username, @RequestParam("password") String pwd,
+                         HttpServletResponse response) {
+        UserDTO userDTO = usuarioResourceBean.login(username, pwd);
+        Cookie cookie = new Cookie("Authorization", userDTO.getToken());
+        cookie.setHttpOnly(true);
+        cookie.setMaxAge(600000);
+        response.addCookie(cookie);
+        return "Ok";
     }
 
     @RequestMapping("mensajes")

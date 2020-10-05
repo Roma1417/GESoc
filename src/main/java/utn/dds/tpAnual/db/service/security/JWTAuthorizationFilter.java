@@ -8,16 +8,19 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
-    private final String HEADER = "Authorization";
-    private final String PREFIX = "Bearer ";
+    private final String AUTH_COOKIE_NAME = "Authorization";
+    private final String PREFIX = "Bearer";
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
@@ -41,7 +44,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     }
 
     private Claims validateToken(HttpServletRequest request) {
-        String jwtToken = request.getHeader(HEADER).replace(PREFIX, "");
+        String jwtToken = getTokenCookieValue(request).replace(PREFIX, "");
         return Jwts.parser().setSigningKey(SecurityData.getInstance().getKey().getBytes())
                 .parseClaimsJws(jwtToken).getBody();
     }
@@ -62,10 +65,16 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     }
 
     private boolean existeJWTToken(HttpServletRequest request, HttpServletResponse res) {
-        String authenticationHeader = request.getHeader(HEADER);
-        if (authenticationHeader == null || !authenticationHeader.startsWith(PREFIX))
-            return false;
-        return true;
+        Optional<Cookie> authCookie = getTokenCookie(request);
+        return authCookie.isPresent();
+    }
+
+    private Optional<Cookie> getTokenCookie(HttpServletRequest request) {
+        return Arrays.stream(request.getCookies()).filter(cookie -> AUTH_COOKIE_NAME.equals(cookie.getName())).findFirst();
+    }
+
+    private String getTokenCookieValue(HttpServletRequest request){
+        return getTokenCookie(request).get().getValue();
     }
 
 }

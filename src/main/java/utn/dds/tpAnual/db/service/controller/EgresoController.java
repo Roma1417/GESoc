@@ -2,10 +2,7 @@ package utn.dds.tpAnual.db.service.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import utn.dds.tpAnual.db.dto.EgresoDTO;
 import utn.dds.tpAnual.db.dto.complex.VinculacionEgresoIngresoDTO;
 import utn.dds.tpAnual.db.dto.pageable.PageableRequest;
@@ -36,14 +33,14 @@ public class EgresoController {
     }
 
     @PostMapping("egreso")
-    public EgresoDTO crearEgreso(EgresoDTO egresoDTO){
+    public EgresoDTO crearEgreso(@RequestBody EgresoDTO egresoDTO){
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         EgresoDTO egresoCreado = egresoResourceBean.crearEgresos(egresoDTO);
         return egresoCreado;
     }
 
     @PostMapping("vincular")
-    public String vincularEgresoIngreso(VinculacionEgresoIngresoDTO vinculacion){
+    public String vincularEgresoIngreso(@RequestBody VinculacionEgresoIngresoDTO vinculacion){
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         egresoResourceBean.vincular(vinculacion);
         return "Ok";

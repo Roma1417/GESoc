@@ -5,7 +5,11 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public abstract class StandardDTO <T>{
+
     public abstract StandardDTO from(T object);
+
+    public abstract T toEntity();
+
     public List<StandardDTO> fromList(List<T> objectList){
         return objectList.stream().map(o -> from(o)).collect(Collectors.toList());
     }
