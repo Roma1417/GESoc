@@ -1,6 +1,7 @@
 package utn.dds.tpAnual.db.service.business;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import utn.dds.tpAnual.db.dto.ItemDTO;
 import utn.dds.tpAnual.db.dto.pageable.PageableRequest;
@@ -35,7 +36,7 @@ public class ItemResourceBean {
     }
 
     public PageableResponse<ItemDTO, Item> getItems(PageableRequest pageableRequest, String itemName) {
-
-        return null;
+        Page<Item> items = itemService.getItemsByDescripcionLike(itemName, pageableRequest);
+        return new PageableResponse().fromPage(items, new ItemDTO());
     }
 }

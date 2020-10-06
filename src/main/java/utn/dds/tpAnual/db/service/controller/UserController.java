@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api")
 public class UserController {
 
     @Autowired
@@ -46,6 +46,7 @@ public class UserController {
         Cookie cookie = new Cookie("Authorization", userDTO.getToken());
         cookie.setHttpOnly(true);
         cookie.setMaxAge(600000);
+        cookie.setPath(null);
         response.addCookie(cookie);
         return "Ok";
     }

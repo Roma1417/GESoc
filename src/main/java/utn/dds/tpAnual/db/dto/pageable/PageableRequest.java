@@ -9,7 +9,7 @@ public class PageableRequest {
 
     }
 
-    public PageableRequest(String user, Long itemsPerPage, Long page) {
+    public PageableRequest(String user, Long page, Long itemsPerPage) {
         this.user = user;
         this.itemsPerPage = itemsPerPage;
         this.page = page;
