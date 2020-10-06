@@ -36,17 +36,17 @@ public class ProgramadorDeTareas {
 		validadorEgresos.validarEgresos();
 	}
 
-	@Scheduled(fixedDelay = 600000)
+	//@Scheduled(fixedDelay = 600000)
 	public void importPaises(){
 		importInformacionGeograficaService.importPaises();
 	}
 
-	@Scheduled(fixedDelay = 600000)
+	//@Scheduled(fixedDelay = 600000)
 	public void importCiudades(){
 		importInformacionGeograficaService.importCiudades();
 	}
 
-	@Scheduled(fixedDelay = 600000)
+	//@Scheduled(fixedDelay = 600000)
 	public void importEstados(){
 		importInformacionGeograficaService.importEstados();
 	}

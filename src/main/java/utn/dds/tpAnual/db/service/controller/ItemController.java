@@ -12,6 +12,8 @@ import utn.dds.tpAnual.db.entity.transaccion.Ingreso;
 import utn.dds.tpAnual.db.service.business.EgresoResourceBean;
 import utn.dds.tpAnual.db.service.business.ItemResourceBean;
 
+import javax.xml.ws.RequestWrapper;
+
 @RestController
 @RequestMapping("/api/item")
 public class ItemController {
@@ -21,10 +23,11 @@ public class ItemController {
 
     @RequestMapping("item")
     public PageableResponse<ItemDTO, Ingreso> getItems(@RequestParam(name ="page", defaultValue = "1") Long page,
-                                                       @RequestParam(name ="itemsPerPage", defaultValue = "20") Long itemsPerPage){
+                                                       @RequestParam(name ="itemsPerPage", defaultValue = "20") Long itemsPerPage,
+                                                       @RequestParam(name ="name") String itemName){
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         PageableRequest pageableRequest = new PageableRequest(username, page, itemsPerPage);
-        PageableResponse<ItemDTO, Ingreso> items = itemResourceBean.getItems(pageableRequest);
+        PageableResponse<ItemDTO, Ingreso> items = itemResourceBean.getItems(pageableRequest, itemName);
         return items;
     }
 
