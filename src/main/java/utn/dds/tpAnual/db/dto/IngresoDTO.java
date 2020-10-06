@@ -10,4 +10,9 @@ public class IngresoDTO extends StandardDTO<Ingreso>{
         // paso de uno a otro
         return null;
     }
+
+    @Override
+    public Ingreso toEntity() {
+        return null;
+    }
 }

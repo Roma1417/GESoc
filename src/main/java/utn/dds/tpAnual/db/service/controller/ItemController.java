@@ -9,8 +9,11 @@ import utn.dds.tpAnual.db.dto.pageable.PageableRequest;
 import utn.dds.tpAnual.db.dto.pageable.PageableResponse;
 import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.entity.transaccion.Ingreso;
+import utn.dds.tpAnual.db.entity.transaccion.Item;
 import utn.dds.tpAnual.db.service.business.EgresoResourceBean;
 import utn.dds.tpAnual.db.service.business.ItemResourceBean;
+
+import javax.xml.ws.RequestWrapper;
 
 @RestController
 @RequestMapping("/api/item")
@@ -20,16 +23,17 @@ public class ItemController {
     private ItemResourceBean itemResourceBean;
 
     @RequestMapping("item")
-    public PageableResponse<ItemDTO, Ingreso> getItems(@RequestParam(name ="page", defaultValue = "1") Long page,
-                                                       @RequestParam(name ="itemsPerPage", defaultValue = "20") Long itemsPerPage){
+    public PageableResponse<ItemDTO, Item> getItems(@RequestParam(name ="page", defaultValue = "1") Long page,
+                                                       @RequestParam(name ="itemsPerPage", defaultValue = "20") Long itemsPerPage,
+                                                       @RequestParam(name ="name", required = false) String itemName){
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         PageableRequest pageableRequest = new PageableRequest(username, page, itemsPerPage);
-        PageableResponse<ItemDTO, Ingreso> items = itemResourceBean.getItems(pageableRequest);
+        PageableResponse<ItemDTO, Item> items = itemResourceBean.getItems(pageableRequest, itemName);
         return items;
     }
 
     @PatchMapping("categoria")
-    public ItemDTO vincularItemCategoria(ItemDTO itemDTO){
+    public ItemDTO vincularItemCategoria(@RequestBody ItemDTO itemDTO){
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ItemDTO itemVinculado = itemResourceBean.vincularCategoria(itemDTO);
         return itemVinculado;
