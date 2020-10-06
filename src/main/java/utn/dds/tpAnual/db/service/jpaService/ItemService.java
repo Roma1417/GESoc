@@ -28,7 +28,7 @@ public class ItemService extends CustomJPAService<Item> {
     }
 
     public Page<Item> getItemsByDescripcionLike (String descripcion, PageableRequest pageableRequest){
-        Pageable pageable = PageRequest.of(pageableRequest.getPage().intValue(), pageableRequest.getItemsPerPage().intValue());
+        Pageable pageable = pageableRequest.toPageable();
         return itemRepository.getItemsByDescripcionLike(descripcion,pageable);
     }
 

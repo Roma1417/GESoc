@@ -41,7 +41,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     }
 
     private boolean esPathSeguro(HttpServletRequest request) {
-        return !"/api/user/auth".equals(request.getRequestURI()) && !"/api/user/hi".equals(request.getRequestURI());
+        return !"/api/auth".equals(request.getRequestURI()) && !"/api/hi".equals(request.getRequestURI());
     }
 
     private Claims validateToken(HttpServletRequest request) {

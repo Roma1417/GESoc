@@ -25,7 +25,7 @@ public class ItemController {
     @RequestMapping("item")
     public PageableResponse<ItemDTO, Item> getItems(@RequestParam(name ="page", defaultValue = "1") Long page,
                                                        @RequestParam(name ="itemsPerPage", defaultValue = "20") Long itemsPerPage,
-                                                       @RequestParam(name ="name") String itemName){
+                                                       @RequestParam(name ="name", required = false) String itemName){
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         PageableRequest pageableRequest = new PageableRequest(username, page, itemsPerPage);
         PageableResponse<ItemDTO, Item> items = itemResourceBean.getItems(pageableRequest, itemName);

@@ -1,5 +1,7 @@
 package utn.dds.tpAnual.db.dto.pageable;
 
+import org.springframework.data.domain.PageRequest;
+
 public class PageableRequest {
     private String user;
     private Long itemsPerPage;
@@ -7,6 +9,10 @@ public class PageableRequest {
 
     public PageableRequest(){
 
+    }
+
+    public PageRequest toPageable () {
+        return PageRequest.of(getPage().intValue() - 1, getItemsPerPage().intValue());
     }
 
     public PageableRequest(String user, Long page, Long itemsPerPage) {
