@@ -19,13 +19,10 @@ import java.util.stream.Collectors;
 
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
-    private final String AUTH_COOKIE_NAME = "Authorization";
-    private final String PREFIX = "Bearer";
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
         try {
-            if (existeJWTToken(request, response)) {
+            if (existeJWTToken(request, response) && esPathSeguro(request)) {
                 Claims claims = validateToken(request);
                 if (claims.get("authorities") != null) {
                     setUpSpringAuthentication(claims);
@@ -43,8 +40,12 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
         }
     }
 
+    private boolean esPathSeguro(HttpServletRequest request) {
+        return !"/api/user/auth".equals(request.getRequestURI()) && !"/api/user/hi".equals(request.getRequestURI());
+    }
+
     private Claims validateToken(HttpServletRequest request) {
-        String jwtToken = getTokenCookieValue(request).replace(PREFIX, "");
+        String jwtToken = getTokenCookieValue(request).replace(SecurityData.getInstance().getPREFIX(), "");
         return Jwts.parser().setSigningKey(SecurityData.getInstance().getKey().getBytes())
                 .parseClaimsJws(jwtToken).getBody();
     }
@@ -70,7 +71,8 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     }
 
     private Optional<Cookie> getTokenCookie(HttpServletRequest request) {
-        return Arrays.stream(request.getCookies()).filter(cookie -> AUTH_COOKIE_NAME.equals(cookie.getName())).findFirst();
+        return Arrays.stream(request.getCookies()).filter(cookie -> SecurityData.getInstance().getAUTH_COOKIE_NAME()
+                .equals(cookie.getName())).findFirst();
     }
 
     private String getTokenCookieValue(HttpServletRequest request){

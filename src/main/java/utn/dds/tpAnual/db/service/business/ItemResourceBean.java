@@ -34,7 +34,7 @@ public class ItemResourceBean {
         return new ItemDTO().from(item.get());
     }
 
-    public PageableResponse<ItemDTO, Ingreso> getItems(PageableRequest pageableRequest, String itemName) {
+    public PageableResponse<ItemDTO, Item> getItems(PageableRequest pageableRequest, String itemName) {
 
         return null;
     }

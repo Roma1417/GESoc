@@ -50,7 +50,7 @@ public class UsuarioResourceBean {
                 .signWith(SignatureAlgorithm.HS512,
                         secretKey.getBytes()).compact();
 
-        return "Bearer" + token;
+        return SecurityData.getInstance().getPREFIX() + token;
     }
 
     public UserDTO getMensajes(String username) {
