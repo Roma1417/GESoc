@@ -15,7 +15,7 @@ public class UsuarioBuilder {
         return this;
     }
     public Usuario build(){
-        return new Usuario(nombre, contrasenia);
+        return new Usuario(nombre, nombre, contrasenia);
     }
 	
 }

@@ -103,7 +103,7 @@ public class LectorEgreso extends Lector{
 	
 	private Usuario getRevisor() {
 		String nombre = getString("Ingrese el nombre del usuario");
-		return nombre == null? null : new Usuario(nombre, null);   
+		return nombre == null? null : new Usuario(nombre, null, null);
 	}
 	
 	private Set<Usuario> getRevisores() {

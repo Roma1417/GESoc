@@ -1,11 +1,13 @@
 package utn.dds.tpAnual.db.entity.usuario;
 
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.google.common.hash.Hashing;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import utn.dds.tpAnual.db.entity.afip.RequisitoSectorEmpresa;
 
@@ -47,9 +49,13 @@ public class Usuario {
 	@JoinColumn(name = "USUARIO_ID")
 	private Set<Mensaje> bandejaMensajes;
 	
-	public Usuario(String nombre, String contrasenia) {
+	public Usuario(String nombre, String usuario, String contrasenia) {
 		this.nombre = nombre;
-		this.contrasenia = contrasenia;
+		this.usuario = usuario;
+		String sha256hex = Hashing.sha256()
+				.hashString(contrasenia, StandardCharsets.UTF_8)
+				.toString();
+		this.contrasenia = sha256hex;
 	}
 
 	public Usuario() {
@@ -64,8 +70,10 @@ public class Usuario {
 	}
 
 	public boolean matchContrasenia(String contraseniaAComparar) {
-		//TODO hash
-		return contraseniaAComparar.equals(contrasenia);
+		String sha256hex = Hashing.sha256()
+				.hashString(contraseniaAComparar, StandardCharsets.UTF_8)
+				.toString();
+		return sha256hex.equals(contrasenia);
 	}
 
 	public Set<Mensaje> getBandejaMensajes() {
@@ -89,7 +97,10 @@ public class Usuario {
 	}
 
 	public void setContrasenia(String contrasenia) {
-		this.contrasenia = contrasenia;
+		String sha256hex = Hashing.sha256()
+				.hashString(contrasenia, StandardCharsets.UTF_8)
+				.toString();
+		this.contrasenia = sha256hex;
 	}
 
 	public LocalDateTime getFechaEspera() {
