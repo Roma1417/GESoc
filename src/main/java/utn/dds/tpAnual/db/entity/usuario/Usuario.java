@@ -43,13 +43,13 @@ public class Usuario {
 	@OneToMany(mappedBy="usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<UsuarioEntidad> usuariosEntidad;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "USUARIO_ID")
+	@OneToMany(mappedBy="usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Mensaje> bandejaMensajes;
 	
-	public Usuario(String nombre, String contrasenia) {
+	public Usuario(String nombre, String usuario, String contrasenia) {
 		this.nombre = nombre;
 		this.contrasenia = contrasenia;
+		this.usuario = usuario;
 	}
 
 	public Usuario() {
@@ -152,6 +152,7 @@ public class Usuario {
 	public String toString() {
 		return new ToStringBuilder(this)
 				.append("nombre", nombre)
+				.append("usuario", usuario)
 			    .append("contraseña", contrasenia)
 			    .append("\nmensajes", bandejaMensajes)
 			    .toString();

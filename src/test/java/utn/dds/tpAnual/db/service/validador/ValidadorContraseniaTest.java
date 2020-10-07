@@ -27,6 +27,7 @@ public class ValidadorContraseniaTest {
     	Usuario usuario = new UsuarioBuilder()
     			.withNombre("un usuario")
     			.withContrasenia("q1w2e3r4t5")
+				.withUsuario("unusuario")
     			.build();
     	assertFalse(validadorTest.esContraseniaValida(usuario));
     }
@@ -36,6 +37,7 @@ public class ValidadorContraseniaTest {
     	Usuario usuario = new UsuarioBuilder()
     			.withNombre("un usuario")
     			.withContrasenia("vjht008")
+				.withUsuario("unusuario2")
     			.build();
     	assertFalse(validadorTest.esContraseniaValida(usuario));
     }
@@ -45,6 +47,7 @@ public class ValidadorContraseniaTest {
     	Usuario usuario = new UsuarioBuilder()
     			.withNombre("un usuario valido")
     			.withContrasenia("superContraseniaSegura123")
+				.withUsuario("unusuariovalido")
     			.build();
     	assertTrue(validadorTest.esContraseniaValida(usuario));
     }
@@ -54,6 +57,7 @@ public class ValidadorContraseniaTest {
     	Usuario usuario = new UsuarioBuilder()
     			.withNombre("Usuario")
     			.withContrasenia("SuperContraseniaSegura123DeUsuario")
+				.withUsuario("usuarioprohibido")
     			.build();
     	assertFalse(validadorTest.esContraseniaValida(usuario));
     }
@@ -63,6 +67,7 @@ public class ValidadorContraseniaTest {
     	Usuario usuario = new UsuarioBuilder()
     			.withNombre("usuario")
     			.withContrasenia("informacion")
+				.withUsuario("usuarioinfo")
     			.build();
     	assertFalse(validadorTest.esContraseniaValida(usuario));
     }
@@ -72,6 +77,7 @@ public class ValidadorContraseniaTest {
     	Usuario usuario = new UsuarioBuilder()
     			.withNombre("usuario")
     			.withContrasenia("michelle")
+				.withUsuario("michelleusuario")
     			.build();
     	assertFalse(validadorTest.esContraseniaValida(usuario));
     }
@@ -81,6 +87,7 @@ public class ValidadorContraseniaTest {
     	Usuario usuario = new UsuarioBuilder()
     			.withNombre("un usuario valido")
     			.withContrasenia("contraseniaNoTanSegura1234")
+				.withUsuario("unusuariovalido2")
     			.build();
     	assertFalse(validadorTest.esContraseniaValida(usuario));
     }
@@ -90,6 +97,7 @@ public class ValidadorContraseniaTest {
     	Usuario usuario = new UsuarioBuilder()
     			.withNombre("un usuario valido")
     			.withContrasenia("1contraseniaNoTaaaanSegura")
+				.withUsuario("unusuariovalido3")
     			.build();
     	assertFalse(validadorTest.esContraseniaValida(usuario));
     }
