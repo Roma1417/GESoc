@@ -26,7 +26,7 @@ public class IngresoServiceTest {
         Ingreso ingreso = new IngresoBuilder().buildIngresoCompleto();
         ingresoService.save(ingreso);
         Ingreso ingresoObtenido = ingresoService.getPrimerIngresoByCodigoOperacion(ingreso.getCodigoOperacion());
-        assertTrue(ingreso.getCodigoOperacion() == ingresoObtenido.getCodigoOperacion());
+        assertTrue(ingreso.getCodigoOperacion().equals(ingresoObtenido.getCodigoOperacion()));
     }
 
 }
