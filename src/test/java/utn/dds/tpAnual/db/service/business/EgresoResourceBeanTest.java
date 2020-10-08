@@ -67,7 +67,7 @@ public class EgresoResourceBeanTest {
     }
 
     @Test
-    public void vinculacionIngresoNoExistenteFails(){
+    public void vinculacionIngresoNoExistenteError(){
         EntidadJuridicaEmpresa entidad = new EntidadJuridicaEmpresaBuilder().withNombre("Entidad2").build();
         Egreso egreso = getMockEgreso(entidad);
 
@@ -82,7 +82,7 @@ public class EgresoResourceBeanTest {
     }
 
     @Test
-    public void vinculacionEgresoNoExistenteFails(){
+    public void vinculacionEgresoNoExistenteError(){
         EntidadJuridicaEmpresa entidad = new EntidadJuridicaEmpresaBuilder().withNombre("Entidad2").build();
         Ingreso ingreso = getMockIngreso(entidad);
 
@@ -97,7 +97,7 @@ public class EgresoResourceBeanTest {
     }
 
     @Test
-    public void vinculacionDistintaEntidadFails(){
+    public void vinculacionDistintaEntidadError(){
         EntidadJuridicaEmpresa entidad1 = new EntidadJuridicaEmpresaBuilder().withNombre("Entidad1").build();
         EntidadJuridicaEmpresa entidad2 = new EntidadJuridicaEmpresaBuilder().withNombre("Entidad2").build();
         Egreso egreso = getMockEgreso(entidad1);
@@ -116,7 +116,7 @@ public class EgresoResourceBeanTest {
     }
 
     @Test
-    public void vinculacionIngresoMenorEgresoFails(){
+    public void vinculacionIngresoMenorEgresoError(){
         EntidadJuridicaEmpresa entidad = new EntidadJuridicaEmpresaBuilder().withNombre("Entidad1").build();
         Egreso egreso = getMockEgreso(entidad);
         Ingreso ingreso = getMockIngreso(entidad);
@@ -134,7 +134,7 @@ public class EgresoResourceBeanTest {
     }
 
     @Test
-    public void vinculacionYaVinculadoFails(){
+    public void vinculacionYaVinculadoError(){
         EntidadJuridicaEmpresa entidad = new EntidadJuridicaEmpresaBuilder().withNombre("Entidad1").build();
         Egreso egreso = getMockEgreso(entidad);
         Ingreso ingreso = getMockIngreso(entidad);
