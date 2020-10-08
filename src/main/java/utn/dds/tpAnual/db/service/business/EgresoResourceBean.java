@@ -1,12 +1,14 @@
 package utn.dds.tpAnual.db.service.business;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import utn.dds.tpAnual.db.dto.transaccion.DetalleOperacionDTO;
 import utn.dds.tpAnual.db.dto.transaccion.EgresoDTO;
 import utn.dds.tpAnual.db.dto.complex.VinculacionEgresoIngresoDTO;
 import utn.dds.tpAnual.db.dto.pageable.PageableRequest;
 import utn.dds.tpAnual.db.dto.pageable.PageableResponse;
+import utn.dds.tpAnual.db.dto.transaccion.ItemDTO;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
 import utn.dds.tpAnual.db.entity.proveedor.Proveedor;
 import utn.dds.tpAnual.db.entity.transaccion.*;
@@ -56,7 +58,8 @@ public class EgresoResourceBean {
     private UsuarioService usuarioService;
 
     public PageableResponse<EgresoDTO, Egreso> getEgresos(PageableRequest pageableRequest, String categoria) {
-        return null;
+        Page<Egreso> egresos = egresoService.findAllRelatedByCategoria(pageableRequest, categoria);
+        return new PageableResponse().fromPage(egresos, new EgresoDTO());
     }
 
     public EgresoDTO crearEgreso(EgresoDTO egresoDTO, String username){
