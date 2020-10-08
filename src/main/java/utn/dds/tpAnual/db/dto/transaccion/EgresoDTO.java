@@ -27,7 +27,62 @@ public class EgresoDTO extends StandardDTO<Egreso> {
 
     @Override
     public Egreso toEntity() {
-        List<DetalleOperacion> detallesOperacion = DetalleOperacionDTO.toListStatic(detalles);
         return null;
+    }
+
+    public EntidadDTO getEntidadRealizadora() {
+        return entidadRealizadora;
+    }
+
+    public void setEntidadRealizadora(EntidadDTO entidadRealizadora) {
+        this.entidadRealizadora = entidadRealizadora;
+    }
+
+    public List<DetalleOperacionDTO> getDetalles() {
+        return detalles;
+    }
+
+    public void setDetalles(List<DetalleOperacionDTO> detalles) {
+        this.detalles = detalles;
+    }
+
+    public ProveedorDTO getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(ProveedorDTO proveedor) {
+        this.proveedor = proveedor;
+    }
+
+    public MedioPagoDTO getMedioPago() {
+        return medioPago;
+    }
+
+    public void setMedioPago(MedioPagoDTO medioPago) {
+        this.medioPago = medioPago;
+    }
+
+    public DocumentoComercialDTO getDocumentoComercial() {
+        return documentoComercial;
+    }
+
+    public void setDocumentoComercial(DocumentoComercialDTO documentoComercial) {
+        this.documentoComercial = documentoComercial;
+    }
+
+    public Integer getCodigoOperacion() {
+        return codigoOperacion;
+    }
+
+    public void setCodigoOperacion(Integer codigoOperacion) {
+        this.codigoOperacion = codigoOperacion;
+    }
+
+    public LocalDate getFechaOperacion() {
+        return fechaOperacion;
+    }
+
+    public void setFechaOperacion(LocalDate fechaOperacion) {
+        this.fechaOperacion = fechaOperacion;
     }
 }

@@ -3,11 +3,13 @@ package utn.dds.tpAnual.db.service.jpaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.repository.EntidadRepository;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Service
     public class EntidadService extends CustomJPAService<Entidad> {
@@ -52,5 +54,9 @@ import java.util.List;
                 save(entidad);
             }
         }
+    }
+
+    public Optional<Entidad> findAllRelated(Usuario usuario, Long idEntidad) {
+        return entidadRepository.findAllRelated(usuario.getUsuarioId(), idEntidad);
     }
 }
