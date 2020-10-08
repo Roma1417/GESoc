@@ -18,7 +18,7 @@ public class ProveedorDTO extends StandardDTO<Proveedor> {
     }
 
     @Override
-    public StandardDTO from(Proveedor object) {
+    public ProveedorDTO from(Proveedor object) {
         return null;
     }
 

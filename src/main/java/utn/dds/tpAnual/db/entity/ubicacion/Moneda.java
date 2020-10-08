@@ -16,13 +16,13 @@ public class Moneda {
 	@Column(name = "ID", unique = true, nullable = false)
 	private Long monedaId;
 	
-	@Column(name = "ID_API", unique = true, nullable = false)
+	@Column(name = "ID_API")
 	private String idAPI;
 	
-	@Column(name = "DESCRIPCION", unique = false, nullable = false)
+	@Column(name = "DESCRIPCION")
 	private String descripcion;
 	
-	@Column(name = "SIMBOLO", unique = false, nullable = false)
+	@Column(name = "SIMBOLO")
 	private String simbolo;
 	
 	public Moneda() {}
@@ -31,6 +31,10 @@ public class Moneda {
 		this.idAPI = idAPI;
 		this.descripcion = descripcion;
 		this.simbolo = simbolo;
+	}
+
+	public Moneda(String descripcion){
+		this.descripcion =  descripcion;
 	}
 	
 	public Long getMonedaId() {

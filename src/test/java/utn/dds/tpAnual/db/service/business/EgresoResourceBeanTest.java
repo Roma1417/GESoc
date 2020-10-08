@@ -1,5 +1,6 @@
 package utn.dds.tpAnual.db.service.business;
 
+import org.apache.tomcat.jni.Local;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,16 +13,29 @@ import utn.dds.tpAnual.builders.DetalleOperacionBuilder;
 import utn.dds.tpAnual.builders.EgresoBuilder;
 import utn.dds.tpAnual.builders.EntidadJuridicaEmpresaBuilder;
 import utn.dds.tpAnual.builders.IngresoBuilder;
-import utn.dds.tpAnual.db.dto.transaccion.EgresoDTO;
+import utn.dds.tpAnual.db.dto.entidad.EntidadDTO;
+import utn.dds.tpAnual.db.dto.proveedor.ProveedorDTO;
+import utn.dds.tpAnual.db.dto.transaccion.*;
 import utn.dds.tpAnual.db.dto.complex.VinculacionEgresoIngresoDTO;
+import utn.dds.tpAnual.db.dto.ubicacion.MonedaDTO;
+import utn.dds.tpAnual.db.dto.ubicacion.PaisDTO;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
+import utn.dds.tpAnual.db.entity.entidad.EntidadBase;
 import utn.dds.tpAnual.db.entity.entidad.EntidadJuridicaEmpresa;
-import utn.dds.tpAnual.db.entity.transaccion.Egreso;
-import utn.dds.tpAnual.db.entity.transaccion.Ingreso;
+import utn.dds.tpAnual.db.entity.proveedor.Proveedor;
+import utn.dds.tpAnual.db.entity.proveedor.ProveedorPersona;
+import utn.dds.tpAnual.db.entity.transaccion.*;
+import utn.dds.tpAnual.db.entity.ubicacion.Moneda;
+import utn.dds.tpAnual.db.entity.ubicacion.Pais;
+import utn.dds.tpAnual.db.entity.usuario.Admin;
+import utn.dds.tpAnual.db.entity.usuario.TipoUsuario;
+import utn.dds.tpAnual.db.entity.usuario.Usuario;
+import utn.dds.tpAnual.db.entity.usuario.UsuarioEntidad;
 import utn.dds.tpAnual.db.scheduler.ProgramadorDeTareas;
-import utn.dds.tpAnual.db.service.jpaService.EgresoService;
-import utn.dds.tpAnual.db.service.jpaService.EntidadService;
-import utn.dds.tpAnual.db.service.jpaService.IngresoService;
+import utn.dds.tpAnual.db.service.jpaService.*;
+
+import java.time.LocalDate;
+import java.util.Arrays;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -45,15 +59,23 @@ public class EgresoResourceBeanTest {
     @Autowired
     private EntidadService entidadService;
 
-    @Test
-    public void crearEgresoSinDetallesFails (){
-        EgresoDTO egresoDTO = new EgresoDTO();
+    @Autowired
+    private UsuarioService usuarioService;
 
-        assertThrows(RuntimeException.class,() -> {
-            egresoResourceBean.crearEgresos(egresoDTO);
-        });
+    @Autowired
+    private ProveedorService proveedorService;
 
-    }
+    @Autowired
+    private ItemService itemService;
+
+    @Autowired
+    private PaisService paisService;
+
+    @Autowired
+    private MonedaService monedaService;
+
+    @Autowired
+    private MedioPagoService medioPagoService;
 
     @Test
     public void vinculacionEgresoIngresoValidosSuccess(){
@@ -156,7 +178,6 @@ public class EgresoResourceBeanTest {
         });
     }
 
-
     private Ingreso getMockIngreso(Entidad entidad){
         return new IngresoBuilder()
                 .withEntidadRealizadora(entidad)
@@ -170,6 +191,102 @@ public class EgresoResourceBeanTest {
                 .withEntidadRealizadora(entidad)
                 .withCodigoOperacion(1)
                 .build();
+    }
+
+
+    @Test
+    public void crearEgresoSinDetallesError (){
+        Entidad entidad = getTestEntidad("1");
+        Usuario usuario = getTestUsuario(entidad);
+        EgresoDTO egresoDTO = new EgresoDTO();
+
+        assertThrows(RuntimeException.class,() -> {
+            egresoResourceBean.crearEgreso(egresoDTO, usuario.getUsuario());
+        });
+    }
+
+    @Test
+    public void crearEgresoCompletoSuccess (){
+        Entidad entidad = getTestEntidad("1");
+        EntidadDTO entidadDTO = new EntidadDTO();
+        Usuario usuario = getTestUsuario(entidad);
+        EgresoDTO egresoDTO = new EgresoDTO();
+
+        entidadDTO.setIdEntidad(entidad.getEntidadId());
+
+        egresoDTO.setCantidadPresupuestosMinimos(1);
+        egresoDTO.setCodigoOperacion(1);
+        egresoDTO.setFechaOperacion(LocalDate.now());
+        egresoDTO.setPresupuestos(null);
+        egresoDTO.setProveedor(getTestProveedor());
+        egresoDTO.setDetalles(Arrays.asList(getTestDetalle()));
+        egresoDTO.setDocumentoComercial(getTestDocumentoComercial());
+        egresoDTO.setEntidadRealizadora(entidadDTO);
+        egresoDTO.setMedioPago(getTestMedioPago());
+
+        egresoResourceBean.crearEgreso(egresoDTO, usuario.getUsuario());
+        assertTrue(true);
+    }
+
+    private MedioPagoDTO getTestMedioPago(){
+        MedioPago medioPago = new MedioPago();
+        medioPago.setInstrumentoPago("Tarjeta");
+        medioPagoService.save(medioPago);
+        MedioPagoDTO medioPagoDTO = new MedioPagoDTO();
+        medioPagoDTO.setIdMedioPago(medioPago.getMedioPagoId());
+        return medioPagoDTO;
+    }
+
+    private DocumentoComercialDTO getTestDocumentoComercial() {
+        Pais pais = new Pais("Argentina");
+        Moneda moneda = new Moneda("Australes");
+        paisService.save(pais);
+        monedaService.save(moneda);
+
+        PaisDTO paisDTO = new PaisDTO();
+        paisDTO.setIdPais(pais.getPaisId());
+
+        MonedaDTO monedaDTO = new MonedaDTO();
+        monedaDTO.setIdMoneda(moneda.getMonedaId());
+
+        DocumentoComercialDTO documentoComercialDTO = new DocumentoComercialDTO();
+        documentoComercialDTO.setTipoDocumento(1);
+        documentoComercialDTO.setNumero(123);
+        documentoComercialDTO.setPais(paisDTO);
+        documentoComercialDTO.setMoneda(monedaDTO);
+        return documentoComercialDTO;
+    }
+
+    private ProveedorDTO getTestProveedor() {
+        Proveedor proveedor = new ProveedorPersona(null, "Juan", "132224243");
+        proveedorService.save(proveedor);
+        ProveedorDTO proveedorDTO = new ProveedorDTO();
+        proveedorDTO.setIdProveedor(proveedor.getProveedorId());
+        return proveedorDTO;
+    }
+
+    private Entidad getTestEntidad(String name){
+        EntidadJuridicaEmpresa entidad = new EntidadJuridicaEmpresaBuilder().withNombre(name).build();
+        entidadService.save(entidad);
+        return entidad;
+    }
+
+    private DetalleOperacionDTO getTestDetalle(){
+        Item item = new Item("Heladera");
+        DetalleOperacionDTO detalleOperacion = new DetalleOperacionDTO();
+        detalleOperacion.setCantidad(5);
+        detalleOperacion.setPrecio(10F);
+        itemService.save(item);
+        detalleOperacion.setItem(new ItemDTO(item.getItemId(), null, null , null));
+        return detalleOperacion;
+    }
+
+    private Usuario getTestUsuario(Entidad entidad){
+        Usuario usuario = new Usuario("pepe", "pepe", "pepa");
+        TipoUsuario tipoUsuario = new Admin();
+        usuario.setUsuariosEntidad(Arrays.asList(new UsuarioEntidad(entidad, tipoUsuario, usuario)));
+        usuarioService.save(usuario);
+        return usuario;
     }
 
 

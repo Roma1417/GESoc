@@ -1,6 +1,7 @@
 package utn.dds.tpAnual.db.service.rules;
 
 import utn.dds.tpAnual.db.dto.transaccion.DetalleOperacionDTO;
+import utn.dds.tpAnual.db.dto.transaccion.EgresoDTO;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
 import utn.dds.tpAnual.db.entity.proveedor.Proveedor;
 import utn.dds.tpAnual.db.entity.transaccion.DetalleOperacion;
@@ -39,9 +40,8 @@ public class EgresoRules {
         }
     }
 
-    public void validarEgresoDTO(ItemService itemService,List<DetalleOperacion> detallesOperacion,
-                                 Optional<Proveedor> proveedor, Optional<Entidad> entidadRealizadora,
-                                 Optional<Pais> pais, Optional<Moneda> moneda, Optional<MedioPago> medioPago   ){
+    public void validarCrearEgreso(EgresoDTO egresoDTO, Optional<Proveedor> proveedor, Optional<Entidad> entidadRealizadora,
+                                   Optional<Pais> pais, Optional<Moneda> moneda, Optional<MedioPago> medioPago){
         if (!proveedor.isPresent()) {
             throw new RuntimeException("Proveedor no existe");
         }
@@ -51,5 +51,21 @@ public class EgresoRules {
         if (!pais.isPresent()){
             throw new RuntimeException("Pais no existe");
         }
+        if (!moneda.isPresent()){
+            throw new RuntimeException("Moneda no existe");
+        }
+        if (!medioPago.isPresent()){
+            throw new RuntimeException("Medio de pago no existe");
+        }
+        if(egresoDTO.getDocumentoComercial().getNumero() == null){
+            throw new RuntimeException("Número de documento comercial incompleto");
+        }
+        if(egresoDTO.getDocumentoComercial().getTipoDocumento() == null){
+            throw new RuntimeException("Tipo de documento comercial incompleto");
+        }
+        if(egresoDTO.getCantidadPresupuestosMinimos() == null){
+            throw new RuntimeException("Cantidad presupuestos minimos incompleto");
+        }
+
     }
 }

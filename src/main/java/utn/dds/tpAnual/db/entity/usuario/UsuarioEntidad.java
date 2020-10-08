@@ -31,6 +31,12 @@ public class UsuarioEntidad {
 
 	}
 
+	public UsuarioEntidad(Entidad entidad, TipoUsuario tipoUsuario, Usuario usuario) {
+		this.entidad = entidad;
+		this.tipoUsuario = tipoUsuario;
+		this.usuario = usuario;
+	}
+
 	public Long getUsuarioEntidadId() {
 		return usuarioEntidadId;
 	}
