@@ -103,8 +103,7 @@ public class ValidadorContrasenia {
 		return false;
 	}
 	
-	public boolean esContraseniaValida(Usuario usuario) {
-		String contrasenia = usuario.getContrasenia();
+	public boolean esContraseniaValida(Usuario usuario, String contrasenia) {
 		return validarLongitud(contrasenia) 
 				&& validarNumerosLetras(contrasenia)
 				&& !tieneNombreEnContrasenia(usuario.getNombre(), contrasenia)

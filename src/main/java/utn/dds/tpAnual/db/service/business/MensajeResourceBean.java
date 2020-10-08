@@ -28,8 +28,8 @@ public class MensajeResourceBean {
     @Autowired
     private MensajeService mensajeService;
 
-    public PageableResponse<MensajeDTO, Mensaje> getMensajesFrom(PageableRequest pageableRequest, String username) {
-        Page<Mensaje> mensajes = mensajeService.getMensajesByUsername(username, pageableRequest);
+    public PageableResponse<MensajeDTO, Mensaje> getMensajesFrom(PageableRequest pageableRequest, Long UserId) {
+        Page<Mensaje> mensajes = mensajeService.getMensajesByUsername(UserId, pageableRequest);
         return new PageableResponse().fromPage(mensajes, new MensajeDTO());
     }
 }
