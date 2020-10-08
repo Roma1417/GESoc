@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class ProveedorJuridico extends Proveedor {
 
 	@Column(name = "CUIT")
-	private Long CUIT;
+	private String CUIT;
 
 	@Column(name = "RAZON_SOCIAL", length = 100)
 	private String razonSocial;
@@ -26,17 +26,17 @@ public class ProveedorJuridico extends Proveedor {
 
 	}
 
-	public ProveedorJuridico(DireccionPostal direccionPostal, Long CUIT, String razonSocial) {
+	public ProveedorJuridico(DireccionPostal direccionPostal, String CUIT, String razonSocial) {
 		super(direccionPostal);
 		this.CUIT = CUIT;
 		this.razonSocial = razonSocial;
 	}
 
-	public Long getCUIT() {
+	public String getCUIT() {
 		return CUIT;
 	}
 
-	public void setCUIT(Long CUIT) {
+	public void setCUIT(String CUIT) {
 		this.CUIT = CUIT;
 	}
 

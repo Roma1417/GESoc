@@ -12,21 +12,16 @@ import utn.dds.tpAnual.builders.DetalleOperacionBuilder;
 import utn.dds.tpAnual.builders.EgresoBuilder;
 import utn.dds.tpAnual.builders.EntidadJuridicaEmpresaBuilder;
 import utn.dds.tpAnual.builders.IngresoBuilder;
+import utn.dds.tpAnual.db.dto.transaccion.EgresoDTO;
 import utn.dds.tpAnual.db.dto.complex.VinculacionEgresoIngresoDTO;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
 import utn.dds.tpAnual.db.entity.entidad.EntidadJuridicaEmpresa;
-import utn.dds.tpAnual.db.entity.transaccion.DetalleOperacion;
 import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.entity.transaccion.Ingreso;
-import utn.dds.tpAnual.db.entity.transaccion.Item;
-import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.scheduler.ProgramadorDeTareas;
 import utn.dds.tpAnual.db.service.jpaService.EgresoService;
 import utn.dds.tpAnual.db.service.jpaService.EntidadService;
 import utn.dds.tpAnual.db.service.jpaService.IngresoService;
-import utn.dds.tpAnual.db.service.jpaService.UsuarioService;
-
-import java.util.Arrays;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -49,6 +44,16 @@ public class EgresoResourceBeanTest {
 
     @Autowired
     private EntidadService entidadService;
+
+    @Test
+    public void crearEgresoSinDetallesFails (){
+        EgresoDTO egresoDTO = new EgresoDTO();
+
+        assertThrows(RuntimeException.class,() -> {
+            egresoResourceBean.crearEgresos(egresoDTO);
+        });
+
+    }
 
     @Test
     public void vinculacionEgresoIngresoValidosSuccess(){

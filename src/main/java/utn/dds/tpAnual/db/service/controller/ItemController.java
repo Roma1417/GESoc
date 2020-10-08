@@ -3,17 +3,11 @@ package utn.dds.tpAnual.db.service.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import utn.dds.tpAnual.db.dto.EgresoDTO;
-import utn.dds.tpAnual.db.dto.ItemDTO;
+import utn.dds.tpAnual.db.dto.transaccion.ItemDTO;
 import utn.dds.tpAnual.db.dto.pageable.PageableRequest;
 import utn.dds.tpAnual.db.dto.pageable.PageableResponse;
-import utn.dds.tpAnual.db.entity.transaccion.Egreso;
-import utn.dds.tpAnual.db.entity.transaccion.Ingreso;
 import utn.dds.tpAnual.db.entity.transaccion.Item;
-import utn.dds.tpAnual.db.service.business.EgresoResourceBean;
 import utn.dds.tpAnual.db.service.business.ItemResourceBean;
-
-import javax.xml.ws.RequestWrapper;
 
 @RestController
 @RequestMapping("/api/item")

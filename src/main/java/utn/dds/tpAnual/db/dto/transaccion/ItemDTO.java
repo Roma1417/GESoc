@@ -1,11 +1,12 @@
-package utn.dds.tpAnual.db.dto;
+package utn.dds.tpAnual.db.dto.transaccion;
 
+import utn.dds.tpAnual.db.dto.categoria.CategoriaDTO;
+import utn.dds.tpAnual.db.dto.StandardDTO;
 import utn.dds.tpAnual.db.entity.categorizacion.categoria.Categoria;
 import utn.dds.tpAnual.db.entity.categorizacion.criterioCategorizacion.CriterioCategorizacion;
 import utn.dds.tpAnual.db.entity.transaccion.Item;
-import utn.dds.tpAnual.db.service.jpaService.CategoriaService;
 
-public class ItemDTO extends StandardDTO<Item>{
+public class ItemDTO extends StandardDTO<Item> {
     private Long id;
     private Long criterioCategorizacionId;
     private String descripcion;
@@ -22,7 +23,7 @@ public class ItemDTO extends StandardDTO<Item>{
 
     @Override
     public Item toEntity() {
-        return null;
+        return new Item(descripcion);
     }
 
     public ItemDTO(){

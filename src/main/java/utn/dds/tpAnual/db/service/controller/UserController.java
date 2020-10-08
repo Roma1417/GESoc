@@ -1,31 +1,18 @@
 package utn.dds.tpAnual.db.service.controller;
 
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import utn.dds.tpAnual.db.dto.ItemDTO;
-import utn.dds.tpAnual.db.dto.MensajeDTO;
-import utn.dds.tpAnual.db.dto.UserDTO;
+import utn.dds.tpAnual.db.dto.usuario.MensajeDTO;
+import utn.dds.tpAnual.db.dto.usuario.UserDTO;
 import utn.dds.tpAnual.db.dto.pageable.PageableRequest;
 import utn.dds.tpAnual.db.dto.pageable.PageableResponse;
-import utn.dds.tpAnual.db.entity.transaccion.Item;
 import utn.dds.tpAnual.db.entity.usuario.Mensaje;
-import utn.dds.tpAnual.db.repository.UsuarioRepository;
 import utn.dds.tpAnual.db.service.business.MensajeResourceBean;
 import utn.dds.tpAnual.db.service.business.UsuarioResourceBean;
-import utn.dds.tpAnual.db.service.jpaService.UsuarioService;
-import utn.dds.tpAnual.db.service.security.SecurityData;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")

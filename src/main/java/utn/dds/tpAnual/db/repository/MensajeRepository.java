@@ -6,11 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import utn.dds.tpAnual.db.dto.MensajeDTO;
-import utn.dds.tpAnual.db.entity.transaccion.Egreso;
-import utn.dds.tpAnual.db.entity.transaccion.Item;
 import utn.dds.tpAnual.db.entity.usuario.Mensaje;
-import utn.dds.tpAnual.db.entity.usuario.Usuario;
 
 import java.util.List;
 

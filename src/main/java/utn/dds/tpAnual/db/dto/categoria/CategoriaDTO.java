@@ -1,9 +1,9 @@
-package utn.dds.tpAnual.db.dto;
+package utn.dds.tpAnual.db.dto.categoria;
 
+import utn.dds.tpAnual.db.dto.StandardDTO;
 import utn.dds.tpAnual.db.entity.categorizacion.categoria.Categoria;
-import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 
-public class CategoriaDTO  extends StandardDTO<Categoria>{
+public class CategoriaDTO  extends StandardDTO<Categoria> {
     private Long id;
     private String descripcion;
 

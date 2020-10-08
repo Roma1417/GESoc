@@ -22,4 +22,9 @@ public class EntidadBase extends Entidad {
 
 	}
 
+
+	public EntidadBase(String nombre, String descripcion) {
+		super(nombre);
+		this.descripcion = descripcion;
+	}
 }

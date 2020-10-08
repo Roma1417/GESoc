@@ -18,7 +18,7 @@ public abstract class EntidadJuridica extends Entidad {
 	private Long codigoIGJ;
 
 	@Column(name = "CUIT", length = 100)
-	private Long CUIT;
+	private String CUIT;
 
 	@Column(name = "RAZON_SOCIAL")
 	private String razonSocial;
@@ -46,11 +46,11 @@ public abstract class EntidadJuridica extends Entidad {
 		this.codigoIGJ = codigoIGJ;
 	}
 
-	public Long getCUIT() {
+	public String getCUIT() {
 		return CUIT;
 	}
 
-	public void setCUIT(Long CUIT) {
+	public void setCUIT(String CUIT) {
 		this.CUIT = CUIT;
 	}
 

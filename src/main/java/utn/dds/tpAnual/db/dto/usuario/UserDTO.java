@@ -1,4 +1,4 @@
-package utn.dds.tpAnual.db.dto;
+package utn.dds.tpAnual.db.dto.usuario;
 
 public class UserDTO {
     private String username;

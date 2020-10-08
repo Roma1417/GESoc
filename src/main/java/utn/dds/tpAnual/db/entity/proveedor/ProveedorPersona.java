@@ -16,7 +16,7 @@ import javax.persistence.Table;
 public class ProveedorPersona extends Proveedor {
 
 	@Column(name = "DNI")
-	private Long dni;
+	private String dni;
 
 	@Column(name = "NOMBRE", length = 100)
 	private String nombre;
@@ -25,17 +25,17 @@ public class ProveedorPersona extends Proveedor {
 
 	}
 
-	public ProveedorPersona(DireccionPostal direccionPostal, Long dni, String nombre) {
+	public ProveedorPersona(DireccionPostal direccionPostal, String dni, String nombre) {
 		super(direccionPostal);
 		this.dni = dni;
 		this.nombre = nombre;
 	}
 
-	public Long getDni() {
+	public String getDni() {
 		return dni;
 	}
 
-	public void setDni(Long dni) {
+	public void setDni(String dni) {
 		this.dni = dni;
 	}
 

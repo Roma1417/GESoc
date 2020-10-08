@@ -1,8 +1,9 @@
-package utn.dds.tpAnual.db.dto;
+package utn.dds.tpAnual.db.dto.usuario;
 
+import utn.dds.tpAnual.db.dto.StandardDTO;
 import utn.dds.tpAnual.db.entity.usuario.Mensaje;
 
-public class MensajeDTO extends StandardDTO<Mensaje>{
+public class MensajeDTO extends StandardDTO<Mensaje> {
 
     private String asunto;
     private String cuerpo;

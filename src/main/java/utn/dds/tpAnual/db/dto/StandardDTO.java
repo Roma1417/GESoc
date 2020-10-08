@@ -13,4 +13,8 @@ public abstract class StandardDTO <T>{
     public List<StandardDTO> fromList(List<T> objectList){
         return objectList.stream().map(o -> from(o)).collect(Collectors.toList());
     }
+    
+    public List<T> toList(List<StandardDTO<T>> dtoList) {
+        return dtoList.stream().map(dto -> dto.toEntity()).collect(Collectors.toList());
+    }
 }
