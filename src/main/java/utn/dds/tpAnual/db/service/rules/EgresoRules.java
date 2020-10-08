@@ -1,9 +1,19 @@
 package utn.dds.tpAnual.db.service.rules;
 
+import utn.dds.tpAnual.db.dto.transaccion.DetalleOperacionDTO;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
+import utn.dds.tpAnual.db.entity.proveedor.Proveedor;
+import utn.dds.tpAnual.db.entity.transaccion.DetalleOperacion;
 import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.entity.transaccion.Ingreso;
+import utn.dds.tpAnual.db.entity.transaccion.MedioPago;
+import utn.dds.tpAnual.db.entity.ubicacion.Moneda;
+import utn.dds.tpAnual.db.entity.ubicacion.Pais;
 import utn.dds.tpAnual.db.service.business.EgresoResourceBean;
+import utn.dds.tpAnual.db.service.jpaService.ItemService;
+
+import java.util.List;
+import java.util.Optional;
 
 public class EgresoRules {
     private static final EgresoRules instance = new EgresoRules();
@@ -26,6 +36,20 @@ public class EgresoRules {
         }
         if(ingreso.getEgresosAsociados().contains(egreso)){
             throw new RuntimeException("El egreso ya se encuentra vinculado al ingreso");
+        }
+    }
+
+    public void validarEgresoDTO(ItemService itemService,List<DetalleOperacion> detallesOperacion,
+                                 Optional<Proveedor> proveedor, Optional<Entidad> entidadRealizadora,
+                                 Optional<Pais> pais, Optional<Moneda> moneda, Optional<MedioPago> medioPago   ){
+        if (!proveedor.isPresent()) {
+            throw new RuntimeException("Proveedor no existe");
+        }
+        if (!entidadRealizadora.isPresent()) {
+            throw new RuntimeException("Entidad no existe");
+        }
+        if (!pais.isPresent()){
+            throw new RuntimeException("Pais no existe");
         }
     }
 }
