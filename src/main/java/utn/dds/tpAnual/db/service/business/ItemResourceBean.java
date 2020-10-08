@@ -39,4 +39,6 @@ public class ItemResourceBean {
         Page<Item> items = itemService.getItemsByDescripcionLike(itemName, pageableRequest);
         return new PageableResponse().fromPage(items, new ItemDTO());
     }
+
+
 }

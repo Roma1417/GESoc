@@ -27,8 +27,9 @@ public class UsuarioServiceTest {
     private UsuarioService usuarioService;
 
     Usuario unUsuario = new UsuarioBuilder().
-            withContrasenia("contraseña").
-            withNombre("Roma")
+            withContrasenia("contraseña")
+            .withNombre("Roma")
+            .withUsuario("romacapo")
             .build();
 
     @Test

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.stereotype.Service;
+import utn.dds.tpAnual.db.dto.MensajeDTO;
 import utn.dds.tpAnual.db.dto.UserDTO;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.service.jpaService.UsuarioService;
@@ -51,9 +52,5 @@ public class UsuarioResourceBean {
                         secretKey.getBytes()).compact();
 
         return SecurityData.getInstance().getPREFIX() + token;
-    }
-
-    public UserDTO getMensajes(String username) {
-        return null;
     }
 }

@@ -86,8 +86,8 @@ public class EgresoBuilder {
     }
     
     public Egreso buildEgresoSinPresupuestos(){
-    	revisores.add(new UsuarioBuilder().withNombre("unRevisor").withContrasenia("asndihg382").build());
-    	revisores.add(new UsuarioBuilder().withNombre("otroRevisor").withContrasenia("wuiefnwi471").build());
+    	revisores.add(new UsuarioBuilder().withNombre("unRevisor").withContrasenia("asndihg382").withUsuario("unrevisor").build());
+    	revisores.add(new UsuarioBuilder().withNombre("otroRevisor").withContrasenia("wuiefnwi471").withUsuario("otrorevisor").build());
     	codigoOperacion = 542;
     	cantidadPresupuestosMinimos = 2;
 		documentoComercial = new DocumentoComercial();
@@ -116,10 +116,12 @@ public class EgresoBuilder {
     	revisores.add(new UsuarioBuilder()
     			.withNombre("unRevisor")
     			.withContrasenia("asndihg382")
+				.withUsuario("unrevisormas")
     			.build());
     	revisores.add(new UsuarioBuilder()
     			.withNombre("otroRevisor")
     			.withContrasenia("wuiefnwi471")
+				.withUsuario("otrorevisormas")
     			.build());
     	
     	DetalleOperacion detalleOperacion = new DetalleOperacionBuilder()
