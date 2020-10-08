@@ -12,6 +12,7 @@ import utn.dds.tpAnual.db.entity.entidad.Entidad;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface EgresoRepository extends JpaRepository<Egreso, Long> {
@@ -52,4 +53,11 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long> {
     @Query("SELECT e FROM Egreso e " +
             " WHERE (:cantidadPresupuestosMinimos IS NULL OR e.cantidadPresupuestosMinimos = :cantMinimos )")
     Page<Egreso> getEgresosByCantidadPresupuestosMinimos(@Param("cantMinimos")Integer cantidadPresupuestosMinimos, Pageable pageable);
+
+    @Query("SELECT DISTINCT e FROM Egreso e " +
+            " JOIN FETCH e.detallesOperacion do " +
+            " JOIN FETCH do.item i " +
+            " JOIN FETCH e.entidadRealizadora entidad " +
+            " WHERE e.operacionId = :egresoId")
+    Optional<Egreso> findFullById(@Param("egresoId") Long egresoId);
 }

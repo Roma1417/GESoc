@@ -16,6 +16,7 @@ import utn.dds.tpAnual.db.entity.entidad.Entidad;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Service
     public class EgresoService extends CustomJPAService<Egreso> {
@@ -63,5 +64,9 @@ import java.util.List;
         Pageable pageable = PageRequest.of(pageableRequest.getPage().intValue(), pageableRequest.getItemsPerPage().intValue()
             , Sort.by(Sort.Order.desc("fechaOperacion")));
         return egresoRepository.getEgresosByCantidadPresupuestosMinimos(cantidadPresupuestosMinimos,pageable);
+    }
+
+    public Optional<Egreso> findFullById(Long egresoId) {
+        return egresoRepository.findFullById(egresoId);
     }
 }

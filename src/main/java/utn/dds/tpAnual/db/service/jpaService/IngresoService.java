@@ -9,6 +9,7 @@ import utn.dds.tpAnual.db.entity.entidad.Entidad;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Service
     public class IngresoService extends CustomJPAService<Ingreso> {
@@ -46,4 +47,7 @@ import java.util.List;
         entities.forEach(this::save);
     }
 
+    public Optional<Ingreso> findFullById(Long ingresoId) {
+        return ingresoRepository.findFullById(ingresoId);
+    }
 }

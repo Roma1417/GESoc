@@ -23,4 +23,11 @@ public class DetalleOperacionBuilder {
     public DetalleOperacion build(){
         return new DetalleOperacion(item, precio, cantidad);
     }
+
+    public DetalleOperacionBuilder mockDetalle() {
+	    this.cantidad = 5;
+	    this.precio = 10F;
+	    this.item = new Item("Un item");
+	    return this;
+    }
 }

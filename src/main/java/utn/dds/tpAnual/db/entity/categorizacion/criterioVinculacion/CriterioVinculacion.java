@@ -31,19 +31,6 @@ public abstract class CriterioVinculacion {
         this.criterioId = criterioId;
     }
 
-    public Float getRestanteSinVincular (Ingreso ingreso) {
-        return ingreso.getTotal() - getValorVinculado(ingreso);
-    }
-
-    private Float getValorVinculado(Ingreso ingreso){
-        return ingreso.getEgresosAsociados() == null ? 0F :
-                ingreso.getEgresosAsociados().stream().map(egreso -> egreso.getTotal())
-                        .reduce(0F, (valor, acumulador) -> valor + acumulador);
-    }
-
-    private boolean satisfaceRestante (Ingreso ingreso, Egreso egreso) {
-        return getRestanteSinVincular(ingreso) >= egreso.getTotal();
-    }
 
     private boolean cumpleReglas (Ingreso ingreso, Egreso egreso, List<ReglaVinculacion> reglas){
         return reglas.stream().allMatch(reglaVinculacion -> reglaVinculacion.puedeVincularse(ingreso, egreso));
@@ -55,7 +42,7 @@ public abstract class CriterioVinculacion {
         for (Ingreso ingreso : ingresos){
             for (Egreso egreso : egresos) {
                 if (cumpleReglas(ingreso, egreso, reglas) &&
-                        satisfaceRestante(ingreso, egreso)) {
+                        ingreso.satisfaceRestante(egreso)) {
                     ingreso.vincularEgreso(egreso);
                     egresosARemover.add(egreso);
                 }
@@ -72,7 +59,7 @@ public abstract class CriterioVinculacion {
         for (Egreso egreso : egresos) {
             for (Ingreso ingreso : ingresos){
                 if (cumpleReglas(ingreso, egreso, reglas) &&
-                        satisfaceRestante(ingreso, egreso)) {
+                        ingreso.satisfaceRestante(egreso)) {
                     ingreso.vincularEgreso(egreso);
                     egresosARemover.add(egreso);
                     break;

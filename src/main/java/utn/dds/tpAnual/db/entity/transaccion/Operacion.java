@@ -26,15 +26,15 @@ public abstract class Operacion {
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Entidad entidadRealizadora;
 
-	@Column(name = "CODIGO")
-	private int codigoOperacion;
+	@Column(name = "CODIGO_OPERACION")
+	private Integer codigoOperacion;
 
 	@Column(name = "FECHA_CREACION")
 	private LocalDate fecha;
 
 
 	public Operacion(DocumentoComercial documentoComercial, Entidad entidadRealizadora,
-			int codigoOperacion) {
+					 Integer codigoOperacion) {
 		this.documentoComercial = documentoComercial;
 		this.entidadRealizadora = entidadRealizadora;
 		this.codigoOperacion = codigoOperacion;
@@ -51,7 +51,7 @@ public abstract class Operacion {
 		this.operacionId = operacionId;
 	}
 
-	public int getCodigoOperacion() {
+	public Integer getCodigoOperacion() {
 		return codigoOperacion;
 	}
 
@@ -73,7 +73,7 @@ public abstract class Operacion {
 		this.entidadRealizadora = entidadRealizadora;
 	}
 
-	public void setCodigoOperacion(int codigoOperacion) {
+	public void setCodigoOperacion(Integer codigoOperacion) {
 		this.codigoOperacion = codigoOperacion;
 	}
 

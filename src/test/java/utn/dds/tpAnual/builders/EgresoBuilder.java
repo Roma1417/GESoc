@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import utn.dds.tpAnual.db.entity.categorizacion.categoria.CategoriaNombreCorto;
+import utn.dds.tpAnual.db.entity.entidad.Entidad;
 import utn.dds.tpAnual.db.entity.transaccion.*;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.entity.categorizacion.criterioCompra.CriterioCompra;
@@ -20,6 +21,7 @@ public class EgresoBuilder {
     private CriterioCompra criterioCompra;
     private List<Presupuesto> presupuestos = new ArrayList<Presupuesto>();
     private Set<Usuario> revisores = new HashSet<Usuario>();
+    private Entidad entidadRealizadora;
 	private LocalDate fechaOperacion;
 	private LocalDate fecha;
 	private MedioPago medioPago;
@@ -70,9 +72,14 @@ public class EgresoBuilder {
         this.revisores.add(revisor);
         return this;
     }
+	public EgresoBuilder withEntidadRealizadora(Entidad entidadRealizadora){
+		this.entidadRealizadora = entidadRealizadora;
+		return this;
+	}
+
     
     public Egreso build(){
-    	Egreso egreso = new Egreso(documentoComercial, null, codigoOperacion, detallesOperacion, fechaOperacion,
+    	Egreso egreso = new Egreso(documentoComercial, entidadRealizadora, codigoOperacion, detallesOperacion, fechaOperacion,
 				null, cantidadPresupuestosMinimos, criterioCompra, presupuestos, null, revisores);
     	egreso.setFecha(fecha);
         return egreso;

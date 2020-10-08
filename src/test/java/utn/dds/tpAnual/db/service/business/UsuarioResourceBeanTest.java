@@ -30,7 +30,7 @@ public class UsuarioResourceBeanTest {
     private UsuarioService usuarioService;
 
     @Test
-    public void loginWithUsuarioValidoSucess(){
+    public void loginWithUsuarioValidoSuccess(){
         Usuario usuario = new Usuario("nombre","usuario", "pwd");
         usuarioService.save(usuario);
         usuarioResourceBean.login("usuario", "pwd");
@@ -41,7 +41,7 @@ public class UsuarioResourceBeanTest {
     public void loginWithUsuarioInvalidoError(){
         Usuario usuario = new Usuario("nombre","usuario", "pwd");
         usuarioService.save(usuario);
-        Exception exception = assertThrows(RuntimeException.class, () -> {
+        assertThrows(RuntimeException.class, () -> {
             usuarioResourceBean.login("usuario", "noEsPwd");
         });
     }
@@ -50,7 +50,7 @@ public class UsuarioResourceBeanTest {
     public void loginWithUsuarioInexistenteError(){
         Usuario usuario = new Usuario("nombre","usuario", "pwd");
         usuarioService.save(usuario);
-        Exception exception = assertThrows(RuntimeException.class, () -> {
+        assertThrows(RuntimeException.class, () -> {
             usuarioResourceBean.login("noEsUsuario", "pwd");
         });
     }
