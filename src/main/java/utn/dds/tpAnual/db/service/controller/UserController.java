@@ -7,10 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import utn.dds.tpAnual.db.dto.ItemDTO;
 import utn.dds.tpAnual.db.dto.MensajeDTO;
 import utn.dds.tpAnual.db.dto.UserDTO;
@@ -31,7 +28,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api")
 public class UserController {
 
     @Autowired
@@ -62,12 +59,13 @@ public class UserController {
         return "Ok";
     }
 
-    @RequestMapping("mensajes")
-    public PageableResponse<MensajeDTO, Mensaje> getMensajes(@RequestParam(name ="page", defaultValue = "1") Long page,
+    @RequestMapping("user/{userId}/mensajes")
+    public PageableResponse<MensajeDTO, Mensaje> getMensajes(@PathVariable(value="userId") Long userId,
+                                                             @RequestParam(name ="page", defaultValue = "1") Long page,
                                                              @RequestParam(name ="itemsPerPage", defaultValue = "20") Long itemsPerPage) {
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         PageableRequest pageableRequest = new PageableRequest(username, page, itemsPerPage);
-        PageableResponse<MensajeDTO, Mensaje> mensajes = mensajeResourceBean.getMensajesFrom(pageableRequest, username);
+        PageableResponse<MensajeDTO, Mensaje> mensajes = mensajeResourceBean.getMensajesFrom(pageableRequest,userId);
         return mensajes;
     }
 }

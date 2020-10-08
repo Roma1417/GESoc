@@ -33,9 +33,9 @@ public class MensajeService extends CustomJPAService<Mensaje> {
 
     }
 
-    public Page<Mensaje> getMensajesByUsername(String username, PageableRequest pageableRequest) {
+    public Page<Mensaje> getMensajesByUsername(Long userID, PageableRequest pageableRequest) {
         Pageable pageable = pageableRequest.toPageable();
-        return mensajeRepository.getMensajesByUsername(username, pageable);
+        return mensajeRepository.getMensajesByUsername(userID, pageable);
     }
 
 }

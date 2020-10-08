@@ -22,10 +22,9 @@ public interface MensajeRepository extends JpaRepository<Mensaje, Long> {
 
     @Query(value = "SELECT m FROM Mensaje m " +
             " JOIN FETCH m.usuario u " +
-            " WHERE (:username IS NULL OR u.usuario LIKE CONCAT('%', :username, '%') )",
-            countQuery = "SELECT COUNT(DISTINCT m) FROM Mensaje m " +
-                    " JOIN m.usuario u " +
-                    " WHERE (:username IS NULL OR u.usuario LIKE CONCAT('%', :username, '%') )")
-    Page<Mensaje> getMensajesByUsername(@Param("username") String username, Pageable pageable);
+            " WHERE u.usuarioId = :userID",
+            countQuery = "SELECT COUNT(m) FROM Mensaje m " +
+                    " WHERE m.usuario.usuarioId = :userID")
+    Page<Mensaje> getMensajesByUsername(@Param("userID") Long userID, Pageable pageable);
 
 }
