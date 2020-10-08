@@ -18,4 +18,9 @@ public class Admin extends TipoUsuario {
 
 	}
 
+	@Override
+	public boolean puedeVerMensajesDeOtros() {
+		return true;
+	}
+
 }

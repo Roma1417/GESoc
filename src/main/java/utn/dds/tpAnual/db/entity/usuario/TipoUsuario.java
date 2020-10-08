@@ -40,4 +40,6 @@ public abstract class TipoUsuario {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
+	public abstract boolean puedeVerMensajesDeOtros();
 }
