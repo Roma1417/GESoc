@@ -1,8 +1,12 @@
 package utn.dds.tpAnual.db.service.jpaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import utn.dds.tpAnual.db.dto.pageable.PageableRequest;
+import utn.dds.tpAnual.db.entity.usuario.Mensaje;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.repository.EntidadRepository;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
@@ -58,5 +62,10 @@ import java.util.Optional;
 
     public Optional<Entidad> findAllRelated(Usuario usuario, Long idEntidad) {
         return entidadRepository.findAllRelated(usuario.getUsuarioId(), idEntidad);
+    }
+
+    public Page<Entidad> getEntidadesRelated(String usuario, String entidadName, PageableRequest pageableRequest) {
+        Pageable pageable = pageableRequest.toPageable();
+        return entidadRepository.getEntidadesRelated(usuario, entidadName, pageable);
     }
 }
