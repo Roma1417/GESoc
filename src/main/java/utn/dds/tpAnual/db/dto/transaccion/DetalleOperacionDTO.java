@@ -12,7 +12,7 @@ public class DetalleOperacionDTO  extends StandardDTO<DetalleOperacion> {
     private Integer cantidad;
 
     @Override
-    public StandardDTO from(DetalleOperacion object) {
+    public DetalleOperacionDTO from(DetalleOperacion object) {
         return null;
     }
 

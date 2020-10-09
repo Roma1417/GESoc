@@ -11,7 +11,7 @@ public class Pais {
 	@Column(name = "ID", unique = true, nullable = false)
 	private Long paisId;
 
-	@Column(name = "ID_API", unique = true, nullable = false, length = 100)
+	@Column(name = "ID_API", unique = true, length = 100)
 	private String idAPI;
 
 	@Column(name = "DESCRIPCION", nullable = false, length = 100)
@@ -25,7 +25,11 @@ public class Pais {
 		this.idAPI = idAPI;
 	}
 
-	public Long getPaisId() {
+    public Pais(String nombre) {
+		this.descripcion = nombre;
+    }
+
+    public Long getPaisId() {
 		return paisId;
 	}
 

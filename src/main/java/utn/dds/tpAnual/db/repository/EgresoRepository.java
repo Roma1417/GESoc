@@ -60,4 +60,23 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long> {
             " JOIN FETCH e.entidadRealizadora entidad " +
             " WHERE e.operacionId = :egresoId")
     Optional<Egreso> findFullById(@Param("egresoId") Long egresoId);
+
+
+    @Query(value = "SELECT egreso FROM Egreso egreso " +
+            " JOIN FETCH egreso.entidadRealizadora entidad " +
+            " JOIN FETCH egreso.detallesOperacion detalles " +
+            " JOIN FETCH detalles.item items " +
+            " JOIN FETCH egreso.proveedor proveedor " +
+            " JOIN FETCH egreso.medioPago mediPago " +
+            " JOIN FETCH egreso.documentoComercial documentoComercial " +
+            " WHERE (:categoria IS NULL OR items.categoria.descripcion LIKE CONCAT('%', :categoria, '%') )",
+            countQuery  = "SELECT COUNT(DISTINCT  egreso) FROM Egreso egreso " +
+            " JOIN FETCH egreso.entidadRealizadora entidad " +
+            " JOIN FETCH egreso.detallesOperacion detalles " +
+            " JOIN FETCH detalles.item items " +
+            " JOIN FETCH egreso.proveedor proveedor " +
+            " JOIN FETCH egreso.medioPago mediPago " +
+            " JOIN FETCH egreso.documentoComercial documentoComercial " +
+            " WHERE (:categoria IS NULL OR items.categoria.descripcion LIKE CONCAT('%', :categoria, '%') )")
+    Page<Egreso> getEgresosByCategoria(Pageable pageable, @Param("categoria")String categoria);
 }
