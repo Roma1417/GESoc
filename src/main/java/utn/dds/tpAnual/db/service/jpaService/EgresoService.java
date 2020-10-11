@@ -12,6 +12,7 @@ import utn.dds.tpAnual.db.dto.pageable.PageableResponse;
 import utn.dds.tpAnual.db.dto.transaccion.EgresoDTO;
 import utn.dds.tpAnual.db.entity.entidad.EntidadJuridica;
 import utn.dds.tpAnual.db.entity.transaccion.Egreso;
+import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.repository.EgresoRepository;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
 
@@ -28,6 +29,9 @@ import java.util.Optional;
 
     @Autowired
     private EntidadService entidadService;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     @Override
     public JpaRepository<Egreso, Long> getRepository() {
@@ -72,8 +76,9 @@ import java.util.Optional;
         return egresoRepository.findFullById(egresoId);
     }
 
-    public Page<Egreso> findAllRelatedByCategoria(PageableRequest pageableRequest, String categoria) {
+    public Page<Egreso> findAllRelatedByCategoria(PageableRequest pageableRequest, String categoria, String username) {
         Pageable pageable = pageableRequest.toPageable();
-        return egresoRepository.getEgresosByCategoria(pageable, categoria);
+        Usuario usuario = usuarioService.getUsuarioByUsername(username);
+        return egresoRepository.getEgresosByCategoria(pageable, categoria, usuario.getUsuarioId());
     }
 }

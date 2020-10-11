@@ -1,8 +1,11 @@
 package utn.dds.tpAnual.db.entity.entidad;
 
+import utn.dds.tpAnual.db.entity.categorizacion.criterioVinculacion.CriterioVinculacion;
 import utn.dds.tpAnual.db.entity.ubicacion.DireccionPostal;
+import utn.dds.tpAnual.db.entity.usuario.UsuarioEntidad;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,12 +33,12 @@ public abstract class EntidadJuridica extends Entidad {
 	@JoinColumn(name = "ENTIDAD_JURIDIDA_ID")
 	private List<EntidadBase> entidadesBase;
 
-	public EntidadJuridica(){
-
-	}
 
 	public EntidadJuridica(String nombre) {
 		super(nombre);
+	}
+
+	public EntidadJuridica() {
 	}
 
 	public Long getCodigoIGJ() {
@@ -71,6 +74,9 @@ public abstract class EntidadJuridica extends Entidad {
 	}
 
 	public List<EntidadBase> getEntidadesBase() {
+		if(entidadesBase == null){
+			entidadesBase = new ArrayList();
+		}
 		return entidadesBase;
 	}
 

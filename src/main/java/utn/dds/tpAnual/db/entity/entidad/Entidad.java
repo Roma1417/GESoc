@@ -5,6 +5,7 @@ import utn.dds.tpAnual.db.entity.usuario.UsuarioEntidad;
 import utn.dds.tpAnual.db.entity.categorizacion.criterioVinculacion.CriterioVinculacion;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -26,6 +27,10 @@ public abstract class Entidad {
 
 	@OneToMany(mappedBy="entidad", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<UsuarioEntidad> usuariosEntidad;
+
+	public Entidad(String nombre, CriterioVinculacion criterioVinculacion){
+
+	}
 
 	public Entidad(){
 
@@ -50,8 +55,23 @@ public abstract class Entidad {
 	public String getNombre() {
 		return nombre;
 	}
-	
-	@Override 
+
+	public List<UsuarioEntidad> getUsuariosEntidad() {
+		return usuariosEntidad;
+	}
+
+	public void setUsuariosEntidad(List<UsuarioEntidad> usuariosEntidad) {
+		this.usuariosEntidad = usuariosEntidad;
+	}
+
+	public void addUsuarioEntidad (UsuarioEntidad usuarioEntidad){
+		if(usuariosEntidad == null) {
+			this.usuariosEntidad = new ArrayList<>();
+		}
+		this.usuariosEntidad.add(usuarioEntidad);
+	}
+
+	@Override
 	public String toString() {
 		return new ToStringBuilder(this)
 				.append("nombre", nombre)
