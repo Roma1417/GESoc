@@ -21,10 +21,10 @@ public class DocumentoComercial {
 	private Long idDocumento;
 
 	@Column(name = "NUMERO", nullable = false)
-	private int numero;
+	private Integer numero;
 
 	@Column(name = "TIPO_DOCUMENTO", nullable = false)
-	private int tipoDocumento;
+	private Integer tipoDocumento;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Pais pais;
@@ -51,7 +51,7 @@ public class DocumentoComercial {
 		this.idDocumento = idDocumento;
 	}
 
-	public int getTipoDocumento() {
+	public Integer getTipoDocumento() {
 		return tipoDocumento;
 	}
 
@@ -67,7 +67,7 @@ public class DocumentoComercial {
 		this.pais = pais;
 	}
 
-	public int getNumero() {
+	public Integer getNumero() {
 		return numero;
 	}
 

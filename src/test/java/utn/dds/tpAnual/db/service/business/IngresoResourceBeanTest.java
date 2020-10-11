@@ -1,6 +1,5 @@
 package utn.dds.tpAnual.db.service.business;
 
-import org.apache.tomcat.jni.Local;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +12,15 @@ import utn.dds.tpAnual.builders.DetalleOperacionBuilder;
 import utn.dds.tpAnual.builders.EgresoBuilder;
 import utn.dds.tpAnual.builders.EntidadJuridicaEmpresaBuilder;
 import utn.dds.tpAnual.builders.IngresoBuilder;
+import utn.dds.tpAnual.db.dto.complex.VinculacionEgresoIngresoDTO;
 import utn.dds.tpAnual.db.dto.entidad.EntidadDTO;
+import utn.dds.tpAnual.db.dto.pageable.PageableRequest;
+import utn.dds.tpAnual.db.dto.pageable.PageableResponse;
 import utn.dds.tpAnual.db.dto.proveedor.ProveedorDTO;
 import utn.dds.tpAnual.db.dto.transaccion.*;
-import utn.dds.tpAnual.db.dto.complex.VinculacionEgresoIngresoDTO;
 import utn.dds.tpAnual.db.dto.ubicacion.MonedaDTO;
 import utn.dds.tpAnual.db.dto.ubicacion.PaisDTO;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
-import utn.dds.tpAnual.db.entity.entidad.EntidadBase;
 import utn.dds.tpAnual.db.entity.entidad.EntidadJuridicaEmpresa;
 import utn.dds.tpAnual.db.entity.proveedor.Proveedor;
 import utn.dds.tpAnual.db.entity.proveedor.ProveedorPersona;
@@ -33,9 +33,11 @@ import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.entity.usuario.UsuarioEntidad;
 import utn.dds.tpAnual.db.scheduler.ProgramadorDeTareas;
 import utn.dds.tpAnual.db.service.jpaService.*;
+import utn.dds.tpAnual.db.service.rules.IngresoRules;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Optional;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -45,13 +47,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @DataJpaTest(showSql=false)
 @DirtiesContext
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
-public class EgresoResourceBeanTest {
+public class IngresoResourceBeanTest {
 
     @Autowired
-    private EgresoResourceBean egresoResourceBean;
-
-    @Autowired
-    private EgresoService egresoService;
+    private IngresoResourceBean ingresoResourceBean;
 
     @Autowired
     private IngresoService ingresoService;
@@ -63,9 +62,6 @@ public class EgresoResourceBeanTest {
     private UsuarioService usuarioService;
 
     @Autowired
-    private ProveedorService proveedorService;
-
-    @Autowired
     private ItemService itemService;
 
     @Autowired
@@ -74,167 +70,66 @@ public class EgresoResourceBeanTest {
     @Autowired
     private MonedaService monedaService;
 
-    @Autowired
-    private MedioPagoService medioPagoService;
-
     @Test
-    public void vinculacionEgresoIngresoValidosSuccess(){
-        EntidadJuridicaEmpresa entidad = new EntidadJuridicaEmpresaBuilder().withNombre("Entidad2").build();
-        Egreso egreso = getMockEgreso(entidad);
-        Ingreso ingreso = getMockIngreso(entidad);
-
-        egresoService.save(egreso);
-        ingresoService.save(ingreso);
-        entidadService.save(entidad);
-
-        VinculacionEgresoIngresoDTO vinculacion = new VinculacionEgresoIngresoDTO(ingreso.getOperacionId(),
-                egreso.getOperacionId());
-        egresoResourceBean.vincular(vinculacion);
-        assertTrue(ingreso.getEgresosAsociados().contains(egreso));
-    }
-
-    @Test
-    public void vinculacionIngresoNoExistenteError(){
-        EntidadJuridicaEmpresa entidad = new EntidadJuridicaEmpresaBuilder().withNombre("Entidad2").build();
-        Egreso egreso = getMockEgreso(entidad);
-
-        egresoService.save(egreso);
-        entidadService.save(entidad);
-
-        VinculacionEgresoIngresoDTO vinculacion = new VinculacionEgresoIngresoDTO(10000L,
-                egreso.getOperacionId());
-        assertThrows(RuntimeException.class,() -> {
-            egresoResourceBean.vincular(vinculacion);
-        });
-    }
-
-    @Test
-    public void vinculacionEgresoNoExistenteError(){
-        EntidadJuridicaEmpresa entidad = new EntidadJuridicaEmpresaBuilder().withNombre("Entidad2").build();
-        Ingreso ingreso = getMockIngreso(entidad);
-
-        ingresoService.save(ingreso);
-        entidadService.save(entidad);
-
-        VinculacionEgresoIngresoDTO vinculacion = new VinculacionEgresoIngresoDTO(ingreso.getOperacionId(),
-                10000L);
-        assertThrows(RuntimeException.class,() -> {
-            egresoResourceBean.vincular(vinculacion);
-        });
-    }
-
-    @Test
-    public void vinculacionDistintaEntidadError(){
-        EntidadJuridicaEmpresa entidad1 = new EntidadJuridicaEmpresaBuilder().withNombre("Entidad1").build();
-        EntidadJuridicaEmpresa entidad2 = new EntidadJuridicaEmpresaBuilder().withNombre("Entidad2").build();
-        Egreso egreso = getMockEgreso(entidad1);
-        Ingreso ingreso = getMockIngreso(entidad2);
-
-        egresoService.save(egreso);
-        ingresoService.save(ingreso);
-        entidadService.save(entidad1);
-        entidadService.save(entidad2);
-
-        VinculacionEgresoIngresoDTO vinculacion = new VinculacionEgresoIngresoDTO(ingreso.getOperacionId(),
-                egreso.getOperacionId());
-        assertThrows(RuntimeException.class,() -> {
-            egresoResourceBean.vincular(vinculacion);
-        });
-    }
-
-    @Test
-    public void vinculacionIngresoMenorEgresoError(){
-        EntidadJuridicaEmpresa entidad = new EntidadJuridicaEmpresaBuilder().withNombre("Entidad1").build();
-        Egreso egreso = getMockEgreso(entidad);
-        Ingreso ingreso = getMockIngreso(entidad);
-        ingreso.setTotal(0F);
-
-        egresoService.save(egreso);
-        ingresoService.save(ingreso);
-        entidadService.save(entidad);
-
-        VinculacionEgresoIngresoDTO vinculacion = new VinculacionEgresoIngresoDTO(ingreso.getOperacionId(),
-                egreso.getOperacionId());
-        assertThrows(RuntimeException.class,() -> {
-            egresoResourceBean.vincular(vinculacion);
-        });
-    }
-
-    @Test
-    public void vinculacionYaVinculadoError(){
-        EntidadJuridicaEmpresa entidad = new EntidadJuridicaEmpresaBuilder().withNombre("Entidad1").build();
-        Egreso egreso = getMockEgreso(entidad);
-        Ingreso ingreso = getMockIngreso(entidad);
-
-        egresoService.save(egreso);
-        ingresoService.save(ingreso);
-        entidadService.save(entidad);
-
-        VinculacionEgresoIngresoDTO vinculacion = new VinculacionEgresoIngresoDTO(ingreso.getOperacionId(),
-                egreso.getOperacionId());
-        assertThrows(RuntimeException.class,() -> {
-            egresoResourceBean.vincular(vinculacion);
-            egresoResourceBean.vincular(vinculacion);
-        });
-    }
-
-    private Ingreso getMockIngreso(Entidad entidad){
-        return new IngresoBuilder()
-                .withEntidadRealizadora(entidad)
-                .withCodigoOperacion(2)
-                .withTotal(100F).build();
-    }
-
-    private Egreso getMockEgreso(Entidad entidad){
-        return new EgresoBuilder()
-                .withDetalleOperacion(new DetalleOperacionBuilder().mockDetalle().build())
-                .withEntidadRealizadora(entidad)
-                .withCodigoOperacion(1)
-                .build();
-    }
-
-
-    @Test
-    public void crearEgresoSinDetallesError (){
+    public void obtenerIngresosUsuarioRelacionadoDevuelve (){
         Entidad entidad = getTestEntidad("1");
         Usuario usuario = getTestUsuario(entidad);
-        EgresoDTO egresoDTO = new EgresoDTO();
-
-        assertThrows(RuntimeException.class,() -> {
-            egresoResourceBean.crearEgreso(egresoDTO, usuario.getUsuario());
-        });
+        PageableRequest pageableRequest = new PageableRequest(usuario.getNombre(),1L, 5L);
+        Ingreso ingreso = new Ingreso();
+        ingreso.setEntidadRealizadora(entidad);
+        ingresoService.save(ingreso);
+        PageableResponse<IngresoDTO, Ingreso> ingresosEncontrados = ingresoResourceBean.getIngresos(pageableRequest, usuario.getNombre());
+        assertTrue(!ingresosEncontrados.getData().isEmpty());
     }
 
     @Test
-    public void crearEgresoCompletoSuccess (){
+    public void obtenerIngresosUsuarioNoRelacionadoVacio (){
+        Entidad entidad = getTestEntidad("1");
+        Usuario usuario = getTestUsuario(entidad);
+        Entidad entidad2 = getTestEntidad("2");
+        PageableRequest pageableRequest = new PageableRequest(usuario.getNombre(),1L, 5L);
+        Ingreso ingreso = new Ingreso();
+        ingreso.setEntidadRealizadora(entidad2);
+        ingresoService.save(ingreso);
+        PageableResponse<IngresoDTO, Ingreso> ingresosEncontrados = ingresoResourceBean.getIngresos(pageableRequest, usuario.getNombre());
+        assertTrue(ingresosEncontrados.getData().isEmpty());
+    }
+
+    @Test
+    public void crearIngresoCompletoSuccess (){
         Entidad entidad = getTestEntidad("1");
         EntidadDTO entidadDTO = new EntidadDTO();
-        Usuario usuario = getTestUsuario(entidad);
-        EgresoDTO egresoDTO = new EgresoDTO();
-
         entidadDTO.setIdEntidad(entidad.getEntidadId());
-
-        egresoDTO.setCantidadPresupuestosMinimos(1);
-        egresoDTO.setCodigoOperacion(1);
-        egresoDTO.setFechaOperacion(LocalDate.now());
-        egresoDTO.setPresupuestos(null);
-        egresoDTO.setProveedor(getTestProveedor());
-        egresoDTO.setDetalles(Arrays.asList(getTestDetalle()));
-        egresoDTO.setDocumentoComercial(getTestDocumentoComercial());
-        egresoDTO.setEntidadRealizadora(entidadDTO);
-        egresoDTO.setMedioPago(getTestMedioPago());
-
-        egresoResourceBean.crearEgreso(egresoDTO, usuario.getUsuario());
-        assertTrue(true);
+        Usuario usuario = getTestUsuario(entidad);
+        IngresoDTO ingresoDTO = getTestIngresoDTO(entidadDTO);
+        IngresoDTO ingresoCreado = ingresoResourceBean.crearIngreso(ingresoDTO, usuario.getUsuario());
+        Optional<Ingreso> ingreso = ingresoService.findById(ingresoCreado.getIdIngreso());
+        assertTrue(ingreso.get().getDescripcion().equals(ingresoDTO.getDescripcion()) &&
+                ingreso.get().getTotal().equals(ingresoDTO.getTotal()) &&
+                ingreso.get().getCodigoOperacion().equals(ingresoDTO.getCodigoOperacion()));
     }
 
-    private MedioPagoDTO getTestMedioPago(){
-        MedioPago medioPago = new MedioPago();
-        medioPago.setInstrumentoPago("Tarjeta");
-        medioPagoService.save(medioPago);
-        MedioPagoDTO medioPagoDTO = new MedioPagoDTO();
-        medioPagoDTO.setIdMedioPago(medioPago.getMedioPagoId());
-        return medioPagoDTO;
+    @Test
+    public void crearIngresoTotalCeroError (){
+        Entidad entidad = getTestEntidad("1");
+        EntidadDTO entidadDTO = new EntidadDTO();
+        entidadDTO.setIdEntidad(entidad.getEntidadId());
+        Usuario usuario = getTestUsuario(entidad);
+        IngresoDTO ingresoDTO = getTestIngresoDTO(entidadDTO);
+        ingresoDTO.setTotal(0F);
+        assertThrows(RuntimeException.class,() -> {
+            IngresoDTO ingresoCreado = ingresoResourceBean.crearIngreso(ingresoDTO, usuario.getUsuario());
+        });
+    }
+
+    private IngresoDTO getTestIngresoDTO(EntidadDTO entidadDTO) {
+        IngresoDTO ingresoDTO = new IngresoDTO();
+        ingresoDTO.setDocumentoComercial(getTestDocumentoComercial());
+        ingresoDTO.setEntidadRealizadora(entidadDTO);
+        ingresoDTO.setDescripcion("Prueba");
+        ingresoDTO.setCodigoOperacion(1);
+        ingresoDTO.setTotal(1F);
+        return ingresoDTO;
     }
 
     private DocumentoComercialDTO getTestDocumentoComercial() {
@@ -255,14 +150,6 @@ public class EgresoResourceBeanTest {
         documentoComercialDTO.setPais(paisDTO);
         documentoComercialDTO.setMoneda(monedaDTO);
         return documentoComercialDTO;
-    }
-
-    private ProveedorDTO getTestProveedor() {
-        Proveedor proveedor = new ProveedorPersona(null, "Juan", "132224243");
-        proveedorService.save(proveedor);
-        ProveedorDTO proveedorDTO = new ProveedorDTO();
-        proveedorDTO.setIdProveedor(proveedor.getProveedorId());
-        return proveedorDTO;
     }
 
     private Entidad getTestEntidad(String name){

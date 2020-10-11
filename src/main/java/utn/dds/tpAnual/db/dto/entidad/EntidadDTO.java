@@ -18,8 +18,11 @@ public class EntidadDTO  extends StandardDTO<Entidad> {
     }
 
     @Override
-    public StandardDTO from(Entidad object) {
-        return null;
+    public EntidadDTO from(Entidad object) {
+        EntidadDTO entidad = new EntidadDTO();
+        entidad.setNombre(object.getNombre());
+        entidad.setIdEntidad(object.getEntidadId());
+        return entidad;
     }
 
     @Override

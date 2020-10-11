@@ -1,50 +1,28 @@
 package utn.dds.tpAnual.db.service.rules;
 
-import utn.dds.tpAnual.db.dto.transaccion.DetalleOperacionDTO;
-import utn.dds.tpAnual.db.dto.transaccion.EgresoDTO;
+import utn.dds.tpAnual.db.dto.transaccion.IngresoDTO;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
-import utn.dds.tpAnual.db.entity.proveedor.Proveedor;
-import utn.dds.tpAnual.db.entity.transaccion.DetalleOperacion;
-import utn.dds.tpAnual.db.entity.transaccion.Egreso;
+import utn.dds.tpAnual.db.entity.transaccion.DocumentoComercial;
 import utn.dds.tpAnual.db.entity.transaccion.Ingreso;
-import utn.dds.tpAnual.db.entity.transaccion.MedioPago;
 import utn.dds.tpAnual.db.entity.ubicacion.Moneda;
 import utn.dds.tpAnual.db.entity.ubicacion.Pais;
-import utn.dds.tpAnual.db.service.business.EgresoResourceBean;
-import utn.dds.tpAnual.db.service.jpaService.ItemService;
 
-import java.util.List;
 import java.util.Optional;
 
-public class EgresoRules {
-    private static final EgresoRules instance = new EgresoRules();
+public class IngresoRules {
+    private static final IngresoRules instance = new IngresoRules();
 
-    private EgresoRules(){
+    private IngresoRules(){
 
     }
 
-    public static EgresoRules getInstance(){
+    public static IngresoRules getInstance(){
         return instance;
     }
 
-    public void validarVinculacion(Egreso egreso, Ingreso ingreso){
-        Entidad entidad = egreso.getEntidadRealizadora();
-        if(entidad.getEntidadId() != ingreso.getEntidadRealizadora().getEntidadId()) {
-            throw new RuntimeException("El ingreso y el egreso pertenecen a distintas entidades");
-        }
-        if(!ingreso.satisfaceRestante(egreso)){
-            throw new RuntimeException("El monto del egreso es superior al restante del ingreso");
-        }
-        if(ingreso.getEgresosAsociados().contains(egreso)){
-            throw new RuntimeException("El egreso ya se encuentra vinculado al ingreso");
-        }
-    }
+    public void validarCrearIngreso(Optional<Entidad> entidadRealizadora, DocumentoComercial documentoComercial,
+                                    Ingreso ingreso, Optional<Pais> pais, Optional<Moneda> moneda){
 
-    public void validarCrearEgreso(EgresoDTO egresoDTO, Optional<Proveedor> proveedor, Optional<Entidad> entidadRealizadora,
-                                   Optional<Pais> pais, Optional<Moneda> moneda, Optional<MedioPago> medioPago){
-        if (!proveedor.isPresent()) {
-            throw new RuntimeException("Proveedor no existe");
-        }
         if (!entidadRealizadora.isPresent()) {
             throw new RuntimeException("Entidad no existe");
         }
@@ -54,17 +32,17 @@ public class EgresoRules {
         if (!moneda.isPresent()){
             throw new RuntimeException("Moneda no existe");
         }
-        if (!medioPago.isPresent()){
-            throw new RuntimeException("Medio de pago no existe");
-        }
-        if(egresoDTO.getDocumentoComercial().getNumero() == null){
+        if(documentoComercial.getNumero() == null){
             throw new RuntimeException("Número de documento comercial incompleto");
         }
-        if(egresoDTO.getDocumentoComercial().getTipoDocumento() == null){
+        if(documentoComercial.getTipoDocumento() == null){
             throw new RuntimeException("Tipo de documento comercial incompleto");
         }
-        if(egresoDTO.getCantidadPresupuestosMinimos() == null){
-            throw new RuntimeException("Cantidad presupuestos minimos incompleto");
+        if(ingreso.getTotal() <= 0F){
+            throw new RuntimeException("El total debe ser positivo");
+        }
+        if(ingreso.getCodigoOperacion() == null){
+            throw new RuntimeException("Codigo de operacion no ingresado");
         }
 
     }
