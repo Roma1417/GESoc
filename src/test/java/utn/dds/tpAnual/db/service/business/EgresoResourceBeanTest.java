@@ -80,6 +80,15 @@ public class EgresoResourceBeanTest {
     @Autowired
     private MedioPagoService medioPagoService;
 
+    @Autowired
+    private DetalleOperacionService detalleOperacionService;
+
+    @Autowired
+    private DetallePrecioService detallePrecioService;
+
+    @Autowired
+    private DocumentoComercialService documentoComercialService;
+
     @Test
     public void vinculacionEgresoIngresoValidosSuccess(){
         EntidadJuridicaEmpresa entidad = new EntidadJuridicaEmpresaBuilder().withNombre("Entidad2").build();
@@ -242,7 +251,7 @@ public class EgresoResourceBeanTest {
         PageableRequest pageableRequest = new PageableRequest(usuario.getUsuario(), 1L, 20L);
         PageableResponse<EgresoDTO, Egreso> egresos = egresoResourceBean.getEgresos(pageableRequest, null, usuario.getUsuario());
         EgresoDTO egresoDto = egresos.getData().get(0);
-        assertTrue(sonMismoEgreso(egreso, egresoDto));
+        assertTrue(sonElMismoEgreso(egreso, egresoDto));
     }
 
     @Test
@@ -256,10 +265,10 @@ public class EgresoResourceBeanTest {
         PageableRequest pageableRequest = new PageableRequest(usuario.getUsuario(), 1L, 20L);
         PageableResponse<EgresoDTO, Egreso> egresos = egresoResourceBean.getEgresos(pageableRequest, "corto", usuario.getUsuario());
         EgresoDTO egresoDto = egresos.getData().get(0);
-        assertTrue(sonMismoEgreso(egreso, egresoDto));
+        assertTrue(sonElMismoEgreso(egreso, egresoDto));
     }
 
-    private boolean sonMismoEgreso(Egreso egreso, EgresoDTO egresoDto) {
+    private boolean sonElMismoEgreso(Egreso egreso, EgresoDTO egresoDto) {
         return egreso.getCodigoOperacion() == egresoDto.getCodigoOperacion()
                 && egreso.getCantidadPresupuestosMinimos() == egresoDto.getCantidadPresupuestosMinimos()
                 && egreso.getEntidadRealizadora().getNombre().equals(egresoDto.getEntidadRealizadora().getNombre())

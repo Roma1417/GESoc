@@ -8,6 +8,8 @@ import java.util.Set;
 
 import utn.dds.tpAnual.db.entity.categorizacion.categoria.CategoriaNombreCorto;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
+import utn.dds.tpAnual.db.entity.proveedor.Proveedor;
+import utn.dds.tpAnual.db.entity.proveedor.ProveedorPersona;
 import utn.dds.tpAnual.db.entity.transaccion.*;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.entity.categorizacion.criterioCompra.CriterioCompra;
@@ -26,6 +28,7 @@ public class EgresoBuilder {
 	private LocalDate fecha;
 	private MedioPago medioPago;
 	private DocumentoComercial documentoComercial;
+	private Proveedor proveedor;
 
     public EgresoBuilder withCodigoOperacion(int codigoOperacion){
         this.codigoOperacion = codigoOperacion;
@@ -82,6 +85,8 @@ public class EgresoBuilder {
     	Egreso egreso = new Egreso(documentoComercial, entidadRealizadora, codigoOperacion, detallesOperacion, fechaOperacion,
 				null, cantidadPresupuestosMinimos, criterioCompra, presupuestos, null, revisores);
     	egreso.setFecha(fecha);
+    	egreso.setProveedor(proveedor);
+    	egreso.setMedioPago(medioPago);
         return egreso;
     }
     
@@ -287,6 +292,8 @@ public class EgresoBuilder {
 		documentoComercial = new DocumentoComercial();
 		documentoComercial.setNumero(3473);
 		documentoComercial.setTipoDocumento(1);
+		proveedor = new ProveedorPersona(null, "9876543", "San pepito");
+		medioPago = new MedioPago("Tarjeta de crédito");
 
 		fechaOperacion = localDate;
 		fecha = localDate;

@@ -22,7 +22,8 @@ public interface EntidadRepository extends JpaRepository<Entidad, Long> {
     List<Entidad> getEntidadesByNombre(@Param("nombre") String nombre);
 
     @Query("SELECT e FROM Entidad e " +
-            " WHERE e.entidadId = :idEntidad" +
+            " JOIN FETCH e.usuariosEntidad ue " +
+            " WHERE e.entidadId = :idEntidad " +
             " AND e IN (SELECT en FROM Usuario u " +
             " INNER JOIN u.usuariosEntidad ue " +
             " INNER JOIN ue.entidad en " +
