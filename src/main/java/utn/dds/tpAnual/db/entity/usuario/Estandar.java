@@ -19,4 +19,9 @@ public class Estandar extends TipoUsuario {
 
 	}
 
+	@Override
+	public boolean puedeVerMensajesDeOtros() {
+		return true;
+	}
+
 }

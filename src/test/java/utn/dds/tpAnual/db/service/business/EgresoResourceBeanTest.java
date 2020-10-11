@@ -14,6 +14,8 @@ import utn.dds.tpAnual.builders.EgresoBuilder;
 import utn.dds.tpAnual.builders.EntidadJuridicaEmpresaBuilder;
 import utn.dds.tpAnual.builders.IngresoBuilder;
 import utn.dds.tpAnual.db.dto.entidad.EntidadDTO;
+import utn.dds.tpAnual.db.dto.pageable.PageableRequest;
+import utn.dds.tpAnual.db.dto.pageable.PageableResponse;
 import utn.dds.tpAnual.db.dto.proveedor.ProveedorDTO;
 import utn.dds.tpAnual.db.dto.transaccion.*;
 import utn.dds.tpAnual.db.dto.complex.VinculacionEgresoIngresoDTO;
@@ -36,6 +38,7 @@ import utn.dds.tpAnual.db.service.jpaService.*;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Date;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -227,6 +230,43 @@ public class EgresoResourceBeanTest {
         egresoResourceBean.crearEgreso(egresoDTO, usuario.getUsuario());
         assertTrue(true);
     }
+
+    @Test
+    public void getEgresosControllerSinFiltrarCategoriaSuccess (){
+        Entidad entidad = getTestEntidad("1");
+        Usuario usuario = getTestUsuario(entidad);
+        Egreso egreso = new EgresoBuilder().buildEgresoCompletoConFecha(LocalDate.now());
+        egreso.setEntidadRealizadora(entidad);
+        egresoService.save(egreso);
+
+        PageableRequest pageableRequest = new PageableRequest(usuario.getUsuario(), 1L, 20L);
+        PageableResponse<EgresoDTO, Egreso> egresos = egresoResourceBean.getEgresos(pageableRequest, null, usuario.getUsuario());
+        EgresoDTO egresoDto = egresos.getData().get(0);
+        assertTrue(sonMismoEgreso(egreso, egresoDto));
+    }
+
+    @Test
+    public void getEgresosControllerFiltrandoCategoriaSuccess (){
+        Entidad entidad = getTestEntidad("1");
+        Usuario usuario = getTestUsuario(entidad);
+        Egreso egreso = new EgresoBuilder().buildEgresoCompletoConFecha(LocalDate.now());
+        egreso.setEntidadRealizadora(entidad);
+        egresoService.save(egreso);
+
+        PageableRequest pageableRequest = new PageableRequest(usuario.getUsuario(), 1L, 20L);
+        PageableResponse<EgresoDTO, Egreso> egresos = egresoResourceBean.getEgresos(pageableRequest, "corto", usuario.getUsuario());
+        EgresoDTO egresoDto = egresos.getData().get(0);
+        assertTrue(sonMismoEgreso(egreso, egresoDto));
+    }
+
+    private boolean sonMismoEgreso(Egreso egreso, EgresoDTO egresoDto) {
+        return egreso.getCodigoOperacion() == egresoDto.getCodigoOperacion()
+                && egreso.getCantidadPresupuestosMinimos() == egresoDto.getCantidadPresupuestosMinimos()
+                && egreso.getEntidadRealizadora().getNombre().equals(egresoDto.getEntidadRealizadora().getNombre())
+                && egreso.getDocumentoComercial().getNumero() == egresoDto.getDocumentoComercial().getNumero()
+                && egreso.getDetallesOperacion().size() == egresoDto.getDetalles().size();
+    }
+
 
     private MedioPagoDTO getTestMedioPago(){
         MedioPago medioPago = new MedioPago();

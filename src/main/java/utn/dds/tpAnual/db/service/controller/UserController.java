@@ -52,6 +52,7 @@ public class UserController {
                                                              @RequestParam(name ="itemsPerPage", defaultValue = "20") Long itemsPerPage) {
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         PageableRequest pageableRequest = new PageableRequest(username, page, itemsPerPage);
+        //Usuario usuarioRequest = usuarioResourceBean.getUsuario
         PageableResponse<MensajeDTO, Mensaje> mensajes = mensajeResourceBean.getMensajesFrom(pageableRequest,userId);
         return mensajes;
     }

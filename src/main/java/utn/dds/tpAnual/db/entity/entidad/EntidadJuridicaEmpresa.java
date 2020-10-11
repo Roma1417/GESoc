@@ -9,6 +9,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import utn.dds.tpAnual.db.entity.afip.Actividad;
 import utn.dds.tpAnual.db.entity.afip.VentaAnual;
 import utn.dds.tpAnual.db.entity.afip.tamanios.TamanioEmpresa;
+import utn.dds.tpAnual.db.entity.categorizacion.criterioVinculacion.CriterioVinculacion;
+import utn.dds.tpAnual.db.entity.ubicacion.DireccionPostal;
 
 import javax.persistence.*;
 
@@ -38,11 +40,12 @@ public class EntidadJuridicaEmpresa extends EntidadJuridica {
 
 	}
 	
-	public EntidadJuridicaEmpresa(Actividad actividad, int cantidadPersonal, List<VentaAnual> ventasAnuales, String nombre) {
+	public EntidadJuridicaEmpresa(TamanioEmpresa tamanioEmpresa, Actividad actividad, int cantidadPersonal, List<VentaAnual> ventasAnuales, String nombre) {
 		super(nombre);
 		this.actividad = actividad;
 		this.cantidadPersonal = cantidadPersonal;
 		this.ventasAnuales = ventasAnuales;
+		this.tamanioEmpresa = tamanioEmpresa;
 	}
 
 	public TamanioEmpresa getTamanioEmpresa(){

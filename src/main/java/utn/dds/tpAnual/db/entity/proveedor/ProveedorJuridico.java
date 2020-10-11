@@ -19,17 +19,14 @@ public class ProveedorJuridico extends Proveedor {
 	@Column(name = "CUIT")
 	private String CUIT;
 
-	@Column(name = "RAZON_SOCIAL", length = 100)
-	private String razonSocial;
-
 	public ProveedorJuridico() {
 
 	}
 
 	public ProveedorJuridico(DireccionPostal direccionPostal, String CUIT, String razonSocial) {
-		super(direccionPostal);
+		super(direccionPostal, razonSocial);
 		this.CUIT = CUIT;
-		this.razonSocial = razonSocial;
+
 	}
 
 	public String getCUIT() {
@@ -38,14 +35,6 @@ public class ProveedorJuridico extends Proveedor {
 
 	public void setCUIT(String CUIT) {
 		this.CUIT = CUIT;
-	}
-
-	public String getRazonSocial() {
-		return razonSocial;
-	}
-
-	public void setRazonSocial(String razonSocial) {
-		this.razonSocial = razonSocial;
 	}
 
 

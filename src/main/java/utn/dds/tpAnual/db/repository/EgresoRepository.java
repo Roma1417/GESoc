@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import utn.dds.tpAnual.db.entity.entidad.Entidad;
 import utn.dds.tpAnual.db.entity.entidad.EntidadJuridica;
 import utn.dds.tpAnual.db.entity.transaccion.Egreso;
-import utn.dds.tpAnual.db.entity.entidad.Entidad;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -69,14 +69,22 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long> {
             " JOIN FETCH egreso.proveedor proveedor " +
             " JOIN FETCH egreso.medioPago mediPago " +
             " JOIN FETCH egreso.documentoComercial documentoComercial " +
-            " WHERE (:categoria IS NULL OR items.categoria.descripcion LIKE CONCAT('%', :categoria, '%') )",
+            " WHERE (:categoria IS NULL OR items.categoria.descripcion LIKE CONCAT('%', :categoria, '%') ) " +
+            " AND entidad IN ( SELECT entidadesUsuario from Entidad entidadesUsuario " +
+            "   JOIN entidadesUsuario.usuariosEntidad ue " +
+            "   JOIN ue.usuario usuario " +
+            "   WHERE usuario.usuarioId = :userId ) ",
             countQuery  = "SELECT COUNT(DISTINCT  egreso) FROM Egreso egreso " +
-            " JOIN FETCH egreso.entidadRealizadora entidad " +
-            " JOIN FETCH egreso.detallesOperacion detalles " +
-            " JOIN FETCH detalles.item items " +
-            " JOIN FETCH egreso.proveedor proveedor " +
-            " JOIN FETCH egreso.medioPago mediPago " +
-            " JOIN FETCH egreso.documentoComercial documentoComercial " +
-            " WHERE (:categoria IS NULL OR items.categoria.descripcion LIKE CONCAT('%', :categoria, '%') )")
-    Page<Egreso> getEgresosByCategoria(Pageable pageable, @Param("categoria")String categoria);
+            " JOIN egreso.entidadRealizadora entidad " +
+            " JOIN egreso.detallesOperacion detalles " +
+            " JOIN detalles.item items " +
+            " JOIN egreso.proveedor proveedor " +
+            " JOIN egreso.medioPago mediPago " +
+            " JOIN egreso.documentoComercial documentoComercial " +
+            " WHERE (:categoria IS NULL OR items.categoria.descripcion LIKE CONCAT('%', :categoria, '%') )" +
+            " AND entidad IN ( SELECT entidadesUsuario from Entidad entidadesUsuario " +
+                    "   JOIN entidadesUsuario.usuariosEntidad ue " +
+                    "   JOIN ue.usuario usuario " +
+                    "   WHERE usuario.usuarioId = :userId ) ")
+    Page<Egreso> getEgresosByCategoria(Pageable pageable, @Param("categoria")String categoria, @Param("userId") long userId);
 }

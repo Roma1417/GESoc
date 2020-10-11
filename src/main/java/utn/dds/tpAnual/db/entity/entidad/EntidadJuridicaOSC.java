@@ -1,6 +1,10 @@
 package utn.dds.tpAnual.db.entity.entidad;
 
+import utn.dds.tpAnual.db.entity.categorizacion.criterioVinculacion.CriterioVinculacion;
+import utn.dds.tpAnual.db.entity.ubicacion.DireccionPostal;
+
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author Daiana
@@ -14,7 +18,7 @@ public class EntidadJuridicaOSC extends EntidadJuridica {
 	public EntidadJuridicaOSC(){
 
 	}
-	
+
 	public EntidadJuridicaOSC(String nombre){
 		super(nombre);
 	}
