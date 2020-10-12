@@ -2,8 +2,6 @@ package utn.dds.tpAnual.db.dto.transaccion;
 
 import utn.dds.tpAnual.db.dto.StandardDTO;
 import utn.dds.tpAnual.db.dto.entidad.EntidadDTO;
-import utn.dds.tpAnual.db.entity.entidad.Entidad;
-import utn.dds.tpAnual.db.entity.transaccion.DocumentoComercial;
 import utn.dds.tpAnual.db.entity.transaccion.Ingreso;
 
 
