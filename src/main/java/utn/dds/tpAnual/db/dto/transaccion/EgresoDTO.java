@@ -37,6 +37,8 @@ public class EgresoDTO extends StandardDTO<Egreso> {
         egresoDTO.setCantidadPresupuestosMinimos(object.getCantidadPresupuestosMinimos());
         egresoDTO.setCodigoOperacion(object.getCodigoOperacion());
         egresoDTO.setFechaCreacion(object.getFecha());
+        egresoDTO.setMedioPago(new MedioPagoDTO().from(object.getMedioPago()));
+        egresoDTO.setDocumentoComercial(new DocumentoComercialDTO().from(object.getDocumentoComercial()));
         return egresoDTO;
     }
 
