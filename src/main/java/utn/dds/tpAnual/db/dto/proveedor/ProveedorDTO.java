@@ -1,5 +1,6 @@
 package utn.dds.tpAnual.db.dto.proveedor;
 
+import javassist.expr.Instanceof;
 import utn.dds.tpAnual.db.dto.StandardDTO;
 import utn.dds.tpAnual.db.entity.proveedor.Proveedor;
 import utn.dds.tpAnual.db.entity.proveedor.ProveedorJuridico;
@@ -19,7 +20,32 @@ public class ProveedorDTO extends StandardDTO<Proveedor> {
 
     @Override
     public ProveedorDTO from(Proveedor object) {
-        return null;
+        loadTipoProveedor(object);
+        ProveedorDTO proveedor = new ProveedorDTO();
+        if(tipoProveedor.equals(TipoProveedor.JURIDICO)){
+            setDatosProveedorJuridico((ProveedorJuridico) object, proveedor);
+        }
+        else {
+            setDatosProveedorPersona((ProveedorPersona) object, proveedor);
+        }
+        return proveedor;
+    }
+
+    private void setDatosProveedorPersona(ProveedorPersona proveedor, ProveedorDTO proveedorDto) {
+        dni =  proveedor.getDni();
+        razonSocial = proveedor.getNombreRazonSocial();
+        idProveedor = proveedor.getProveedorId();
+    }
+
+    private void setDatosProveedorJuridico(ProveedorJuridico proveedor, ProveedorDTO proveedorDto) {
+        CUIT =  proveedor.getCUIT();
+        razonSocial = proveedor.getNombreRazonSocial();
+        idProveedor = proveedor.getProveedorId();
+    }
+
+    private void loadTipoProveedor(Proveedor object) {
+        this.tipoProveedor = object instanceof ProveedorJuridico ?
+                TipoProveedor.JURIDICO : TipoProveedor.PERSONA;
     }
 
     @Override

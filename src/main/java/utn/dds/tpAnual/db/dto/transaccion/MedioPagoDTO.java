@@ -9,8 +9,14 @@ public class MedioPagoDTO extends StandardDTO<MedioPago> {
     private String instrumentoPago;
 
     @Override
-    public StandardDTO from(MedioPago object) {
-        return null;
+    public MedioPagoDTO from(MedioPago object) {
+        MedioPagoDTO medioPago = new MedioPagoDTO();
+        medioPago.setInstrumentoPago(object.getInstrumentoPago());
+        medioPago.setIdMedioPago(object.getMedioPagoId());
+        return medioPago;
+    }
+
+    public MedioPagoDTO () {
     }
 
     @Override

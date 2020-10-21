@@ -18,7 +18,7 @@ public class DocumentoComercialDTO extends StandardDTO<DocumentoComercial> {
     }
 
     @Override
-    public StandardDTO from(DocumentoComercial object) {
+    public DocumentoComercialDTO from(DocumentoComercial object) {
         return null;
     }
 
