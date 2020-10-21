@@ -12,6 +12,15 @@
         "rowsPerPageText": "Filas por página:"
       },
       "noDataText": "No se encontraron datos"
+    },
+    "login": {
+      "title": "Bienvenido a GESOC",
+      "username": "Usuario",
+      "password": "Contraseña",
+      "error": "Hubo un error al validar el ususario"
+    },
+    "validations": {
+      "required": "El campo es requerido"
     }
 }
   

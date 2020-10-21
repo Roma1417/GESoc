@@ -6,16 +6,16 @@ export default function ({ $axios, store, redirect, app }) {
   $axios.onResponse((response) => {
     const code = parseInt(response.status)
     if (code === 403 || code === 401) {
-      app.$cookiz.removeAll()
-      return redirect('/logout')
+      console.log('patear')
+      // return redirect('/logout')
     }
   })
 
   $axios.onError((error) => {
     const code = parseInt(error.response.status)
     if (code === 403 || code === 401) {
-      app.$cookiz.removeAll()
-      return redirect('/logout')
+      console.log('patear')
+      // return redirect('/logout')
     }
     return error
   })
@@ -31,8 +31,8 @@ export default function ({ $axios, store, redirect, app }) {
     })
   }
 
-  $axios.postOrFalse = (url, options) => {
-    return $axios.post(url, options).then((response) => {
+  $axios.postOrFalse = (url, options, config) => {
+    return $axios.post(url, options, config).then((response) => {
       if (response.status === 200) {
         return response
       } else {

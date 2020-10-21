@@ -1,5 +1,5 @@
 
-$base-color: green;
+$base-color: #1565C0;
 body, body *{
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif2m;
 }
@@ -33,11 +33,21 @@ body, body *{
 }
 
 .nuxt-component{
-  border-bottom: 2px solid $base-color;
-  border-top: 2px solid $base-color;
-  background: #e0e0e0;
   padding-top:2em;
   padding-bottom:2em;
   padding-left: 4em;
   padding-right: 4em;
+}
+
+.base-background{
+  border-bottom: 2px solid $base-color;
+  border-top: 2px solid $base-color;
+  background-color: #e0e0e0 !important;
+}
+
+.toasted-ok {
+  background-color: #2E7D32;
+  padding: 0.4em 2em!important;
+  border-radius: 5px;
+  color:white;
 }

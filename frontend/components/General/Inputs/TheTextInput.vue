@@ -2,7 +2,7 @@
   <v-text-field
     v-bind="$attrs"
     :maxlength="maxlength"
-    :counter="maxlength"
+    :counter="showCounter ? maxlength : null"
     v-on="$listeners"
   />
 </template>
@@ -12,6 +12,10 @@ export default {
     maxlength: {
       default: '250',
       type: String
+    },
+    showCounter: {
+      type: Boolean,
+      default: false
     }
   }
 }
