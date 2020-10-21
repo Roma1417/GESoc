@@ -1,0 +1,17 @@
+{
+    "$vuetify": {
+      "dataIterator": {
+        "rowsPerPageText": "Filas por página:",
+        "rowsPerPageAll": "Todos",
+        "pageText": "{0}-{1} de {2}",
+        "noResultsText": "No hay resultados",
+        "nextPage": "Siguiente",
+        "prevPage": "Anterior"
+      },
+      "dataTable": {
+        "rowsPerPageText": "Filas por página:"
+      },
+      "noDataText": "No se encontraron datos"
+    }
+}
+  
