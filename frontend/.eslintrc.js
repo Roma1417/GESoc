@@ -14,5 +14,13 @@ module.exports = {
   plugins: [
   ],
   // add your custom rules here
-  rules: {}
+  rules: {
+    "complexity": [1, 7],
+    "max-statements": [1, 25],
+    "max-nested-callbacks": [1, 3],
+    "max-depth": [1, {
+      "max": 4
+    }],
+    "max-lines": [1, 350]
+  }
 }

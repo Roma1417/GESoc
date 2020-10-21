@@ -4,6 +4,10 @@ export default class User {
     this.$store = ctx.$store
   }
 
+  test () {
+    return this.$axios.getOrFalse('/api/hi')
+  }
+
   authenticate (username, password) {
     return this.$axios.post('/api/user/login', {
       username,

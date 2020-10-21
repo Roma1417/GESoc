@@ -1,0 +1,43 @@
+
+$base-color: green;
+body, body *{
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif2m;
+}
+
+.subHeader{
+  font-size: 0.9em;
+  color: $base-color;
+}
+
+.header-data-user{
+  display: inline-flex;
+  color: $base-color;
+  font-size: 0.8em;
+}
+
+.w-100{
+  width: 100% !important;
+}
+
+.mh-6{
+  max-height: 6em!important;
+}
+
+.text-primary{
+  color: $base-color;
+}
+
+.v-list-item--active{
+  font-weight: bold!important;
+  color: $base-color!important;
+}
+
+.nuxt-component{
+  border-bottom: 2px solid $base-color;
+  border-top: 2px solid $base-color;
+  background: #e0e0e0;
+  padding-top:2em;
+  padding-bottom:2em;
+  padding-left: 4em;
+  padding-right: 4em;
+}

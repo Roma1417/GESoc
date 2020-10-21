@@ -84,6 +84,10 @@ export default {
   components: {
     Logo,
     VuetifyLogo
+  },
+  mounted () {
+    this.$userService.test().then((result) => {
+    })
   }
 }
 </script>

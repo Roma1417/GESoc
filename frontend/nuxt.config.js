@@ -24,11 +24,9 @@ export default {
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: ['@/assets/style.scss'
   ],
-  
-  
+
   moment: {
-    locales: ['en'],
-    locales: ['es']
+    locales: ['en']
   },
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
@@ -36,7 +34,7 @@ export default {
     '~/plugins/i18n',
     '~/plugins/toasting',
     '~/plugins/services.js'
-  ], 
+  ],
   /*
   ** Proxy cfg
   */
@@ -74,7 +72,7 @@ export default {
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
+    customVariables: ['~/assets/style.scss'],
     theme: {
       dark: true,
       themes: {
