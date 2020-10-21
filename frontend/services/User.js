@@ -22,10 +22,12 @@ export default class User {
     return this.$axios.postOrFalse('/api/auth', qs.stringify(requestBody), config)
   }
 
-  changePassword (password, newPassword) {
-    return this.$axios.postOrFalse('/api/user/password', {
-      password,
-      newPassword
+  getMensajes (userId, page, itemsPerPage) {
+    return this.$axios.postOrFalse(`/api/user/${userId}/mensajes`, {
+      params: {
+        page,
+        itemsPerPage
+      }
     })
   }
 }
