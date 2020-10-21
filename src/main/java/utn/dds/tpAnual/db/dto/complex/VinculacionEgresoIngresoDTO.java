@@ -9,6 +9,11 @@ public class VinculacionEgresoIngresoDTO {
 
     }
 
+    public VinculacionEgresoIngresoDTO(Long ingresoId, Long egresoId) {
+        this.ingresoId = ingresoId;
+        this.egresoId = egresoId;
+    }
+
     public Long getIngresoId() {
         return ingresoId;
     }

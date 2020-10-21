@@ -1,8 +1,11 @@
 package utn.dds.tpAnual.db.entity.entidad;
 
+import utn.dds.tpAnual.db.entity.categorizacion.criterioVinculacion.CriterioVinculacion;
 import utn.dds.tpAnual.db.entity.ubicacion.DireccionPostal;
+import utn.dds.tpAnual.db.entity.usuario.UsuarioEntidad;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,7 +21,7 @@ public abstract class EntidadJuridica extends Entidad {
 	private Long codigoIGJ;
 
 	@Column(name = "CUIT", length = 100)
-	private Long CUIT;
+	private String CUIT;
 
 	@Column(name = "RAZON_SOCIAL")
 	private String razonSocial;
@@ -27,15 +30,14 @@ public abstract class EntidadJuridica extends Entidad {
 	private DireccionPostal direccionPostal;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "ENTIDAD_JURIDIDA_ID")
+	@JoinColumn(name = "ENTIDAD_JURIDICA_ID")
 	private List<EntidadBase> entidadesBase;
-
-	public EntidadJuridica(){
-
-	}
 
 	public EntidadJuridica(String nombre) {
 		super(nombre);
+	}
+
+	public EntidadJuridica() {
 	}
 
 	public Long getCodigoIGJ() {
@@ -46,11 +48,11 @@ public abstract class EntidadJuridica extends Entidad {
 		this.codigoIGJ = codigoIGJ;
 	}
 
-	public Long getCUIT() {
+	public String getCUIT() {
 		return CUIT;
 	}
 
-	public void setCUIT(Long CUIT) {
+	public void setCUIT(String CUIT) {
 		this.CUIT = CUIT;
 	}
 
@@ -71,6 +73,9 @@ public abstract class EntidadJuridica extends Entidad {
 	}
 
 	public List<EntidadBase> getEntidadesBase() {
+		if(entidadesBase == null){
+			entidadesBase = new ArrayList();
+		}
 		return entidadesBase;
 	}
 

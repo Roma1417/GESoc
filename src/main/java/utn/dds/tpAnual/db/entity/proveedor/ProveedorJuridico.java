@@ -17,35 +17,24 @@ import javax.persistence.Table;
 public class ProveedorJuridico extends Proveedor {
 
 	@Column(name = "CUIT")
-	private Long CUIT;
-
-	@Column(name = "RAZON_SOCIAL", length = 100)
-	private String razonSocial;
+	private String CUIT;
 
 	public ProveedorJuridico() {
 
 	}
 
-	public ProveedorJuridico(DireccionPostal direccionPostal, Long CUIT, String razonSocial) {
-		super(direccionPostal);
+	public ProveedorJuridico(DireccionPostal direccionPostal, String CUIT, String razonSocial) {
+		super(direccionPostal, razonSocial);
 		this.CUIT = CUIT;
-		this.razonSocial = razonSocial;
+
 	}
 
-	public Long getCUIT() {
+	public String getCUIT() {
 		return CUIT;
 	}
 
-	public void setCUIT(Long CUIT) {
+	public void setCUIT(String CUIT) {
 		this.CUIT = CUIT;
-	}
-
-	public String getRazonSocial() {
-		return razonSocial;
-	}
-
-	public void setRazonSocial(String razonSocial) {
-		this.razonSocial = razonSocial;
 	}
 
 

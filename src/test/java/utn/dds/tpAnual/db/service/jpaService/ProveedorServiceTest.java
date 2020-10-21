@@ -23,7 +23,7 @@ public class ProveedorServiceTest {
     private ProveedorService proveedorService;
 
     private DireccionPostal direccionPostal = new DireccionPostal("Calle falsa", 123111, 0, null);
-    private Proveedor unProveedor = new ProveedorPersona(direccionPostal, 0L,"Frongi");
+    private Proveedor unProveedor = new ProveedorPersona(direccionPostal, "0","Frongi");
 
     @Test
     public void persistenceTest() {

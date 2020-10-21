@@ -59,6 +59,20 @@ public class Ingreso extends Operacion{
 		this.descripcion = descripcion;
 	}
 
+	public boolean satisfaceRestante (Egreso egreso) {
+		return getRestanteSinVincular() >= egreso.getTotal();
+	}
+
+	public Float getRestanteSinVincular () {
+		return getTotal() - getValorVinculado();
+	}
+
+	private Float getValorVinculado(){
+		return getEgresosAsociados() == null ? 0F :
+				getEgresosAsociados().stream().map(egreso -> egreso.getTotal())
+						.reduce(0F, (valor, acumulador) -> valor + acumulador);
+	}
+
 
 	public void vincularEgreso(Egreso egreso) {
 		if (egresosAsociados == null) {

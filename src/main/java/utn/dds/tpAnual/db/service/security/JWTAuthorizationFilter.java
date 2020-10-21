@@ -8,21 +8,21 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
-    private final String HEADER = "Authorization";
-    private final String PREFIX = "Bearer ";
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
         try {
-            if (existeJWTToken(request, response)) {
+            if (existeJWTToken(request, response) && esPathSeguro(request)) {
                 Claims claims = validateToken(request);
                 if (claims.get("authorities") != null) {
                     setUpSpringAuthentication(claims);
@@ -40,8 +40,12 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
         }
     }
 
+    private boolean esPathSeguro(HttpServletRequest request) {
+        return !"/api/auth".equals(request.getRequestURI()) && !"/api/hi".equals(request.getRequestURI());
+    }
+
     private Claims validateToken(HttpServletRequest request) {
-        String jwtToken = request.getHeader(HEADER).replace(PREFIX, "");
+        String jwtToken = getTokenCookieValue(request).replace(SecurityData.getInstance().getPREFIX(), "");
         return Jwts.parser().setSigningKey(SecurityData.getInstance().getKey().getBytes())
                 .parseClaimsJws(jwtToken).getBody();
     }
@@ -62,10 +66,17 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     }
 
     private boolean existeJWTToken(HttpServletRequest request, HttpServletResponse res) {
-        String authenticationHeader = request.getHeader(HEADER);
-        if (authenticationHeader == null || !authenticationHeader.startsWith(PREFIX))
-            return false;
-        return true;
+        Optional<Cookie> authCookie = getTokenCookie(request);
+        return authCookie.isPresent();
+    }
+
+    private Optional<Cookie> getTokenCookie(HttpServletRequest request) {
+        return Arrays.stream(request.getCookies()).filter(cookie -> SecurityData.getInstance().getAUTH_COOKIE_NAME()
+                .equals(cookie.getName())).findFirst();
+    }
+
+    private String getTokenCookieValue(HttpServletRequest request){
+        return getTokenCookie(request).get().getValue();
     }
 
 }

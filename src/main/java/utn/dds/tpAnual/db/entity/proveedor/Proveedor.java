@@ -22,6 +22,9 @@ public abstract class Proveedor {
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private DireccionPostal direccionPostal;
 
+	@Column(name = "NOMBRE_RAZON_SOCIAL", length = 100)
+	private String nombreRazonSocial;
+
 	public Proveedor() {
 
 	}
@@ -42,7 +45,16 @@ public abstract class Proveedor {
 		this.proveedorId = proveedorId;
 	}
 
-	public Proveedor(DireccionPostal direccionPostal) {
+	public Proveedor(DireccionPostal direccionPostal, String nombreRazonSocial) {
 		this.direccionPostal = direccionPostal;
+		this.nombreRazonSocial = nombreRazonSocial;
+	}
+
+	public String getNombreRazonSocial() {
+		return nombreRazonSocial;
+	}
+
+	public void setNombreRazonSocial(String nombreRazonSocial) {
+		this.nombreRazonSocial = nombreRazonSocial;
 	}
 }

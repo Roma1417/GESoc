@@ -28,4 +28,5 @@ public class UsuarioService extends CustomJPAService<Usuario> {
     public Usuario getUsuarioByUsername(String usuario) {
         return usuarioRepository.getUsuarioByUsuario(usuario);
     }
+
 }

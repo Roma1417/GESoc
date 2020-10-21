@@ -8,14 +8,18 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import utn.dds.tpAnual.db.dto.pageable.PageableRequest;
+import utn.dds.tpAnual.db.dto.pageable.PageableResponse;
+import utn.dds.tpAnual.db.dto.transaccion.EgresoDTO;
 import utn.dds.tpAnual.db.entity.entidad.EntidadJuridica;
 import utn.dds.tpAnual.db.entity.transaccion.Egreso;
+import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.repository.EgresoRepository;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
 
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Service
     public class EgresoService extends CustomJPAService<Egreso> {
@@ -25,6 +29,9 @@ import java.util.List;
 
     @Autowired
     private EntidadService entidadService;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     @Override
     public JpaRepository<Egreso, Long> getRepository() {
@@ -63,5 +70,15 @@ import java.util.List;
         Pageable pageable = PageRequest.of(pageableRequest.getPage().intValue(), pageableRequest.getItemsPerPage().intValue()
             , Sort.by(Sort.Order.desc("fechaOperacion")));
         return egresoRepository.getEgresosByCantidadPresupuestosMinimos(cantidadPresupuestosMinimos,pageable);
+    }
+
+    public Optional<Egreso> findFullById(Long egresoId) {
+        return egresoRepository.findFullById(egresoId);
+    }
+
+    public Page<Egreso> findAllRelatedByCategoria(PageableRequest pageableRequest, String categoria, String username) {
+        Pageable pageable = pageableRequest.toPageable();
+        Usuario usuario = usuarioService.getUsuarioByUsername(username);
+        return egresoRepository.getEgresosByCategoria(pageable, categoria, usuario.getUsuarioId());
     }
 }

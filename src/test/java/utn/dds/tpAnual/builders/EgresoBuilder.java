@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Set;
 
 import utn.dds.tpAnual.db.entity.categorizacion.categoria.CategoriaNombreCorto;
+import utn.dds.tpAnual.db.entity.entidad.Entidad;
+import utn.dds.tpAnual.db.entity.proveedor.Proveedor;
+import utn.dds.tpAnual.db.entity.proveedor.ProveedorPersona;
 import utn.dds.tpAnual.db.entity.transaccion.*;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.entity.categorizacion.criterioCompra.CriterioCompra;
@@ -20,10 +23,12 @@ public class EgresoBuilder {
     private CriterioCompra criterioCompra;
     private List<Presupuesto> presupuestos = new ArrayList<Presupuesto>();
     private Set<Usuario> revisores = new HashSet<Usuario>();
+    private Entidad entidadRealizadora;
 	private LocalDate fechaOperacion;
 	private LocalDate fecha;
 	private MedioPago medioPago;
 	private DocumentoComercial documentoComercial;
+	private Proveedor proveedor;
 
     public EgresoBuilder withCodigoOperacion(int codigoOperacion){
         this.codigoOperacion = codigoOperacion;
@@ -70,17 +75,24 @@ public class EgresoBuilder {
         this.revisores.add(revisor);
         return this;
     }
+	public EgresoBuilder withEntidadRealizadora(Entidad entidadRealizadora){
+		this.entidadRealizadora = entidadRealizadora;
+		return this;
+	}
+
     
     public Egreso build(){
-    	Egreso egreso = new Egreso(documentoComercial, null, codigoOperacion, detallesOperacion, fechaOperacion,
+    	Egreso egreso = new Egreso(documentoComercial, entidadRealizadora, codigoOperacion, detallesOperacion, fechaOperacion,
 				null, cantidadPresupuestosMinimos, criterioCompra, presupuestos, null, revisores);
     	egreso.setFecha(fecha);
+    	egreso.setProveedor(proveedor);
+    	egreso.setMedioPago(medioPago);
         return egreso;
     }
     
     public Egreso buildEgresoSinPresupuestos(){
-    	revisores.add(new UsuarioBuilder().withNombre("unRevisor").withContrasenia("asndihg382").build());
-    	revisores.add(new UsuarioBuilder().withNombre("otroRevisor").withContrasenia("wuiefnwi471").build());
+    	revisores.add(new UsuarioBuilder().withNombre("unRevisor").withContrasenia("asndihg382").withUsuario("unrevisor").build());
+    	revisores.add(new UsuarioBuilder().withNombre("otroRevisor").withContrasenia("wuiefnwi471").withUsuario("otrorevisor").build());
     	codigoOperacion = 542;
     	cantidadPresupuestosMinimos = 2;
 		documentoComercial = new DocumentoComercial();
@@ -109,10 +121,12 @@ public class EgresoBuilder {
     	revisores.add(new UsuarioBuilder()
     			.withNombre("unRevisor")
     			.withContrasenia("asndihg382")
+				.withUsuario("unrevisormas")
     			.build());
     	revisores.add(new UsuarioBuilder()
     			.withNombre("otroRevisor")
     			.withContrasenia("wuiefnwi471")
+				.withUsuario("otrorevisormas")
     			.build());
     	
     	DetalleOperacion detalleOperacion = new DetalleOperacionBuilder()
@@ -278,6 +292,8 @@ public class EgresoBuilder {
 		documentoComercial = new DocumentoComercial();
 		documentoComercial.setNumero(3473);
 		documentoComercial.setTipoDocumento(1);
+		proveedor = new ProveedorPersona(null, "9876543", "San pepito");
+		medioPago = new MedioPago("Tarjeta de crédito");
 
 		fechaOperacion = localDate;
 		fecha = localDate;

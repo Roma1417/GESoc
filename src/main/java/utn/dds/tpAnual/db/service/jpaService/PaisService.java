@@ -1,8 +1,12 @@
 package utn.dds.tpAnual.db.service.jpaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import utn.dds.tpAnual.db.dto.pageable.PageableRequest;
+import utn.dds.tpAnual.db.entity.proveedor.Proveedor;
 import utn.dds.tpAnual.db.repository.PaisRepository;
 import utn.dds.tpAnual.db.entity.ubicacion.Pais;
 
@@ -40,5 +44,10 @@ public class PaisService extends CustomJPAService<Pais> {
 
     public List<Pais> getPaisesByNombre(String nombrePais){
         return paisRepository.getAllByDescripciones(Arrays.asList(nombrePais));
+    }
+
+    public Page<Pais> getPaises(PageableRequest pageableRequest, String paisName) {
+        Pageable pageable = pageableRequest.toPageable();
+        return paisRepository.getPaisesByNameLike(pageable, paisName);
     }
 }

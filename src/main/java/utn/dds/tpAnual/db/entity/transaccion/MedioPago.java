@@ -24,6 +24,10 @@ public class MedioPago {
 
 	}
 
+	public MedioPago(String instrumentoPago) {
+		this.instrumentoPago = instrumentoPago;
+	}
+
 	public Long getMedioPagoId() {
 		return medioPagoId;
 	}
