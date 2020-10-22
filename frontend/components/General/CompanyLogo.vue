@@ -2,7 +2,7 @@
   <img
     :class="'company-' + size"
     alt="Company"
-    :src="logoSrc"
+    src="/logo_utn.png"
   >
 </template>
 
@@ -21,17 +21,11 @@
 }
 </style>
 <script>
-import { get } from 'lodash'
 export default {
   props: {
     size: {
       type: String,
       default: 'medium'
-    }
-  },
-  computed: {
-    logoSrc () {
-      return get(this.$store.state.userInfo, 'current_location.company.logo') || '/vis-logo.png'
     }
   }
 }

@@ -40,84 +40,45 @@ export default {
   },
   computed: {
     menus () {
-      return this.$store.state.userInfo ? this.$store.state.userInfo.menu : [
+      return [
         {
-          permissions: [],
           title: 'home',
           icon: 'mdi-home',
-          to: '/'
+          to: '/home'
         },
         {
-          permissions: [],
-          title: 'calculations.calculations',
-          icon: 'mdi-calculator',
+          title: 'transacciones.menu',
+          icon: 'mdi-cash-multiple',
           to: null,
           children: [
             {
-              permissions: [],
-              title: 'calculations.list',
-              to: '/calculus/calculus'
+              title: 'transacciones.egresos',
+              to: '/transacciones/egresos'
             },
             {
-              permissions: [],
-              title: 'results.results',
-              to: '/calculus/results',
-              parent: null
+              title: 'transacciones.ingresos',
+              to: '/transacciones/ingresos'
             }
           ]
         },
         {
-          permissions: [],
-          title: 'devices.devices',
-          icon: 'mdi-devices',
-          to: '/devices',
+          title: 'usuario.menu',
+          icon: 'mdi-account-circle',
+          to: null,
           children: [
             {
-              permissions: [],
-              title: 'devices.devices',
-              to: '/devices/'
-            },
-            {
-              permissions: [],
-              title: 'devices.device_models',
-              to: '/devices/models'
-            },
-            {
-              permissions: [],
-              title: 'devices.device_brands',
-              to: '/devices/brands'
-            },
-            {
-              permissions: [],
-              title: 'devices.device_types',
-              to: '/devices/types'
-            }
-          ],
-          parent: null
-        },
-        {
-          permissions: [],
-          title: 'measurement_units.measurement_units',
-          icon: 'mdi-weight-kilogram',
-          to: '/measure-units',
-          children: [
-            {
-              permissions: [],
-              title: 'measurement_units.measurement_units',
-              to: '/measure-units/units'
-            },
-            {
-              permissions: [],
-              title: 'measurement_units.measurement_unit_types',
-              to: '/measure-units/types'
-            },
-            {
-              permissions: [],
-              title: 'measurement_units.measurement_unit_systems',
-              to: '/measure-units/systems'
+              title: 'mensajes.menu',
+              to: '/usuario/mensajes'
             }
           ]
+        },
+        {
+
+          title: 'sesion.salir',
+          icon: 'mdi-power',
+          to: '/logout'
         }
+
       ]
     }
   }

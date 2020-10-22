@@ -1,26 +1,57 @@
 {
-    "$vuetify": {
-      "dataIterator": {
-        "rowsPerPageText": "Filas por página:",
-        "rowsPerPageAll": "Todos",
-        "pageText": "{0}-{1} de {2}",
-        "noResultsText": "No hay resultados",
-        "nextPage": "Siguiente",
-        "prevPage": "Anterior"
-      },
-      "dataTable": {
-        "rowsPerPageText": "Filas por página:"
-      },
-      "noDataText": "No se encontraron datos"
-    },
-    "login": {
-      "title": "Bienvenido a GESOC",
-      "username": "Usuario",
-      "password": "Contraseña",
-      "error": "Hubo un error al validar el ususario"
-    },
-    "validations": {
-      "required": "El campo es requerido"
-    }
+   "$vuetify": {
+     "dataIterator": {
+       "rowsPerPageText": "Filas por página:",
+       "rowsPerPageAll": "Todos",
+       "pageText": "{0}-{1} de {2}",
+       "noResultsText": "No hay resultados",
+       "nextPage": "Siguiente",
+       "prevPage": "Anterior"
+     },
+     "dataTable": {
+       "rowsPerPageText": "Filas por página:"
+     },
+     "noDataText": "No se encontraron datos"
+   },
+   "login": {
+     "title": "Bienvenido a GESOC",
+     "username": "Usuario",
+     "password": "Contraseña",
+     "error": "Hubo un error al validar el ususario"
+   },
+   "validations": {
+     "required": "El campo es requerido"
+   },
+   "home": "Inicio",
+   "transacciones": {
+     "menu": "Transacciones",
+     "egresos": "Egresos",
+     "ingresos": "Ingresos"
+   },
+   "egresos": {
+     "menu": "Egresos",
+     "welcome_description": "Ver mis egresos"
+   },
+   "ingresos": {
+    "menu": "Ingresos",
+    "welcome_description": "Ver mis ingresos"
+   },
+   "mensajes": {
+    "menu": "Mensajes",
+    "welcome_description": "Ver mis mensajes"
+   },
+   "usuario": {
+     "menu": "Usuario"
+   },
+   "sesion": {
+     "salir": "Salir"
+   },
+   "dashboard": {
+     "welcome": "Bienvenido seleccione la acción que desee realizar"
+   },
+   "errors": {
+     "session": "Error de sesión, por favor vuelva a ingresar",
+     "session_login": "Ir al login"
+   }
 }
   

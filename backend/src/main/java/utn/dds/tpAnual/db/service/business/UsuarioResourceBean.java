@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.stereotype.Service;
+import utn.dds.tpAnual.db.configuracion.ConfiguracionEnum;
 import utn.dds.tpAnual.db.dto.usuario.UserDTO;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
+import utn.dds.tpAnual.db.service.jpaService.ConfiguracionService;
 import utn.dds.tpAnual.db.service.jpaService.UsuarioService;
 import utn.dds.tpAnual.db.service.security.SecurityData;
 import java.util.Date;
@@ -20,19 +22,26 @@ public class UsuarioResourceBean {
     @Autowired
     private UsuarioService usuarioService;
 
+    @Autowired
+    private ConfiguracionService configuracionService;
+
     public UserDTO login(String username, String contrasenia){
         Usuario user = usuarioService.getUsuarioByUsername(username);
         //TODO: REMOVER
-        if ("rodri".equals(username)) {
-            //NADA
-        } else if (user == null || !user.matchContrasenia(contrasenia)) {
+        if (user == null) {
             throw new SecurityException("Usuario invalido");
         }
-        String token = getJWTToken(username);
-        return new UserDTO(username, token);
+        if (user.getCantidadIntentos() >= configuracionService.getIntValue(ConfiguracionEnum.CANTIDAD_INTENTOS_LOGIN)) {
+            throw new SecurityException("Usuario bloqueado");
+        }
+        if (!user.matchContrasenia(contrasenia)) {
+            user.addCantidadIntentos();
+            throw new SecurityException("Credenciales inválidas");
+        }
+        return new UserDTO().from(user);
     }
 
-    private String getJWTToken(String username) {
+    public String getJWTToken(String username) {
         String secretKey = SecurityData.getInstance().getKey();
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils
                 .commaSeparatedStringToAuthorityList("ROLE_USER");
@@ -59,5 +68,10 @@ public class UsuarioResourceBean {
         return usuarioAdm.getUsuariosEntidad().stream()
                 .anyMatch(usuarioEntidad -> usuarioEntidad.puedeVerMensajesDeOtros() && entidadesUsuario
                         .contains(usuarioEntidad.getEntidad()));
+    }
+
+    public UserDTO getUser(String username) {
+        Usuario user = usuarioService.getUsuarioByUsername(username);
+        return new UserDTO().from(user);
     }
 }

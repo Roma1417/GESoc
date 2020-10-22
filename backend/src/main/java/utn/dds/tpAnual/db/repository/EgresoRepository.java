@@ -71,7 +71,7 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long> {
             " JOIN FETCH egreso.medioPago mediPago " +
             " JOIN FETCH egreso.documentoComercial documentoComercial " +
             " WHERE :categoria IS NULL OR " +
-            "   items IN ( SELECT i from Item i WHERE i.categoria.descripcion LIKE CONCAT('%', :categoria, '%') )  " +
+            "   items IN ( SELECT i FROM Item i WHERE :categoria IN (i.categorias))  " +
             " AND entidad IN ( SELECT entidadesUsuario from Entidad entidadesUsuario " +
             "   JOIN entidadesUsuario.usuariosEntidad ue " +
             "   JOIN ue.usuario usuario " +
@@ -84,7 +84,7 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long> {
             " JOIN egreso.medioPago mediPago " +
             " JOIN egreso.documentoComercial documentoComercial " +
             " WHERE :categoria IS NULL OR " +
-                    "   items IN ( SELECT i from Item i WHERE i.categoria.descripcion LIKE CONCAT('%', :categoria, '%') )  " +
+                    "   items IN ( SELECT i FROM Item i WHERE :categoria IN (i.categorias))  " +
             " AND entidad IN ( SELECT entidadesUsuario from Entidad entidadesUsuario " +
                     "   JOIN entidadesUsuario.usuariosEntidad ue " +
                     "   JOIN ue.usuario usuario " +

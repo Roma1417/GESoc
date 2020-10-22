@@ -35,15 +35,16 @@ public class UserController {
     }
 
     @PostMapping("auth")
-    public String login(@RequestParam("user") String username, @RequestParam("password") String pwd,
+    public UserDTO login(@RequestParam("user") String username, @RequestParam("password") String pwd,
                          HttpServletResponse response) {
         UserDTO userDTO = usuarioResourceBean.login(username, pwd);
-        Cookie cookie = new Cookie("Authorization", userDTO.getToken());
+        String token = usuarioResourceBean.getJWTToken(username);
+        Cookie cookie = new Cookie("Authorization", token);
         cookie.setHttpOnly(true);
         cookie.setMaxAge(600000);
         cookie.setPath(null);
         response.addCookie(cookie);
-        return "Ok";
+        return userDTO;
     }
 
     @RequestMapping("user/{userId}/mensajes")
@@ -52,8 +53,14 @@ public class UserController {
                                                              @RequestParam(name ="itemsPerPage", defaultValue = "20") Long itemsPerPage) {
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         PageableRequest pageableRequest = new PageableRequest(username, page, itemsPerPage);
-        //Usuario usuarioRequest = usuarioResourceBean.getUsuario
         PageableResponse<MensajeDTO, Mensaje> mensajes = mensajeResourceBean.getMensajesFrom(pageableRequest,userId);
         return mensajes;
+    }
+
+    @RequestMapping("user")
+    public UserDTO getUser() {
+        String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDTO userDTO = usuarioResourceBean.getUser(username);
+        return userDTO;
     }
 }

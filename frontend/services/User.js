@@ -19,15 +19,19 @@ export default class User {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     }
-    return this.$axios.postOrFalse('/api/auth', qs.stringify(requestBody), config)
+    return this.$axios.post('/api/auth', qs.stringify(requestBody), config)
   }
 
   getMensajes (userId, page, itemsPerPage) {
-    return this.$axios.postOrFalse(`/api/user/${userId}/mensajes`, {
+    return this.$axios.getOrFalse(`/api/user/${userId}/mensajes`, {
       params: {
         page,
         itemsPerPage
       }
     })
+  }
+
+  getUsuario () {
+    return this.$axios.getOrFalse('/api/user')
   }
 }

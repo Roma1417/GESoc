@@ -6,16 +6,14 @@ export default function ({ $axios, store, redirect, app }) {
   $axios.onResponse((response) => {
     const code = parseInt(response.status)
     if (code === 403 || code === 401) {
-      console.log('patear')
-      // return redirect('/logout')
+      return redirect('/logout')
     }
   })
 
   $axios.onError((error) => {
     const code = parseInt(error.response.status)
     if (code === 403 || code === 401) {
-      console.log('patear')
-      // return redirect('/logout')
+      return redirect('/logout')
     }
     return error
   })

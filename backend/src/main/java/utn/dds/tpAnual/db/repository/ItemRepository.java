@@ -16,7 +16,7 @@ import java.util.List;
 public interface ItemRepository extends JpaRepository<Item, Long> {
 
     @Query(value = "SELECT it FROM Item it " +
-            " LEFT JOIN FETCH it.categoria c " +
+            " LEFT JOIN FETCH it.categorias " +
             " WHERE (:nombreItem IS NULL OR it.descripcion LIKE CONCAT('%', :nombreItem, '%') )",
             countQuery = "SELECT COUNT(DISTINCT it) FROM Item it " +
                     " WHERE (:nombreItem IS NULL OR it.descripcion LIKE CONCAT('%', :nombreItem, '%') )")

@@ -82,7 +82,7 @@ export default {
       ).then((result) => {
         if (result) {
           this.toastSuccess('Login ok!')
-          // this.$router.push('/landing')
+          this.$router.push('/home')
         } else {
           this.toastError(this.$t('login.error'))
         }

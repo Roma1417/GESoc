@@ -326,7 +326,7 @@ public class EgresoResourceBeanTest {
         detalleOperacion.setCantidad(5);
         detalleOperacion.setPrecio(10F);
         itemService.save(item);
-        detalleOperacion.setItem(new ItemDTO(item.getItemId(), null, null , null));
+        detalleOperacion.setItem(new ItemDTO(item.getItemId(),  null , null));
         return detalleOperacion;
     }
 

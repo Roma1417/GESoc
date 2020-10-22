@@ -8,7 +8,9 @@ public enum ConfiguracionEnum {
     LONGITUD_CONTRASENIA("LONGITUD_CONTRASENIA", "8"),
     MENSAJE_CORRECTO("MENSAJE_CORRECTO", "Validacion realizada con Exito"),
     MENSAJE_ERRONEO("MENSAJE_ERRONEO", "Fallo de Validacion"),
-    ASUNTO_INICIO("ASUNTO_INICIO", "Resultado Validacion Egreso: ");
+    ASUNTO_INICIO("ASUNTO_INICIO", "Resultado Validacion Egreso: "),
+    CANTIDAD_INTENTOS_LOGIN("CANTIDAD_INTENTOS_LOGIN", "3");
+
 
     private String key;
     private String defaultValue;

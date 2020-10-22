@@ -167,4 +167,8 @@ public class Usuario {
 			    .append("\nmensajes", bandejaMensajes)
 			    .toString();
 	}
+
+	public void addCantidadIntentos() {
+		cantidadIntentos ++;
+	}
 }

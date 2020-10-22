@@ -1,116 +1,93 @@
 <template>
-  <v-app dark>
-    <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
+  <v-app>
     <v-app-bar
       :clipped-left="clipped"
       fixed
       app
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn
-        icon
-        @click.stop="miniVariant = !miniVariant"
-      >
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title" />
-      <v-spacer />
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
+      <v-app-bar-nav-icon @click.stop="miniVariant = !miniVariant" />
+      <CompanyLogo />
     </v-app-bar>
-    <v-main>
-      <v-container>
-        <nuxt />
+        <MenuDrawer :clipped="clipped" :mini-variant="miniVariant" />
+    <v-main class="base-background">
+      <v-container
+        align="start"
+        class="pt-12 ma-lg-auto"
+      >
+        <v-row
+          align="start"
+          justify="center"
+        >
+          <v-col cols="12">
+            <nuxt class="nuxt-component" />
+          </v-col>
+        </v-row>
       </v-container>
+      <v-footer
+        fixed="fixed"
+        app
+        align="center"
+        justify="center"
+      >
+        <v-spacer />
+        <div>
+          GESOC &copy; {{ new Date().getFullYear() }}
+        </div>
+        <v-spacer />
+      </v-footer>
     </v-main>
-    <v-navigation-drawer
-      v-model="rightDrawer"
-      :right="right"
-      temporary
-      fixed
-    >
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer
-      :absolute="!fixed"
-      app
-    >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
   </v-app>
 </template>
 
 <script>
+import MenuDrawer from '~/components/General/Menus/MenuDrawer'
+import CompanyLogo from '~/components/General/CompanyLogo'
 export default {
+  components: {
+    MenuDrawer,
+    CompanyLogo
+  },
   data () {
     return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
-        }
-      ],
       miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
+      clipped: true,
+      datosContacto: '+ 54 11 5263-9757 | info@verifarma.com |',
+      iconos: [
+        {
+          name: 'BDEV',
+          src: '/logo-verifarma.jpg'
+        }
+      ]
+    }
+  },
+  computed: {
+    title () {
+      return this.$t(this.$route.name + '.menu')
+    },
+    userInfo: {
+      get () {
+        return this.$store.state.userInfo
+      },
+      set (val) {
+        this.$store.commit('setUserInfo', val)
+      }
+    }
+  },
+  mounted () {
+    this.setUserInfo()
+  },
+  methods: {
+    setUserInfo () {
+      this.loadingUser = true
+      this.$userService.getUsuario()
+        .then((result) => {
+          if (result) {
+            this.userInfo = result.data
+          }
+        }).finally(this.stopLoading)
+    },
+    stopLoading () {
+      this.loadingUser = false
     }
   }
 }

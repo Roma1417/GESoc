@@ -1,24 +1,26 @@
 package utn.dds.tpAnual.db.dto.usuario;
 
-public class UserDTO {
+import utn.dds.tpAnual.db.dto.StandardDTO;
+import utn.dds.tpAnual.db.entity.usuario.Usuario;
+
+public class UserDTO extends StandardDTO<Usuario> {
     private String username;
-    private String token;
+    private String nombre;
 
     public UserDTO(){
 
     }
 
-    public UserDTO(String username, String token) {
+    public UserDTO(String username) {
         this.username = username;
-        this.token = token;
     }
 
-    public String getToken() {
-        return token;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getUsername() {
@@ -27,5 +29,15 @@ public class UserDTO {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Override
+    public UserDTO from(Usuario object) {
+        return null;
+    }
+
+    @Override
+    public Usuario toEntity() {
+        return null;
     }
 }

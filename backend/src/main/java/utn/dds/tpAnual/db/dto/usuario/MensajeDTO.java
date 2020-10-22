@@ -18,9 +18,7 @@ public class MensajeDTO extends StandardDTO<Mensaje> {
 
     @Override
     public StandardDTO from(Mensaje object){
-        this.asunto = object.getAsunto();
-        this.cuerpo = object.getCuerpo();
-        return this;
+        return new MensajeDTO(asunto, cuerpo);
     }
 
     @Override
