@@ -1,26 +1,27 @@
 package utn.dds.tpAnual.db.entity.categorizacion.categoria;
 
+import utn.dds.tpAnual.db.entity.categorizacion.criterioCategorizacion.CriterioCategorizacion;
+
 import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "CATEGORIA")
-public abstract class Categoria {
+public class Categoria {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", unique = true, nullable = false)
 	private Long idCategoria;
 
-	@OneToOne(cascade = CascadeType.REFRESH)
-	private Categoria categoriaHija;
-
 	@Column(name = "DESCRIPCION", nullable = false, length = 100)
 	private String descripcion;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	private CriterioCategorizacion criterioCategorizacion;
 	
-	public Categoria(Categoria categoriaHija, String descripcion) {
+	public Categoria(String descripcion) {
 		super();
-		this.categoriaHija = categoriaHija;
 		this.descripcion = descripcion;
 	}
 
@@ -36,14 +37,6 @@ public abstract class Categoria {
 		this.idCategoria = idCategoria;
 	}
 
-	public Categoria getCategoriaHija() {
-		return categoriaHija;
-	}
-
-	public void setCategoriaHija (Categoria categoriaHija) {
-		this.categoriaHija = categoriaHija;
-	}
-
 	public String getDescripcion () {
 		return descripcion;
 	}
@@ -51,5 +44,13 @@ public abstract class Categoria {
 	public void setDescripcion (String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
+
+
+	public CriterioCategorizacion getCriterioCategorizacion() {
+		return criterioCategorizacion;
+	}
+
+	public void setCriterioCategorizacion(CriterioCategorizacion criterioCategorizacion) {
+		this.criterioCategorizacion = criterioCategorizacion;
+	}
 }

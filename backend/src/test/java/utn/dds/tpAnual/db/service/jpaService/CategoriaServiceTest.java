@@ -7,9 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import utn.dds.tpAnual.db.entity.categorizacion.categoria.Categoria;
-import utn.dds.tpAnual.db.entity.categorizacion.categoria.CategoriaNombreCorto;
 import utn.dds.tpAnual.db.scheduler.ProgramadorDeTareas;
-import utn.dds.tpAnual.db.service.jpaService.CategoriaService;
 
 import static org.junit.Assert.assertTrue;
 
@@ -23,7 +21,7 @@ public class CategoriaServiceTest {
 
     @Test
     public void persistenceTest() {
-        Categoria unaCategoria = CategoriaNombreCorto.getInstance();
+        Categoria unaCategoria = new Categoria("Categoria 1");
         categoriaService.save(unaCategoria);
         Categoria mismaCategoria = categoriaService.getCategoriaByDescripcion(unaCategoria.getDescripcion());
         assertTrue(mismaCategoria.getDescripcion().equals(unaCategoria.getDescripcion()));

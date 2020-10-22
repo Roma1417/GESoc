@@ -6,6 +6,10 @@ import utn.dds.tpAnual.db.entity.categorizacion.categoria.Categoria;
 import utn.dds.tpAnual.db.entity.categorizacion.criterioCategorizacion.CriterioCategorizacion;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Daiana
@@ -25,16 +29,12 @@ public class Item {
 	@Column(name = "DESCRIPCION", length = 255)
 	private String descripcion;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	private CriterioCategorizacion primerCriterio;
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<Categoria> categorias;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	private Categoria categoria;
-
-	public Item(Long itemId, String descripcion, CriterioCategorizacion primerCriterio){
+	public Item(Long itemId, String descripcion){
 		this.itemId = itemId;
 		this.descripcion = descripcion;
-		this.primerCriterio = primerCriterio; 
 	}
 	
 	public Item(String descripcion){
@@ -57,16 +57,8 @@ public class Item {
 		this.descripcion = descripcion;
 	}
 
-	public CriterioCategorizacion getPrimerCriterio() {
-		return primerCriterio;
-	}
-
-	public void setPrimerCriterio(CriterioCategorizacion primerCriterio) {
-		this.primerCriterio = primerCriterio;
-	}
-
 	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
+		this.categorias = Arrays.asList(categoria);
 	}
 
 	public String getDescripcion() {
@@ -80,12 +72,19 @@ public class Item {
 			    .append("\ndescripcion", descripcion)
 			    .toString();
 	}
-	
-	public void recategorizar() {
-		this.categoria = primerCriterio.clasificarSegun(this);
+
+	public List<Categoria> getCategorias() {
+		return categorias;
 	}
-	
-	public Categoria getCategoria() {
-		return categoria;
+
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
+	}
+
+	public void addCategoria(Categoria categoria) {
+		if (categorias == null){
+			categorias = new ArrayList<>();
+		}
+		categorias.add(categoria);
 	}
 }

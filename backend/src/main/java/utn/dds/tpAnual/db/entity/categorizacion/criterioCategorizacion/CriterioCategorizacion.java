@@ -4,11 +4,13 @@ import utn.dds.tpAnual.db.entity.categorizacion.categoria.Categoria;
 import utn.dds.tpAnual.db.entity.transaccion.Item;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "CRITERIO_CATEGORIZACION")
-public abstract class CriterioCategorizacion {
+public class CriterioCategorizacion {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,27 +20,11 @@ public abstract class CriterioCategorizacion {
 	@Column(name = "descripcion")
 	private String descripcion;
 
-	@OneToOne(cascade = CascadeType.REFRESH)
-	private CriterioCategorizacion criterioHija;
-	
-	public Categoria clasificarSegun(Item item){
-		Categoria categoriaPropia = this.categorizar(item);
+	@OneToMany(mappedBy="criterioCategorizacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Categoria> categorias;
 
-		if(criterioHija != null){
-			Categoria categoriaDeMiHijo = criterioHija.clasificarSegun(item);
-			categoriaPropia.setCategoriaHija(categoriaDeMiHijo);
-		}
-		return categoriaPropia;
-	}
-
-	protected abstract Categoria categorizar(Item item);
-	
-	public CriterioCategorizacion getCriterioHijo() {
-		return criterioHija;
-	}
-
-	public void setCriterioHijo(CriterioCategorizacion criterioHijo) {
-		this.criterioHija = criterioHijo;
+	public CriterioCategorizacion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public Long getCriterioCategorizacionId() {
@@ -49,19 +35,26 @@ public abstract class CriterioCategorizacion {
 		this.criterioCategorizacionId = criterioCategorizacionId;
 	}
 
-	public CriterioCategorizacion getCriterioHija() {
-		return criterioHija;
-	}
-
-	public void setCriterioHija(CriterioCategorizacion criterioHija) {
-		this.criterioHija = criterioHija;
-	}
-
 	public String getDescripcion() {
 		return descripcion;
 	}
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public List<Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
+	}
+
+	public void addCategoria(Categoria categoria) {
+		if (categorias == null){
+			categorias = new ArrayList<>();
+		}
+		categorias.add(categoria);
 	}
 }

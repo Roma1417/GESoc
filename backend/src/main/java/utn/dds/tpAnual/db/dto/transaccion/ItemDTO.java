@@ -6,19 +6,25 @@ import utn.dds.tpAnual.db.entity.categorizacion.categoria.Categoria;
 import utn.dds.tpAnual.db.entity.categorizacion.criterioCategorizacion.CriterioCategorizacion;
 import utn.dds.tpAnual.db.entity.transaccion.Item;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ItemDTO extends StandardDTO<Item> {
     private Long id;
-    private Long criterioCategorizacionId;
     private String descripcion;
-    private CategoriaDTO categoria;
+    private List<CategoriaDTO> categorias;
 
     @Override
     public ItemDTO from(Item object){
-        CriterioCategorizacion criterioCategorizacion = object.getPrimerCriterio();
-        Long idCriterio = criterioCategorizacion != null ? criterioCategorizacion.getCriterioCategorizacionId() : null;
-        Categoria categoria = object.getCategoria();
-        CategoriaDTO categoriaDTO = categoria != null ? new CategoriaDTO().from(categoria) : null;
-        return new ItemDTO(object.getItemId(), idCriterio, object.getDescripcion(), categoriaDTO);
+        List<Categoria> categorias = object.getCategorias();
+        List<CategoriaDTO> categoriasDTO = new ArrayList<>();
+        if (categorias != null){
+            categorias.forEach(categoria -> {
+                categoriasDTO.add(new CategoriaDTO().from(categoria));
+            });
+        }
+
+        return new ItemDTO(object.getItemId(), object.getDescripcion(), categoriasDTO);
     }
 
     @Override
@@ -30,19 +36,10 @@ public class ItemDTO extends StandardDTO<Item> {
 
     }
 
-    public ItemDTO(Long id, Long criterioCategorizacionId, String descripcion, CategoriaDTO categoria) {
+    public ItemDTO(Long id, String descripcion, List<CategoriaDTO> categorias) {
         this.id = id;
-        this.criterioCategorizacionId = criterioCategorizacionId;
         this.descripcion = descripcion;
-        this.categoria = categoria;
-    }
-
-    public Long getCriterioCategorizacionId() {
-        return criterioCategorizacionId;
-    }
-
-    public void setCriterioCategorizacionId(Long criterioCategorizacionId) {
-        this.criterioCategorizacionId = criterioCategorizacionId;
+        this.categorias = categorias;
     }
 
     public String getDescripcion() {
@@ -53,12 +50,12 @@ public class ItemDTO extends StandardDTO<Item> {
         this.descripcion = descripcion;
     }
 
-    public CategoriaDTO getCategoria() {
-        return categoria;
+    public List<CategoriaDTO> getCategorias() {
+        return categorias;
     }
 
-    public void setCategoria(CategoriaDTO categoria) {
-        this.categoria = categoria;
+    public void setCategorias(List<CategoriaDTO> categorias) {
+        this.categorias = categorias;
     }
 
     public Long getId() {
