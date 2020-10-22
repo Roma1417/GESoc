@@ -6,9 +6,9 @@
       app
     >
       <v-app-bar-nav-icon @click.stop="miniVariant = !miniVariant" />
-      <CompanyLogo />
+      <CompanyLogo src="/gesoc.png" />
     </v-app-bar>
-        <MenuDrawer :clipped="clipped" :mini-variant="miniVariant" />
+    <MenuDrawer :clipped="clipped" :mini-variant="miniVariant" />
     <v-main class="base-background">
       <v-container
         align="start"
@@ -30,9 +30,7 @@
         justify="center"
       >
         <v-spacer />
-        <div>
-          GESOC &copy; {{ new Date().getFullYear() }}
-        </div>
+        <CompanyLogo src="/logo_utn.png" />
         <v-spacer />
       </v-footer>
     </v-main>

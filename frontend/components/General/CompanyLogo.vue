@@ -2,7 +2,7 @@
   <img
     :class="'company-' + size"
     alt="Company"
-    src="/logo_utn.png"
+    :src="src"
   >
 </template>
 
@@ -26,6 +26,10 @@ export default {
     size: {
       type: String,
       default: 'medium'
+    },
+    src: {
+      type: String,
+      required: true
     }
   }
 }
