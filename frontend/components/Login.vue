@@ -81,10 +81,9 @@ export default {
         this.password
       ).then((result) => {
         if (result) {
-          this.toastSuccess('Login ok!')
           this.$router.push('/home')
         } else {
-          this.toastError(this.$t('login.error'))
+          this.toastError(this.$t('errors.login'))
         }
       }).finally(this.stopLoading)
     }

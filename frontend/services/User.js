@@ -19,7 +19,13 @@ export default class User {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     }
-    return this.$axios.post('/api/auth', qs.stringify(requestBody), config)
+    return this.$axios.post('/api/auth', qs.stringify(requestBody), config).then((res) => {
+      if (res.status === 200) {
+        return res
+      } else {
+        return false
+      }
+    }).catch(() => false)
   }
 
   getMensajes (userId, page, itemsPerPage) {

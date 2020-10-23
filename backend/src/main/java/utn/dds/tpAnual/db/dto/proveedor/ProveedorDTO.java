@@ -27,7 +27,7 @@ public class ProveedorDTO extends StandardDTO<Proveedor> {
         else {
             setDatosProveedorPersona((ProveedorPersona) object, proveedor);
         }
-        proveedor.setNombreRazonSocial(proveedor.getNombreRazonSocial());
+        proveedor.setNombreRazonSocial(object.getNombreRazonSocial());
         proveedor.setIdProveedor(object.getProveedorId());
         return proveedor;
     }

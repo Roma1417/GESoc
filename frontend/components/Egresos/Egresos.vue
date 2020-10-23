@@ -49,13 +49,13 @@ export default {
           text: this.$t('egresos.id'),
           align: 'center',
           sortable: false,
-          value: 'id'
+          value: 'idEgreso'
         },
         {
           text: this.$t('egresos.proveedor'),
           align: 'start',
           sortable: false,
-          value: 'proveedor.nombre'
+          value: 'proveedor.nombreRazonSocial'
         },
         {
           text: this.$t('egresos.entidad_realizadora'),

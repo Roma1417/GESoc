@@ -17,8 +17,7 @@
    "login": {
      "title": "Bienvenido a GESOC",
      "username": "Usuario",
-     "password": "Contraseña",
-     "error": "Hubo un error al validar el ususario"
+     "password": "Contraseña"
    },
    "validations": {
      "required": "El campo es requerido"
@@ -36,7 +35,7 @@
      "proveedor": "Proveedor",
      "fecha_operacion": "Fecha operación",
      "total": "Total",
-     "entidad_realizadora": "Entidad realizadora"
+     "entidad_realizadora": "Entidad"
    },
    "ingresos": {
     "menu": "Ingresos",
@@ -57,7 +56,8 @@
    },
    "errors": {
      "session": "Error de sesión, por favor vuelva a ingresar",
-     "session_login": "Ir al login"
+     "session_login": "Ir al login",
+     "login": "Usuario o contraseña inválidos"
    }
 }
   
