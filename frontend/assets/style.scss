@@ -55,3 +55,10 @@ body, body *{
 .text-center{
   text-align: center;
 }
+
+.header-data-user{
+  display: inline-flex;
+  color: $base-color;
+  font-size: 0.9em;
+  font-weight: bold !important;
+}

@@ -1,41 +1,32 @@
 <template>
   <v-app dark>
-    <h1 v-if="error.statusCode === 404">
-      {{ pageNotFound }}
-    </h1>
-    <h1 v-else>
-      {{ otherError }}
-    </h1>
+    <v-row justify="center">
+      <v-col>
+        <CompanyLogo src="/chrome.png" size="big" />
+        <h1>Oops...</h1>
+        <p>{{ $t('errors.session') }}</p>
+        <ThePrimaryButton
+          :inner-text="$t('errors.session_login')"
+          @click="goToLogin"
+        />
+      </v-col>
+    </v-row>
   </v-app>
 </template>
 
 <script>
+import ThePrimaryButton from '~/components/General/Buttons/ThePrimaryButton'
+import CompanyLogo from '~/components/General/CompanyLogo'
 export default {
-  layout: 'empty',
-  props: {
-    error: {
-      type: Object,
-      default: null
-    }
+  layout: 'error',
+  components: {
+    ThePrimaryButton,
+    CompanyLogo
   },
-  data () {
-    return {
-      pageNotFound: '404 Not Found',
-      otherError: 'An error occurred'
-    }
-  },
-  head () {
-    const title =
-      this.error.statusCode === 404 ? this.pageNotFound : this.otherError
-    return {
-      title
+  methods: {
+    goToLogin () {
+      this.$router.push('/')
     }
   }
 }
 </script>
-
-<style scoped>
-h1 {
-  font-size: 20px;
-}
-</style>

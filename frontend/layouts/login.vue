@@ -6,7 +6,7 @@
       app
     >
       <div>
-        GESOC LOGO
+        <CompanyLogo src="/gesoc.png" />
       </div>
     </v-app-bar>
     <v-main class="base-background">

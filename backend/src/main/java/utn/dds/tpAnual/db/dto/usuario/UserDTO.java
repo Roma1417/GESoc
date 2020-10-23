@@ -11,8 +11,9 @@ public class UserDTO extends StandardDTO<Usuario> {
 
     }
 
-    public UserDTO(String username) {
+    public UserDTO(String username, String nombre) {
         this.username = username;
+        this.nombre = nombre;
     }
 
     public String getNombre() {
@@ -33,7 +34,7 @@ public class UserDTO extends StandardDTO<Usuario> {
 
     @Override
     public UserDTO from(Usuario object) {
-        return null;
+        return new UserDTO(object.getUsuario(), object.getNombre());
     }
 
     @Override

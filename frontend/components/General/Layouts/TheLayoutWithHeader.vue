@@ -2,7 +2,7 @@
   <div>
     <v-row v-if="title != ''">
       <v-col>
-        <h2 color="primary">
+        <h2 color="primary" class="pl-4">
           {{ $t(title) }}
         </h2>
       </v-col>
@@ -18,7 +18,9 @@
       <v-card-text v-show="slotInUse('body')" class="py-0">
         <v-row v-show="slotInUse('body')">
           <v-col>
-            <slot name="body" />
+            <v-card outlined>
+              <slot name="body" />
+            </v-card>
           </v-col>
         </v-row>
       </v-card-text>

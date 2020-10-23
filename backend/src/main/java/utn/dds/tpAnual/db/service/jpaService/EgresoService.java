@@ -8,8 +8,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import utn.dds.tpAnual.db.dto.pageable.PageableRequest;
-import utn.dds.tpAnual.db.dto.pageable.PageableResponse;
-import utn.dds.tpAnual.db.dto.transaccion.EgresoDTO;
 import utn.dds.tpAnual.db.entity.entidad.EntidadJuridica;
 import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
@@ -79,6 +77,6 @@ import java.util.Optional;
     public Page<Egreso> findAllRelatedByCategoria(PageableRequest pageableRequest, String categoria, String username) {
         Pageable pageable = pageableRequest.toPageable();
         Usuario usuario = usuarioService.getUsuarioByUsername(username);
-        return egresoRepository.getEgresosByCategoria(pageable, categoria, usuario.getUsuarioId());
+        return egresoRepository.getEgresosRelatedByCategoria(pageable, categoria, usuario.getUsuarioId());
     }
 }

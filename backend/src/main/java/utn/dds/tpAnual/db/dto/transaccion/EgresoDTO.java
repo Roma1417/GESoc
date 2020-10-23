@@ -27,6 +27,13 @@ public class EgresoDTO extends StandardDTO<Egreso> {
     @Override
     public EgresoDTO from(Egreso object){
         EgresoDTO egresoDTO = new EgresoDTO();
+        egresoDTO.setIdEgreso(object.getOperacionId());
+        if (object.getEntidadRealizadora() != null) {
+            egresoDTO.setEntidadRealizadora(new EntidadDTO().from(object.getEntidadRealizadora()));
+        }
+        if (object.getProveedor() != null){
+            egresoDTO.setProveedor(new ProveedorDTO().from(object.getProveedor()));
+        }
         egresoDTO.setDetalles(object.getDetallesOperacion()
                 .stream()
                 .map(detalleOperacion ->  new DetalleOperacionDTO().from(detalleOperacion))
@@ -142,4 +149,6 @@ public class EgresoDTO extends StandardDTO<Egreso> {
     public void setFechaCreacion(LocalDate fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
+
+
 }

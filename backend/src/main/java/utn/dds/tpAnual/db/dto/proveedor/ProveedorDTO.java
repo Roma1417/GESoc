@@ -9,9 +9,8 @@ import utn.dds.tpAnual.db.entity.proveedor.ProveedorPersona;
 public class ProveedorDTO extends StandardDTO<Proveedor> {
     private Long idProveedor;
     private String CUIT;
-    private String razonSocial;
     private String dni;
-    private String nombre;
+    private String nombreRazonSocial;
     private TipoProveedor tipoProveedor;
 
     public ProveedorDTO(){
@@ -20,40 +19,38 @@ public class ProveedorDTO extends StandardDTO<Proveedor> {
 
     @Override
     public ProveedorDTO from(Proveedor object) {
-        loadTipoProveedor(object);
         ProveedorDTO proveedor = new ProveedorDTO();
-        if(tipoProveedor.equals(TipoProveedor.JURIDICO)){
+        loadTipoProveedor(object, proveedor);
+        if(proveedor.getTipoProveedor().equals(TipoProveedor.JURIDICO)){
             setDatosProveedorJuridico((ProveedorJuridico) object, proveedor);
         }
         else {
             setDatosProveedorPersona((ProveedorPersona) object, proveedor);
         }
+        proveedor.setNombreRazonSocial(proveedor.getNombreRazonSocial());
+        proveedor.setIdProveedor(object.getProveedorId());
         return proveedor;
     }
 
     private void setDatosProveedorPersona(ProveedorPersona proveedor, ProveedorDTO proveedorDto) {
-        dni =  proveedor.getDni();
-        razonSocial = proveedor.getNombreRazonSocial();
-        idProveedor = proveedor.getProveedorId();
+        proveedorDto.setDni(proveedor.getDni());
     }
 
     private void setDatosProveedorJuridico(ProveedorJuridico proveedor, ProveedorDTO proveedorDto) {
-        CUIT =  proveedor.getCUIT();
-        razonSocial = proveedor.getNombreRazonSocial();
-        idProveedor = proveedor.getProveedorId();
+        proveedorDto.setCUIT(proveedor.getCUIT());
     }
 
-    private void loadTipoProveedor(Proveedor object) {
-        this.tipoProveedor = object instanceof ProveedorJuridico ?
-                TipoProveedor.JURIDICO : TipoProveedor.PERSONA;
+    private void loadTipoProveedor(Proveedor object, ProveedorDTO proveedorDTO) {
+        proveedorDTO.setTipoProveedor(object instanceof ProveedorJuridico ?
+                TipoProveedor.JURIDICO : TipoProveedor.PERSONA);
     }
 
     @Override
     public Proveedor toEntity() {
         if (TipoProveedor.JURIDICO.equals(tipoProveedor)){
-            return new ProveedorJuridico(null, CUIT, razonSocial);
+            return new ProveedorJuridico(null, CUIT, nombreRazonSocial);
         } else if (TipoProveedor.PERSONA.equals(tipoProveedor)){
-            return new ProveedorPersona(null, dni, nombre);
+            return new ProveedorPersona(null, dni, nombreRazonSocial);
         } else {
             throw new RuntimeException("Debe especificar el tipo de proveedor");
         }
@@ -67,12 +64,12 @@ public class ProveedorDTO extends StandardDTO<Proveedor> {
         this.CUIT = CUIT;
     }
 
-    public String getRazonSocial() {
-        return razonSocial;
+    public String getNombreRazonSocial() {
+        return nombreRazonSocial;
     }
 
-    public void setRazonSocial(String razonSocial) {
-        this.razonSocial = razonSocial;
+    public void setNombreRazonSocial(String nombreRazonSocial) {
+        this.nombreRazonSocial = nombreRazonSocial;
     }
 
     public String getDni() {
@@ -83,13 +80,6 @@ public class ProveedorDTO extends StandardDTO<Proveedor> {
         this.dni = dni;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 
     public TipoProveedor getTipoProveedor() {
         return tipoProveedor;

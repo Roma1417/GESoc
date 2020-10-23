@@ -7,6 +7,8 @@
     >
       <v-app-bar-nav-icon @click.stop="miniVariant = !miniVariant" />
       <CompanyLogo src="/gesoc.png" />
+      <v-spacer />
+      <UserInfoCard />
     </v-app-bar>
     <MenuDrawer :clipped="clipped" :mini-variant="miniVariant" />
     <v-main class="base-background">
@@ -40,52 +42,22 @@
 <script>
 import MenuDrawer from '~/components/General/Menus/MenuDrawer'
 import CompanyLogo from '~/components/General/CompanyLogo'
+import UserInfoCard from '~/components/Business/Cards/UserInfoCard'
 export default {
   components: {
     MenuDrawer,
-    CompanyLogo
+    CompanyLogo,
+    UserInfoCard
   },
   data () {
     return {
       miniVariant: false,
-      clipped: true,
-      datosContacto: '+ 54 11 5263-9757 | info@verifarma.com |',
-      iconos: [
-        {
-          name: 'BDEV',
-          src: '/logo-verifarma.jpg'
-        }
-      ]
+      clipped: true
     }
   },
   computed: {
     title () {
       return this.$t(this.$route.name + '.menu')
-    },
-    userInfo: {
-      get () {
-        return this.$store.state.userInfo
-      },
-      set (val) {
-        this.$store.commit('setUserInfo', val)
-      }
-    }
-  },
-  mounted () {
-    this.setUserInfo()
-  },
-  methods: {
-    setUserInfo () {
-      this.loadingUser = true
-      this.$userService.getUsuario()
-        .then((result) => {
-          if (result) {
-            this.userInfo = result.data
-          }
-        }).finally(this.stopLoading)
-    },
-    stopLoading () {
-      this.loadingUser = false
     }
   }
 }
