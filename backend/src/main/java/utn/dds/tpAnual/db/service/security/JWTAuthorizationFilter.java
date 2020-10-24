@@ -71,6 +71,9 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     }
 
     private Optional<Cookie> getTokenCookie(HttpServletRequest request) {
+        if(request.getCookies() == null){
+            return Optional.empty();
+        }
         return Arrays.stream(request.getCookies()).filter(cookie -> SecurityData.getInstance().getAUTH_COOKIE_NAME()
                 .equals(cookie.getName())).findFirst();
     }
