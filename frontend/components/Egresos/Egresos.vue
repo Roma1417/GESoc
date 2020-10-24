@@ -39,7 +39,20 @@ export default {
       itemsPerPage: 20
     },
     totalList: 5,
-    egresos: [],
+    egresos: [{
+      idEgreso: '1',
+      proveedor: { nombreRazonSocial: 'Pepe' },
+      entidadRealizadora: { nombre: 'Pepelandia' },
+      fechaOperacion: '10/07/99',
+      total: '345'
+    },
+    {
+      idEgreso: '2',
+      proveedor: { nombreRazonSocial: 'Pepe' },
+      entidadRealizadora: { nombre: 'Pepelandia' },
+      fechaOperacion: '10/07/99',
+      total: '345'
+    }],
     loading: false
   }),
   computed: {
