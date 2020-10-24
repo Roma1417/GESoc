@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  layout: 'login',
   mounted () {
     this.$router.push('/')
   }
