@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import utn.dds.tpAnual.db.entity.categorizacion.categoria.Categoria;
 import utn.dds.tpAnual.db.repository.CategoriaRepository;
 
+import java.util.List;
+
 @Service
 public class CategoriaService extends CustomJPAService<Categoria> {
 
@@ -20,5 +22,9 @@ public class CategoriaService extends CustomJPAService<Categoria> {
     public Categoria getCategoriaByDescripcion(String descripcion){
         Categoria categoria = categoriaRepository.getCategoriaByDescripcion(descripcion);
         return categoria;
+    }
+
+    public List<Categoria> findAllById(List<Long> categoriaIds) {
+        return categoriaRepository.findAllById(categoriaIds);
     }
 }

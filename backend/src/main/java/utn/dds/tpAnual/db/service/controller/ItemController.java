@@ -3,8 +3,6 @@ package utn.dds.tpAnual.db.service.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import utn.dds.tpAnual.db.dto.complex.VinculacionEgresoIngresoDTO;
-import utn.dds.tpAnual.db.dto.complex.VinculacionItemCategoriaDTO;
 import utn.dds.tpAnual.db.dto.transaccion.ItemDTO;
 import utn.dds.tpAnual.db.dto.pageable.PageableRequest;
 import utn.dds.tpAnual.db.dto.pageable.PageableResponse;
@@ -29,9 +27,9 @@ public class ItemController {
     }
 
     @PatchMapping("categoria")
-    public ItemDTO vincularItemCategoria(@RequestBody VinculacionItemCategoriaDTO itemCategoriaDTO){
+    public ItemDTO vincularItemCategoria(@RequestBody ItemDTO itemDTO){
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        ItemDTO itemVinculado = itemResourceBean.vincularCategoria(itemCategoriaDTO);
+        ItemDTO itemVinculado = itemResourceBean.vincularCategoria(itemDTO);
         return itemVinculado;
     }
 }

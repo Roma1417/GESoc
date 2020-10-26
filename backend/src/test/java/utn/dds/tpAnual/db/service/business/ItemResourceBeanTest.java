@@ -9,7 +9,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import utn.dds.tpAnual.db.dto.categoria.CategoriaDTO;
-import utn.dds.tpAnual.db.dto.complex.VinculacionItemCategoriaDTO;
 import utn.dds.tpAnual.db.dto.transaccion.ItemDTO;
 import utn.dds.tpAnual.db.entity.categorizacion.categoria.Categoria;
 import utn.dds.tpAnual.db.entity.categorizacion.criterioCategorizacion.CriterioCategorizacion;
@@ -49,7 +48,7 @@ public class ItemResourceBeanTest {
         itemService.save(item);
         categoriaService.save(categoria);
 
-        itemResourceBean.vincularCategoria(new VinculacionItemCategoriaDTO(item.getItemId(), categoria.getIdCategoria()));
+        itemResourceBean.vincularCategoria(buildMockVinculacionItemDTO(item.getItemId(), categoria.getIdCategoria()));
         assertTrue(item.getCategorias().get(0).getDescripcion().equals(categoria.getDescripcion()));
     }
 
@@ -64,7 +63,7 @@ public class ItemResourceBeanTest {
         categoriaDTO.setDescripcion("No existe");
 
         assertThrows(RuntimeException.class,() -> {
-            itemResourceBean.vincularCategoria(new VinculacionItemCategoriaDTO(itemDTO.getId(), 2l));
+            itemResourceBean.vincularCategoria(buildMockVinculacionItemDTO(itemDTO.getId(), 200l));
         });
     }
 
@@ -78,7 +77,16 @@ public class ItemResourceBeanTest {
         categoriaDTO.setDescripcion("No existe");
 
         assertThrows(RuntimeException.class,() -> {
-            itemResourceBean.vincularCategoria(new VinculacionItemCategoriaDTO(2l, categoriaDTO.getId()));
+            itemResourceBean.vincularCategoria(buildMockVinculacionItemDTO(200l, categoriaDTO.getId()));
         });
+    }
+
+    private ItemDTO buildMockVinculacionItemDTO(Long itemId, Long categoriaId) {
+        ItemDTO itemDTO = new ItemDTO();
+        CategoriaDTO categoriaDTO = new CategoriaDTO();
+        categoriaDTO.setId(categoriaId);
+        itemDTO.setCategorias(Arrays.asList(categoriaDTO));
+        itemDTO.setId(itemId);
+        return itemDTO;
     }
 }
