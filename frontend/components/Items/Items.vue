@@ -1,5 +1,5 @@
 <template>
-  <TheLayoutWithHeader title="items" :loading="loading">
+  <TheLayoutWithHeader title="items.menu" :loading="loading">
     <template #filter>
       <v-row>
         <v-col>

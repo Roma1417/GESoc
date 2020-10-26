@@ -32,6 +32,43 @@ VALUES('marian', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a
     values
         ('Otro item');
 		--
+		 insert
+    into
+        categoria
+        (descripcion)
+    values
+        ('Categoria A');
+		--
+		insert
+    into
+        categoria
+        (descripcion)
+    values
+        ('Categoria B');
+		--
+		insert
+    into
+        categoria
+        (descripcion)
+    values
+        ('Categoria C');
+		--
+		insert
+    into
+        categoria
+        (descripcion)
+    values
+        ('Otra Categoria');
+		--
+		insert
+    into
+        categoria
+        (descripcion)
+    values
+        ('Otra categoria mas');
+		--
+
+
 
 
 		    insert

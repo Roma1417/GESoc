@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row align="center">
       <v-col v-if="edit">
-        <TheAutocompleteInput
+        <TheCategoriasAutocomplete
           v-model="values"
           :items="items"
           multiple
@@ -34,11 +34,11 @@
 </template>
 <script>
 import TheButtonWithToolTip from '~/components/General/Buttons/TheButtonWithToolTip'
-import TheAutocompleteInput from '~/components/General/Inputs/TheAutocompleteInput'
+import TheCategoriasAutocomplete from '~/components/Business/Autocomplete/TheCategoriasAutocomplete'
 export default {
   components: {
     TheButtonWithToolTip,
-    TheAutocompleteInput
+    TheCategoriasAutocomplete
   },
   data: () => ({
     items: ['foo', 'bar', 'fizz', 'buzz'],

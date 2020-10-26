@@ -3,7 +3,7 @@ export default class Categoria {
     this.$axios = ctx.$axios
   }
 
-  getItems (name, { page = 1, itemsPerPage = 20}) {
+  getCategorias (name, { page = 1, itemsPerPage = 20 }) {
     return this.$axios.getOrFalse('/api/categoria', {
       params: {
         page,
