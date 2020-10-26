@@ -1,5 +1,7 @@
 
-$base-color: #1565C0;
+$base-color: #1B3664;
+$primary-color: #568A9A;
+$secondary-color: #2E446F;
 body, body *{
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif2m;
 }
@@ -7,6 +9,24 @@ body, body *{
 .subHeader{
   font-size: 0.9em;
   color: $base-color;
+}
+
+.headline {
+  color: $secondary-color;
+  letter-spacing: 2px!important;
+  font-weight: 500!important;
+}
+
+.subheadline{
+  font-size: 1.1em !important;
+}
+
+.primary-color {
+  color: $primary-color !important;
+}
+
+.divider-height{
+  height: 80vh!important;
 }
 
 .header-data-user{

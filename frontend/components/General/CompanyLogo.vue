@@ -7,6 +7,10 @@
 </template>
 
 <style sass>
+.company-xbig {
+  width: 400px;
+  margin: 5px;
+}
 .company-big {
   width: 280px;
   margin: 5px;

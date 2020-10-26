@@ -8,7 +8,7 @@
     >
       <v-spacer />
       <v-toolbar-title>
-        {{ $t('login.title') }}
+        {{ $t('login.enter_credentials') }}
       </v-toolbar-title>
       <v-spacer />
     </v-toolbar>
@@ -32,14 +32,17 @@
       </v-form>
     </v-card-text>
     <v-card-actions>
-      <v-spacer />
-      <ThePrimaryButton
-        inner-text="Acceder"
-        :loading="loading"
-        :disabled="loading || !canLogin"
-        @click="loginIfPossible()"
-      />
-      <v-spacer />
+      <v-row justify="center">
+        <v-col cols="7">
+          <ThePrimaryButton
+            width="100%"
+            inner-text="Acceder"
+            :loading="loading"
+            :disabled="loading || !canLogin"
+            @click="loginIfPossible()"
+          />
+        </v-col>
+      </v-row>
     </v-card-actions>
   </v-card>
 </template>
