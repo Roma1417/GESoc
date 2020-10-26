@@ -4,11 +4,18 @@ import utn.dds.tpAnual.db.dto.StandardDTO;
 import utn.dds.tpAnual.db.entity.ubicacion.Pais;
 
 public class PaisDTO extends StandardDTO<Pais> {
-    private Long idPais;
+    private Long paisId;
+    private String idAPI;
+    private String descripcion;
+
 
     @Override
-    public StandardDTO from(Pais object) {
-        return null;
+    public PaisDTO from(Pais object) {
+        PaisDTO paisDTO = new PaisDTO();
+        paisDTO.setDescripcion(object.getDescripcion());
+        paisDTO.setIdAPI(object.getIdAPI());
+        paisDTO.setPaisId(object.getPaisId());
+        return paisDTO;
     }
 
     @Override
@@ -16,11 +23,27 @@ public class PaisDTO extends StandardDTO<Pais> {
         return null;
     }
 
-    public Long getIdPais() {
-        return idPais;
+    public Long getPaisId() {
+        return paisId;
     }
 
-    public void setIdPais(Long idPais) {
-        this.idPais = idPais;
+    public void setPaisId(Long paisId) {
+        this.paisId = paisId;
+    }
+
+    public String getIdAPI() {
+        return idAPI;
+    }
+
+    public void setIdAPI(String idAPI) {
+        this.idAPI = idAPI;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }

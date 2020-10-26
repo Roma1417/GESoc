@@ -64,8 +64,8 @@ public class EgresoResourceBean {
         Usuario usuario = usuarioService.getUsuarioByUsername(username);
         Optional<Proveedor> proveedor = proveedorService.findById(egresoDTO.getProveedor().getIdProveedor());
         Optional<Entidad> entidadRealizadora = entidadService.findAllRelated(usuario, egresoDTO.getEntidadRealizadora().getIdEntidad());
-        Optional<Pais> pais = paisService.findById(egresoDTO.getDocumentoComercial().getPais().getIdPais());
-        Optional<Moneda> moneda = monedaService.findById(egresoDTO.getDocumentoComercial().getMoneda().getIdMoneda());
+        Optional<Pais> pais = paisService.findById(egresoDTO.getDocumentoComercial().getPais().getPaisId());
+        Optional<Moneda> moneda = monedaService.findById(egresoDTO.getDocumentoComercial().getMoneda().getMonedaId());
         Optional<MedioPago> medioPago = medioPagoService.findById(egresoDTO.getMedioPago().getIdMedioPago());
         DocumentoComercial documentoComercial = egresoDTO.getDocumentoComercial().toEntity(pais.get(), moneda.get());
         List<DetalleOperacion> detallesOperacion = getAndFillDetalles(egresoDTO);

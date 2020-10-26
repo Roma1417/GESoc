@@ -46,7 +46,12 @@
    },
    "ingresos": {
     "menu": "Ingresos",
-    "welcome_description": "Ver mis ingresos"
+    "welcome_description": "Ver mis ingresos",
+    "id": "ID",
+    "entidad_realizadora": "Entidad",
+    "descripcion": "Descripcion",
+    "total": "Total" ,
+    "documento_comercial": "Documento Comercial"   
    },
    "mensajes": {
     "menu": "Mensajes",
