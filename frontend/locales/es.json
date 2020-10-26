@@ -44,6 +44,17 @@
     "menu": "Ingresos",
     "welcome_description": "Ver mis ingresos"
    },
+   "entidades": {
+    "menu": "Entidades",
+    "id": "ID",
+    "entidadesBase": "Entidades Base"
+   },
+   "items": {
+    "menu": "Items"
+   },
+   "categorias": {
+    "editar": "Editar"
+   },
    "mensajes": {
     "menu": "Mensajes",
     "welcome_description": "Ver mis mensajes"

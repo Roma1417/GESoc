@@ -1,5 +1,5 @@
 <template>
-  <TheLayoutWithHeader title="Items" :loading="loading">
+  <TheLayoutWithHeader title="items" :loading="loading">
     <template #filter>
       <v-row>
         <v-col>
@@ -13,11 +13,10 @@
         :items="items"
         :headers="headers"
         :total="totalList"
-        @change="getEgresos()"
+        @change="getItems()"
       >
-        <template #[`item.categorias`]="categorias">
-          {{ categorias.value.join() }}
-          <TheEditButton />
+        <template #[`item.categorias`]="{ }">
+          <Categorias />
         </template>
       </TheFilterTable>
     </template>
@@ -26,12 +25,12 @@
 <script>
 import TheLayoutWithHeader from '~/components/General/Layouts/TheLayoutWithHeader'
 import TheFilterTable from '~/components/General/Tables/TheFilterTable'
-import TheEditButton from '~/components/Items/TheEditButton'
+import Categorias from '~/components/Items/Categorias'
 export default {
   components: {
     TheLayoutWithHeader,
     TheFilterTable,
-    TheEditButton
+    Categorias
   },
   data: () => ({
     pageInfo: {
@@ -39,16 +38,7 @@ export default {
       itemsPerPage: 20
     },
     totalList: 5,
-    items: [{
-      idItem: '1',
-      descripcion: 'Batata',
-      categorias: ['Cat1', 'cat2']
-    },
-    {
-      idItem: '2',
-      descripcion: 'Papa',
-      categorias: ['Cat1', 'cat2']
-    }],
+    items: [],
     loading: false
   }),
   computed: {
@@ -58,7 +48,7 @@ export default {
           text: this.$t('ID'),
           align: 'center',
           sortable: false,
-          value: 'idItem'
+          value: 'id'
         },
         {
           text: this.$t('Descripcion'),
@@ -69,18 +59,19 @@ export default {
         {
           text: this.$t('Categorias'),
           value: 'categorias',
+          width: '40%',
           sortable: false
         }
       ]
     }
   },
   methods: {
-    getEgresos () {
+    getItems () {
       this.loading = true
-      this.$egresoService.getEgresos(this.pageInfo).then((result) => {
+      this.$itemService.getItems(this.pageInfo).then((result) => {
         if (result) {
           this.totalList = result.total
-          this.egresos = result.data
+          this.items = result.data
         }
       }).finally(this.stopLoading)
     },

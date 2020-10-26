@@ -1,5 +1,5 @@
 <template>
-  <TheLayoutWithHeader title="Entidades" :loading="loading">
+  <TheLayoutWithHeader title="entidades" :loading="loading">
     <template #filter>
       <v-row>
         <v-col>
@@ -59,13 +59,13 @@ export default {
     headers () {
       return [
         {
-          text: this.$t('ID'),
+          text: this.$t('entidades.id'),
           align: 'center',
           sortable: false,
           value: 'idEntidad'
         },
         {
-          text: this.$t('Entidades Base'),
+          text: this.$t('entidades.entidadesBase'),
           align: 'start',
           sortable: false,
           value: 'entidadesBase'
