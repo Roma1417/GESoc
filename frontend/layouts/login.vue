@@ -1,14 +1,5 @@
 <template>
   <v-app id="login">
-    <v-app-bar
-      height="100"
-      class="elevation-1"
-      app
-    >
-      <div>
-        <CompanyLogo src="/gesoc.png" />
-      </div>
-    </v-app-bar>
     <v-main class="base-background">
       <v-container
         align="start"
