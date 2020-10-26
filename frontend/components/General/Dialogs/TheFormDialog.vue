@@ -7,7 +7,7 @@
     <template #activator="{on}">
       <slot name="activator" :on="on" />
     </template>
-    <v-card-title v-if="headerMessage !== ''" class="headline">
+    <v-card-title v-if="headerMessage" class="headline">
       {{ headerMessage }}
     </v-card-title>
     <v-card-text>
