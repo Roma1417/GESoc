@@ -17,8 +17,8 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     @Query(value = "SELECT it FROM Item it " +
             " LEFT JOIN FETCH it.categorias " +
-            " WHERE (:nombreItem IS NULL OR it.descripcion LIKE CONCAT('%', :nombreItem, '%') )",
+            " WHERE (:nombreItem IS NULL OR upper(it.descripcion) LIKE CONCAT('%', upper(:nombreItem), '%') )",
             countQuery = "SELECT COUNT(DISTINCT it) FROM Item it " +
-                    " WHERE (:nombreItem IS NULL OR it.descripcion LIKE CONCAT('%', :nombreItem, '%') )")
+                    " WHERE (:nombreItem IS NULL OR upper(it.descripcion) LIKE CONCAT('%', upper(:nombreItem), '%') )")
     Page<Item> getItemsByDescripcionLike(@Param("nombreItem") String descripcion, Pageable pageable);
 }
