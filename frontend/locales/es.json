@@ -1,5 +1,9 @@
 {
   "actions": "Acciones",
+  "search": "Buscar",
+  "loading": "Cargando",
+  "items-per-page": "Items por página",
+  "no_data_text": "Sin datos",
    "$vuetify": {
      "dataIterator": {
        "rowsPerPageText": "Filas por página:",
@@ -42,7 +46,12 @@
    },
    "ingresos": {
     "menu": "Ingresos",
-    "welcome_description": "Ver mis ingresos"
+    "welcome_description": "Ver mis ingresos",
+    "id": "ID",
+    "entidad_realizadora": "Entidad",
+    "descripcion": "Descripcion",
+    "total": "Total" ,
+    "documento_comercial": "Documento Comercial"   
    },
    "entidades": {
     "menu": "Entidades",

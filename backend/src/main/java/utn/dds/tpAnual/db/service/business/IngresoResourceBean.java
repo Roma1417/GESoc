@@ -49,8 +49,8 @@ public class IngresoResourceBean {
         Ingreso ingreso = ingresoDTO.toEntity();
         Usuario usuario = usuarioService.getUsuarioByUsername(username);
         Optional<Entidad> entidadRealizadora = entidadService.findAllRelated(usuario, ingresoDTO.getEntidadRealizadora().getIdEntidad());
-        Optional<Pais> pais = paisService.findById(ingresoDTO.getDocumentoComercial().getPais().getIdPais());
-        Optional<Moneda> moneda = monedaService.findById(ingresoDTO.getDocumentoComercial().getMoneda().getIdMoneda());
+        Optional<Pais> pais = paisService.findById(ingresoDTO.getDocumentoComercial().getPais().getPaisId());
+        Optional<Moneda> moneda = monedaService.findById(ingresoDTO.getDocumentoComercial().getMoneda().getMonedaId());
         DocumentoComercial documentoComercial = ingresoDTO.getDocumentoComercial().toEntity(pais.get(), moneda.get());
 
         IngresoRules.getInstance().validarCrearIngreso(entidadRealizadora, documentoComercial, ingreso, pais, moneda);

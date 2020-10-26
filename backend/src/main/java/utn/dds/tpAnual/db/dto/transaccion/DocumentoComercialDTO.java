@@ -12,6 +12,7 @@ public class DocumentoComercialDTO extends StandardDTO<DocumentoComercial> {
     private Integer tipoDocumento;
     private PaisDTO pais;
     private MonedaDTO moneda;
+    private Long idDocumento;
 
     public DocumentoComercialDTO(){
 
@@ -19,7 +20,16 @@ public class DocumentoComercialDTO extends StandardDTO<DocumentoComercial> {
 
     @Override
     public DocumentoComercialDTO from(DocumentoComercial object) {
-        return null;
+        DocumentoComercialDTO documentoComercialDTO = new DocumentoComercialDTO();
+        documentoComercialDTO.setNumero(object.getNumero());
+        documentoComercialDTO.setIdDocumento(object.getIdDocumento());
+        if(object.getMoneda() != null){
+            documentoComercialDTO.setPais(new PaisDTO().from(object.getPais()));
+        }
+        if(object.getPais() != null) {
+            documentoComercialDTO.setMoneda(new MonedaDTO().from(object.getMoneda()));
+        }
+        return documentoComercialDTO;
     }
 
     @Override
@@ -34,6 +44,14 @@ public class DocumentoComercialDTO extends StandardDTO<DocumentoComercial> {
         documentoComercial.setNumero(numero);
         documentoComercial.setTipoDocumento(tipoDocumento);
         return documentoComercial;
+    }
+
+    public Long getIdDocumento() {
+        return idDocumento;
+    }
+
+    public void setIdDocumento(Long idDocumento) {
+        this.idDocumento = idDocumento;
     }
 
     public Integer getNumero() {

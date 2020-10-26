@@ -31,12 +31,14 @@ public interface IngresoRepository extends JpaRepository<Ingreso, Long> {
 
     @Query(value = "SELECT i FROM Ingreso i " +
             " JOIN FETCH i.entidadRealizadora entidad " +
+            " JOIN FETCH i.documentoComercial " +
             " WHERE entidad IN (SELECT entidadDeUsuario FROM Usuario u " +
             " JOIN u.usuariosEntidad ue " +
             " JOIN ue.entidad entidadDeUsuario " +
             " WHERE u.usuarioId = :usuarioId) ",
             countQuery = "SELECT COUNT(i) FROM Ingreso i " +
                     " JOIN i.entidadRealizadora entidad " +
+                    " JOIN i.documentoComercial documento" +
                     " WHERE entidad IN (SELECT entidadDeUsuario FROM Usuario u " +
                     " JOIN u.usuariosEntidad ue " +
                     " JOIN ue.entidad entidadDeUsuario " +

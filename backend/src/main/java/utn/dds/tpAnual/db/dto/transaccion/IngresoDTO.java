@@ -26,10 +26,12 @@ public class IngresoDTO extends StandardDTO<Ingreso> {
     @Override
     public IngresoDTO from(Ingreso object){
         IngresoDTO ingresoDto = new IngresoDTO();
+        ingresoDto.setIdIngreso(object.getOperacionId());
         ingresoDto.setTotal(object.getTotal());
         ingresoDto.setCodigoOperacion(object.getCodigoOperacion());
         ingresoDto.setDescripcion(object.getDescripcion());
         ingresoDto.setEntidadRealizadora(new EntidadDTO().from(object.getEntidadRealizadora()));
+        ingresoDto.setDocumentoComercial(new DocumentoComercialDTO().from(object.getDocumentoComercial()));
         return ingresoDto;
     }
 

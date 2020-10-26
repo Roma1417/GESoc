@@ -293,10 +293,10 @@ public class EgresoResourceBeanTest {
         monedaService.save(moneda);
 
         PaisDTO paisDTO = new PaisDTO();
-        paisDTO.setIdPais(pais.getPaisId());
+        paisDTO.setPaisId(pais.getPaisId());
 
         MonedaDTO monedaDTO = new MonedaDTO();
-        monedaDTO.setIdMoneda(moneda.getMonedaId());
+        monedaDTO.setMonedaId(moneda.getMonedaId());
 
         DocumentoComercialDTO documentoComercialDTO = new DocumentoComercialDTO();
         documentoComercialDTO.setTipoDocumento(1);

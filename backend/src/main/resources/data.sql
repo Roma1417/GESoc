@@ -131,3 +131,32 @@ VALUES('marian', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a
         (cantidad, item_id, precio, operacion_efectuada_id)
     values
         (2, 1, 30, 1);
+
+-- MOCK INGRESO
+		--
+		insert
+    into
+        documento_comercial
+        (moneda_id, numero, pais_id, tipo_documento)
+    values
+        (1, 151515, 1, 1);
+
+    insert
+    into
+        entidad_juridica_empresa
+        (id, nombre, cuit, codigo_igj,  razon_social, cantidad_personal)
+    values
+        (2, 'McDonalds', '20202020', '1234',  'razon_social-nueva',  10);
+
+    insert
+    into
+        ingreso
+        (codigo_operacion, documento_comercial_id, entidad_realizadora_id, fecha_creacion, descripcion, total,id)
+    values
+        (1, 2, 2, '20200812', 'Prueba Ingreso', 10101010,1);
+    insert
+    into
+        usuario_entidad
+        (entidad_id, usuario_id)
+    values
+         (2,4);

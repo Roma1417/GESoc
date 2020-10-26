@@ -6,6 +6,11 @@
           ACA IRIA EL FILTRO POR CATEGORIA
         </v-col>
         <v-col class="text-right">
+          <ThePrimaryButton
+            :inner-text="$t('search')"
+            icon="mdi-magnify"
+            @click="getEgresos()"
+          />
           CREAR EGRESO BOTON
         </v-col>
       </v-row>
@@ -19,7 +24,10 @@
         @change="getEgresos()"
       >
         <template #[`item.actions`]="{ }">
-          VINCULAR
+          VINCULAR BOTON
+          <v-icon>
+            mdi-link-variant
+          </v-icon>
         </template>
       </TheFilterTable>
     </template>
@@ -28,10 +36,12 @@
 <script>
 import TheLayoutWithHeader from '~/components/General/Layouts/TheLayoutWithHeader'
 import TheFilterTable from '~/components/General/Tables/TheFilterTable'
+import ThePrimaryButton from '~/components/General/Buttons/ThePrimaryButton'
 export default {
   components: {
     TheLayoutWithHeader,
-    TheFilterTable
+    TheFilterTable,
+    ThePrimaryButton
   },
   data: () => ({
     pageInfo: {

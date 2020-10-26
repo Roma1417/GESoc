@@ -1,5 +1,6 @@
 import User from '../services/User'
 import Egreso from '../services/Egreso'
+import Ingreso from '../services/Ingreso'
 import Item from '../services/Item'
 import Categoria from '../services/Categoria'
 import ValidationRule from '../services/ValidationRule'
@@ -9,6 +10,8 @@ export default function ({ app }, inject) {
   inject('userService', user)
   const egreso = new Egreso({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })
   inject('egresoService', egreso)
+  const ingreso = new Ingreso({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })
+  inject('ingresoService', ingreso)
   const item = new Item({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })
   inject('itemService', item)
   const categoria = new Categoria({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })

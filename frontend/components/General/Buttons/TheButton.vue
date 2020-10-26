@@ -3,12 +3,12 @@
     v-bind="$attrs"
     v-on="$listeners"
   >
-    <v-icon v-if="icon" color="iconColor">
-      {{ icon }}
-    </v-icon>
     <span v-if="innerText" class="pad-wide">
       {{ innerText }}
     </span>
+    <v-icon v-if="icon" color="iconColor">
+      {{ icon }}
+    </v-icon>
   </v-btn>
 </template>
 <script>
