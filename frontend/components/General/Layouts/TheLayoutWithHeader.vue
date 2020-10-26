@@ -10,7 +10,7 @@
     <template v-show="slotInUse('header')">
       <slot name="header" />
     </template>
-    <v-card raised class="mx-auto" min-width="70em">
+    <v-card raised class="mx-auto" min-width="75vw">
       <v-card-subtitle v-show="slotInUse('filter')" class="py-0">
         <slot name="filter" />
       </v-card-subtitle>
