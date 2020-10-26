@@ -20,7 +20,7 @@
           </v-card-subtitle>
         </v-card>
       </v-col>
-      <v-col xs="12" sm="12" v-if="isSmOrLess">
+      <v-col v-if="isSmOrLess" xs="12" sm="12">
         <v-divider />
       </v-col>
       <v-col v-else cols="1" class="divider-height">
