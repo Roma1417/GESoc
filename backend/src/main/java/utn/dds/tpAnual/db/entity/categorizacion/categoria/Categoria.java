@@ -5,7 +5,6 @@ import utn.dds.tpAnual.db.entity.categorizacion.criterioCategorizacion.CriterioC
 import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "CATEGORIA")
 public class Categoria {
 

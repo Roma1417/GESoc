@@ -31,6 +31,9 @@ public class CriterioCategorizacion {
 		return criterioCategorizacionId;
 	}
 
+	public CriterioCategorizacion() {
+	}
+
 	public void setCriterioCategorizacionId(Long criterioCategorizacionId) {
 		this.criterioCategorizacionId = criterioCategorizacionId;
 	}

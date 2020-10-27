@@ -85,4 +85,5 @@ public class DocumentoComercialDTO extends StandardDTO<DocumentoComercial> {
     public void setMoneda(MonedaDTO moneda) {
         this.moneda = moneda;
     }
+
 }

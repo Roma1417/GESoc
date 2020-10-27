@@ -11,6 +11,7 @@ import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.entity.transaccion.Item;
 
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long> {
@@ -21,4 +22,9 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
             countQuery = "SELECT COUNT(DISTINCT it) FROM Item it " +
                     " WHERE (:nombreItem IS NULL OR upper(it.descripcion) LIKE CONCAT('%', upper(:nombreItem), '%') )")
     Page<Item> getItemsByDescripcionLike(@Param("nombreItem") String descripcion, Pageable pageable);
+
+
+    @Query("SELECT it FROM Item it " +
+            " WHERE it.itemId IN (:itemIds)")
+    List<Item> findAllByIds(@Param("itemIds")Set<Long> keySet);
 }

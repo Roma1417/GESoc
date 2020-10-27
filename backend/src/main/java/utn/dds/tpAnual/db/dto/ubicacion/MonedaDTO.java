@@ -9,6 +9,15 @@ public class MonedaDTO extends StandardDTO<Moneda> {
     private String descripcion;
     private String simbolo;
 
+    public MonedaDTO() {
+    }
+
+    public MonedaDTO(String idAPI, String descripcion, String simbolo) {
+        this.idAPI = idAPI;
+        this.descripcion = descripcion;
+        this.simbolo = simbolo;
+    }
+
     @Override
     public MonedaDTO from(Moneda object) {
         MonedaDTO monedaDTO = new MonedaDTO();

@@ -10,6 +10,7 @@ import utn.dds.tpAnual.db.dto.pageable.PageableResponse;
 import utn.dds.tpAnual.db.entity.usuario.Mensaje;
 import utn.dds.tpAnual.db.service.business.MensajeResourceBean;
 import utn.dds.tpAnual.db.service.business.UsuarioResourceBean;
+import utn.dds.tpAnual.db.service.rules.UsuarioRules;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -47,13 +48,12 @@ public class UserController {
         return userDTO;
     }
 
-    @RequestMapping("user/{userId}/mensajes")
-    public PageableResponse<MensajeDTO, Mensaje> getMensajes(@PathVariable(value="userId") Long userId,
-                                                             @RequestParam(name ="page", defaultValue = "1") Long page,
+    @RequestMapping("user/mensajes")
+    public PageableResponse<MensajeDTO, Mensaje> getMensajes(@RequestParam(name ="page", defaultValue = "1") Long page,
                                                              @RequestParam(name ="itemsPerPage", defaultValue = "20") Long itemsPerPage) {
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         PageableRequest pageableRequest = new PageableRequest(username, page, itemsPerPage);
-        PageableResponse<MensajeDTO, Mensaje> mensajes = mensajeResourceBean.getMensajesFrom(pageableRequest,userId);
+        PageableResponse<MensajeDTO, Mensaje> mensajes = mensajeResourceBean.getMensajesFrom(pageableRequest);
         return mensajes;
     }
 

@@ -63,6 +63,19 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long> {
             " WHERE e.operacionId = :egresoId")
     Optional<Egreso> findFullById(@Param("egresoId") Long egresoId);
 
+    @Query("SELECT e FROM Egreso e " +
+            " JOIN FETCH e.detallesOperacion do " +
+            " JOIN FETCH do.item i " +
+            " JOIN FETCH e.entidadRealizadora entidad " +
+            " JOIN FETCH e.documentoComercial d " +
+            " JOIN FETCH e.medioPago mp " +
+            " WHERE e.operacionId = :egresoId " +
+            " AND entidad IN ( SELECT entidadesUsuario from Entidad entidadesUsuario " +
+            "   JOIN entidadesUsuario.usuariosEntidad ue " +
+            "   JOIN ue.usuario usuario " +
+            "   WHERE usuario.usuarioId = :userID )")
+    Optional<Egreso> findFullRelatedById(@Param("egresoId") Long egresoId, @Param("userID") Long userID);
+
     @Query(value = "SELECT egreso FROM Egreso egreso " +
             " JOIN FETCH egreso.entidadRealizadora entidad " +
             " JOIN FETCH egreso.detallesOperacion detalles " +

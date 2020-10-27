@@ -79,4 +79,8 @@ import java.util.Optional;
         Usuario usuario = usuarioService.getUsuarioByUsername(username);
         return egresoRepository.getEgresosRelatedByCategoria(pageable, categoria, usuario.getUsuarioId());
     }
+
+    public Optional<Egreso> findFullRelatedById(Long egresoID, Long userID) {
+        return egresoRepository.findFullRelatedById(egresoID, userID);
+    }
 }

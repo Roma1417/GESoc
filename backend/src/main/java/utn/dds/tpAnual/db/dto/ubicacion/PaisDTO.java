@@ -8,6 +8,13 @@ public class PaisDTO extends StandardDTO<Pais> {
     private String idAPI;
     private String descripcion;
 
+    public PaisDTO(){
+    }
+
+    public PaisDTO(String idAPI, String descripcion) {
+        this.idAPI = idAPI;
+        this.descripcion = descripcion;
+    }
 
     @Override
     public PaisDTO from(Pais object) {

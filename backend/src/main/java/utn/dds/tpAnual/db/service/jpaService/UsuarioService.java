@@ -29,4 +29,7 @@ public class UsuarioService extends CustomJPAService<Usuario> {
         return usuarioRepository.getUsuarioByUsuario(usuario);
     }
 
+    public Usuario getUsuarioConEntidadesByIdOrUser(Long userID, String user) {
+        return usuarioRepository.getUsuarioConEntidadesByIdOrUser(userID, user);
+    }
 }

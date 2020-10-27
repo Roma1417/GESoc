@@ -8,22 +8,15 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
-import utn.dds.tpAnual.builders.DetalleOperacionBuilder;
-import utn.dds.tpAnual.builders.EgresoBuilder;
 import utn.dds.tpAnual.builders.EntidadJuridicaEmpresaBuilder;
-import utn.dds.tpAnual.builders.IngresoBuilder;
-import utn.dds.tpAnual.db.dto.complex.VinculacionEgresoIngresoDTO;
 import utn.dds.tpAnual.db.dto.entidad.EntidadDTO;
 import utn.dds.tpAnual.db.dto.pageable.PageableRequest;
 import utn.dds.tpAnual.db.dto.pageable.PageableResponse;
-import utn.dds.tpAnual.db.dto.proveedor.ProveedorDTO;
 import utn.dds.tpAnual.db.dto.transaccion.*;
 import utn.dds.tpAnual.db.dto.ubicacion.MonedaDTO;
 import utn.dds.tpAnual.db.dto.ubicacion.PaisDTO;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
 import utn.dds.tpAnual.db.entity.entidad.EntidadJuridicaEmpresa;
-import utn.dds.tpAnual.db.entity.proveedor.Proveedor;
-import utn.dds.tpAnual.db.entity.proveedor.ProveedorPersona;
 import utn.dds.tpAnual.db.entity.transaccion.*;
 import utn.dds.tpAnual.db.entity.ubicacion.Moneda;
 import utn.dds.tpAnual.db.entity.ubicacion.Pais;
@@ -33,9 +26,7 @@ import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.entity.usuario.UsuarioEntidad;
 import utn.dds.tpAnual.db.scheduler.ProgramadorDeTareas;
 import utn.dds.tpAnual.db.service.jpaService.*;
-import utn.dds.tpAnual.db.service.rules.IngresoRules;
 
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -77,6 +68,7 @@ public class IngresoResourceBeanTest {
         PageableRequest pageableRequest = new PageableRequest(usuario.getNombre(),1L, 5L);
         Ingreso ingreso = new Ingreso();
         ingreso.setEntidadRealizadora(entidad);
+        ingreso.setDocumentoComercial(getTestDocumentoComercial());
         ingresoService.save(ingreso);
         PageableResponse<IngresoDTO, Ingreso> ingresosEncontrados = ingresoResourceBean.getIngresos(pageableRequest, usuario.getNombre());
         assertTrue(!ingresosEncontrados.getData().isEmpty());
@@ -124,7 +116,7 @@ public class IngresoResourceBeanTest {
 
     private IngresoDTO getTestIngresoDTO(EntidadDTO entidadDTO) {
         IngresoDTO ingresoDTO = new IngresoDTO();
-        ingresoDTO.setDocumentoComercial(getTestDocumentoComercial());
+        ingresoDTO.setDocumentoComercial(getTestDocumentoComercialDTO());
         ingresoDTO.setEntidadRealizadora(entidadDTO);
         ingresoDTO.setDescripcion("Prueba");
         ingresoDTO.setCodigoOperacion(1);
@@ -132,7 +124,15 @@ public class IngresoResourceBeanTest {
         return ingresoDTO;
     }
 
-    private DocumentoComercialDTO getTestDocumentoComercial() {
+    private DocumentoComercial getTestDocumentoComercial(){
+        Pais pais = new Pais("Argentina");
+        Moneda moneda = new Moneda("Australes");
+        paisService.save(pais);
+        monedaService.save(moneda);
+        return new DocumentoComercial(1,1, pais, moneda);
+    }
+
+    private DocumentoComercialDTO getTestDocumentoComercialDTO() {
         Pais pais = new Pais("Argentina");
         Moneda moneda = new Moneda("Australes");
         paisService.save(pais);

@@ -7,15 +7,17 @@ import utn.dds.tpAnual.db.dto.usuario.MensajeDTO;
 import utn.dds.tpAnual.db.dto.pageable.PageableRequest;
 import utn.dds.tpAnual.db.dto.pageable.PageableResponse;
 import utn.dds.tpAnual.db.entity.usuario.Mensaje;
+import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.service.jpaService.MensajeService;
+import utn.dds.tpAnual.db.service.rules.UsuarioRules;
 
 @Service
 public class MensajeResourceBean {
     @Autowired
     private MensajeService mensajeService;
 
-    public PageableResponse<MensajeDTO, Mensaje> getMensajesFrom(PageableRequest pageableRequest, Long UserId) {
-        Page<Mensaje> mensajes = mensajeService.getMensajesByUsername(UserId, pageableRequest);
+    public PageableResponse<MensajeDTO, Mensaje> getMensajesFrom(PageableRequest pageableRequest) {
+        Page<Mensaje> mensajes = mensajeService.getMensajesByUsername(pageableRequest.getUser(), pageableRequest);
         return new PageableResponse().fromPage(mensajes, new MensajeDTO());
     }
 }

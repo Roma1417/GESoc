@@ -26,6 +26,10 @@ public class CategoriaDTO  extends StandardDTO<Categoria> {
         this.descripcion = descripcion;
     }
 
+    public CategoriaDTO(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     public Long getId() {
         return id;
     }

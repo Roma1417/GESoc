@@ -1,9 +1,12 @@
 package utn.dds.tpAnual.builders;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import utn.dds.tpAnual.db.dto.transaccion.PresupuestoDTO;
 import utn.dds.tpAnual.db.entity.afip.VentaAnual;
+import utn.dds.tpAnual.db.entity.categorizacion.categoria.Categoria;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
 import utn.dds.tpAnual.db.entity.entidad.EntidadBase;
 import utn.dds.tpAnual.db.entity.transaccion.*;
@@ -40,7 +43,9 @@ public class PresupuestoBuilder {
     }
 
     public Presupuesto build(){
-        return new Presupuesto(documentoComercial, entidadRealizadora, codigoOperacion, detallesPrecio);
+        Presupuesto presupuesto = new Presupuesto(documentoComercial, entidadRealizadora, codigoOperacion, detallesPrecio);
+        presupuesto.setFecha(LocalDate.now());
+        return presupuesto;
     }
 
 
@@ -56,7 +61,7 @@ public class PresupuestoBuilder {
 
         Item itemTest = new Item();
         itemTest.setDescripcion("Item de prueba");
-        itemTest.setCategoria(null);
+        itemTest.setCategoria(new Categoria("Categoria por nombre"));
 
         DetalleOperacion unDetalleOperacion = new DetalleOperacionBuilder()
                 .withCantidad(3)
@@ -83,4 +88,5 @@ public class PresupuestoBuilder {
 
         return build();
     }
+
 }
