@@ -58,13 +58,13 @@ public class EgresoResourceBean {
     @Autowired
     private UsuarioService usuarioService;
 
-    public PageableResponse<EgresoDTO, Egreso> getEgresos(PageableRequest pageableRequest, String categorias, String username) {
+    public PageableResponse<EgresoDTO, Egreso> getEgresos(PageableRequest pageableRequest, String categorias) {
         List<Long> categoriasIdList = new ArrayList<>();
         if (categorias != null) {
             categoriasIdList = Arrays.stream(categorias.split(","))
                     .map(categoria -> Long.valueOf(categoria)).collect(Collectors.toList());
         }
-        Page<Egreso> egresos = egresoService.findAllRelatedByCategoria(pageableRequest, categoriasIdList, username);
+        Page<Egreso> egresos = egresoService.findAllRelatedByCategoria(pageableRequest, categoriasIdList);
         return new PageableResponse().fromPage(egresos, new EgresoDTO());
     }
 

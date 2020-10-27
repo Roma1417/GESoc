@@ -75,9 +75,9 @@ import java.util.Optional;
         return egresoRepository.findFullById(egresoId);
     }
 
-    public Page<Egreso> findAllRelatedByCategoria(PageableRequest pageableRequest, List<Long> categoriasIdList, String username) {
+    public Page<Egreso> findAllRelatedByCategoria(PageableRequest pageableRequest, List<Long> categoriasIdList) {
         Pageable pageable = pageableRequest.toPageable();
-        Usuario usuario = usuarioService.getUsuarioByUsername(username);
+        Usuario usuario = usuarioService.getUsuarioByUsername(pageableRequest.getUser());
         return egresoRepository
                 .getEgresosRelatedByCategoria(pageable, categoriasIdList, BooleanUtils.toInt(categoriasIdList.isEmpty()), usuario.getUsuarioId());
     }

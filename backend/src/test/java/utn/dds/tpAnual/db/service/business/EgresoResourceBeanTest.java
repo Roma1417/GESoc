@@ -273,7 +273,7 @@ public class EgresoResourceBeanTest {
         egresoService.save(egreso);
 
         PageableRequest pageableRequest = new PageableRequest(usuario.getUsuario(), 1L, 20L);
-        PageableResponse<EgresoDTO, Egreso> egresos = egresoResourceBean.getEgresos(pageableRequest, categoria.getIdCategoria().toString(), usuario.getUsuario());
+        PageableResponse<EgresoDTO, Egreso> egresos = egresoResourceBean.getEgresos(pageableRequest, categoria.getIdCategoria().toString());
         EgresoDTO egresoDto = egresos.getData().get(0);
         assertTrue(sonElMismoEgreso(egreso, egresoDto));
     }
