@@ -70,10 +70,10 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long> {
             " JOIN FETCH egreso.proveedor proveedor " +
             " JOIN FETCH egreso.medioPago mediPago " +
             " JOIN FETCH egreso.documentoComercial documentoComercial " +
-            " WHERE :categoria IS NULL OR " +
+            " WHERE :notFilterCategorias = 1 OR " +
             "   items IN ( SELECT i FROM Item i" +
             "   INNER JOIN i.categorias c" +
-            "   WHERE c.descripcion = : categoria)  " +
+            "   WHERE c.idCategoria IN (:categoriasIds))  " +
             " AND entidad IN ( SELECT entidadesUsuario from Entidad entidadesUsuario " +
             "   JOIN entidadesUsuario.usuariosEntidad ue " +
             "   JOIN ue.usuario usuario " +
@@ -85,14 +85,15 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long> {
             " JOIN egreso.proveedor proveedor " +
             " JOIN egreso.medioPago mediPago " +
             " JOIN egreso.documentoComercial documentoComercial " +
-                    " WHERE :categoria IS NULL OR " +
+                    " WHERE :notFilterCategorias = 1 OR " +
                     "   items IN ( SELECT i FROM Item i" +
                     "   INNER JOIN i.categorias c" +
-                    "   WHERE c.descripcion = : categoria)  " +
+                    "   WHERE c.idCategoria IN (:categoriasIds))  " +
             " AND entidad IN ( SELECT entidadesUsuario from Entidad entidadesUsuario " +
                     "   JOIN entidadesUsuario.usuariosEntidad ue " +
                     "   JOIN ue.usuario usuario " +
                     "   WHERE usuario.usuarioId = :userId ) ")
-    Page<Egreso> getEgresosRelatedByCategoria(Pageable pageable, @Param("categoria")String categoria,
+    Page<Egreso> getEgresosRelatedByCategoria(Pageable pageable, @Param("categoriasIds")List<Long> categoriaIds,
+                                              @Param("notFilterCategorias") int notFilterCategorias,
                                               @Param("userId") Long userId);
 }

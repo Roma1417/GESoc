@@ -4,7 +4,6 @@
       <v-col v-if="edit">
         <TheCategoriasAutocomplete
           v-model="values"
-          :items="items"
           multiple
         />
       </v-col>

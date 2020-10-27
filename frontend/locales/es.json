@@ -62,7 +62,8 @@
     "menu": "Items"
    },
    "categorias": {
-    "editar": "Editar"
+    "editar": "Editar",
+    "categorias": "Categorias"
    },
    "mensajes": {
     "menu": "Mensajes",

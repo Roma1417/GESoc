@@ -21,11 +21,11 @@ public class EgresoController {
     public PageableResponse<EgresoDTO, Egreso> getEgresos(@RequestParam(name ="page", defaultValue = "1") Long page,
                                                           @RequestParam(name ="itemsPerPage", defaultValue = "20")
                                                                   Long itemsPerPage,
-                                                             @RequestParam(name ="categoria", required = false)
-                                                                      String categoria){
+                                                             @RequestParam(name ="categorias", required = false)
+                                                                      String categorias){
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         PageableRequest pageableRequest = new PageableRequest(username, page, itemsPerPage);
-        PageableResponse<EgresoDTO, Egreso> egresos = egresoResourceBean.getEgresos(pageableRequest, categoria, username);
+        PageableResponse<EgresoDTO, Egreso> egresos = egresoResourceBean.getEgresos(pageableRequest, categorias, username);
         return egresos;
     }
 

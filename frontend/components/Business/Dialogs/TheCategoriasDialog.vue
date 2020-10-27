@@ -16,7 +16,7 @@
 <script>
 import TheCategoriasAutocomplete from '~/components/Business/Autocomplete/TheCategoriasAutocomplete'
 import TheFormDialog from '~/components/General/Dialogs/TheFormDialog'
-import TheButtonWithToolTip from '~/components/General/Buttons/TheButtonWithToolTip'
+import TheButtonWithToolTip from '~/components/General/Buttons/TheButtonWithTooltip'
 export default {
   components: {
     TheCategoriasAutocomplete,

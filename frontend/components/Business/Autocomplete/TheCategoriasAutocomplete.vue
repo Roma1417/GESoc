@@ -1,8 +1,7 @@
 <template>
   <v-autocomplete
     v-model="showValue"
-    :label="$t('devices.insert_model')"
-    :placeholder="$t('devices.model')"
+    :label="$t('categorias.categorias')"
     :search-input.sync="nombreCategoria"
     :items="categorias"
     :loading="loading"
@@ -10,12 +9,12 @@
     cache-items
     item-text="descripcion"
     return-object
-    chips
+    :chips="chips"
     multiple
     v-bind="$attrs"
     v-on="$listeners"
   >
-    <template #selection="data">
+    <template v-if="chips" #selection="data">
       <v-chip
         v-bind="data.attrs"
         :input-value="data.selected"
@@ -35,6 +34,10 @@ export default {
     value: {
       type: Array,
       default: () => ([])
+    },
+    chips: {
+      type: Boolean,
+      default: true
     }
   },
   data () {
