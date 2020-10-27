@@ -3,7 +3,14 @@
     <template #filter>
       <v-row>
         <v-col>
-          ACA IRIA EL FILTRO POR CATEGORIA
+          ACA IRIA EL FILTRO POR NOMBRE DE ITEM
+        </v-col>
+        <v-col class="text-right">
+          <ThePrimaryButton
+            :inner-text="$t('search')"
+            icon="mdi-magnify"
+            @click="getItems()"
+          />
         </v-col>
       </v-row>
     </template>
@@ -15,8 +22,10 @@
         :total="totalList"
         @change="getItems()"
       >
-        <template #[`item.categorias`]="{ }">
-          <Categorias />
+        <template #[`item.categorias`]="{ item }">
+          <TheCategoriasDialog
+            v-model="item.categorias"
+          />
         </template>
       </TheFilterTable>
     </template>
@@ -25,12 +34,14 @@
 <script>
 import TheLayoutWithHeader from '~/components/General/Layouts/TheLayoutWithHeader'
 import TheFilterTable from '~/components/General/Tables/TheFilterTable'
-import Categorias from '~/components/Items/Categorias'
+import TheCategoriasDialog from '~/components/Business/Dialogs/TheCategoriasDialog'
+import ThePrimaryButton from '~/components/General/Buttons/ThePrimaryButton'
 export default {
   components: {
     TheLayoutWithHeader,
     TheFilterTable,
-    Categorias
+    TheCategoriasDialog,
+    ThePrimaryButton
   },
   data: () => ({
     pageInfo: {
