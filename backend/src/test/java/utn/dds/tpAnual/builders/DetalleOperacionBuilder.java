@@ -1,5 +1,6 @@
 package utn.dds.tpAnual.builders;
 
+import utn.dds.tpAnual.db.entity.categorizacion.categoria.Categoria;
 import utn.dds.tpAnual.db.entity.transaccion.DetalleOperacion;
 import utn.dds.tpAnual.db.entity.transaccion.Item;
 
@@ -28,6 +29,7 @@ public class DetalleOperacionBuilder {
 	    this.cantidad = 5;
 	    this.precio = 10F;
 	    this.item = new Item("Un item");
+	    this.item.addCategoria(new Categoria("corto"));
 	    return this;
     }
 }

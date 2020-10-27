@@ -3,6 +3,7 @@ package utn.dds.tpAnual.db.service.business;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import utn.dds.tpAnual.db.dto.transaccion.DetalleOperacionDTO;
 import utn.dds.tpAnual.db.dto.transaccion.EgresoDTO;
 import utn.dds.tpAnual.db.dto.complex.VinculacionEgresoIngresoDTO;
 import utn.dds.tpAnual.db.dto.pageable.PageableRequest;
@@ -18,6 +19,7 @@ import utn.dds.tpAnual.db.service.rules.EgresoRules;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -78,11 +80,10 @@ public class EgresoResourceBean {
         Integer codigoOperacion = egresoDTO.getCodigoOperacion();
 
         EgresoRules.getInstance().validarCrearEgreso(egresoDTO, proveedor, entidadRealizadora, pais, moneda, medioPago);
-        List<Presupuesto> presupuestos = createPresupuesto(egresoDTO);
 
         Egreso egreso = new Egreso(documentoComercial, entidadRealizadora.get(), codigoOperacion,
         detallesOperacion, LocalDate.now(), medioPago.get(),egresoDTO.getCantidadPresupuestosMinimos(),
-                null, presupuestos, proveedor.get(), null);
+                null, null, proveedor.get(), null);
         egreso.setFechaOperacion(egresoDTO.getFechaOperacion());
 
         egresoService.save(egreso);
@@ -90,27 +91,25 @@ public class EgresoResourceBean {
         return egresoDTO;
     }
 
-    private List<Presupuesto> createPresupuesto(EgresoDTO egresoDTO) {
-        if (egresoDTO.getPresupuestos() != null && !egresoDTO.getPresupuestos().isEmpty()) {
-           return egresoDTO
-                   .getPresupuestos()
-                   .stream()
-                   .map(presupuestoDTO -> presupuestoResourceBean.crearPresupuesto(presupuestoDTO))
-                   .collect(Collectors.toList());
-        }
-        return null;
-    }
-
     private List<DetalleOperacion> getAndFillDetalles(EgresoDTO egresoDTO) {
         List<DetalleOperacion> detalles = new ArrayList<>();
-        egresoDTO.getDetalles().forEach(detalleOperacion -> {
-            Optional<Item> item = itemService.findById(detalleOperacion.getItem().getId());
-            if (!item.isPresent()) {
-                throw new RuntimeException("El item " + detalleOperacion.getItem().getId() + " no existe");
+
+        HashMap<Long, DetalleOperacionDTO> detalleOperacionHashMap = new HashMap<>();
+        egresoDTO.getDetalles().forEach(detalleOperacionDTO -> {
+            detalleOperacionHashMap.put(detalleOperacionDTO.getItem().getId(), detalleOperacionDTO);
+        });
+        List<Item> items = itemService.findAllByIds(detalleOperacionHashMap.keySet());
+        if (items.size() != detalleOperacionHashMap.size()) {
+            throw new ValidationException("No se encontraron todos los items");
+        }
+        items.stream().forEach(item -> {
+            DetalleOperacionDTO detalleOperacionDTO = detalleOperacionHashMap.get(item.getItemId());
+            if (detalleOperacionDTO == null) {
+                throw new ValidationException("Datos inválidos");
             }
-            detalles.add(new DetalleOperacion(item.get(),
-                                detalleOperacion.getPrecio(),
-                    detalleOperacion.getCantidad()));
+            detalles.add(new DetalleOperacion(item,
+                    detalleOperacionDTO.getPrecio(),
+                    detalleOperacionDTO.getCantidad()));
         });
         return detalles;
     }

@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class DetalleOperacionDTO  extends StandardDTO<DetalleOperacion> {
+
+    private Long detalleOperacionId;
     private ItemDTO item;
     private Float precio;
     private Integer cantidad;
@@ -35,6 +37,13 @@ public class DetalleOperacionDTO  extends StandardDTO<DetalleOperacion> {
         this.cantidad = cantidad;
     }
 
+    public DetalleOperacionDTO(ItemDTO item, Float precio, Integer cantidad, Long detalleOperacionId ) {
+        this.item = item;
+        this.precio = precio;
+        this.cantidad = cantidad;
+        this.detalleOperacionId = detalleOperacionId;
+    }
+
     public ItemDTO getItem() {
         return item;
     }
@@ -57,5 +66,13 @@ public class DetalleOperacionDTO  extends StandardDTO<DetalleOperacion> {
 
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public Long getDetalleOperacionId() {
+        return detalleOperacionId;
+    }
+
+    public void setDetalleOperacionId(Long detalleOperacionId) {
+        this.detalleOperacionId = detalleOperacionId;
     }
 }

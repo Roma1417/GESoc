@@ -7,7 +7,16 @@ import utn.dds.tpAnual.db.entity.transaccion.DetallePrecio;
 public class DetallePrecioDTO extends StandardDTO<DetallePrecio> {
     private Long detallePrecioId;
     private Float precio;
-    private DetalleOperacion detalleOperacion;
+    private DetalleOperacionDTO detalleOperacion;
+
+    public DetallePrecioDTO() {
+
+    }
+
+    public DetallePrecioDTO(Float precio, DetalleOperacionDTO detalleOperacionDTO) {
+        this.precio = precio;
+        this.detalleOperacion = detalleOperacionDTO;
+    }
 
     public DetallePrecio toEntity(DetalleOperacion detalleOperacionRecibido) {
         DetallePrecio detallePrecio = new DetallePrecio();
@@ -21,7 +30,7 @@ public class DetallePrecioDTO extends StandardDTO<DetallePrecio> {
         DetallePrecioDTO detallePrecioDTO = new DetallePrecioDTO();
         detallePrecioDTO.setPrecio(object.getPrecio());
         detallePrecioDTO.setDetallePrecioId(object.getDetallePrecioId());
-        detallePrecioDTO.setDetalleOperacion(object.getDetalleOperacion());
+        detallePrecioDTO.setDetalleOperacion(new DetalleOperacionDTO().from(object.getDetalleOperacion()));
         return detallePrecioDTO;
     }
 
@@ -36,8 +45,8 @@ public class DetallePrecioDTO extends StandardDTO<DetallePrecio> {
 
     public void setPrecio(Float precio) { this.precio = precio; }
 
-    public DetalleOperacion getDetalleOperacion() { return detalleOperacion; }
+    public DetalleOperacionDTO getDetalleOperacion() { return detalleOperacion; }
 
-    public void setDetalleOperacion(DetalleOperacion detalleOperacion) { this.detalleOperacion = detalleOperacion; }
+    public void setDetalleOperacion(DetalleOperacionDTO detalleOperacion) { this.detalleOperacion = detalleOperacion; }
 
 }

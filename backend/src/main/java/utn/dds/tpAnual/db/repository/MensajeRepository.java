@@ -18,9 +18,9 @@ public interface MensajeRepository extends JpaRepository<Mensaje, Long> {
 
     @Query(value = "SELECT m FROM Mensaje m " +
             " JOIN FETCH m.usuario u " +
-            " WHERE u.usuarioId = :userID",
+            " WHERE u.usuario = :username",
             countQuery = "SELECT COUNT(m) FROM Mensaje m " +
-                    " WHERE m.usuario.usuarioId = :userID")
-    Page<Mensaje> getMensajesByUsername(@Param("userID") Long userID, Pageable pageable);
+                    " WHERE m.usuario = :username")
+    Page<Mensaje> getMensajesByUsername(@Param("username") String username, Pageable pageable);
 
 }

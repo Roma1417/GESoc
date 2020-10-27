@@ -15,6 +15,7 @@ import utn.dds.tpAnual.db.repository.ActividadRepository;
 import utn.dds.tpAnual.db.repository.ItemRepository;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ItemService extends CustomJPAService<Item> {
@@ -32,4 +33,7 @@ public class ItemService extends CustomJPAService<Item> {
         return itemRepository.getItemsByDescripcionLike(descripcion,pageable);
     }
 
+    public List<Item> findAllByIds(Set<Long> keySet) {
+        return itemRepository.findAllByIds(keySet);
+    }
 }

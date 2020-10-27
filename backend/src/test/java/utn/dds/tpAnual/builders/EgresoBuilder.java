@@ -10,6 +10,8 @@ import utn.dds.tpAnual.db.entity.entidad.Entidad;
 import utn.dds.tpAnual.db.entity.proveedor.Proveedor;
 import utn.dds.tpAnual.db.entity.proveedor.ProveedorPersona;
 import utn.dds.tpAnual.db.entity.transaccion.*;
+import utn.dds.tpAnual.db.entity.ubicacion.Moneda;
+import utn.dds.tpAnual.db.entity.ubicacion.Pais;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.entity.categorizacion.criterioCompra.CriterioCompra;
 import utn.dds.tpAnual.db.entity.categorizacion.criterioCompra.CriterioMenorPrecio;
@@ -82,7 +84,7 @@ public class EgresoBuilder {
     
     public Egreso build(){
     	Egreso egreso = new Egreso(documentoComercial, entidadRealizadora, codigoOperacion, detallesOperacion, fechaOperacion,
-				null, cantidadPresupuestosMinimos, criterioCompra, presupuestos, null, revisores);
+				null, cantidadPresupuestosMinimos, criterioCompra, presupuestos, proveedor, revisores);
     	egreso.setFecha(fecha);
     	egreso.setProveedor(proveedor);
     	egreso.setMedioPago(medioPago);
@@ -335,8 +337,48 @@ public class EgresoBuilder {
 		return build();
 	}
 
+	public Egreso buildEgresoCompletoConFechaSinPresupuestos(LocalDate localDate){
+		codigoOperacion = 28993;
+		cantidadPresupuestosMinimos = 1;
+		documentoComercial = new DocumentoComercial();
+		documentoComercial.setNumero(3473);
+		documentoComercial.setTipoDocumento(1);
+		documentoComercial.setPais(new Pais("Argentina", "1234Arg"));
+		documentoComercial.setMoneda(new Moneda("123Pesos", "Pesos", "$"));
+
+		proveedor = new ProveedorPersona(null, "9876543", "San pepito");
+		medioPago = new MedioPago("Tarjeta de crédito");
+
+		fechaOperacion = localDate;
+		fecha = localDate;
+
+		Item itemTest = new Item();
+		itemTest.setDescripcion("Item de prueba 3");
+
+		DetalleOperacion unDetalleOperacion = new DetalleOperacionBuilder()
+				.withCantidad(2)
+				.withItem(itemTest)
+				.withPrecio(100F)
+				.build();
+
+		DetalleOperacion otroDetalleOperacion = new DetalleOperacionBuilder()
+				.withCantidad(6)
+				.withItem(itemTest)
+				.withPrecio(260F)
+				.build();
+
+		detallesOperacion.add(unDetalleOperacion);
+		detallesOperacion.add(otroDetalleOperacion);
+
+		return build();
+	}
+
 	public Egreso buildOtroEgresoCompleto(){
 		return buildEgresoCompletoConFecha(LocalDate.now());
 	}
 
+	public EgresoBuilder withProveedor(Proveedor proveedor) {
+    	this.proveedor = proveedor;
+    	return this;
+	}
 }

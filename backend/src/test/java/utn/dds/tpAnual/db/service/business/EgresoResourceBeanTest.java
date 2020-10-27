@@ -199,10 +199,17 @@ public class EgresoResourceBeanTest {
     }
 
     private Egreso getMockEgreso(Entidad entidad){
+        Pais pais = new Pais("Argentina");
+        Moneda moneda = new Moneda("Patacones");
+        MedioPago medioPago = new MedioPago("Tarjeta");
+        Proveedor proveedor = new ProveedorPersona();
         return new EgresoBuilder()
                 .withDetalleOperacion(new DetalleOperacionBuilder().mockDetalle().build())
                 .withEntidadRealizadora(entidad)
                 .withCodigoOperacion(1)
+                .withDocumentoComercial(new DocumentoComercial(1, 1, pais, moneda))
+                .withMedioPago(medioPago)
+                .withProveedor(proveedor)
                 .build();
     }
 
@@ -250,7 +257,7 @@ public class EgresoResourceBeanTest {
         egresoService.save(egreso);
 
         PageableRequest pageableRequest = new PageableRequest(usuario.getUsuario(), 1L, 20L);
-        PageableResponse<EgresoDTO, Egreso> egresos = egresoResourceBean.getEgresos(pageableRequest, null, usuario.getUsuario());
+        PageableResponse<EgresoDTO, Egreso> egresos = egresoResourceBean.getEgresos(pageableRequest, null);
         EgresoDTO egresoDto = egresos.getData().get(0);
         assertTrue(sonElMismoEgreso(egreso, egresoDto));
     }

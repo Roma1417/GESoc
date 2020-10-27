@@ -20,6 +20,7 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
     public class DetalleOperacionService extends CustomJPAService<DetalleOperacion> {
@@ -32,4 +33,7 @@ import java.util.Optional;
         return detalleOperacionRepository;
     }
 
+    public List<DetalleOperacion> findAllByIds(Set<Long> keySet) {
+        return detalleOperacionRepository.findAllByIds(keySet);
+    }
 }
