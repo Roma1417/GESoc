@@ -7,7 +7,7 @@
       flat
     >
       <v-spacer />
-      <v-toolbar-title>
+      <v-toolbar-title class="small-toolbar-title">
         {{ $t('login.enter_credentials') }}
       </v-toolbar-title>
       <v-spacer />
@@ -46,6 +46,11 @@
     </v-card-actions>
   </v-card>
 </template>
+<style>
+.small-toolbar-title{
+  font-size: 1rem !important;
+}
+</style>
 <script>
 import ThePrimaryButton from '~/components/General/Buttons/ThePrimaryButton'
 import ThePasswordInput from '~/components/General/Inputs/ThePasswordInput'
