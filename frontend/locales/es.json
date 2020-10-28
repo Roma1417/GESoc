@@ -42,7 +42,9 @@
      "proveedor": "Proveedor",
      "fecha_operacion": "Fecha operación",
      "total": "Total",
-     "entidad_realizadora": "Entidad"
+     "entidad_realizadora": "Entidad",
+     "crear": "Crear egreso",
+     "editar": "Editar egreso"
    },
    "ingresos": {
     "menu": "Ingresos",
