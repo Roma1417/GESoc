@@ -1,6 +1,7 @@
 <template>
   <TheDialog
     v-bind="$attrs"
+    max-width="800"
     :loading="loading"
     v-on="$listeners"
   >
