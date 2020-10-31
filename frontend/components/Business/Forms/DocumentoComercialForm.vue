@@ -13,13 +13,13 @@
       />
     </v-col>
     <v-col md="4" sm="6">
-      <TheAutocompleteInput
+      <ThePaisAutocomplete
         :label="this.$t('documento_comercial.pais')"
         :rules="[$rl.required()]"
       />
     </v-col>
     <v-col md="4" sm="6">
-      <TheAutocompleteInput
+      <TheMonedaAutocomplete
         :label="this.$t('documento_comercial.moneda')"
         :rules="[$rl.required()]"
       />
@@ -28,12 +28,14 @@
 </template>
 <script>
 import TheTextInput from '~/components/General/Inputs/TheTextInput'
-import TheAutocompleteInput from '~/components/General/Inputs/TheAutocompleteInput'
+import ThePaisAutocomplete from '~/components/Business/Autocomplete/ThePaisAutocomplete'
+import TheMonedaAutocomplete from '~/components/Business/Autocomplete/TheMonedaAutocomplete'
 
 export default {
   components: {
     TheTextInput,
-    TheAutocompleteInput
+    TheMonedaAutocomplete,
+    ThePaisAutocomplete
   }
 }
 </script>
