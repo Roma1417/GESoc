@@ -33,7 +33,8 @@
    "transacciones": {
      "menu": "Transacciones",
      "egresos": "Egresos",
-     "ingresos": "Ingresos"
+     "ingresos": "Ingresos",
+     "presupuestos": "Presupuestos"
    },
    "egresos": {
      "menu": "Egresos",
@@ -47,6 +48,15 @@
    "ingresos": {
     "menu": "Ingresos",
     "welcome_description": "Ver mis ingresos",
+    "id": "ID",
+    "entidad_realizadora": "Entidad",
+    "descripcion": "Descripcion",
+    "total": "Total" ,
+    "documento_comercial": "Documento Comercial"   
+   },
+   "presupuestos": {
+    "menu": "Presupuestos",
+    "welcome_description": "Ver mis presupuestos",
     "id": "ID",
     "entidad_realizadora": "Entidad",
     "descripcion": "Descripcion",

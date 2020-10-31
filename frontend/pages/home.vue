@@ -42,6 +42,12 @@ export default {
           description: this.$t('ingresos.welcome_description')
         },
         {
+          path: '/transacciones/presupuestos',
+          icon: 'mdi-file-cash-usd',
+          title: this.$t('presupuestos.menu'),
+          description: this.$t('presupuestos.welcome_description')
+        },
+        {
           path: '/usuario/mensajes',
           icon: 'mdi-message-bulleted',
           title: this.$t('mensajes.menu'),
