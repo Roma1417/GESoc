@@ -29,6 +29,10 @@
    "validations": {
      "required": "El campo es requerido"
    },
+   "buttons": {
+   "cancelButton": "Cancelar",
+   "confirmButton": "Aceptar"
+   },
    "home": "Inicio",
    "transacciones": {
      "menu": "Transacciones",
@@ -62,6 +66,19 @@
     "descripcion": "Descripcion",
     "total": "Total" ,
     "documento_comercial": "Documento Comercial"   
+   },
+   "entidades": {
+    "menu": "Entidades",
+    "id": "ID",
+    "entidadesBase": "Entidades Base"
+   },
+   "items": {
+    "menu": "Items",
+    "categorias": {
+      "editar": "Editar",
+      "autocomplete": "Categorias",
+      "form": "Editar Categorias"
+    }
    },
    "mensajes": {
     "menu": "Mensajes",

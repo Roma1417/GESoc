@@ -20,6 +20,7 @@ import utn.dds.tpAnual.db.service.rules.EgresoRules;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -57,8 +58,13 @@ public class EgresoResourceBean {
     @Autowired
     private UsuarioService usuarioService;
 
-    public PageableResponse<EgresoDTO, Egreso> getEgresos(PageableRequest pageableRequest, String categoria) {
-        Page<Egreso> egresos = egresoService.findAllRelatedByCategoria(pageableRequest, categoria, pageableRequest.getUser());
+    public PageableResponse<EgresoDTO, Egreso> getEgresos(PageableRequest pageableRequest, String categorias) {
+        List<Long> categoriasIdList = new ArrayList<>();
+        if (categorias != null) {
+            categoriasIdList = Arrays.stream(categorias.split(","))
+                    .map(categoria -> Long.valueOf(categoria)).collect(Collectors.toList());
+        }
+        Page<Egreso> egresos = egresoService.findAllRelatedByCategoria(pageableRequest, categoriasIdList);
         return new PageableResponse().fromPage(egresos, new EgresoDTO());
     }
 

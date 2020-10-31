@@ -13,6 +13,7 @@ import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.repository.EgresoRepository;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
+import utn.dds.tpAnual.utils.BooleanUtils;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -74,10 +75,11 @@ import java.util.Optional;
         return egresoRepository.findFullById(egresoId);
     }
 
-    public Page<Egreso> findAllRelatedByCategoria(PageableRequest pageableRequest, String categoria, String username) {
+    public Page<Egreso> findAllRelatedByCategoria(PageableRequest pageableRequest, List<Long> categoriasIdList) {
         Pageable pageable = pageableRequest.toPageable();
-        Usuario usuario = usuarioService.getUsuarioByUsername(username);
-        return egresoRepository.getEgresosRelatedByCategoria(pageable, categoria, usuario.getUsuarioId());
+        Usuario usuario = usuarioService.getUsuarioByUsername(pageableRequest.getUser());
+        return egresoRepository
+                .getEgresosRelatedByCategoria(pageable, categoriasIdList, BooleanUtils.toInt(categoriasIdList.isEmpty()), usuario.getUsuarioId());
     }
 
     public Optional<Egreso> findFullRelatedById(Long egresoID, Long userID) {

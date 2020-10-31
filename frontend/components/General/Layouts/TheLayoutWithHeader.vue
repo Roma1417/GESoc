@@ -11,8 +11,10 @@
       <slot name="header" />
     </template>
     <v-card raised class="mx-auto" min-width="75vw">
-      <v-card-subtitle v-show="slotInUse('filter')" class="py-0">
-        <slot name="filter" />
+      <v-card-subtitle v-show="slotInUse('filter')" class="py-2">
+        <v-card outlined class="mt-2 px-2">
+          <slot name="filter" />
+        </v-card>
       </v-card-subtitle>
       <v-progress-linear v-if="loading" :indeterminate="loading" />
       <v-card-text v-show="slotInUse('body')" class="py-0">
