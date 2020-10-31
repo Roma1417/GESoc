@@ -9,15 +9,7 @@
     v-on="$listeners"
   >
     <template #activator="{on}">
-      <TheButtonWithTooltip
-        v-if="editMode"
-        :title="titleText"
-        :disabled="disabled"
-        icon="mdi-pencil"
-        v-on="on"
-      />
       <TheCreateButton
-        v-else
         class="mt-4"
         :inner-text="titleText"
         :disabled="disabled"
@@ -82,7 +74,6 @@
 </template>
 <script>
 import TheFormDialog from '~/components/General/Dialogs/TheFormDialog'
-import TheButtonWithTooltip from '~/components/General/Buttons/TheButtonWithTooltip'
 import TheCreateButton from '~/components/General/Buttons/TheCreateButton'
 import TheAutocompleteInput from '~/components/General/Inputs/TheAutocompleteInput'
 import TheTextInput from '~/components/General/Inputs/TheTextInput'
@@ -91,7 +82,6 @@ import DocumentoComercialForm from '~/components/Business/Forms/DocumentoComerci
 export default {
   components: {
     TheFormDialog,
-    TheButtonWithTooltip,
     TheCreateButton,
     TheTextInput,
     TheDateInput,
@@ -121,10 +111,7 @@ export default {
   },
   computed: {
     titleText () {
-      return this.editMode ? this.$t('egresos.editar') : this.$t('egresos.crear')
-    },
-    editMode () {
-      return this.isEditing(this.item)
+      return this.$t('egresos.crear')
     }
   },
   methods: {

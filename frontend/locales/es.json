@@ -31,7 +31,8 @@
      "message_highlight": "Contabilidad de Gestión"
    },
    "validations": {
-     "required": "El campo es requerido"
+     "required": "El campo es requerido",
+     "positive": "El valor debe ser mayor a 0"
    },
    "home": "Inicio",
    "transacciones": {
@@ -49,7 +50,7 @@
      "entidad_realizadora": "Entidad",
      "crear": "Crear egreso",
      "editar": "Editar egreso",
-     "codigo_operacion": "Cógido de operación",
+     "codigo_operacion": "Códido de operación",
      "medio_pago": "Medio de pago",
      "presupuestos_minimos": "Cantidad de presupuestos mínimos"
    },
@@ -60,21 +61,35 @@
     "entidad_realizadora": "Entidad",
     "descripcion": "Descripcion",
     "total": "Total" ,
-    "documento_comercial": "Documento Comercial"   
+    "crear": "Crear Ingreso",
+    "editar": "Editar ingreso",
+    "documento_comercial": "Documento Comercial",
+    "titulo": "Ingreso",
+    "codigo_operacion": "Códido de operación"
    },
    "entidades": {
     "menu": "Entidades",
     "id": "ID",
     "entidadesBase": "Entidades Base"
    },
+   "entidad": {
+    "entidad": "Entidad"
+   },
    "documento_comercial": {
     "numero": "Número",
     "tipo": "Tipo de documento",
     "pais": "País",
-    "moneda": "Moneda"
+    "moneda": "Moneda",
+    "titulo": "Documento Comercial"
    },
    "items": {
     "menu": "Items"
+   },
+   "moneda": {
+    "moneda": "Moneda"
+   },
+   "pais": {
+    "pais": "País"
    },
    "categorias": {
     "editar": "Editar",

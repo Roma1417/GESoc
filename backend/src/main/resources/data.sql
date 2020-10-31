@@ -188,4 +188,29 @@ VALUES ('Resultado Validación', 'La validación no fue exitosa', 5);
         usuario_entidad
         (entidad_id, usuario_id)
     values
+         (2,1);
+    insert
+    into
+        usuario_entidad
+        (entidad_id, usuario_id)
+    values
+         (2,2);
+    insert
+    into
+        usuario_entidad
+        (entidad_id, usuario_id)
+    values
+         (2,3);
+    insert
+    into
+        usuario_entidad
+        (entidad_id, usuario_id)
+    values
          (2,4);
+    insert
+    into
+        usuario_entidad
+        (entidad_id, usuario_id)
+    values
+         (2,5);
+

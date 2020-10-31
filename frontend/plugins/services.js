@@ -3,6 +3,9 @@ import Egreso from '../services/Egreso'
 import Ingreso from '../services/Ingreso'
 import Item from '../services/Item'
 import Categoria from '../services/Categoria'
+import Pais from '../services/Pais'
+import Moneda from '../services/Moneda'
+import Entidad from '../services/Entidad'
 import ValidationRule from '../services/ValidationRule'
 
 export default function ({ app }, inject) {
@@ -12,6 +15,12 @@ export default function ({ app }, inject) {
   inject('egresoService', egreso)
   const ingreso = new Ingreso({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })
   inject('ingresoService', ingreso)
+  const pais = new Pais({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })
+  inject('paisService', pais)
+  const moneda = new Moneda({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })
+  inject('monedaService', moneda)
+  const entidad = new Entidad({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })
+  inject('entidadService', entidad)
   const item = new Item({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })
   inject('itemService', item)
   const categoria = new Categoria({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })
