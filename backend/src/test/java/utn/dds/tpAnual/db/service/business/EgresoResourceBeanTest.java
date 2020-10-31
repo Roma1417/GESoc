@@ -21,6 +21,7 @@ import utn.dds.tpAnual.db.dto.transaccion.*;
 import utn.dds.tpAnual.db.dto.complex.VinculacionEgresoIngresoDTO;
 import utn.dds.tpAnual.db.dto.ubicacion.MonedaDTO;
 import utn.dds.tpAnual.db.dto.ubicacion.PaisDTO;
+import utn.dds.tpAnual.db.entity.categorizacion.categoria.Categoria;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
 import utn.dds.tpAnual.db.entity.entidad.EntidadBase;
 import utn.dds.tpAnual.db.entity.entidad.EntidadJuridicaEmpresa;
@@ -248,7 +249,7 @@ public class EgresoResourceBeanTest {
     }
 
     @Test
-    public void getEgresosControllerSinFiltrarCategoriaSuccess (){
+    public void getEgresosSinFiltrarCategoriaSuccess (){
         Entidad entidad = getTestEntidad("1");
         Usuario usuario = getTestUsuario(entidad);
         Egreso egreso = new EgresoBuilder().buildEgresoCompletoConFecha(LocalDate.now());
@@ -262,15 +263,17 @@ public class EgresoResourceBeanTest {
     }
 
     @Test
-    public void getEgresosControllerFiltrandoCategoriaSuccess (){
-        Entidad entidad = getTestEntidad("1");
+    public void getEgresosFiltrandoCategoriaSuccess (){
+        Entidad entidad = getTestEntidad("Un nombre");
         Usuario usuario = getTestUsuario(entidad);
-        Egreso egreso = getMockEgreso(entidad);
+        Egreso egreso = new EgresoBuilder().buildEgresoCompletoConFecha(LocalDate.now());
+        Categoria categoria = new Categoria("Una categoria");
+        egreso.getDetallesOperacion().get(0).getItem().setCategoria(categoria);
         egreso.setEntidadRealizadora(entidad);
         egresoService.save(egreso);
 
         PageableRequest pageableRequest = new PageableRequest(usuario.getUsuario(), 1L, 20L);
-        PageableResponse<EgresoDTO, Egreso> egresos = egresoResourceBean.getEgresos(pageableRequest, "corto");
+        PageableResponse<EgresoDTO, Egreso> egresos = egresoResourceBean.getEgresos(pageableRequest, categoria.getIdCategoria().toString());
         EgresoDTO egresoDto = egresos.getData().get(0);
         assertTrue(sonElMismoEgreso(egreso, egresoDto));
     }

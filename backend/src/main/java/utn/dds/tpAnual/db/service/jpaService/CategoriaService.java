@@ -26,10 +26,6 @@ public class CategoriaService extends CustomJPAService<Categoria> {
         return categoria;
     }
 
-    public List<Categoria> findAllById(List<Long> categoriaIds) {
-        return categoriaRepository.findAllById(categoriaIds);
-    }
-
     public Page<Categoria> getCategorias(PageableRequest pageableRequest, String nombreCategoria) {
         return categoriaRepository.getCategoriaByDescripcionLike(nombreCategoria, pageableRequest.toPageable());
     }
