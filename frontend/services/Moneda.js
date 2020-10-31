@@ -3,10 +3,9 @@ export default class User {
     this.$axios = ctx.$axios
   }
 
-  getMonedas ({ page, itemsPerPage }, monedaName) {
+  getMonedas (monedaName, pageParam = { page: 1, itemsPerPage: 20 }) {
     const params = {
-      page,
-      itemsPerPage,
+      ...pageParam,
       monedaName
     }
     return this.$axios.getOrFalse('/api/moneda', { params })

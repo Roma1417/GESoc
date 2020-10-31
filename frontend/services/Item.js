@@ -3,11 +3,10 @@ export default class Item {
     this.$axios = ctx.$axios
   }
 
-  getItems ({ page, itemsPerPage }, name) {
+  getItems (name, pageParam = { page: 1, itemsPerPage: 20 }) {
     return this.$axios.getOrFalse('/api/item/item', {
       params: {
-        page,
-        itemsPerPage,
+        ...pageParam,
         name
       }
     })

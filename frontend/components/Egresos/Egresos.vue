@@ -16,10 +16,7 @@
             icon="mdi-magnify"
             @click="getEgresos()"
           />
-          <EgresoForm
-            :create-function="createEgreso()"
-            :update-function="updateEgreso()"
-          />
+          <EgresoForm />
         </v-col>
       </v-row>
     </template>

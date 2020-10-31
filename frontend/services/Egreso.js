@@ -13,4 +13,8 @@ export default class User {
     }
     return this.$axios.getOrFalse('/api/transaccion/egreso', { params })
   }
+
+  crearEgreso (egreso) {
+    return this.$axios.postOrFalse('/api/transaccion/egreso', egreso)
+  }
 }

@@ -32,10 +32,12 @@
             />
           </v-col>
           <v-col md="4" cols="12">
-            <TheEntidadAutocomplete
-              :label="this.$t('ingresos.entidad_realizadora')"
+            <TheAsyncAutocompleteInput
+              v-model="egreso.entidad"
+              item-text="nombre"
+              :get-items-function="$entidadService.getEntidades"
+              :label="$t('entidad.entidad')"
               :rules="[$rl.required()]"
-              :v-model="ingreso.entidadRealizadora"
             />
           </v-col>
           <v-col md="4" cols="12">
@@ -54,19 +56,14 @@
           </v-col>
         </v-row>
       </v-card>
-      <v-card>
-        <v-card-title>
-          {{ $t('documento_comercial.titulo') }}
-        </v-card-title>
-        <DocumentoComercialForm class="px-2" />
-      </v-card>
+      <DocumentoComercialForm class="px-2" />
     </template>
   </TheFormDialog>
 </template>
 <script>
 import TheFormDialog from '~/components/General/Dialogs/TheFormDialog'
 import TheCreateButton from '~/components/General/Buttons/TheCreateButton'
-import TheEntidadAutocomplete from '~/components/Business/Autocomplete/TheEntidadAutocomplete'
+import TheAsyncAutocompleteInput from '~/components/General/Inputs/TheAsyncAutocompleteInput'
 import TheTextInput from '~/components/General/Inputs/TheTextInput'
 import TheTextAreaInput from '~/components/General/Inputs/TheTextAreaInput'
 import DocumentoComercialForm from '~/components/Business/Forms/DocumentoComercialForm'
@@ -77,7 +74,7 @@ export default {
     TheTextInput,
     TheTextAreaInput,
     DocumentoComercialForm,
-    TheEntidadAutocomplete
+    TheAsyncAutocompleteInput
   },
   props: {
     item: {
@@ -93,8 +90,7 @@ export default {
     return {
       loading: false,
       showForm: false,
-      ingreso: {},
-      filter: {}
+      ingreso: {}
     }
   },
   computed: {
@@ -109,9 +105,6 @@ export default {
     },
     closeForm () {
       this.showForm = false
-    },
-    loadFilterWithDate (val) {
-      this.filter.operationDate = val
     }
   }
 }

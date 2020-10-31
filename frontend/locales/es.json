@@ -41,6 +41,7 @@
      "ingresos": "Ingresos"
    },
    "egresos": {
+     "titulo": "Egreso",
      "menu": "Egresos",
      "welcome_description": "Ver mis egresos",
      "id": "ID",
@@ -87,6 +88,9 @@
    },
    "moneda": {
     "moneda": "Moneda"
+   },
+   "medio_pago": {
+    "medio_pago": "Medio de pago"
    },
    "pais": {
     "pais": "País"

@@ -3,10 +3,9 @@ export default class User {
     this.$axios = ctx.$axios
   }
 
-  getPaises ({ page, itemsPerPage }, paisName) {
+  getPaises (paisName, pageParam = { page: 1, itemsPerPage: 20 }) {
     const params = {
-      page,
-      itemsPerPage,
+      ...pageParam,
       paisName
     }
     return this.$axios.getOrFalse('/api/pais', { params })
