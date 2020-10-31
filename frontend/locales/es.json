@@ -18,6 +18,10 @@
      },
      "noDataText": "No se encontraron datos"
    },
+   "fechas": {
+    "datefrom": "Fecha desde",
+    "dateTo": "Fecha hasta"
+   },
    "login": {
      "title": "Bienvenido a GESOC",
      "username": "Usuario",
@@ -42,7 +46,12 @@
      "proveedor": "Proveedor",
      "fecha_operacion": "Fecha operación",
      "total": "Total",
-     "entidad_realizadora": "Entidad"
+     "entidad_realizadora": "Entidad",
+     "crear": "Crear egreso",
+     "editar": "Editar egreso",
+     "codigo_operacion": "Cógido de operación",
+     "medio_pago": "Medio de pago",
+     "presupuestos_minimos": "Cantidad de presupuestos mínimos"
    },
    "ingresos": {
     "menu": "Ingresos",
@@ -52,6 +61,24 @@
     "descripcion": "Descripcion",
     "total": "Total" ,
     "documento_comercial": "Documento Comercial"   
+   },
+   "entidades": {
+    "menu": "Entidades",
+    "id": "ID",
+    "entidadesBase": "Entidades Base"
+   },
+   "documento_comercial": {
+    "numero": "Número",
+    "tipo": "Tipo de documento",
+    "pais": "País",
+    "moneda": "Moneda"
+   },
+   "items": {
+    "menu": "Items"
+   },
+   "categorias": {
+    "editar": "Editar",
+    "categorias": "Categorias"
    },
    "mensajes": {
     "menu": "Mensajes",

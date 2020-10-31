@@ -4,7 +4,7 @@
     persistent
     v-bind="$attrs"
     :loading="loading"
-    max-width="700"
+    :max-width="maxWidth"
   >
     <template #activator="{on}">
       <slot name="activator" :on="on" />
@@ -20,11 +20,15 @@ export default {
   props: {
     value: {
       type: Boolean,
-      default: true
+      default: false
     },
     loading: {
       type: Boolean,
       default: false
+    },
+    maxWidth: {
+      type: String,
+      default: '700'
     }
   },
   computed: {

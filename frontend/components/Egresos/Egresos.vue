@@ -1,17 +1,25 @@
 <template>
   <TheLayoutWithHeader title="transacciones.egresos" :loading="loading">
     <template #filter>
-      <v-row>
+      <v-row no-gutters>
         <v-col>
-          ACA IRIA EL FILTRO POR CATEGORIA
+          <TheCategoriasAutocomplete
+            v-model="filter.categorias"
+            multiple
+            :chips="false"
+          />
         </v-col>
         <v-col class="text-right">
           <ThePrimaryButton
+            class="mt-4"
             :inner-text="$t('search')"
             icon="mdi-magnify"
             @click="getEgresos()"
           />
-          CREAR EGRESO BOTON
+          <EgresoForm
+            :create-function="createEgreso()"
+            :update-function="updateEgreso()"
+          />
         </v-col>
       </v-row>
     </template>
@@ -37,11 +45,15 @@
 import TheLayoutWithHeader from '~/components/General/Layouts/TheLayoutWithHeader'
 import TheFilterTable from '~/components/General/Tables/TheFilterTable'
 import ThePrimaryButton from '~/components/General/Buttons/ThePrimaryButton'
+import TheCategoriasAutocomplete from '~/components/Business/Autocomplete/TheCategoriasAutocomplete'
+import EgresoForm from '~/components/Egresos/EgresoForm'
 export default {
   components: {
     TheLayoutWithHeader,
     TheFilterTable,
-    ThePrimaryButton
+    ThePrimaryButton,
+    TheCategoriasAutocomplete,
+    EgresoForm
   },
   data: () => ({
     pageInfo: {
@@ -50,6 +62,7 @@ export default {
     },
     totalList: 5,
     egresos: [],
+    filter: {},
     loading: false
   }),
   computed: {
@@ -96,7 +109,7 @@ export default {
   methods: {
     getEgresos () {
       this.loading = true
-      this.$egresoService.getEgresos(this.pageInfo).then((result) => {
+      this.$egresoService.getEgresos(this.pageInfo, this.filter.categorias).then((result) => {
         if (result) {
           this.totalList = result.total
           this.egresos = result.data
@@ -105,6 +118,12 @@ export default {
     },
     stopLoading () {
       this.loading = false
+    },
+    createEgreso (item) {
+      return () => 1
+    },
+    updateEgreso (item) {
+      return () => 1
     }
   }
 }

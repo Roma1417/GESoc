@@ -3,13 +3,14 @@ export default class User {
     this.$axios = ctx.$axios
   }
 
-  getEgresos ({ page, itemsPerPage }, categoria) {
-    return this.$axios.getOrFalse('/api/transaccion/egreso', {
-      params: {
-        page,
-        itemsPerPage,
-        categoria
-      }
-    })
+  getEgresos ({ page, itemsPerPage }, categoriasList) {
+    const params = {
+      page,
+      itemsPerPage
+    }
+    if (categoriasList && categoriasList.length) {
+      params.categorias = categoriasList.map(categoria => categoria.id).join(',')
+    }
+    return this.$axios.getOrFalse('/api/transaccion/egreso', { params })
   }
 }

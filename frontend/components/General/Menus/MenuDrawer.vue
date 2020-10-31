@@ -62,6 +62,16 @@ export default {
           ]
         },
         {
+          title: 'entidades.menu',
+          icon: 'mdi-domain',
+          to: '/entidades'
+        },
+        {
+          title: 'items.menu',
+          icon: 'mdi-package-variant',
+          to: '/items'
+        },
+        {
           title: 'usuario.menu',
           icon: 'mdi-account-circle',
           to: null,

@@ -23,6 +23,55 @@ VALUES('marian', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a
 		--
 		    insert
     into
+        item
+        (descripcion)
+    values
+        ('Otro item');
+		--
+		 insert
+    into
+        categoria
+        (descripcion)
+    values
+        ('Categoria A');
+        insert
+    into
+        item_categorias
+            (item_id, categorias_id)
+        values
+            (1, 1);
+		--
+		insert
+    into
+        categoria
+        (descripcion)
+    values
+        ('Categoria B');
+		--
+		insert
+    into
+        categoria
+        (descripcion)
+    values
+        ('Categoria C');
+		--
+		insert
+    into
+        categoria
+        (descripcion)
+    values
+        ('Otra Categoria');
+		--
+		insert
+    into
+        categoria
+        (descripcion)
+    values
+        ('Otra categoria mas');
+		--
+
+		insert
+    into
         proveedor
         ( nombre_razon_social, dni, dtype)
     values
@@ -50,7 +99,14 @@ VALUES('marian', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a
         entidad_juridica_empresa
         (id, nombre, cuit, codigo_igj,  razon_social, cantidad_personal)
     values
-        (1, 'Una empresa', '121221231', '123',  'razon_social',  5);
+        (1, 'Otra empresa', '121221231', '123',  'razon_social',  5);
+--
+    insert
+    into
+        entidad_juridica_empresa
+        (id, nombre, cuit, codigo_igj,  razon_social, cantidad_personal)
+    values
+        (3, 'Una empresa', '121221231', '123',  'razon_social',  5);
 --
 	insert
     into
