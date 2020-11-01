@@ -1,6 +1,7 @@
 <template>
   <TheDialog
     v-bind="$attrs"
+    max-width="800"
     :loading="loading"
     v-on="$listeners"
   >
@@ -82,6 +83,9 @@ export default {
     },
     cancel () {
       this.$emit('onCancel')
+      this.resetValidation()
+    },
+    resetValidation () {
       this.$refs.form.resetValidation()
     }
   }

@@ -55,6 +55,8 @@ public class IngresoResourceBean {
 
         IngresoRules.getInstance().validarCrearIngreso(entidadRealizadora, documentoComercial, ingreso, pais, moneda);
 
+        ingreso.setEntidadRealizadora(entidadRealizadora.get());
+        ingreso.setDocumentoComercial(documentoComercial);
         ingresoService.save(ingreso);
         ingresoDTO.setIdIngreso(ingreso.getOperacionId());
         return ingresoDTO;

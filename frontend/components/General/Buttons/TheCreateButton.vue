@@ -1,7 +1,6 @@
 <template>
   <TheButton
-    text
-    color="orange darken-3"
+    color="secondary"
     v-bind="$attrs"
     v-on="$listeners"
   />

@@ -4,6 +4,8 @@ import utn.dds.tpAnual.db.dto.StandardDTO;
 import utn.dds.tpAnual.db.dto.entidad.EntidadDTO;
 import utn.dds.tpAnual.db.entity.transaccion.Ingreso;
 
+import java.time.LocalDate;
+
 
 public class IngresoDTO extends StandardDTO<Ingreso> {
 
@@ -19,6 +21,7 @@ public class IngresoDTO extends StandardDTO<Ingreso> {
         Ingreso ingreso = new Ingreso();
         ingreso.setDescripcion(descripcion);
         ingreso.setTotal(total);
+        ingreso.setFecha(LocalDate.now());
         ingreso.setCodigoOperacion(codigoOperacion);
         return ingreso;
     }

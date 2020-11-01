@@ -3,14 +3,15 @@
     <v-main class="base-background">
       <v-container
         align="start"
-        class="pt-12 ma-lg-auto"
+        class="ma-lg-auto"
       >
         <v-row
           align="start"
           justify="center"
+          no-gutters
         >
           <v-col cols="12">
-            <nuxt class="nuxt-component" />
+            <nuxt />
           </v-col>
         </v-row>
       </v-container>

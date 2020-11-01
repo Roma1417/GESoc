@@ -1,9 +1,17 @@
 <template>
   <TheLayoutWithHeader title="transacciones.ingresos" :loading="loading">
     <template #filter>
-      <v-row>
+      <v-row no-gutters>
         <v-col class="text-right">
-          CREAR INGRESO BOTON
+          <ThePrimaryButton
+            class="my-4"
+            :inner-text="$t('search')"
+            icon="mdi-magnify"
+            @click="getIngresos()"
+          />
+          <IngresoForm
+            @created="getIngresos()"
+          />
         </v-col>
       </v-row>
     </template>
@@ -17,6 +25,9 @@
       >
         <template #[`item.actions`]="{ }">
           VINCULAR
+          <v-icon>
+            mdi-link-variant
+          </v-icon>
         </template>
       </TheFilterTable>
     </template>
@@ -25,10 +36,14 @@
 <script>
 import TheLayoutWithHeader from '~/components/General/Layouts/TheLayoutWithHeader'
 import TheFilterTable from '~/components/General/Tables/TheFilterTable'
+import ThePrimaryButton from '~/components/General/Buttons/ThePrimaryButton'
+import IngresoForm from '~/components/Ingresos/IngresoForm'
 export default {
   components: {
     TheLayoutWithHeader,
-    TheFilterTable
+    TheFilterTable,
+    ThePrimaryButton,
+    IngresoForm
   },
   data: () => ({
     pageInfo: {

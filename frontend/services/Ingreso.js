@@ -11,4 +11,8 @@ export default class Ingreso {
       }
     })
   }
+
+  crearIngreso (ingreso) {
+    return this.$axios.postOrFalse('/api/transaccion/ingreso', ingreso)
+  }
 }
