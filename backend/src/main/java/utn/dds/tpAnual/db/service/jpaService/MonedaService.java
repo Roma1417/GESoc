@@ -3,9 +3,12 @@ package utn.dds.tpAnual.db.service.jpaService;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import utn.dds.tpAnual.db.dto.pageable.PageableRequest;
 import utn.dds.tpAnual.db.entity.ubicacion.Moneda;
 import utn.dds.tpAnual.db.repository.MonedaRepository;
 
@@ -43,4 +46,8 @@ public class MonedaService extends CustomJPAService<Moneda>{
         return monedaRepository.getAllByIdAPI(Arrays.asList(idAPI));
     }
 
+    public Page<Moneda> getMonedas(PageableRequest pageableRequest, String monedaName) {
+        Pageable pageable = pageableRequest.toPageable();
+        return monedaRepository.getMonedasByNameLike(pageable, monedaName);
+    }
 }

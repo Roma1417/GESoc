@@ -32,6 +32,18 @@ export default class ValidationRule {
   }
 
   /**
+   * Validate positive amount
+   * @param inputName (string)
+   * @returns string
+   */
+  positive (inputName) {
+    return v => (!!v && v > 0) || this.i18n.t('validations.positive',
+      {
+        attribute: this.attributeTranslate(inputName)
+      })
+  }
+
+  /**
    * Translate attribute name
    * @param inputName (string)
    * @returns string

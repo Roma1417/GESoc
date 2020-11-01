@@ -16,7 +16,7 @@
             icon="mdi-magnify"
             @click="getEgresos()"
           />
-          CREAR EGRESO BOTON
+          <EgresoForm />
         </v-col>
       </v-row>
     </template>
@@ -43,12 +43,14 @@ import TheLayoutWithHeader from '~/components/General/Layouts/TheLayoutWithHeade
 import TheFilterTable from '~/components/General/Tables/TheFilterTable'
 import ThePrimaryButton from '~/components/General/Buttons/ThePrimaryButton'
 import TheCategoriasAutocomplete from '~/components/Business/Autocomplete/TheCategoriasAutocomplete'
+import EgresoForm from '~/components/Egresos/EgresoForm'
 export default {
   components: {
     TheLayoutWithHeader,
     TheFilterTable,
     ThePrimaryButton,
-    TheCategoriasAutocomplete
+    TheCategoriasAutocomplete,
+    EgresoForm
   },
   data: () => ({
     pageInfo: {
@@ -113,6 +115,12 @@ export default {
     },
     stopLoading () {
       this.loading = false
+    },
+    createEgreso (item) {
+      return () => 1
+    },
+    updateEgreso (item) {
+      return () => 1
     }
   }
 }

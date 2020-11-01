@@ -2,7 +2,10 @@
   "actions": "Acciones",
   "search": "Buscar",
   "loading": "Cargando",
+  "saved-ok": "Guardado Exitosamente!",
   "items-per-page": "Items por página",
+  "save": "Guardar",
+  "cancel": "Cancelar",
   "no_data_text": "Sin datos",
    "$vuetify": {
      "dataIterator": {
@@ -18,6 +21,10 @@
      },
      "noDataText": "No se encontraron datos"
    },
+   "fechas": {
+    "datefrom": "Fecha desde",
+    "dateTo": "Fecha hasta"
+   },
    "login": {
      "title": "Bienvenido a GESOC",
      "username": "Usuario",
@@ -27,7 +34,8 @@
      "message_highlight": "Contabilidad de Gestión"
    },
    "validations": {
-     "required": "El campo es requerido"
+     "required": "El campo es requerido",
+     "positive": "El valor debe ser mayor a 0"
    },
    "buttons": {
    "cancelButton": "Cancelar",
@@ -41,13 +49,19 @@
      "presupuestos": "Presupuestos"
    },
    "egresos": {
+     "titulo": "Egreso",
      "menu": "Egresos",
      "welcome_description": "Ver mis egresos",
      "id": "ID",
      "proveedor": "Proveedor",
      "fecha_operacion": "Fecha operación",
      "total": "Total",
-     "entidad_realizadora": "Entidad"
+     "entidad_realizadora": "Entidad",
+     "crear": "Crear egreso",
+     "editar": "Editar egreso",
+     "codigo_operacion": "Códido de operación",
+     "medio_pago": "Medio de pago",
+     "presupuestos_minimos": "Cantidad de presupuestos mínimos"
    },
    "ingresos": {
     "menu": "Ingresos",
@@ -56,7 +70,42 @@
     "entidad_realizadora": "Entidad",
     "descripcion": "Descripcion",
     "total": "Total" ,
-    "documento_comercial": "Documento Comercial"   
+    "crear": "Crear Ingreso",
+    "editar": "Editar ingreso",
+    "documento_comercial": "Documento Comercial",
+    "titulo": "Ingreso",
+    "codigo_operacion": "Códido de operación"
+   },
+   "entidades": {
+    "menu": "Entidades",
+    "id": "ID",
+    "entidadesBase": "Entidades Base"
+   },
+   "entidad": {
+    "entidad": "Entidad"
+   },
+   "documento_comercial": {
+    "numero": "Número",
+    "tipo": "Tipo de documento",
+    "pais": "País",
+    "moneda": "Moneda",
+    "titulo": "Documento Comercial"
+   },
+   "items": {
+    "menu": "Items"
+   },
+   "moneda": {
+    "moneda": "Moneda"
+   },
+   "medio_pago": {
+    "medio_pago": "Medio de pago"
+   },
+   "pais": {
+    "pais": "País"
+   },
+   "categorias": {
+    "editar": "Editar",
+    "categorias": "Categorias"
    },
    "presupuestos": {
     "menu": "Presupuestos",

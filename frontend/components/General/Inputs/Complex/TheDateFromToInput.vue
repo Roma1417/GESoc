@@ -3,14 +3,14 @@
     <v-col class="mr-8">
       <TheDateInput
         v-model="filter.dateFrom"
-        :label="$t('datefrom')"
+        :label="$t('fechas.datefrom')"
         :max-date="filter.dateTo"
       />
     </v-col>
     <v-col>
       <TheDateInput
         v-model="filter.dateTo"
-        :label="$t('dateTo')"
+        :label="$t('fechas.dateTo')"
         :min-date="filter.dateFrom"
       />
     </v-col>

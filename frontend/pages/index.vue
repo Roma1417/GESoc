@@ -30,7 +30,7 @@
       </v-col>
       <v-col md="6">
         <v-row justify="center">
-          <v-col cols="12" sm="11" md="10" lg="8">
+          <v-col cols="12" sm="11" md="11" lg="8">
             <v-row justify="center" class="mb-6">
               <CompanyLogo src="/logo_utn.png" size="big" />
             </v-row>
