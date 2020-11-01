@@ -59,7 +59,7 @@
      "entidad_realizadora": "Entidad",
      "crear": "Crear egreso",
      "editar": "Editar egreso",
-     "codigo_operacion": "Códido de operación",
+     "codigo_operacion": "Código de operación",
      "medio_pago": "Medio de pago",
      "presupuestos_minimos": "Cantidad de presupuestos mínimos"
    },
@@ -74,47 +74,23 @@
     "editar": "Editar ingreso",
     "documento_comercial": "Documento Comercial",
     "titulo": "Ingreso",
-    "codigo_operacion": "Códido de operación"
-   },
-   "entidades": {
-    "menu": "Entidades",
-    "id": "ID",
-    "entidadesBase": "Entidades Base"
-   },
-   "entidad": {
-    "entidad": "Entidad"
-   },
-   "documento_comercial": {
-    "numero": "Número",
-    "tipo": "Tipo de documento",
-    "pais": "País",
-    "moneda": "Moneda",
-    "titulo": "Documento Comercial"
-   },
-   "items": {
-    "menu": "Items"
-   },
-   "moneda": {
-    "moneda": "Moneda"
-   },
-   "medio_pago": {
-    "medio_pago": "Medio de pago"
-   },
-   "pais": {
-    "pais": "País"
-   },
-   "categorias": {
-    "editar": "Editar",
-    "categorias": "Categorias"
+    "codigo_operacion": "Código de operación"
    },
    "presupuestos": {
     "menu": "Presupuestos",
-    "welcome_description": "Ver mis presupuestos",
     "id": "ID",
     "entidad_realizadora": "Entidad",
-    "descripcion": "Descripcion",
+    "detalles_precio":"Detalle de precios",
     "total": "Total" ,
-    "documento_comercial": "Documento Comercial"   
+    "titulo": "Presupuesto",
+    "documento_comercial": "Documento Comercial",
+    "codigo_operacion": "Código de operación",
+    "fecha_creacion": "Fecha de creación",
+    "egreso_id": "Egreso correspondiente",
+    "crear": "Crear presupuesto"
+  },
+   "entidad": {
+    "entidad": "Entidad"
    },
    "entidades": {
     "menu": "Entidades",
@@ -128,6 +104,26 @@
       "autocomplete": "Categorias",
       "form": "Editar Categorias"
     }
+   },
+   "documento_comercial": {
+    "numero": "Número",
+    "tipo": "Tipo de documento",
+    "pais": "País",
+    "moneda": "Moneda",
+    "titulo": "Documento Comercial"
+   },
+   "moneda": {
+    "moneda": "Moneda"
+   },
+   "medio_pago": {
+    "medio_pago": "Medio de pago"
+   },
+   "pais": {
+    "pais": "País"
+   },
+   "categorias": {
+    "editar": "Editar",
+    "categorias": "Categorias"
    },
    "mensajes": {
     "menu": "Mensajes",

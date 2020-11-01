@@ -7,9 +7,9 @@ import Pais from '../services/Pais'
 import Moneda from '../services/Moneda'
 import Entidad from '../services/Entidad'
 import ValidationRule from '../services/ValidationRule'
-import Presupuesto from '~/services/Presupuesto'
 import MedioPago from '../services/MedioPago'
 import Proveedor from '../services/Proveedor'
+import Presupuesto from '~/services/Presupuesto'
 
 export default function ({ app }, inject) {
   const user = new User({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })

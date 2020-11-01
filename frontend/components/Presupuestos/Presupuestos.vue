@@ -1,9 +1,17 @@
 <template>
   <TheLayoutWithHeader title="transacciones.presupuestos" :loading="loading">
     <template #filter>
-      <v-row>
+      <v-row no-gutters>
         <v-col class="text-right">
-          CREAR PRESUPUESTO BOTON
+          <ThePrimaryButton
+            class="my-4"
+            :inner-text="$t('search')"
+            icon="mdi-magnify"
+            @click="getPresupuestos()"
+          />
+          <PresupuestoForm
+            @created="getPresupuestos()"
+          />
         </v-col>
       </v-row>
     </template>
@@ -25,10 +33,14 @@
 <script>
 import TheLayoutWithHeader from '~/components/General/Layouts/TheLayoutWithHeader'
 import TheFilterTable from '~/components/General/Tables/TheFilterTable'
+import ThePrimaryButton from '~/components/General/Buttons/ThePrimaryButton'
+import PresupuestoForm from '~/components/Presupuestos/PresupuestoForm'
 export default {
   components: {
     TheLayoutWithHeader,
-    TheFilterTable
+    TheFilterTable,
+    ThePrimaryButton,
+    PresupuestoForm
   },
   data: () => ({
     pageInfo: {
@@ -43,31 +55,25 @@ export default {
     headers () {
       return [
         {
-          text: this.$t('ingresos.id'),
+          text: this.$t('presupuestos.id'),
           align: 'center',
           sortable: false,
-          value: 'idIngreso'
+          value: 'idPresupuesto'
         },
         {
-          text: this.$t('ingresos.entidad_realizadora'),
+          text: this.$t('presupuestos.entidad_realizadora'),
           align: 'start',
           sortable: false,
           value: 'entidadRealizadora.nombre'
         },
         {
-          text: this.$t('ingresos.documento_comercial'),
+          text: this.$t('presupuestos.documento_comercial'),
           align: 'center',
           sortable: false,
           value: 'documentoComercial.numero'
         },
         {
-          text: this.$t('ingresos.descripcion'),
-          align: 'start',
-          sortable: false,
-          value: 'descripcion'
-        },
-        {
-          text: this.$t('ingresos.total'),
+          text: this.$t('presupuestos.total'),
           align: 'end',
           sortable: false,
           value: 'total'
