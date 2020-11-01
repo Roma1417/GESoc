@@ -81,7 +81,7 @@ export default {
   methods: {
     getItems () {
       this.loading = true
-      this.$itemService.getItems(this.pageInfo).then((result) => {
+      this.$itemService.getItems(null, this.pageInfo).then((result) => {
         if (result) {
           this.totalList = result.total
           this.items = result.data
