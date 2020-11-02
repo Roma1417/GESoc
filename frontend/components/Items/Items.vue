@@ -23,8 +23,10 @@
         @change="getItems()"
       >
         <template #[`item.categorias`]="{ item }">
-          <TheCategoriasDialog
-            v-model="item.categorias"
+          {{ categorias(item) }}
+          <ItemCategoriaForm
+            :original-item="item"
+            @change="getItems()"
           />
         </template>
       </TheFilterTable>
@@ -34,13 +36,13 @@
 <script>
 import TheLayoutWithHeader from '~/components/General/Layouts/TheLayoutWithHeader'
 import TheFilterTable from '~/components/General/Tables/TheFilterTable'
-import TheCategoriasDialog from '~/components/Business/Dialogs/TheCategoriasDialog'
+import ItemCategoriaForm from '~/components/Business/Dialogs/ItemCategoriaForm'
 import ThePrimaryButton from '~/components/General/Buttons/ThePrimaryButton'
 export default {
   components: {
     TheLayoutWithHeader,
     TheFilterTable,
-    TheCategoriasDialog,
+    ItemCategoriaForm,
     ThePrimaryButton
   },
   data: () => ({
@@ -79,7 +81,7 @@ export default {
   methods: {
     getItems () {
       this.loading = true
-      this.$itemService.getItems(this.pageInfo).then((result) => {
+      this.$itemService.getItems(null, this.pageInfo).then((result) => {
         if (result) {
           this.totalList = result.total
           this.items = result.data
@@ -88,6 +90,9 @@ export default {
     },
     stopLoading () {
       this.loading = false
+    },
+    categorias (item) {
+      return item.categorias.map(categoria => categoria.descripcion).join()
     }
   }
 }

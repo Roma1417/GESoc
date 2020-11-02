@@ -23,6 +23,10 @@ public abstract class CustomJPAService <T> {
         return getRepository().findAll();
     }
 
+    public List<T> findAllById (List<Long> ids) {
+        return getRepository().findAllById(ids);
+    }
+
     public boolean existsById(Long id) {
         return getRepository().findById(id).isPresent();
     }

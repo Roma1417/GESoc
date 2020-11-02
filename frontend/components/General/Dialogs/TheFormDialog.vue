@@ -83,6 +83,9 @@ export default {
     },
     cancel () {
       this.$emit('onCancel')
+      this.resetValidation()
+    },
+    resetValidation () {
       this.$refs.form.resetValidation()
     }
   }

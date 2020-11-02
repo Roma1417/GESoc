@@ -182,7 +182,25 @@ VALUES ('Resultado Validación', 'La validación no fue exitosa', 5);
         ingreso
         (codigo_operacion, documento_comercial_id, entidad_realizadora_id, fecha_creacion, descripcion, total,id)
     values
-        (1, 2, 2, '20200812', 'Prueba Ingreso', 10101010,1);
+        (1, 2, 2, '20200812', 'Prueba Ingreso', 10101010,800);
+    insert
+    into
+        usuario_entidad
+        (entidad_id, usuario_id)
+    values
+         (2,1);
+    insert
+    into
+        usuario_entidad
+        (entidad_id, usuario_id)
+    values
+         (2,2);
+    insert
+    into
+        usuario_entidad
+        (entidad_id, usuario_id)
+    values
+         (2,3);
     insert
     into
         usuario_entidad

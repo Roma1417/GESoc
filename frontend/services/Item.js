@@ -11,4 +11,8 @@ export default class Item {
       }
     })
   }
+
+  vincularItemCategoria (item) {
+    return this.$axios.putOrFalse('/api/item/categoria', item)
+  }
 }

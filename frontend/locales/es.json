@@ -2,7 +2,10 @@
   "actions": "Acciones",
   "search": "Buscar",
   "loading": "Cargando",
+  "saved-ok": "Guardado Exitosamente!",
   "items-per-page": "Items por página",
+  "save": "Guardar",
+  "cancel": "Cancelar",
   "no_data_text": "Sin datos",
    "$vuetify": {
      "dataIterator": {
@@ -33,6 +36,10 @@
    "validations": {
      "required": "El campo es requerido",
      "positive": "El valor debe ser mayor a 0"
+   },
+   "buttons": {
+   "cancelButton": "Cancelar",
+   "confirmButton": "Aceptar"
    },
    "home": "Inicio",
    "transacciones": {
@@ -98,6 +105,14 @@
    "categorias": {
     "editar": "Editar",
     "categorias": "Categorias"
+   },
+   "items": {
+    "menu": "Items",
+    "categorias": {
+      "editar": "Editar",
+      "autocomplete": "Categorias",
+      "form": "Editar Categorias"
+    }
    },
    "mensajes": {
     "menu": "Mensajes",

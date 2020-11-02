@@ -20,9 +20,9 @@ public class ActividadService extends CustomJPAService<Actividad> {
     }
 
     public Actividad getPrimeraActividadByNombre(String nombre){
-
         List<Actividad> actividades = actividadRepository.getActividadByNombreActividad(nombre);
         return actividades.isEmpty() ? null : actividades.get(0);
-
     }
+
+
 }

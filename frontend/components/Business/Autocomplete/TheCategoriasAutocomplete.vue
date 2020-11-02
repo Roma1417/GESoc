@@ -1,10 +1,11 @@
 <template>
   <v-autocomplete
     v-model="showValue"
-    :label="$t('categorias.categorias')"
+    :label="$t('items.categorias.autocomplete')"
     :search-input.sync="nombreCategoria"
     :items="categorias"
     :loading="loading"
+    :disabled="disabled"
     hide-no-data
     cache-items
     item-text="descripcion"
@@ -38,6 +39,10 @@ export default {
     chips: {
       type: Boolean,
       default: true
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -62,6 +67,11 @@ export default {
       if (val) {
         this.getCategoriasDebounced()
       }
+    }
+  },
+  mounted () {
+    if (this.value) {
+      this.categorias = this.value
     }
   },
   methods: {

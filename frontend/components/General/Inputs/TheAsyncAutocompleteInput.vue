@@ -18,10 +18,6 @@ export default {
     TheAutocompleteInput
   },
   props: {
-    value: {
-      type: Object,
-      default: () => ({})
-    },
     getItemsFunction: {
       type: Function,
       required: true
