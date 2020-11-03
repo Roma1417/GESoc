@@ -92,6 +92,9 @@ export default {
     },
     deleteDetail (detail) {
 
+    },
+    addNewDetail () {
+
     }
   }
 }

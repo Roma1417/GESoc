@@ -81,15 +81,12 @@ export default {
     paged: {
       type: Boolean,
       default: false
-    },
-    currentPage: {
-      type: Number,
-      default: 1
     }
   },
   data () {
     return {
-      valid: true
+      valid: true,
+      currentPage: 1
     }
   },
   methods: {

@@ -6,7 +6,6 @@
     v-bind="$attrs"
     paged
     :pages-length="2"
-    :current-page="page"
     @onConfirm="saveOrUpdate"
     @onCancel="closeForm"
     @onPageChanged="changePage"
