@@ -87,6 +87,10 @@
         :documento-comercial="egreso.documentoComercial"
         class="px-2"
       />
+      <EgresoDetallesForm
+        v-if="page === 2"
+        :detalles="egreso.detalles"
+      />
     </template>
   </TheFormDialog>
 </template>
@@ -98,6 +102,7 @@ import TheTextInput from '~/components/General/Inputs/TheTextInput'
 import TheDateInput from '~/components/General/Inputs/TheDateInput'
 import DocumentoComercialForm from '~/components/Business/Forms/DocumentoComercialForm'
 import TheAsyncAutocompleteInput from '~/components/General/Inputs/TheAsyncAutocompleteInput'
+import EgresoDetallesForm from '~/components/Egresos/EgresoDetallesForm'
 export default {
   components: {
     TheFormDialog,
@@ -105,7 +110,8 @@ export default {
     TheTextInput,
     TheDateInput,
     DocumentoComercialForm,
-    TheAsyncAutocompleteInput
+    TheAsyncAutocompleteInput,
+    EgresoDetallesForm
   },
   props: {
     disabled: {
@@ -123,7 +129,8 @@ export default {
       showForm: false,
       page: 1,
       egreso: {
-        documentoComercial: {}
+        documentoComercial: {},
+        detalles: []
       }
     }
   },

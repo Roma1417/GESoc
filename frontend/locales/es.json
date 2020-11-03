@@ -50,6 +50,7 @@
    "egresos": {
      "titulo": "Egreso",
      "menu": "Egresos",
+     "detalles": "Detalles del egreso",
      "welcome_description": "Ver mis egresos",
      "id": "ID",
      "proveedor": "Proveedor",
@@ -61,6 +62,12 @@
      "codigo_operacion": "Códido de operación",
      "medio_pago": "Medio de pago",
      "presupuestos_minimos": "Cantidad de presupuestos mínimos"
+   },
+   "detalles": {
+    "cantidad": "Cantidad",
+    "precio": "Precio",
+    "total": "Total"
+
    },
    "ingresos": {
     "menu": "Ingresos",
@@ -90,9 +97,6 @@
     "moneda": "Moneda",
     "titulo": "Documento Comercial"
    },
-   "items": {
-    "menu": "Items"
-   },
    "moneda": {
     "moneda": "Moneda"
    },
@@ -107,6 +111,7 @@
     "categorias": "Categorias"
    },
    "items": {
+    "item": "Item",
     "menu": "Items",
     "categorias": {
       "editar": "Editar",
