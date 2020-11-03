@@ -4,8 +4,12 @@
     :header-message="titleText"
     :loading="loading"
     v-bind="$attrs"
+    paged
+    :pages-length="2"
+    :current-page="page"
     @onConfirm="saveOrUpdate"
     @onCancel="closeForm"
+    @onPageChanged="changePage"
     v-on="$listeners"
   >
     <template #activator="{on}">
@@ -19,7 +23,11 @@
       />
     </template>
     <template>
-      <v-card outlined class="mb-2">
+      <v-card
+        v-if="page === 1"
+        outlined
+        class="mb-2"
+      >
         <v-card-title>
           {{ $t('egresos.titulo') }}
         </v-card-title>
@@ -75,6 +83,7 @@
         </v-row>
       </v-card>
       <DocumentoComercialForm
+        v-if="page === 1"
         :documento-comercial="egreso.documentoComercial"
         class="px-2"
       />
@@ -112,6 +121,7 @@ export default {
     return {
       loading: false,
       showForm: false,
+      page: 1,
       egreso: {
         documentoComercial: {}
       }
@@ -141,6 +151,9 @@ export default {
           }
         })
         .finally(() => { this.loading = false })
+    },
+    changePage (page) {
+      this.page = page
     },
     closeForm () {
       this.showForm = false
