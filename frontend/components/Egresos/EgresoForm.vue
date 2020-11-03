@@ -32,14 +32,14 @@
           {{ $t('egresos.titulo') }}
         </v-card-title>
         <v-row class="px-2">
-          <v-col md="4" sm="6" cols="12">
+          <v-col md="4" sm="6" cols="12" class="py-0">
             <TheTextInput
               v-model="egreso.codigoOperacion"
               :label="this.$t('egresos.codigo_operacion')"
               :rules="[$rl.required()]"
             />
           </v-col>
-          <v-col md="4" sm="6" cols="12">
+          <v-col md="4" sm="6" cols="12" class="py-0">
             <TheAsyncAutocompleteInput
               v-model="egreso.entidad"
               item-text="nombre"
@@ -48,7 +48,7 @@
               :rules="[$rl.required()]"
             />
           </v-col>
-          <v-col md="4" sm="6" cols="12">
+          <v-col md="4" sm="6" cols="12" class="py-0">
             <TheAsyncAutocompleteInput
               v-model="egreso.proveedor"
               item-text="nombreRazonSocial"
@@ -57,7 +57,7 @@
               :rules="[$rl.required()]"
             />
           </v-col>
-          <v-col md="4" sm="6" cols="12">
+          <v-col md="4" sm="6" cols="12" class="py-0">
             <TheAsyncAutocompleteInput
               v-model="egreso.medioPago"
               item-text="instrumentoPago"
@@ -66,14 +66,14 @@
               :rules="[$rl.required()]"
             />
           </v-col>
-          <v-col md="4" sm="6" cols="12">
+          <v-col md="4" sm="6" cols="12" class="py-0">
             <TheTextInput
               v-model="egreso.cantidadPresupuestosMinimos"
               :label="this.$t('egresos.presupuestos_minimos')"
               :rules="[$rl.required()]"
             />
           </v-col>
-          <v-col md="4" sm="6" cols="12">
+          <v-col md="4" sm="6" cols="12" class="py-0">
             <TheDateInput
               v-model="egreso.fechaOperacion"
               :label="this.$t('egresos.fecha_operacion')"

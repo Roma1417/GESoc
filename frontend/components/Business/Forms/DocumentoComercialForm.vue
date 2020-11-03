@@ -4,21 +4,21 @@
       {{ $t('documento_comercial.titulo') }}
     </v-card-title>
     <v-row class="px-2">
-      <v-col md="4" sm="6" cols="12">
+      <v-col md="4" sm="6" cols="12" class="py-0">
         <TheTextInput
           v-model="documentoComercial.numero"
           :label="this.$t('documento_comercial.numero')"
           :rules="[$rl.required()]"
         />
       </v-col>
-      <v-col md="4" sm="6" cols="12">
+      <v-col md="4" sm="6" cols="12" class="py-0">
         <TheTextInput
           v-model="documentoComercial.tipoDocumento"
           :label="this.$t('documento_comercial.tipo')"
           :rules="[$rl.required()]"
         />
       </v-col>
-      <v-col md="4" sm="6" cols="12">
+      <v-col md="4" sm="6" cols="12" class="py-0">
         <TheAsyncAutocompleteInput
           v-model="documentoComercial.pais"
           item-text="descripcion"
@@ -27,7 +27,7 @@
           :rules="[$rl.required()]"
         />
       </v-col>
-      <v-col md="4" sm="6" cols="12">
+      <v-col md="4" sm="6" cols="12" class="py-0">
         <TheAsyncAutocompleteInput
           v-model="documentoComercial.moneda"
           item-text="descripcion"
