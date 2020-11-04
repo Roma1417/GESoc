@@ -22,70 +22,70 @@
       />
     </template>
     <template>
-      <v-card
-        v-if="page === 1"
-        outlined
-        class="mb-2"
-      >
-        <v-card-title>
-          {{ $t('egresos.titulo') }}
-        </v-card-title>
-        <v-row class="px-2">
-          <v-col md="4" sm="6" cols="12" class="py-0">
-            <TheTextInput
-              v-model="egreso.codigoOperacion"
-              :label="this.$t('egresos.codigo_operacion')"
-              :rules="[$rl.required()]"
-            />
-          </v-col>
-          <v-col md="4" sm="6" cols="12" class="py-0">
-            <TheAsyncAutocompleteInput
-              v-model="egreso.entidad"
-              item-text="nombre"
-              :get-items-function="$entidadService.getEntidades"
-              :label="$t('entidad.entidad')"
-              :rules="[$rl.required()]"
-            />
-          </v-col>
-          <v-col md="4" sm="6" cols="12" class="py-0">
-            <TheAsyncAutocompleteInput
-              v-model="egreso.proveedor"
-              item-text="nombreRazonSocial"
-              :get-items-function="$proveedorService.getProveedores"
-              :label="$t('egresos.proveedor')"
-              :rules="[$rl.required()]"
-            />
-          </v-col>
-          <v-col md="4" sm="6" cols="12" class="py-0">
-            <TheAsyncAutocompleteInput
-              v-model="egreso.medioPago"
-              item-text="instrumentoPago"
-              :get-items-function="$medioPagoService.getMediosDePago"
-              :label="$t('medio_pago.medio_pago')"
-              :rules="[$rl.required()]"
-            />
-          </v-col>
-          <v-col md="4" sm="6" cols="12" class="py-0">
-            <TheTextInput
-              v-model="egreso.cantidadPresupuestosMinimos"
-              :label="this.$t('egresos.presupuestos_minimos')"
-              :rules="[$rl.required()]"
-            />
-          </v-col>
-          <v-col md="4" sm="6" cols="12" class="py-0">
-            <TheDateInput
-              v-model="egreso.fechaOperacion"
-              :label="this.$t('egresos.fecha_operacion')"
-              :rules="[$rl.required()]"
-            />
-          </v-col>
-        </v-row>
-      </v-card>
-      <DocumentoComercialForm
-        v-if="page === 1"
-        :documento-comercial="egreso.documentoComercial"
-        class="px-2"
-      />
+      <template v-if="page === 1">
+        <v-card
+          outlined
+          class="mb-2"
+        >
+          <v-card-title>
+            {{ $t('egresos.titulo') }}
+          </v-card-title>
+          <v-row class="px-2">
+            <v-col md="4" sm="6" cols="12" class="py-0">
+              <TheTextInput
+                v-model="egreso.codigoOperacion"
+                :label="this.$t('egresos.codigo_operacion')"
+                :rules="[$rl.required()]"
+              />
+            </v-col>
+            <v-col md="4" sm="6" cols="12" class="py-0">
+              <TheAsyncAutocompleteInput
+                v-model="egreso.entidad"
+                item-text="nombre"
+                :get-items-function="$entidadService.getEntidades"
+                :label="$t('entidad.entidad')"
+                :rules="[$rl.required()]"
+              />
+            </v-col>
+            <v-col md="4" sm="6" cols="12" class="py-0">
+              <TheAsyncAutocompleteInput
+                v-model="egreso.proveedor"
+                item-text="nombreRazonSocial"
+                :get-items-function="$proveedorService.getProveedores"
+                :label="$t('egresos.proveedor')"
+                :rules="[$rl.required()]"
+              />
+            </v-col>
+            <v-col md="4" sm="6" cols="12" class="py-0">
+              <TheAsyncAutocompleteInput
+                v-model="egreso.medioPago"
+                item-text="instrumentoPago"
+                :get-items-function="$medioPagoService.getMediosDePago"
+                :label="$t('medio_pago.medio_pago')"
+                :rules="[$rl.required()]"
+              />
+            </v-col>
+            <v-col md="4" sm="6" cols="12" class="py-0">
+              <TheTextInput
+                v-model="egreso.cantidadPresupuestosMinimos"
+                :label="this.$t('egresos.presupuestos_minimos')"
+                :rules="[$rl.required()]"
+              />
+            </v-col>
+            <v-col md="4" sm="6" cols="12" class="py-0">
+              <TheDateInput
+                v-model="egreso.fechaOperacion"
+                :label="this.$t('egresos.fecha_operacion')"
+                :rules="[$rl.required()]"
+              />
+            </v-col>
+          </v-row>
+        </v-card>
+        <DocumentoComercialForm
+          :documento-comercial="egreso.documentoComercial"
+          class="px-2"
+        />
+      </template>
       <EgresoDetallesForm
         v-if="page === 2"
         :detalles="egreso.detalles"

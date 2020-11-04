@@ -8,7 +8,7 @@
       item-text="descripcion"
       :get-items-function="$itemService.getItems"
       :label="$t('item.item')"
-      @submit="addNewDetail"
+      @keyup.enter="addNewDetail"
     />
     <TheFilterTable
       class="px-4"
@@ -16,15 +16,21 @@
       :headers="headers"
       :total="totalList"
     >
-      <template #[`item.descripcion`]="{ }">
-        {{ item.descripcion }}
+      <template #[`item.cantidad`]="{ item }">
+        <v-text-field v-model="item.cantidad" type="number" />
       </template>
-      <template #[`item.actions`]="{ }">
+      <template #[`item.precio`]="{ item }">
+        <v-text-field v-model="item.precio" type="number" />
+      </template>
+      <template #[`item.actions`]="{ item }">
         <TheButtonWithTooltip
           icon="mdi-trash-can"
           title="Eliminar detalle"
-          @click="deleteDetail"
+          @click="deleteDetail(item)"
         />
+      </template>
+      <template #[`item.total`]="{ item }">
+        {{ item.cantidad * item.precio }}
       </template>
     </TheFilterTable>
   </v-card>
@@ -62,18 +68,21 @@ export default {
           text: this.$t('detalles.cantidad'),
           align: 'center',
           sortable: false,
+          width: '15%',
           value: 'cantidad'
         },
         {
           text: this.$t('detalles.precio'),
           align: 'end',
           sortable: false,
+          width: '15%',
           value: 'precio'
         },
         {
           text: this.$t('detalles.total'),
           align: 'end',
           sortable: false,
+          width: '15%',
           value: 'total'
         },
         {
@@ -94,7 +103,13 @@ export default {
 
     },
     addNewDetail () {
-
+      const newDetail = {
+        item: this.detailAux.item,
+        cantidad: 0,
+        precio: 0
+      }
+      this.detailAux.item = null
+      this.detalles.push(newDetail)
     }
   }
 }
