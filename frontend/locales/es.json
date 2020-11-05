@@ -51,6 +51,7 @@
    "egresos": {
      "titulo": "Egreso",
      "menu": "Egresos",
+     "detalles": "Detalles del egreso",
      "welcome_description": "Ver mis egresos",
      "id": "ID",
      "proveedor": "Proveedor",
@@ -62,6 +63,12 @@
      "codigo_operacion": "Código de operación",
      "medio_pago": "Medio de pago",
      "presupuestos_minimos": "Cantidad de presupuestos mínimos"
+   },
+   "detalles": {
+    "cantidad": "Cantidad",
+    "precio": "Precio",
+    "total": "Total"
+
    },
    "ingresos": {
     "menu": "Ingresos",
@@ -128,6 +135,7 @@
     "categorias": "Categorias"
    },
    "items": {
+    "item": "Item",
     "menu": "Items",
     "search": "Buscá un item",
     "id": "ID",

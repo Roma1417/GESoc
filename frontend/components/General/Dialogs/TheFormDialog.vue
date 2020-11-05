@@ -20,6 +20,14 @@
         <slot />
       </v-form>
     </v-card-text>
+    <div class="text-center">
+      <v-pagination
+        v-if="paged"
+        v-model="currentPage"
+        :length="pagesLength"
+        @input="onPageChange"
+      />
+    </div>
     <v-card-actions>
       <v-spacer />
       <TheSecondaryButton
@@ -65,11 +73,20 @@ export default {
     loading: {
       type: Boolean,
       default: false
+    },
+    pagesLength: {
+      type: Number,
+      default: 1
+    },
+    paged: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
     return {
-      valid: true
+      valid: true,
+      currentPage: 1
     }
   },
   methods: {
@@ -87,6 +104,9 @@ export default {
     },
     resetValidation () {
       this.$refs.form.resetValidation()
+    },
+    onPageChange (page) {
+      this.$emit('onPageChanged', page)
     }
   }
 }
