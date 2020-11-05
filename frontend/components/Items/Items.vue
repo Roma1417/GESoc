@@ -1,12 +1,18 @@
 <template>
-  <TheLayoutWithHeader title="items.menu" :loading="loading">
+  <TheLayoutWithHeader title="items.menu" :loading="loading" @search="getItems()">
     <template #filter>
       <v-row>
-        <v-col>
-          ACA IRIA EL FILTRO POR NOMBRE DE ITEM
+        <v-col cols="10" sm="8" md="4" lg="3">
+          <TheTextInput
+            v-model="filter.nombre"
+            clearable
+            :label="$t('items.search')"
+            maxlength="32"
+          />
         </v-col>
         <v-col class="text-right">
           <ThePrimaryButton
+            class="mt-4"
             :inner-text="$t('search')"
             icon="mdi-magnify"
             @click="getItems()"
@@ -37,12 +43,14 @@
 import TheLayoutWithHeader from '~/components/General/Layouts/TheLayoutWithHeader'
 import TheFilterTable from '~/components/General/Tables/TheFilterTable'
 import ItemCategoriaForm from '~/components/Business/Dialogs/ItemCategoriaForm'
+import TheTextInput from '~/components/General/Inputs/TheTextInput'
 import ThePrimaryButton from '~/components/General/Buttons/ThePrimaryButton'
 export default {
   components: {
     TheLayoutWithHeader,
     TheFilterTable,
     ItemCategoriaForm,
+    TheTextInput,
     ThePrimaryButton
   },
   data: () => ({
@@ -52,25 +60,27 @@ export default {
     },
     totalList: 5,
     items: [],
-    loading: false
+    loading: false,
+    filter: {},
+    aBuscar: ''
   }),
   computed: {
     headers () {
       return [
         {
-          text: this.$t('ID'),
+          text: this.$t('items.id'),
           align: 'center',
           sortable: false,
           value: 'id'
         },
         {
-          text: this.$t('Descripcion'),
+          text: this.$t('items.descripcion'),
           align: 'start',
           sortable: false,
           value: 'descripcion'
         },
         {
-          text: this.$t('Categorias'),
+          text: this.$t('items.categorias.table'),
           value: 'categorias',
           width: '40%',
           sortable: false
@@ -81,7 +91,7 @@ export default {
   methods: {
     getItems () {
       this.loading = true
-      this.$itemService.getItems(null, this.pageInfo).then((result) => {
+      this.$itemService.getItems(this.filter.nombre, this.pageInfo).then((result) => {
         if (result) {
           this.totalList = result.total
           this.items = result.data

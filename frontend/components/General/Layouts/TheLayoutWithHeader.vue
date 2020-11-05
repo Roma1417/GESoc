@@ -13,7 +13,10 @@
     <v-card raised class="mx-auto" min-width="75vw">
       <v-card-subtitle v-show="slotInUse('filter')" class="py-2">
         <v-card outlined class="mt-2 px-2">
-          <slot name="filter" />
+          <v-form @submit.prevent="$emit('search')">
+            <input type="submit" value="" class="hideInput">
+            <slot name="filter" />
+          </v-form>
         </v-card>
       </v-card-subtitle>
       <v-progress-linear v-if="loading" :indeterminate="loading" />

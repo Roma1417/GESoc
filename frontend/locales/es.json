@@ -95,7 +95,9 @@
    "entidades": {
     "menu": "Entidades",
     "id": "ID",
-    "entidadesBase": "Entidades Base"
+    "nombre": "Nombre",
+    "title": "Entidades",
+    "search": "Buscá una entidad"
    },
    "items": {
     "menu": "Items",
@@ -124,6 +126,18 @@
    "categorias": {
     "editar": "Editar",
     "categorias": "Categorias"
+   },
+   "items": {
+    "menu": "Items",
+    "search": "Buscá un item",
+    "id": "ID",
+    "descripcion": "Descripcion",
+    "categorias": {
+      "table": "Categorías",
+      "edit": "Editar Categorías",
+      "autocomplete": "Categorías",
+      "form": "Editar Categorías"
+    }
    },
    "mensajes": {
     "menu": "Mensajes",
