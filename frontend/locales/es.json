@@ -78,7 +78,9 @@
    "entidades": {
     "menu": "Entidades",
     "id": "ID",
-    "entidadesBase": "Entidades Base"
+    "nombre": "Nombre",
+    "title": "Entidades",
+    "search": "Buscá una entidad"
    },
    "entidad": {
     "entidad": "Entidad"
@@ -89,9 +91,6 @@
     "pais": "País",
     "moneda": "Moneda",
     "titulo": "Documento Comercial"
-   },
-   "items": {
-    "menu": "Items"
    },
    "moneda": {
     "moneda": "Moneda"
@@ -108,10 +107,14 @@
    },
    "items": {
     "menu": "Items",
+    "search": "Buscá un item",
+    "id": "ID",
+    "descripcion": "Descripcion",
     "categorias": {
-      "editar": "Editar",
-      "autocomplete": "Categorias",
-      "form": "Editar Categorias"
+      "table": "Categorías",
+      "edit": "Editar Categorías",
+      "autocomplete": "Categorías",
+      "form": "Editar Categorías"
     }
    },
    "mensajes": {

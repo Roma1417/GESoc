@@ -81,6 +81,11 @@ body, body *{
   font-weight: bold !important;
 }
 
+.hideInput{
+  position: absolute !important;
+  left: -99999px !important;
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

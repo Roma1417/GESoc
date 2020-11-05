@@ -3,11 +3,11 @@ export default class User {
     this.$axios = ctx.$axios
   }
 
-  getEntidades (medioPagoName, pageParam = { page: 1, itemsPerPage: 20 }) {
+  getEntidades (name, pageParam = { page: 1, itemsPerPage: 20 }) {
     const params = {
       ...pageParam,
-      medioPagoName
+      name
     }
-    return this.$axios.getOrFalse('/api/entidad', { params })
+    return this.$axios.getOrFalse('/api/entidad/', { params })
   }
 }

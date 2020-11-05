@@ -13,7 +13,7 @@
     <template #activator="{ on }">
       <TheButtonWithToolTip
         icon="mdi-pencil"
-        title="categorias.editar"
+        :title="$t('items.categorias.edit')"
         v-on="on"
       />
     </template>
