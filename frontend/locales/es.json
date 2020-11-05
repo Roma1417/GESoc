@@ -93,7 +93,7 @@
     "documento_comercial": "Documento Comercial",
     "codigo_operacion": "Código de operación",
     "fecha_creacion": "Fecha de creación",
-    "egreso_id": "Egreso correspondiente",
+    "egreso_id": "ID Egreso",
     "crear": "Crear presupuesto"
   },
    "entidad": {

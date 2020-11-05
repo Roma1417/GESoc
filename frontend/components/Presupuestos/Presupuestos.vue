@@ -48,7 +48,7 @@ export default {
       itemsPerPage: 20
     },
     totalList: 5,
-    ingresos: [],
+    presupuestos: [],
     loading: false
   }),
   computed: {
@@ -59,6 +59,12 @@ export default {
           align: 'center',
           sortable: false,
           value: 'idPresupuesto'
+        },
+        {
+          text: this.$t('presupuestos.egreso_id'),
+          align: 'end',
+          sortable: false,
+          value: 'egreso_id'
         },
         {
           text: this.$t('presupuestos.entidad_realizadora'),

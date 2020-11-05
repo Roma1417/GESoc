@@ -11,4 +11,8 @@ export default class Presupuesto {
       }
     })
   }
+
+  crearPresupuesto (presupuesto) {
+    return this.$axios.postOrFalse('/api/transaccion/presupuesto', presupuesto)
+  }
 }
