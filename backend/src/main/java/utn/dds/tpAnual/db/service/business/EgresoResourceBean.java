@@ -85,6 +85,7 @@ public class EgresoResourceBean {
         detallesOperacion, LocalDate.now(), medioPago.get(),egresoDTO.getCantidadPresupuestosMinimos(),
                 null, null, proveedor.get(), null);
         egreso.setFechaOperacion(egresoDTO.getFechaOperacion());
+        egreso.setFecha(LocalDate.now());
 
         egresoService.save(egreso);
         egresoDTO.setIdEgreso(egreso.getOperacionId());

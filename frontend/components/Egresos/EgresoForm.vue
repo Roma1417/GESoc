@@ -40,7 +40,7 @@
           </TheResponsiveColumn>
           <TheResponsiveColumn>
             <TheAsyncAutocompleteInput
-              v-model="egreso.entidad"
+              v-model="egreso.entidadRealizadora"
               item-text="nombre"
               :get-items-function="$entidadService.getEntidades"
               :label="$t('entidad.entidad')"
@@ -163,6 +163,11 @@ export default {
       this.page = page
     },
     closeForm () {
+      this.egreso = {
+        documentoComercial: {},
+        detalles: []
+      }
+      this.$refs.form.resetValidation()
       this.showForm = false
     }
   }
