@@ -3,22 +3,22 @@
     <v-card-title>
       {{ $t('documento_comercial.titulo') }}
     </v-card-title>
-    <v-row class="px-2">
-      <v-col md="4" sm="6" cols="12" class="py-0">
+    <v-row class="px-4">
+      <TheResponsiveColumn>
         <TheTextInput
           v-model="documentoComercial.numero"
           :label="this.$t('documento_comercial.numero')"
           :rules="[$rl.required()]"
         />
-      </v-col>
-      <v-col md="4" sm="6" cols="12" class="py-0">
+      </TheResponsiveColumn>
+      <TheResponsiveColumn>
         <TheTextInput
           v-model="documentoComercial.tipoDocumento"
           :label="this.$t('documento_comercial.tipo')"
           :rules="[$rl.required()]"
         />
-      </v-col>
-      <v-col md="4" sm="6" cols="12" class="py-0">
+      </TheResponsiveColumn>
+      <TheResponsiveColumn>
         <TheAsyncAutocompleteInput
           v-model="documentoComercial.pais"
           item-text="descripcion"
@@ -26,8 +26,8 @@
           :label="$t('pais.pais')"
           :rules="[$rl.required()]"
         />
-      </v-col>
-      <v-col md="4" sm="6" cols="12" class="py-0">
+      </TheResponsiveColumn>
+      <TheResponsiveColumn>
         <TheAsyncAutocompleteInput
           v-model="documentoComercial.moneda"
           item-text="descripcion"
@@ -35,17 +35,19 @@
           :label="$t('moneda.moneda')"
           :rules="[$rl.required()]"
         />
-      </v-col>
+      </TheResponsiveColumn>
     </v-row>
   </v-card>
 </template>
 <script>
 import TheTextInput from '~/components/General/Inputs/TheTextInput'
 import TheAsyncAutocompleteInput from '~/components/General/Inputs/TheAsyncAutocompleteInput'
+import TheResponsiveColumn from '~/components/General/Columns/TheResponsiveColumn'
 export default {
   components: {
     TheTextInput,
-    TheAsyncAutocompleteInput
+    TheAsyncAutocompleteInput,
+    TheResponsiveColumn
   },
   props: {
     documentoComercial: {
