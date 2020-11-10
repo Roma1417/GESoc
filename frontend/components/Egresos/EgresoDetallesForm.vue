@@ -19,10 +19,16 @@
       :total="totalList"
     >
       <template #[`item.cantidad`]="{ item }">
-        <TheNumericInput v-model="item.cantidad" :rules="[$rl.required()]" />
+        <TheNumericInput
+          v-model="item.cantidad"
+          :rules="[$rl.required(),$rl.positive()]"
+        />
       </template>
       <template #[`item.precio`]="{ item }">
-        <TheNumericInput v-model="item.precio" :rules="[$rl.required()]" />
+        <TheNumericInput
+          v-model="item.precio"
+          :rules="[$rl.required(),$rl.positive()]"
+        />
       </template>
       <template #[`item.actions`]="{ item }">
         <TheButtonWithTooltip
@@ -32,11 +38,18 @@
         />
       </template>
       <template #[`item.total`]="{ item }">
-        {{ financial(item.cantidad * item.precio) }}
+        <div class="total">
+          ${{ financial(item.cantidad * item.precio) }}
+        </div>
       </template>
     </TheFilterTable>
   </v-card>
 </template>
+<style scoped>
+.total {
+  text-align: right !important;
+}
+</style>>
 <script>
 import TheFilterTable from '~/components/General/Tables/TheFilterTable'
 import TheButtonWithTooltip from '~/components/General/Buttons/TheButtonWithTooltip'

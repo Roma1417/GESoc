@@ -148,6 +148,13 @@ export default {
   },
   methods: {
     saveOrUpdate () {
+      if (this.egreso.detalles.length === 0) {
+        this.toastError(this.$t('egresos.error_sin_detalles'))
+      } else {
+        this.saveEgreso()
+      }
+    },
+    saveEgreso () {
       this.loading = true
       this.$egresoService.crearEgreso(this.egreso)
         .then((response) => {
@@ -167,7 +174,6 @@ export default {
         documentoComercial: {},
         detalles: []
       }
-      this.$refs.form.resetValidation()
       this.showForm = false
     }
   }
