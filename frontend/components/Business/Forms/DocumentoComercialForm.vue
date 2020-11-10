@@ -8,7 +8,7 @@
         <TheTextInput
           v-model="documentoComercial.numero"
           :label="this.$t('documento_comercial.numero')"
-          :rules="[$rl.required()]"
+          :rules="[$rl.required(),$rl.positive()]"
         />
       </TheResponsiveColumn>
       <TheResponsiveColumn>

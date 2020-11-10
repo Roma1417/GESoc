@@ -114,6 +114,7 @@
    "items": {
     "item": "Item",
     "menu": "Items",
+    "error_fue_seleccionado": "El ítem ya se encuentra seleccionado.",
     "categorias": {
       "editar": "Editar",
       "autocomplete": "Categorias",

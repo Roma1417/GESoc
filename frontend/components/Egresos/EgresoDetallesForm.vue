@@ -9,7 +9,7 @@
         item-text="descripcion"
         :get-items-function="$itemService.getItems"
         :label="$t('items.item')"
-        @keyup.enter="addNewDetail"
+        @keyup.enter="addNewDetailIfPossible"
       />
     </TheResponsiveColumn>
     <TheFilterTable
@@ -118,16 +118,27 @@ export default {
       const index = this.detalles.indexOf(detail)
       this.detalles.splice(index, 1)
     },
-    addNewDetail () {
+    addNewDetailIfPossible () {
       if (this.detailAux.item) {
-        const newDetail = {
-          item: this.detailAux.item,
-          cantidad: null,
-          precio: null
+        if (!this.itemSeleccionado()) {
+          this.addNewDetail()
+        } else {
+          this.toastError(this.$t('items.error_fue_seleccionado'))
         }
-        this.detailAux.item = null
-        this.detalles.push(newDetail)
       }
+    },
+    itemSeleccionado () {
+      const id = this.detailAux.item.id
+      return this.detalles.find(detalle => detalle.item.id === id)
+    },
+    addNewDetail () {
+      const newDetail = {
+        item: this.detailAux.item,
+        cantidad: null,
+        precio: null
+      }
+      this.detailAux.item = null
+      this.detalles.push(newDetail)
     }
   }
 }
