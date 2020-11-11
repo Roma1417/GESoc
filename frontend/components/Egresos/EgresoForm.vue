@@ -69,7 +69,7 @@
             <TheTextInput
               v-model="egreso.cantidadPresupuestosMinimos"
               :label="this.$t('egresos.presupuestos_minimos')"
-              :rules="[$rl.required()]"
+              :rules="[$rl.required(),$rl.positive()]"
             />
           </TheResponsiveColumn>
           <TheResponsiveColumn>
@@ -161,7 +161,7 @@ export default {
           if (response) {
             this.closeForm()
             this.toastSuccess(this.$t('saved-ok'))
-            this.$emit('saved-ok', response)
+            this.$emit('created', response)
           }
         })
         .finally(() => { this.loading = false })

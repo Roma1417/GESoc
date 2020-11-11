@@ -15,7 +15,7 @@
         <TheTextInput
           v-model="documentoComercial.tipoDocumento"
           :label="this.$t('documento_comercial.tipo')"
-          :rules="[$rl.required()]"
+          :rules="[$rl.required(),$rl.positive()]"
         />
       </TheResponsiveColumn>
       <TheResponsiveColumn>
