@@ -3,15 +3,30 @@
     <v-card-title>
       {{ $t('egresos.detalles') }}
     </v-card-title>
-    <TheResponsiveColumn>
-      <TheAsyncAutocompleteInput
-        v-model="detailAux.item"
-        item-text="descripcion"
-        :get-items-function="$itemService.getItems"
-        :label="$t('items.item')"
-        @keyup.enter="addNewDetailIfPossible"
-      />
-    </TheResponsiveColumn>
+    <v-row class="px-5">
+      <TheResponsiveColumn>
+        <TheAsyncAutocompleteInput
+          v-model="detailAux.item"
+          item-text="descripcion"
+          :ignore-items="detalles.map(detalle => detalle.item)"
+          :match-ignore-function="(i1, i2) => i1.id === i2.id"
+          :cache-items="false"
+          :get-items-function="$itemService.getItems"
+          :label="$t('items.item')"
+          @keyup.enter="addNewDetail"
+        />
+      </TheResponsiveColumn>
+      <v-col>
+        <v-alert
+          color="primary"
+          outlined
+          dense
+          type="info"
+        >
+          {{ $t('items.info_ingresar_item') }}
+        </v-alert>
+      </v-col>
+    </v-row>
     <TheFilterTable
       class="px-4"
       :items="detalles"
@@ -38,18 +53,11 @@
         />
       </template>
       <template #[`item.total`]="{ item }">
-        <div class="total">
-          ${{ financial(item.cantidad * item.precio) }}
-        </div>
+        ${{ financial(item.cantidad * item.precio) }}
       </template>
     </TheFilterTable>
   </v-card>
 </template>
-<style scoped>
-.total {
-  text-align: right !important;
-}
-</style>>
 <script>
 import TheFilterTable from '~/components/General/Tables/TheFilterTable'
 import TheButtonWithTooltip from '~/components/General/Buttons/TheButtonWithTooltip'
@@ -85,21 +93,21 @@ export default {
         },
         {
           text: this.$t('detalles.cantidad'),
-          align: 'center',
+          align: 'right',
           sortable: false,
           width: '15%',
           value: 'cantidad'
         },
         {
           text: this.$t('detalles.precio'),
-          align: 'center',
+          align: 'right',
           sortable: false,
           width: '18%',
           value: 'precio'
         },
         {
           text: this.$t('detalles.total'),
-          align: 'end',
+          align: 'right',
           sortable: false,
           width: '20%',
           value: 'total'
@@ -118,27 +126,16 @@ export default {
       const index = this.detalles.indexOf(detail)
       this.detalles.splice(index, 1)
     },
-    addNewDetailIfPossible () {
-      if (this.detailAux.item) {
-        if (!this.itemSeleccionado()) {
-          this.addNewDetail()
-        } else {
-          this.toastError(this.$t('items.error_fue_seleccionado'))
-        }
-      }
-    },
-    itemSeleccionado () {
-      const id = this.detailAux.item.id
-      return this.detalles.find(detalle => detalle.item.id === id)
-    },
     addNewDetail () {
-      const newDetail = {
-        item: this.detailAux.item,
-        cantidad: null,
-        precio: null
+      if (this.detailAux.item) {
+        const newDetail = {
+          item: this.detailAux.item,
+          cantidad: null,
+          precio: null
+        }
+        this.detailAux.item = null
+        this.detalles.push(newDetail)
       }
-      this.detailAux.item = null
-      this.detalles.push(newDetail)
     }
   }
 }
