@@ -54,6 +54,7 @@ export default {
   computed: {
     headers () {
       return [
+        /*
         {
           text: this.$t('presupuestos.id'),
           align: 'center',
@@ -62,10 +63,11 @@ export default {
         },
         {
           text: this.$t('presupuestos.egreso_id'),
-          align: 'end',
+          align: 'center',
           sortable: false,
-          value: 'egreso_id'
+          value: 'egresoID'
         },
+        */
         {
           text: this.$t('presupuestos.entidad_realizadora'),
           align: 'start',
