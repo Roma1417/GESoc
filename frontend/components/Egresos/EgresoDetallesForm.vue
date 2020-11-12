@@ -3,13 +3,30 @@
     <v-card-title>
       {{ $t('egresos.detalles') }}
     </v-card-title>
-    <TheAsyncAutocompleteInput
-      v-model="detailAux.item"
-      item-text="descripcion"
-      :get-items-function="$itemService.getItems"
-      :label="$t('item.item')"
-      @keyup.enter="addNewDetail"
-    />
+    <v-row class="px-5">
+      <TheResponsiveColumn>
+        <TheAsyncAutocompleteInput
+          v-model="detailAux.item"
+          item-text="descripcion"
+          :ignore-items="detalles.map(detalle => detalle.item)"
+          :match-ignore-function="(i1, i2) => i1.id === i2.id"
+          :cache-items="false"
+          :get-items-function="$itemService.getItems"
+          :label="$t('items.item')"
+          @keyup.enter="addNewDetail"
+        />
+      </TheResponsiveColumn>
+      <v-col>
+        <v-alert
+          color="primary"
+          outlined
+          dense
+          type="info"
+        >
+          {{ $t('items.info_ingresar_item') }}
+        </v-alert>
+      </v-col>
+    </v-row>
     <TheFilterTable
       class="px-4"
       :items="detalles"
@@ -17,10 +34,16 @@
       :total="totalList"
     >
       <template #[`item.cantidad`]="{ item }">
-        <v-text-field v-model="item.cantidad" type="number" />
+        <TheNumericInput
+          v-model="item.cantidad"
+          :rules="[$rl.required(),$rl.positive()]"
+        />
       </template>
       <template #[`item.precio`]="{ item }">
-        <v-text-field v-model="item.precio" type="number" />
+        <TheNumericInput
+          v-model="item.precio"
+          :rules="[$rl.required(),$rl.positive()]"
+        />
       </template>
       <template #[`item.actions`]="{ item }">
         <TheButtonWithTooltip
@@ -30,7 +53,7 @@
         />
       </template>
       <template #[`item.total`]="{ item }">
-        {{ item.cantidad * item.precio }}
+        ${{ financial(item.cantidad * item.precio) }}
       </template>
     </TheFilterTable>
   </v-card>
@@ -38,11 +61,15 @@
 <script>
 import TheFilterTable from '~/components/General/Tables/TheFilterTable'
 import TheButtonWithTooltip from '~/components/General/Buttons/TheButtonWithTooltip'
+import { numericMixin } from '~/services/mixins/numericMixin'
+import TheNumericInput from '~/components/General/Inputs/TheNumericInput'
 export default {
   components: {
     TheFilterTable,
-    TheButtonWithTooltip
+    TheButtonWithTooltip,
+    TheNumericInput
   },
+  mixins: [numericMixin],
   props: {
     detalles: {
       type: Array,
@@ -66,50 +93,49 @@ export default {
         },
         {
           text: this.$t('detalles.cantidad'),
-          align: 'center',
+          align: 'right',
           sortable: false,
           width: '15%',
           value: 'cantidad'
         },
         {
           text: this.$t('detalles.precio'),
-          align: 'end',
+          align: 'right',
           sortable: false,
-          width: '15%',
+          width: '18%',
           value: 'precio'
         },
         {
           text: this.$t('detalles.total'),
-          align: 'end',
+          align: 'right',
           sortable: false,
-          width: '15%',
+          width: '20%',
           value: 'total'
         },
         {
           text: this.$t('actions'),
           value: 'actions',
+          width: '17%',
           sortable: false
         }
       ]
     }
   },
   methods: {
-    newEmptyDetail () {
-      return {
-        item: {}
-      }
-    },
     deleteDetail (detail) {
-
+      const index = this.detalles.indexOf(detail)
+      this.detalles.splice(index, 1)
     },
     addNewDetail () {
-      const newDetail = {
-        item: this.detailAux.item,
-        cantidad: 0,
-        precio: 0
+      if (this.detailAux.item) {
+        const newDetail = {
+          item: this.detailAux.item,
+          cantidad: null,
+          precio: null
+        }
+        this.detailAux.item = null
+        this.detalles.push(newDetail)
       }
-      this.detailAux.item = null
-      this.detalles.push(newDetail)
     }
   }
 }
