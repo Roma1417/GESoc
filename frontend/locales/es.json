@@ -107,14 +107,6 @@
     "title": "Entidades",
     "search": "Buscá una entidad"
    },
-   "items": {
-    "menu": "Items",
-    "categorias": {
-      "editar": "Editar",
-      "autocomplete": "Categorias",
-      "form": "Editar Categorias"
-    }
-   },
    "documento_comercial": {
     "numero": "Número",
     "tipo": "Tipo de documento",
@@ -144,6 +136,7 @@
     "info_ingresar_item": "Presione enter para ingresar el item seleccionado.",
     "categorias": {
       "table": "Categorías",
+      "editar": "Editar",
       "edit": "Editar Categorías",
       "autocomplete": "Categorías",
       "form": "Editar Categorías"

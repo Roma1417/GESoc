@@ -4,7 +4,7 @@
       <v-row no-gutters>
         <v-col class="text-right">
           <ThePrimaryButton
-            class="my-4"
+            class="mt-0"
             :inner-text="$t('search')"
             icon="mdi-magnify"
             @click="getPresupuestos()"
@@ -54,12 +54,11 @@ export default {
   computed: {
     headers () {
       return [
-        /*
         {
           text: this.$t('presupuestos.id'),
           align: 'center',
           sortable: false,
-          value: 'idPresupuesto'
+          value: 'operacionId'
         },
         {
           text: this.$t('presupuestos.egreso_id'),
@@ -67,7 +66,6 @@ export default {
           sortable: false,
           value: 'egresoID'
         },
-        */
         {
           text: this.$t('presupuestos.entidad_realizadora'),
           align: 'start',
@@ -106,6 +104,12 @@ export default {
     },
     stopLoading () {
       this.loading = false
+    },
+    createPresupuesto (item) {
+      return () => 1
+    },
+    updatePresupuesto (item) {
+      return () => 1
     }
   }
 }
