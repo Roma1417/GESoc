@@ -130,10 +130,10 @@
    "items": {
     "item": "Item",
     "menu": "Items",
+    "info_ingresar_item": "Presione enter para ingresar el item seleccionado.",
     "search": "Buscá un item",
     "id": "ID",
     "descripcion": "Descripcion",
-    "info_ingresar_item": "Presione enter para ingresar el item seleccionado.",
     "categorias": {
       "table": "Categorías",
       "editar": "Editar",
