@@ -86,7 +86,9 @@
    "entidades": {
     "menu": "Entidades",
     "id": "ID",
-    "entidadesBase": "Entidades Base"
+    "nombre": "Nombre",
+    "title": "Entidades",
+    "search": "Buscá una entidad"
    },
    "entidad": {
     "entidad": "Entidad"
@@ -115,10 +117,14 @@
     "item": "Item",
     "menu": "Items",
     "info_ingresar_item": "Presione enter para ingresar el item seleccionado.",
+    "search": "Buscá un item",
+    "id": "ID",
+    "descripcion": "Descripcion",
     "categorias": {
-      "editar": "Editar",
-      "autocomplete": "Categorias",
-      "form": "Editar Categorias"
+      "table": "Categorías",
+      "edit": "Editar Categorías",
+      "autocomplete": "Categorías",
+      "form": "Editar Categorías"
     }
    },
    "mensajes": {

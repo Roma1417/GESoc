@@ -1,12 +1,22 @@
 <template>
-  <TheLayoutWithHeader title="entidades" :loading="loading">
+  <TheLayoutWithHeader title="entidades.title" :loading="loading" @search="getEntidades()">
     <template #filter>
       <v-row>
-        <v-col>
-          ACA IRIA EL FILTRO POR CATEGORIA
+        <v-col cols="10" sm="8" md="4" lg="3">
+          <TheTextInput
+            v-model="filter.nombre"
+            clearable
+            :label="$t('entidades.search')"
+            maxlength="32"
+          />
         </v-col>
         <v-col class="text-right">
-          CREAR EGRESO BOTON
+          <ThePrimaryButton
+            class="mt-4"
+            :inner-text="$t('search')"
+            icon="mdi-magnify"
+            @click="getEntidades()"
+          />
         </v-col>
       </v-row>
     </template>
@@ -16,18 +26,8 @@
         :items="entidades"
         :headers="headers"
         :total="totalList"
-        @change="getEgresos()"
-      >
-        <template #[`item.entidadesBase`]="entidadesBase">
-          <div v-for="entidad in entidadesBase.value" :key="entidad.nombre">
-            {{ entidad.nombre }}
-            <div />
-          </div>
-        </template>
-        <template #[`item.actions`]="{ }">
-          Ver egresos
-        </template>
-      </TheFilterTable>
+        @change="getEntidades()"
+      />
     </template>
   </TheLayoutWithHeader>
 </template>
@@ -45,15 +45,9 @@ export default {
       itemsPerPage: 20
     },
     totalList: 5,
-    entidades: [{
-      idEntidad: '1',
-      entidadesBase: [{ nombre: 'Pepa' }, { nombre: 'Pepe' }]
-    },
-    {
-      idEntidad: '2',
-      entidadesBase: [{ nombre: 'Pepa' }]
-    }],
-    loading: false
+    entidades: [],
+    loading: false,
+    filter: {}
   }),
   computed: {
     headers () {
@@ -65,26 +59,21 @@ export default {
           value: 'idEntidad'
         },
         {
-          text: this.$t('entidades.entidadesBase'),
+          text: this.$t('entidades.nombre'),
           align: 'start',
           sortable: false,
-          value: 'entidadesBase'
-        },
-        {
-          text: this.$t('actions'),
-          value: 'actions',
-          sortable: false
+          value: 'nombre'
         }
       ]
     }
   },
   methods: {
-    getEgresos () {
+    getEntidades () {
       this.loading = true
-      this.$egresoService.getEgresos(this.pageInfo).then((result) => {
+      this.$entidadService.getEntidades(this.filter.nombre, this.pageInfo).then((result) => {
         if (result) {
           this.totalList = result.total
-          this.egresos = result.data
+          this.entidades = result.data
         }
       }).finally(this.stopLoading)
     },
