@@ -30,11 +30,13 @@
         :total="totalList"
         @change="getEgresos()"
       >
-        <template #[`item.actions`]="{ }">
-          VINCULAR BOTON
-          <v-icon>
-            mdi-link-variant
-          </v-icon>
+        <template #[`item.actions`]="{ item }">
+          <VinculacionForm
+            :title-text="$t('vincular.egresoTitle')"
+            :vincular-tooltip-text="$t('vincular.egreso')"
+            :egreso-a-vincular="egresoAVincular"
+            @click="vincularEgreso(item)"
+          />
         </template>
       </TheFilterTable>
     </template>
@@ -46,13 +48,15 @@ import TheFilterTable from '~/components/General/Tables/TheFilterTable'
 import ThePrimaryButton from '~/components/General/Buttons/ThePrimaryButton'
 import TheCategoriasAutocomplete from '~/components/Business/Autocomplete/TheCategoriasAutocomplete'
 import EgresoForm from '~/components/Egresos/EgresoForm'
+import VinculacionForm from '~/components/Egresos/VinculacionForm'
 export default {
   components: {
     TheLayoutWithHeader,
     TheFilterTable,
     ThePrimaryButton,
     TheCategoriasAutocomplete,
-    EgresoForm
+    EgresoForm,
+    VinculacionForm
   },
   data: () => ({
     pageInfo: {
@@ -62,7 +66,8 @@ export default {
     totalList: 5,
     egresos: [],
     filter: {},
-    loading: false
+    loading: false,
+    egresoAVincular: null
   }),
   computed: {
     headers () {
@@ -108,12 +113,13 @@ export default {
   methods: {
     getEgresos () {
       this.loading = true
-      this.$egresoService.getEgresos(this.pageInfo, this.filter.categorias).then((result) => {
-        if (result) {
-          this.totalList = result.total
-          this.egresos = result.data
-        }
-      }).finally(this.stopLoading)
+      this.$egresoService.getEgresos(this.pageInfo, this.filter.categorias)
+        .then((result) => {
+          if (result) {
+            this.totalList = result.total
+            this.egresos = result.data
+          }
+        }).finally(this.stopLoading)
     },
     stopLoading () {
       this.loading = false
@@ -123,6 +129,9 @@ export default {
     },
     updateEgreso (item) {
       return () => 1
+    },
+    vincularEgreso (item) {
+      this.egresoAVincular = item
     }
   }
 }

@@ -144,6 +144,14 @@
      "session": "Error de sesión, por favor vuelva a ingresar",
      "session_login": "Ir al login",
      "login": "Usuario o contraseña inválidos"
+   },
+   "vincular": {
+     "egreso": "Vincular egreso con un ingreso",
+     "ingreso": "Vincular ingreso con egresos",
+     "ingresoTitle": "Vinculación de ingreso",
+     "egresoTitle": "Vinculación de egreso",
+     "solicitud": "Ingrese el ID correspondiente para realizar la vinculación.",
+     "error_sin_ids": "No se cargó el id correspondiente."
    }
 }
   
