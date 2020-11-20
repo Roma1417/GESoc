@@ -14,6 +14,13 @@ export default class User {
     return this.$axios.getOrFalse('/api/transaccion/egreso', { params })
   }
 
+  getEgresosById (egresoId, pageParam = { page: 1, itemsPerPage: 20 }) {
+    const params = {
+      ...pageParam
+    }
+    return this.$axios.getOrFalse('/api/transaccion/egreso/' + egresoId, { params })
+  }
+
   crearEgreso (egreso) {
     return this.$axios.postOrFalse('/api/transaccion/egreso', egreso)
   }
