@@ -4,8 +4,11 @@
     :header-message="titleText"
     :loading="loading"
     v-bind="$attrs"
+    paged
+    :pages-length="2"
     @onConfirm="saveOrUpdate"
     @onCancel="closeForm"
+    @onPageChanged="changePage"
     v-on="$listeners"
   >
     <template #activator="{on}">
@@ -19,28 +22,32 @@
       />
     </template>
     <template>
-      <v-card outlined class="mb-2">
+      <v-card
+        v-show="page === 1"
+        outlined
+        class="mb-2"
+      >
         <v-card-title>
           {{ $t('egresos.titulo') }}
         </v-card-title>
-        <v-row class="px-2">
-          <v-col md="4" sm="6" cols="12">
+        <v-row class="px-4">
+          <TheResponsiveColumn>
             <TheTextInput
               v-model="egreso.codigoOperacion"
               :label="this.$t('egresos.codigo_operacion')"
               :rules="[$rl.required()]"
             />
-          </v-col>
-          <v-col md="4" sm="6" cols="12">
+          </TheResponsiveColumn>
+          <TheResponsiveColumn>
             <TheAsyncAutocompleteInput
-              v-model="egreso.entidad"
+              v-model="egreso.entidadRealizadora"
               item-text="nombre"
               :get-items-function="$entidadService.getEntidades"
               :label="$t('entidad.entidad')"
               :rules="[$rl.required()]"
             />
-          </v-col>
-          <v-col md="4" sm="6" cols="12">
+          </TheResponsiveColumn>
+          <TheResponsiveColumn>
             <TheAsyncAutocompleteInput
               v-model="egreso.proveedor"
               item-text="nombreRazonSocial"
@@ -48,8 +55,8 @@
               :label="$t('egresos.proveedor')"
               :rules="[$rl.required()]"
             />
-          </v-col>
-          <v-col md="4" sm="6" cols="12">
+          </TheResponsiveColumn>
+          <TheResponsiveColumn>
             <TheAsyncAutocompleteInput
               v-model="egreso.medioPago"
               item-text="instrumentoPago"
@@ -57,26 +64,30 @@
               :label="$t('medio_pago.medio_pago')"
               :rules="[$rl.required()]"
             />
-          </v-col>
-          <v-col md="4" sm="6" cols="12">
+          </TheResponsiveColumn>
+          <TheResponsiveColumn>
             <TheTextInput
               v-model="egreso.cantidadPresupuestosMinimos"
               :label="this.$t('egresos.presupuestos_minimos')"
-              :rules="[$rl.required()]"
+              :rules="[$rl.required(),$rl.positive()]"
             />
-          </v-col>
-          <v-col md="4" sm="6" cols="12">
+          </TheResponsiveColumn>
+          <TheResponsiveColumn>
             <TheDateInput
               v-model="egreso.fechaOperacion"
               :label="this.$t('egresos.fecha_operacion')"
               :rules="[$rl.required()]"
             />
-          </v-col>
+          </TheResponsiveColumn>
         </v-row>
       </v-card>
       <DocumentoComercialForm
+        v-show="page === 1"
         :documento-comercial="egreso.documentoComercial"
-        class="px-2"
+      />
+      <EgresoDetallesForm
+        v-show="page === 2"
+        :detalles="egreso.detalles"
       />
     </template>
   </TheFormDialog>
@@ -89,6 +100,8 @@ import TheTextInput from '~/components/General/Inputs/TheTextInput'
 import TheDateInput from '~/components/General/Inputs/TheDateInput'
 import DocumentoComercialForm from '~/components/Business/Forms/DocumentoComercialForm'
 import TheAsyncAutocompleteInput from '~/components/General/Inputs/TheAsyncAutocompleteInput'
+import EgresoDetallesForm from '~/components/Egresos/EgresoDetallesForm'
+import TheResponsiveColumn from '~/components/General/Columns/TheResponsiveColumn'
 export default {
   components: {
     TheFormDialog,
@@ -96,7 +109,9 @@ export default {
     TheTextInput,
     TheDateInput,
     DocumentoComercialForm,
-    TheAsyncAutocompleteInput
+    TheAsyncAutocompleteInput,
+    EgresoDetallesForm,
+    TheResponsiveColumn
   },
   props: {
     disabled: {
@@ -112,8 +127,10 @@ export default {
     return {
       loading: false,
       showForm: false,
+      page: 1,
       egreso: {
-        documentoComercial: {}
+        documentoComercial: {},
+        detalles: []
       }
     }
   },
@@ -131,18 +148,32 @@ export default {
   },
   methods: {
     saveOrUpdate () {
+      if (this.egreso.detalles.length === 0) {
+        this.toastError(this.$t('egresos.error_sin_detalles'))
+      } else {
+        this.saveEgreso()
+      }
+    },
+    saveEgreso () {
       this.loading = true
       this.$egresoService.crearEgreso(this.egreso)
         .then((response) => {
           if (response) {
             this.closeForm()
             this.toastSuccess(this.$t('saved-ok'))
-            this.$emit('saved-ok', response)
+            this.$emit('created', response)
           }
         })
         .finally(() => { this.loading = false })
     },
+    changePage (page) {
+      this.page = page
+    },
     closeForm () {
+      this.egreso = {
+        documentoComercial: {},
+        detalles: []
+      }
       this.showForm = false
     }
   }

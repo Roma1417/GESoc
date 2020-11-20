@@ -50,6 +50,7 @@
    "egresos": {
      "titulo": "Egreso",
      "menu": "Egresos",
+     "detalles": "Detalles del egreso",
      "welcome_description": "Ver mis egresos",
      "id": "ID",
      "proveedor": "Proveedor",
@@ -60,7 +61,14 @@
      "editar": "Editar egreso",
      "codigo_operacion": "Códido de operación",
      "medio_pago": "Medio de pago",
-     "presupuestos_minimos": "Cantidad de presupuestos mínimos"
+     "presupuestos_minimos": "Cantidad de presupuestos mínimos",
+     "error_sin_detalles": "El egreso no posee ningun detalle asociado."
+   },
+   "detalles": {
+    "cantidad": "Cantidad",
+    "precio": "Precio",
+    "total": "Total"
+
    },
    "ingresos": {
     "menu": "Ingresos",
@@ -106,7 +114,9 @@
     "categorias": "Categorias"
    },
    "items": {
+    "item": "Item",
     "menu": "Items",
+    "info_ingresar_item": "Presione enter para ingresar el item seleccionado.",
     "search": "Buscá un item",
     "id": "ID",
     "descripcion": "Descripcion",

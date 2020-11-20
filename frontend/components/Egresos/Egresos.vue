@@ -16,7 +16,9 @@
             icon="mdi-magnify"
             @click="getEgresos()"
           />
-          <EgresoForm />
+          <EgresoForm
+            @created="getEgresos()"
+          />
         </v-col>
       </v-row>
     </template>

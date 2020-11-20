@@ -1,10 +1,10 @@
 <template>
   <TheAutocompleteInput
     :search-input.sync="inputUsuario"
-    :items="items"
+    :items="showableItems"
     :loading="loading"
     hide-no-data
-    cache-items
+    :cache-items="cacheItems"
     return-object
     v-bind="$attrs"
     v-on="$listeners"
@@ -21,6 +21,18 @@ export default {
     getItemsFunction: {
       type: Function,
       required: true
+    },
+    cacheItems: {
+      type: Boolean,
+      default: true
+    },
+    ignoreItems: {
+      type: Array,
+      default: () => []
+    },
+    matchIgnoreFunction: {
+      type: Function,
+      default: () => false
     }
   },
   data () {
@@ -28,6 +40,13 @@ export default {
       inputUsuario: '',
       loading: false,
       items: []
+    }
+  },
+  computed: {
+    showableItems () {
+      return this.items
+        .filter(item => !this.ignoreItems
+          .some(ignorableItem => this.matchIgnoreFunction(ignorableItem, item)))
     }
   },
   watch: {
