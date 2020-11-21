@@ -82,6 +82,13 @@ import java.util.Optional;
                 .getEgresosRelatedByCategoria(pageable, categoriasIdList, BooleanUtils.toInt(categoriasIdList.isEmpty()), usuario.getUsuarioId());
     }
 
+    public Page<Egreso> findAllRelatedById(PageableRequest pageableRequest, Long egresoId) {
+        Pageable pageable = pageableRequest.toPageable();
+        Usuario usuario = usuarioService.getUsuarioByUsername(pageableRequest.getUser());
+        return egresoRepository
+                .getEgresosRelatedById(pageable, egresoId, usuario.getUsuarioId());
+    }
+
     public Optional<Egreso> findFullRelatedById(Long egresoID, Long userID) {
         return egresoRepository.findFullRelatedById(egresoID, userID);
     }

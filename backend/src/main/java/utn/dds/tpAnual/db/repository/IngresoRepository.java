@@ -43,6 +43,24 @@ public interface IngresoRepository extends JpaRepository<Ingreso, Long> {
                     " JOIN u.usuariosEntidad ue " +
                     " JOIN ue.entidad entidadDeUsuario " +
                     " WHERE u.usuarioId = :usuarioId) ")
-    Page<Ingreso> getAllRelated(@Param("usuarioId")Long usuarioId,Pageable pageable);
+    Page<Ingreso> getAllRelated(@Param("usuarioId") Long usuarioId,Pageable pageable);
 
+    @Query(value = "SELECT i FROM Ingreso i " +
+            " JOIN FETCH i.entidadRealizadora entidad " +
+            " JOIN FETCH i.documentoComercial " +
+            " WHERE i.operacionId = :ingresoId AND " +
+            " entidad IN (SELECT entidadDeUsuario FROM Usuario u " +
+            " JOIN u.usuariosEntidad ue " +
+            " JOIN ue.entidad entidadDeUsuario " +
+            " WHERE u.usuarioId = :usuarioId) ",
+            countQuery = "SELECT COUNT(i) FROM Ingreso i " +
+                    " JOIN i.entidadRealizadora entidad " +
+                    " JOIN i.documentoComercial documento" +
+                    " WHERE i.operacionId = :ingresoId AND " +
+                    " entidad IN (SELECT entidadDeUsuario FROM Usuario u " +
+                    " JOIN u.usuariosEntidad ue " +
+                    " JOIN ue.entidad entidadDeUsuario " +
+                    " WHERE u.usuarioId = :usuarioId) ")
+    Page<Ingreso> getAllRelatedById(@Param("usuarioId") Long usuarioId, Pageable pageable,
+                                    @Param("ingresoId") Long ingresoId);
 }

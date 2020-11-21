@@ -68,6 +68,11 @@ public class EgresoResourceBean {
         return new PageableResponse().fromPage(egresos, new EgresoDTO());
     }
 
+    public PageableResponse<EgresoDTO, Egreso> getEgresosById(PageableRequest pageableRequest, Long egresoId) {
+        Page<Egreso> egresos = egresoService.findAllRelatedById(pageableRequest, egresoId);
+        return new PageableResponse().fromPage(egresos, new EgresoDTO());
+    }
+
     public EgresoDTO crearEgreso(EgresoDTO egresoDTO, String username){
         Usuario usuario = usuarioService.getUsuarioByUsername(username);
         Optional<Proveedor> proveedor = proveedorService.findById(egresoDTO.getProveedor().getIdProveedor());

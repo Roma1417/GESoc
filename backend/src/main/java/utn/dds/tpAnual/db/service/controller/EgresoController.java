@@ -29,6 +29,16 @@ public class EgresoController {
         return egresos;
     }
 
+    @RequestMapping("egreso/{egresoId}")
+    public PageableResponse<EgresoDTO, Egreso> getEgresosById(@RequestParam(name ="page", defaultValue = "1") Long page,
+                                                              @RequestParam(name ="itemsPerPage", defaultValue = "20")
+                                                                      Long itemsPerPage, @PathVariable("egresoId") Long egresoId){
+        String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        PageableRequest pageableRequest = new PageableRequest(username, page, itemsPerPage);
+        PageableResponse<EgresoDTO, Egreso> egresos = egresoResourceBean.getEgresosById(pageableRequest, egresoId);
+        return egresos;
+    }
+
     @PostMapping("egreso")
     public EgresoDTO crearEgreso(@RequestBody EgresoDTO egresoDTO){
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

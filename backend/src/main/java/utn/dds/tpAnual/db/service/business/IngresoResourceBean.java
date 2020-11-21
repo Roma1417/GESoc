@@ -62,4 +62,8 @@ public class IngresoResourceBean {
         return ingresoDTO;
     }
 
+    public PageableResponse<IngresoDTO, Ingreso> getIngresosById(PageableRequest pageableRequest, String username, Long ingresoId) {
+        Page<Ingreso> ingresos = ingresoService.findAllRelatedById(pageableRequest, username, ingresoId);
+        return new PageableResponse().fromPage(ingresos, new IngresoDTO());
+    }
 }

@@ -24,19 +24,21 @@
           {{ $t('vincular.solicitud') }}
         </v-card-title>
         <v-row class="px-4">
-          <TheResponsiveColumn v-if="egresoAVincular">
-            <TheTextInput
-              v-model="egreso.codigoOperacion"
-              :label="$t('egresos.codigo_operacion')"
+          <TheResponsiveColumn v-if="ingresoAVincular">
+            <TheAsyncAutocompleteInput
+              v-model="vinculacion.egreso"
+              item-text="idEgreso"
+              :get-items-function="$egresoService.getEgresosById"
+              :label="$t('egresos.titulo')"
               :rules="[$rl.required()]"
             />
           </TheResponsiveColumn>
-          <TheResponsiveColumn v-if="ingresoAVincular">
+          <TheResponsiveColumn v-if="egresoAVincular">
             <TheAsyncAutocompleteInput
-              v-model="egreso.entidadRealizadora"
-              item-text="nombre"
-              :get-items-function="$entidadService.getEntidades"
-              :label="$t('entidad.entidad')"
+              v-model="vinculacion.ingreso"
+              item-text="idIngreso"
+              :get-items-function="$ingresoService.getIngresosById"
+              :label="$t('ingresos.titulo')"
               :rules="[$rl.required()]"
             />
           </TheResponsiveColumn>
@@ -47,14 +49,12 @@
 </template>
 <script>
 import TheFormDialog from '~/components/General/Dialogs/TheFormDialog'
-import TheTextInput from '~/components/General/Inputs/TheTextInput'
 import TheAsyncAutocompleteInput from '~/components/General/Inputs/TheAsyncAutocompleteInput'
 import TheResponsiveColumn from '~/components/General/Columns/TheResponsiveColumn'
 import TheButtonWithToolTip from '~/components/General/Buttons/TheButtonWithTooltip'
 export default {
   components: {
     TheFormDialog,
-    TheTextInput,
     TheAsyncAutocompleteInput,
     TheResponsiveColumn,
     TheButtonWithToolTip
@@ -81,32 +81,42 @@ export default {
     return {
       loading: false,
       showForm: false,
-      vinculacion: { }
+      vinculacion: {}
     }
   },
   methods: {
     saveOrUpdate () {
-      if (!this.vinculacion.egresoId && !this.vinculacion.ingresoId) {
-        this.toastError(this.$t('vincular.error_sin_ids'))
-      } else {
-        this.realizarVinculacion()
-      }
-    },
-    realizarVinculacion () {
       this.loading = true
-      this.$egresoService.vincularEgresoIngreso(this.vinculacion)
+      const params = this.getIdsVinculacion()
+      this.$egresoService.vincularEgresoIngreso(params)
         .then((response) => {
           if (response) {
             this.closeForm()
             this.toastSuccess(this.$t('saved-ok'))
             this.$emit('created', response)
           }
-        })
-        .finally(() => { this.loading = false })
+        }).finally(() => { this.loading = false })
     },
     closeForm () {
-      this.vinculacion = { }
+      this.vinculacion = {}
       this.showForm = false
+    },
+    getIdsVinculacion () {
+      const ids = { }
+      console.log(this.egresoAVincular)
+      console.log(this.vinculacion)
+      if (this.egresoAVincular) {
+        ids.egresoId = this.egresoAVincular.idEgreso
+        ids.ingresoId = this.vinculacion.ingreso.idIngreso
+      } else {
+        ids.egresoId = this.vinculacion.egreso.idEgreso
+        ids.ingresoId = this.ingresoAVincular.idIngreso
+      }
+      console.log(ids)
+      ids.egresoId = parseInt(ids.egresoId)
+      ids.ingresoId = parseInt(ids.ingresoId)
+      console.log(ids)
+      return ids
     }
   }
 }

@@ -34,8 +34,7 @@
           <VinculacionForm
             :title-text="$t('vincular.egresoTitle')"
             :vincular-tooltip-text="$t('vincular.egreso')"
-            :egreso-a-vincular="egresoAVincular"
-            @click="vincularEgreso(item)"
+            :egreso-a-vincular="item"
           />
         </template>
       </TheFilterTable>
@@ -66,8 +65,7 @@ export default {
     totalList: 5,
     egresos: [],
     filter: {},
-    loading: false,
-    egresoAVincular: null
+    loading: false
   }),
   computed: {
     headers () {
@@ -123,15 +121,6 @@ export default {
     },
     stopLoading () {
       this.loading = false
-    },
-    createEgreso (item) {
-      return () => 1
-    },
-    updateEgreso (item) {
-      return () => 1
-    },
-    vincularEgreso (item) {
-      this.egresoAVincular = item
     }
   }
 }

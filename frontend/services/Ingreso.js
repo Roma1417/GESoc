@@ -12,6 +12,14 @@ export default class Ingreso {
     })
   }
 
+  getIngresosById (idIngreso, pageParam = { page: 1, itemsPerPage: 20 }) {
+    const params = {
+      ...pageParam,
+      idIngreso
+    }
+    return this.$axios.getOrFalse('/api/transaccion/ingreso/' + idIngreso, params)
+  }
+
   crearIngreso (ingreso) {
     return this.$axios.postOrFalse('/api/transaccion/ingreso', ingreso)
   }
