@@ -58,6 +58,15 @@
           </TheResponsiveColumn>
           <TheResponsiveColumn>
             <TheAsyncAutocompleteInput
+              v-model="presupuesto.egresoID"
+              item-text="idEgreso"
+              :get-items-function="$egresoService.getEgresoById"
+              :label="$t('presupuestos.egreso_id')"
+              :rules="[$rl.required()]"
+            />
+          </TheResponsiveColumn>
+          <TheResponsiveColumn>
+            <TheAsyncAutocompleteInput
               v-model="presupuesto.entidadRealizadora"
               item-text="nombre"
               :get-items-function="$entidadService.getEntidades"
