@@ -1,5 +1,6 @@
 <template>
   <TheFormDialog
+    ref="form"
     v-model="showForm"
     :header-message="titleText"
     :loading="loading"
@@ -10,6 +11,7 @@
   >
     <template #activator="{on}">
       <TheButtonWithToolTip
+        :disabled="disabledForEgreso"
         icon="mdi-link-variant"
         :title="vincularTooltipText"
         v-on="on"
@@ -81,6 +83,7 @@ export default {
     return {
       loading: false,
       showForm: false,
+      disabledForEgreso: false,
       vinculacion: {}
     }
   },
@@ -94,17 +97,17 @@ export default {
             this.closeForm()
             this.toastSuccess(this.$t('saved-ok'))
             this.$emit('created', response)
+            this.updateIdIngresoAsociado()
           }
         }).finally(() => { this.loading = false })
     },
     closeForm () {
       this.vinculacion = {}
       this.showForm = false
+      this.$refs.form.resetValidation()
     },
     getIdsVinculacion () {
       const ids = { }
-      console.log(this.egresoAVincular)
-      console.log(this.vinculacion)
       if (this.egresoAVincular) {
         ids.egresoId = this.egresoAVincular.idEgreso
         ids.ingresoId = this.vinculacion.ingreso.idIngreso
@@ -112,11 +115,13 @@ export default {
         ids.egresoId = this.vinculacion.egreso.idEgreso
         ids.ingresoId = this.ingresoAVincular.idIngreso
       }
-      console.log(ids)
-      ids.egresoId = parseInt(ids.egresoId)
-      ids.ingresoId = parseInt(ids.ingresoId)
-      console.log(ids)
       return ids
+    },
+    updateIdIngresoAsociado () {
+      if (this.egresoAVincular) {
+        this.egresoAVincular.idIngresoAsociado = this.vinculacion.idIngreso
+        this.disabledForEgreso = true
+      }
     }
   }
 }
