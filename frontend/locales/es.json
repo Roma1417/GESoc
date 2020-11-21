@@ -89,7 +89,7 @@
     "id": "ID",
     "entidad_realizadora": "Entidad",
     "detalles_precio":"Detalle de precios",
-    "detalles_operacion":"Detalle de Operación",
+    "detalles_operacion_ID":"ID Detalle Operación",
     "total": "Total" ,
     "titulo": "Presupuesto",
     "documento_comercial": "Documento Comercial",
@@ -97,7 +97,8 @@
     "fecha_creacion": "Fecha de creación",
     "egreso_id": "Egreso Correspondiente",
     "crear": "Crear presupuesto",
-    "error_sin_detalles": "El presupuesto no posee ningun detalle asociado."
+    "error_sin_detalles": "El presupuesto no posee ningun detalle asociado.",
+    "error_cargar_egreso": "No ha seleccionado ningún egreso."
   },
    "entidad": {
     "entidad": "Entidad"

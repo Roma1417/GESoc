@@ -81,6 +81,10 @@ export default {
     paged: {
       type: Boolean,
       default: false
+    },
+    firstPageLocked: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -106,6 +110,11 @@ export default {
       this.$refs.form.resetValidation()
     },
     onPageChange (page) {
+      const firsPage = 1
+      if (this.firstPageLocked) {
+        this.currentPage = firsPage
+        page = firsPage
+      }
       this.$emit('onPageChanged', page)
     }
   }

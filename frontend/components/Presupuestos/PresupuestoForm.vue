@@ -6,6 +6,7 @@
     v-bind="$attrs"
     paged
     :pages-length="2"
+    :first-page-locked="!presupuesto.egreso"
     @onConfirm="saveOrUpdate"
     @onCancel="closeForm"
     @onPageChanged="changePage"
@@ -40,11 +41,12 @@
           </TheResponsiveColumn>
           <TheResponsiveColumn>
             <TheAsyncAutocompleteInput
-              v-model="presupuesto.egresoID"
+              v-model="presupuesto.egreso"
               item-text="idEgreso"
               :get-items-function="$egresoService.getEgresosById"
               :label="$t('presupuestos.egreso_id')"
               :rules="[$rl.required()]"
+              @click="cargarDetallesPrecio"
             />
           </TheResponsiveColumn>
           <TheResponsiveColumn>
@@ -64,7 +66,7 @@
       />
       <PresupuestoDetallesForm
         v-show="page === 2"
-        :detalles="presupuesto.detalles"
+        :detalles-precio="presupuesto.detallesPrecio"
       />
     </template>
   </TheFormDialog>
@@ -105,7 +107,7 @@ export default {
       page: 1,
       presupuesto: {
         documentoComercial: {},
-        detalles: []
+        detallesPrecio: []
       }
     }
   },
@@ -123,7 +125,7 @@ export default {
   },
   methods: {
     saveOrUpdate () {
-      if (this.presupuesto.detalles.length === 0) {
+      if (!this.presupuesto.detallesPrecio.length) {
         this.toastError(this.$t('presupuestos.error_sin_detalles'))
       } else {
         this.savePresupuesto()
@@ -142,14 +144,26 @@ export default {
         .finally(() => { this.loading = false })
     },
     changePage (page) {
-      this.page = page
+      this.presupuesto.egreso ? this.page = page
+        : this.toastError(this.$t('presupuestos.error_cargar_egreso'))
     },
     closeForm () {
       this.presupuesto = {
         documentoComercial: {},
-        detalles: []
+        detallesPrecio: []
       }
       this.showForm = false
+    },
+    cargarDetallesPrecio () {
+      const egreso = this.presupuesto.egreso
+      if (egreso) {
+        this.presupuesto.egresoID = egreso.idEgreso
+        egreso.detalles.foreach((detalleOperacion) => {
+          this.presupuesto.detallesPrecio.push({
+            detalleOperacion
+          })
+        })
+      }
     }
   }
 }

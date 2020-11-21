@@ -22,11 +22,7 @@
         :headers="headers"
         :total="totalList"
         @change="getPresupuestos()"
-      >
-        <template #[`item.actions`]="{ }">
-          VER DETALLE
-        </template>
-      </TheFilterTable>
+      />
     </template>
   </TheLayoutWithHeader>
 </template>
@@ -83,11 +79,6 @@ export default {
           align: 'end',
           sortable: false,
           value: 'total'
-        },
-        {
-          text: this.$t('actions'),
-          value: 'actions',
-          sortable: false
         }
       ]
     }

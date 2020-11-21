@@ -5,7 +5,7 @@
     </v-card-title>
     <TheFilterTable
       class="px-4"
-      :items="detalles"
+      :items="detallesPrecio"
       :headers="headers"
       :total="totalList"
     >
@@ -29,7 +29,7 @@ export default {
   },
   mixins: [numericMixin],
   props: {
-    detalles: {
+    detallesPrecio: {
       type: Array,
       required: true
     }
@@ -37,49 +37,35 @@ export default {
   data () {
     return {
       detailAux: {},
-      totalList: 5
+      totalList: 5,
+      detallesEditables: []
     }
   },
   computed: {
     headers () {
       return [
         {
-          text: this.$t('presupuestos.detalles_operacion'),
+          text: this.$t('presupuestos.detalles_operacion_ID'),
           align: 'center',
           sortable: false,
-          value: 'detalleOperacion.detalleOperacionId'
+          value: 'detalleOperacion.detalleOperacionId',
+          width: '25%'
         },
         {
           text: this.$t('items.item'),
           align: 'start',
           sortable: false,
-          value: 'item.descripcion'
+          value: 'detalleOperacion.item.descripcion',
+          width: '30%'
         },
         {
           text: this.$t('detalles.precio'),
-          align: 'right',
+          align: 'start',
           sortable: false,
-          width: '18%',
+          width: '30%',
           value: 'precio'
         }
       ]
-    }
-  },
-  methods: {
-    deleteDetail (detail) {
-      const index = this.detalles.indexOf(detail)
-      this.detalles.splice(index, 1)
-    },
-    addNewDetail () {
-      if (this.detailAux.item) {
-        const newDetail = {
-          item: this.detailAux.item,
-          cantidad: null,
-          precio: null
-        }
-        this.detailAux.item = null
-        this.detalles.push(newDetail)
-      }
     }
   }
 }
