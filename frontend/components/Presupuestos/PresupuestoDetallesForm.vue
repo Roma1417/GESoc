@@ -48,7 +48,7 @@
       <template #[`item.actions`]="{ item }">
         <TheButtonWithTooltip
           icon="mdi-trash-can"
-          title="Eliminar detalle"
+          title="Eliminar item"
           @click="deleteDetail(item)"
         />
       </template>

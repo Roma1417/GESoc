@@ -95,7 +95,8 @@
     "codigo_operacion": "Código de operación",
     "fecha_creacion": "Fecha de creación",
     "egreso_id": "Egreso Correspondiente",
-    "crear": "Crear presupuesto"
+    "crear": "Crear presupuesto",
+    "error_sin_detalles": "El presupuesto no posee ningun detalle asociado."
   },
    "entidad": {
     "entidad": "Entidad"
