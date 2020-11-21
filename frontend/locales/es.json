@@ -89,6 +89,7 @@
     "id": "ID",
     "entidad_realizadora": "Entidad",
     "detalles_precio":"Detalle de precios",
+    "detalles_operacion":"Detalle de Operación",
     "total": "Total" ,
     "titulo": "Presupuesto",
     "documento_comercial": "Documento Comercial",
