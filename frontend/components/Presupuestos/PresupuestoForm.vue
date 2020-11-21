@@ -158,7 +158,7 @@ export default {
       const egreso = this.presupuesto.egreso
       if (egreso) {
         this.presupuesto.egresoID = egreso.idEgreso
-        egreso.detalles.foreach((detalleOperacion) => {
+        egreso.detalles.forEach((detalleOperacion) => {
           this.presupuesto.detallesPrecio.push({
             detalleOperacion
           })
