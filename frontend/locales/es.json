@@ -150,7 +150,9 @@
      "ingreso": "Vincular ingreso con egresos",
      "ingresoTitle": "Vinculación de ingreso",
      "egresoTitle": "Vinculación de egreso",
-     "solicitud": "Ingrese el ID correspondiente para realizar la vinculación."
+     "solicitud": "Ingrese el ID correspondiente para realizar la vinculación.",
+     "info_egreso_id": "Recuerde vincular el egreso con un ingreso de la misma entidad.",
+     "info_ingreso_id": "Recuerde vincular el ingreso con un egreso de la misma entidad."
    }
 }
   

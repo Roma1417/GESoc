@@ -44,6 +44,16 @@
               :rules="[$rl.required()]"
             />
           </TheResponsiveColumn>
+          <v-col>
+            <v-alert
+              color="primary"
+              outlined
+              dense
+              type="info"
+            >
+              {{ mensajeIngresoDeID() }}
+            </v-alert>
+          </v-col>
         </v-row>
       </v-card>
     </template>
@@ -88,6 +98,10 @@ export default {
     }
   },
   methods: {
+    mensajeIngresoDeID () {
+      return this.egresoAVincular ? this.$t('vincular.info_egreso_id')
+        : this.$t('vincular.info_ingreso_id')
+    },
     saveOrUpdate () {
       this.loading = true
       const params = this.getIdsVinculacion()
