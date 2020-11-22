@@ -46,7 +46,7 @@
               :get-items-function="$egresoService.getEgresosById"
               :label="$t('presupuestos.egreso_id')"
               :rules="[$rl.required()]"
-              @click="cargarDetallesPrecio"
+              @change="cargarDetallesPrecio"
             />
           </TheResponsiveColumn>
           <TheResponsiveColumn>
@@ -155,14 +155,16 @@ export default {
       this.showForm = false
     },
     cargarDetallesPrecio () {
+    // resetear
       const egreso = this.presupuesto.egreso
       if (egreso) {
+        this.presupuesto.detallesPrecio = []
         this.presupuesto.egresoID = egreso.idEgreso
-        egreso.detalles.forEach((detalleOperacion) => {
-          this.presupuesto.detallesPrecio.push({
-            detalleOperacion
-          })
-        })
+        this.presupuesto.detallesPrecio.push(...egreso.detalles
+          .map(detalleOperacion => ({ detalleOperacion })))
+        console.log(this.presupuesto.detallesPrecio)
+        console.log(egreso.detalles
+          .map(detalleOperacion => ({ detalleOperacion })))
       }
     }
   }

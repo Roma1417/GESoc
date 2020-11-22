@@ -7,9 +7,9 @@
       class="px-4"
       :items="detallesPrecio"
       :headers="headers"
-      :total="totalList"
+      :total="detallesPrecio.length"
     >
-      <template #[`item.precio`]="{ item }">
+      <template #[`item.precio`]="{ item }" class="ml-100">
         <TheNumericInput
           v-model="item.precio"
           :rules="[$rl.positive()]"
@@ -36,9 +36,6 @@ export default {
   },
   data () {
     return {
-      detailAux: {},
-      totalList: 5,
-      detallesEditables: []
     }
   },
   computed: {
@@ -49,20 +46,20 @@ export default {
           align: 'center',
           sortable: false,
           value: 'detalleOperacion.detalleOperacionId',
-          width: '25%'
+          width: '20%'
         },
         {
           text: this.$t('items.item'),
           align: 'start',
           sortable: false,
           value: 'detalleOperacion.item.descripcion',
-          width: '30%'
+          width: '20%'
         },
         {
           text: this.$t('detalles.precio'),
-          align: 'start',
+          align: 'center',
           sortable: false,
-          width: '30%',
+          width: '15%',
           value: 'precio'
         }
       ]
