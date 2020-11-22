@@ -18,6 +18,16 @@ export default class Ingreso {
       idIngreso
     }
     return this.$axios.getOrFalse('/api/transaccion/ingreso/' + idIngreso, params)
+      .then((result) => {
+        if (result) {
+          return {
+            ...result,
+            data: result.data
+              .map(ingreso => ({ ...ingreso, idIngreso: `${ingreso.idIngreso}` }))
+          }
+        }
+        return result
+      })
   }
 
   crearIngreso (ingreso) {
