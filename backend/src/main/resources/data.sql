@@ -238,14 +238,14 @@ VALUES ('Resultado Validación', 'La validación no fue exitosa', 5);
         presupuesto
         (id, codigo_operacion, documento_comercial_id, entidad_realizadora_id, fecha_creacion, egreso_id)
     values
-        (7, 123, 1, 1, '20200812', 1);
+        (7, 123, 1, 1, '20200812', 80);
 
     insert
     into
         presupuesto
         (id, codigo_operacion, documento_comercial_id, entidad_realizadora_id, fecha_creacion, egreso_id)
     values
-        (4, 123, 1, 2, '20201020', 1);
+        (4, 123, 1, 2, '20201020', 80);
 
     insert
     into
