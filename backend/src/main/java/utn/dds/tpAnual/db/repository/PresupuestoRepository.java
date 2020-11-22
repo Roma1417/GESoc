@@ -19,6 +19,7 @@ public interface PresupuestoRepository extends JpaRepository<Presupuesto, Long> 
     Presupuesto getPresupuestoById(Long operacionId);
     
     @Query(value = "SELECT p FROM Presupuesto p " +
+            " JOIN FETCH p.egreso " +
             " JOIN FETCH p.documentoComercial d " +
             " JOIN FETCH p.entidadRealizadora entidad " +
             " JOIN FETCH p.detallesPrecio det " +
@@ -33,6 +34,7 @@ public interface PresupuestoRepository extends JpaRepository<Presupuesto, Long> 
             "   JOIN ue.usuario usuario " +
             "   WHERE usuario.usuario = :username ) ",
             countQuery  = "SELECT COUNT(p) FROM Presupuesto p " +
+            " JOIN p.egreso " +
             " JOIN p.documentoComercial d " +
             " JOIN p.entidadRealizadora entidad " +
             " JOIN p.detallesPrecio det " +

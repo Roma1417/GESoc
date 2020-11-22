@@ -27,8 +27,7 @@ public class Egreso extends OperacionEfectuada {
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private CriterioCompra criterioCompra;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "EGRESO_ID")
+	@OneToMany(mappedBy = "egreso", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Presupuesto> presupuestos;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

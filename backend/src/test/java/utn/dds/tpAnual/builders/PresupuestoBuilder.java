@@ -16,6 +16,7 @@ public class PresupuestoBuilder {
 	private DocumentoComercial documentoComercial;
 	private Entidad entidadRealizadora;
 	private int codigoOperacion;
+	private Egreso egreso;
 	
 	public PresupuestoBuilder withDetallePrecio(DetallePrecio detallePrecio){
         this.detallesPrecio.add(detallePrecio);
@@ -42,8 +43,14 @@ public class PresupuestoBuilder {
         return this;
     }
 
+    public PresupuestoBuilder withEgreso(Egreso egreso){
+	    this.egreso = egreso;
+	    return this;
+    }
+
     public Presupuesto build(){
-        Presupuesto presupuesto = new Presupuesto(documentoComercial, entidadRealizadora, codigoOperacion, detallesPrecio);
+        Presupuesto presupuesto = new Presupuesto(documentoComercial, entidadRealizadora,
+                codigoOperacion, detallesPrecio, egreso);
         presupuesto.setFecha(LocalDate.now());
         return presupuesto;
     }
@@ -85,6 +92,8 @@ public class PresupuestoBuilder {
 
         detallesPrecio.add(unDetallePrecio);
         detallesPrecio.add(otroDetallePrecio);
+
+        egreso = new EgresoBuilder().buildEgresoSimple();
 
         return build();
     }

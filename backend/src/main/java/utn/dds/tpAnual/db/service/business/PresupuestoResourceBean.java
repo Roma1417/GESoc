@@ -65,7 +65,7 @@ public class PresupuestoResourceBean {
                 , entidadRealizadora, pais, moneda, documentoComercial);
 
         Presupuesto presupuesto = new Presupuesto(documentoComercial, entidadRealizadora.get()
-                , presupuestoDTO.getCodigoOperacion(), detallesPrecio);
+                , presupuestoDTO.getCodigoOperacion(), detallesPrecio, egreso.get());
         presupuesto.setFecha(LocalDate.now());
         this.presupuestoService.save(presupuesto);
         PresupuestoDTO presupuestoDTOResultado = new PresupuestoDTO().from(presupuesto);
