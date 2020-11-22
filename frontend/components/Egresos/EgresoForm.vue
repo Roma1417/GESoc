@@ -76,6 +76,7 @@
             <TheDateInput
               v-model="egreso.fechaOperacion"
               :label="this.$t('egresos.fecha_operacion')"
+              :clearable="false"
               :rules="[$rl.required()]"
             />
           </TheResponsiveColumn>

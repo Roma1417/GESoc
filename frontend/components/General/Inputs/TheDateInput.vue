@@ -13,7 +13,7 @@
         :placeholder="placeholder"
         prepend-icon="mdi-calendar"
         readonly
-        clearable
+        :clearable="clearable"
         @input="change"
         @click:clear="clear"
         v-on="on"
@@ -53,6 +53,10 @@ export default {
     value: {
       type: String,
       default: () => ''
+    },
+    clearable: {
+      type: Boolean,
+      default: true
     }
   },
   data: () => ({
