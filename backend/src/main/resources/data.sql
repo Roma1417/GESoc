@@ -131,14 +131,14 @@ VALUES('marian', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a
         cantidad_presupuestos_minimos,  es_validacion_correcta, proveedor_id, resultado_validacion,
 		medio_pago_id)
     values
-        (1, 123, 1, 1, '20200812', '20200812', 2, false, 1, null, 1);
+        (80, 123, 1, 1, '20200812', '20200812', 2, false, 1, null, 1);
 --
     		    insert
     into
         detalle_operacion
         (cantidad, item_id, precio, operacion_efectuada_id)
     values
-        (2, 1, 30, 1);
+        (2, 1, 30, 80);
 
 
 -----------------------
@@ -191,24 +191,6 @@ VALUES ('Resultado Validación', 'La validación no fue exitosa', 5);
         (codigo_operacion, documento_comercial_id, entidad_realizadora_id, fecha_creacion, descripcion, total,id)
     values
         (1, 2, 2, '20200812', 'Prueba Ingreso', 10101010,800);
-    insert
-    into
-        usuario_entidad
-        (entidad_id, usuario_id)
-    values
-         (2,1);
-    insert
-    into
-        usuario_entidad
-        (entidad_id, usuario_id)
-    values
-         (2,2);
-    insert
-    into
-        usuario_entidad
-        (entidad_id, usuario_id)
-    values
-         (2,3);
     insert
     into
         usuario_entidad

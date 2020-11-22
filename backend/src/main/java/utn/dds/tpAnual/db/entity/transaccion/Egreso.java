@@ -43,6 +43,9 @@ public class Egreso extends OperacionEfectuada {
 	@Column(name = "ES_VALIDACION_CORRECTA")
 	private Boolean esValidacionCorrecta;
 
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Ingreso ingreso;
+
 	public Egreso(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,
 			List<DetalleOperacion> detallesOperacion, LocalDate fechaOperacion, MedioPago medioPago,
 			int cantidadPresupuestosMinimos, CriterioCompra criterioCompra, List<Presupuesto> presupuestos,
@@ -112,5 +115,13 @@ public class Egreso extends OperacionEfectuada {
 
 	public String getResultadoValidacion() {
 		return this.resultadoValidacion;
+	}
+
+	public Ingreso getIngreso() {
+		return ingreso;
+	}
+
+	public void setIngreso(Ingreso ingreso) {
+		this.ingreso = ingreso;
 	}
 }

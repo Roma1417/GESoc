@@ -16,8 +16,7 @@ public class Ingreso extends Operacion{
 	@Column(name = "DESCRIPCION")
 	private String descripcion;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "INGRESO_ID")
+	@OneToMany(mappedBy="ingreso", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Egreso> egresosAsociados;
 
 	public Ingreso(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,
@@ -79,5 +78,6 @@ public class Ingreso extends Operacion{
 			egresosAsociados = new ArrayList<>();
 		}
 		egresosAsociados.add(egreso);
+		egreso.setIngreso(this);
 	}
 }

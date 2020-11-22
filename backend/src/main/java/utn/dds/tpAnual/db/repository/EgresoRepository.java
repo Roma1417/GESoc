@@ -83,6 +83,7 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long> {
             " JOIN FETCH egreso.proveedor proveedor " +
             " JOIN FETCH egreso.medioPago mediPago " +
             " JOIN FETCH egreso.documentoComercial documentoComercial " +
+            " LEFT JOIN FETCH egreso.ingreso " +
             " WHERE :notFilterCategorias = 1 OR " +
             "   items IN ( SELECT i FROM Item i" +
             "   INNER JOIN i.categorias c" +
@@ -98,6 +99,7 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long> {
             " JOIN egreso.proveedor proveedor " +
             " JOIN egreso.medioPago mediPago " +
             " JOIN egreso.documentoComercial documentoComercial " +
+            " LEFT JOIN egreso.ingreso " +
                     " WHERE :notFilterCategorias = 1 OR " +
                     "   items IN ( SELECT i FROM Item i" +
                     "   INNER JOIN i.categorias c" +
@@ -117,6 +119,7 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long> {
             " JOIN FETCH egreso.proveedor proveedor " +
             " JOIN FETCH egreso.medioPago mediPago " +
             " JOIN FETCH egreso.documentoComercial documentoComercial " +
+            " LEFT JOIN FETCH egreso.ingreso " +
             " WHERE egreso.operacionId = :egresoId AND " +
             "   entidad IN ( SELECT entidadesUsuario from Entidad entidadesUsuario " +
             "   JOIN entidadesUsuario.usuariosEntidad ue " +
@@ -129,6 +132,7 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long> {
                     " JOIN egreso.proveedor proveedor " +
                     " JOIN egreso.medioPago mediPago " +
                     " JOIN egreso.documentoComercial documentoComercial " +
+                    " LEFT JOIN egreso.ingreso " +
                     " WHERE egreso.operacionId = :egresoId " +
                     " AND entidad IN ( SELECT entidadesUsuario from Entidad entidadesUsuario " +
                     "   JOIN entidadesUsuario.usuariosEntidad ue " +

@@ -39,7 +39,6 @@ public class EgresoController {
         return egresos;
     }
 
-
     @PostMapping("egreso")
     public EgresoDTO crearEgreso(@RequestBody EgresoDTO egresoDTO){
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

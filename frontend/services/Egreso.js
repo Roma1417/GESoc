@@ -19,9 +19,23 @@ export default class User {
       ...pageParam
     }
     return this.$axios.getOrFalse('/api/transaccion/egreso/' + egresoId, { params })
+      .then((result) => {
+        if (result) {
+          return {
+            ...result,
+            data: result.data
+              .map(egreso => ({ ...egreso, idEgreso: `${egreso.idEgreso}` }))
+          }
+        }
+        return result
+      })
   }
 
   crearEgreso (egreso) {
     return this.$axios.postOrFalse('/api/transaccion/egreso', egreso)
+  }
+
+  vincularEgresoIngreso (params) {
+    return this.$axios.postOrFalse('/api/transaccion/vincular', params)
   }
 }
