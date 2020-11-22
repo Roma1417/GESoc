@@ -133,6 +133,7 @@ export default {
     },
     savePresupuesto () {
       this.loading = true
+      this.filtrarDetallesSinPrecios()
       this.$presupuestoService.crearPresupuesto(this.presupuesto)
         .then((response) => {
           if (response) {
@@ -153,19 +154,20 @@ export default {
         detallesPrecio: []
       }
       this.showForm = false
+      this.page = 1
     },
     cargarDetallesPrecio () {
-    // resetear
       const egreso = this.presupuesto.egreso
       if (egreso) {
         this.presupuesto.detallesPrecio = []
         this.presupuesto.egresoID = egreso.idEgreso
         this.presupuesto.detallesPrecio.push(...egreso.detalles
           .map(detalleOperacion => ({ detalleOperacion })))
-        console.log(this.presupuesto.detallesPrecio)
-        console.log(egreso.detalles
-          .map(detalleOperacion => ({ detalleOperacion })))
       }
+    },
+    filtrarDetallesSinPrecios () {
+      this.presupuesto.detallesPrecio = this.presupuesto.detallesPrecio
+        .filter(detalle => detalle.precio)
     }
   }
 }

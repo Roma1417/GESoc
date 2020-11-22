@@ -1,8 +1,19 @@
 <template>
   <v-card>
-    <v-card-title>
-      {{ $t('presupuestos.detalles_precio') }}
-    </v-card-title>
+    <v-row>
+      <v-card-title class="pl-8">
+        {{ $t('presupuestos.detalles_precio') }}
+      </v-card-title>
+      <v-alert
+        class="pt-3 mt-4"
+        color="primary"
+        outlined
+        dense
+        type="info"
+      >
+        {{ $t('presupuestos.info_cargar_precios') }}
+      </v-alert>
+    </v-row>
     <TheFilterTable
       class="px-4"
       :items="detallesPrecio"
@@ -12,7 +23,6 @@
       <template #[`item.precio`]="{ item }" class="ml-100">
         <TheNumericInput
           v-model="item.precio"
-          :rules="[$rl.positive()]"
         />
       </template>
     </TheFilterTable>
@@ -32,10 +42,6 @@ export default {
     detallesPrecio: {
       type: Array,
       required: true
-    }
-  },
-  data () {
-    return {
     }
   },
   computed: {

@@ -98,7 +98,8 @@
     "egreso_id": "Egreso asociado",
     "crear": "Crear presupuesto",
     "error_sin_detalles": "El presupuesto no posee ningun detalle asociado.",
-    "error_cargar_egreso": "No ha seleccionado ningún egreso."
+    "error_cargar_egreso": "No ha seleccionado ningún egreso.",
+    "info_cargar_precios": "Complete los precios que desee."
   },
    "entidad": {
     "entidad": "Entidad"
