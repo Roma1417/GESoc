@@ -1,8 +1,16 @@
+import { get } from 'lodash'
 export default function ({ $axios, store, redirect, app }) {
+  const showErrorIfPossible = (error) => {
+    const msg = get(error, 'response.data.message')
+    if (msg) {
+      app.toastBase.toastError(msg)
+    }
+  }
   $axios.onRequest((request) => {
     request.headers.common.intercepted = 'true'
     return request
   })
+
   $axios.onResponse((response) => {
     const code = parseInt(response.status)
     if (code === 403 || code === 401) {
@@ -15,8 +23,10 @@ export default function ({ $axios, store, redirect, app }) {
     if (code === 403 || code === 401) {
       return redirect('/logout')
     }
+    showErrorIfPossible(error)
     return error
   })
+
   $axios.getOrFalse = (url, options) => {
     return $axios.get(url, options).then((response) => {
       if (response.status === 200) {

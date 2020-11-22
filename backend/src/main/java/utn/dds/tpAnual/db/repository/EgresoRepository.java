@@ -83,6 +83,7 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long> {
             " JOIN FETCH egreso.proveedor proveedor " +
             " JOIN FETCH egreso.medioPago mediPago " +
             " JOIN FETCH egreso.documentoComercial documentoComercial " +
+            " LEFT JOIN FETCH egreso.ingreso " +
             " WHERE :notFilterCategorias = 1 OR " +
             "   items IN ( SELECT i FROM Item i" +
             "   INNER JOIN i.categorias c" +
@@ -98,6 +99,7 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long> {
             " JOIN egreso.proveedor proveedor " +
             " JOIN egreso.medioPago mediPago " +
             " JOIN egreso.documentoComercial documentoComercial " +
+            " LEFT JOIN egreso.ingreso " +
                     " WHERE :notFilterCategorias = 1 OR " +
                     "   items IN ( SELECT i FROM Item i" +
                     "   INNER JOIN i.categorias c" +
@@ -109,4 +111,33 @@ public interface EgresoRepository extends JpaRepository<Egreso, Long> {
     Page<Egreso> getEgresosRelatedByCategoria(Pageable pageable, @Param("categoriasIds")List<Long> categoriaIds,
                                               @Param("notFilterCategorias") int notFilterCategorias,
                                               @Param("userId") Long userId);
+
+    @Query(value = "SELECT egreso FROM Egreso egreso " +
+            " JOIN FETCH egreso.entidadRealizadora entidad " +
+            " JOIN FETCH egreso.detallesOperacion detalles " +
+            " JOIN FETCH detalles.item items " +
+            " JOIN FETCH egreso.proveedor proveedor " +
+            " JOIN FETCH egreso.medioPago mediPago " +
+            " JOIN FETCH egreso.documentoComercial documentoComercial " +
+            " LEFT JOIN FETCH egreso.ingreso " +
+            " WHERE egreso.operacionId = :egresoId AND " +
+            "   entidad IN ( SELECT entidadesUsuario from Entidad entidadesUsuario " +
+            "   JOIN entidadesUsuario.usuariosEntidad ue " +
+            "   JOIN ue.usuario usuario " +
+            "   WHERE usuario.usuarioId = :userId ) ",
+            countQuery  = "SELECT COUNT(DISTINCT  egreso) FROM Egreso egreso " +
+                    " JOIN egreso.entidadRealizadora entidad " +
+                    " JOIN egreso.detallesOperacion detalles " +
+                    " JOIN detalles.item items " +
+                    " JOIN egreso.proveedor proveedor " +
+                    " JOIN egreso.medioPago mediPago " +
+                    " JOIN egreso.documentoComercial documentoComercial " +
+                    " LEFT JOIN egreso.ingreso " +
+                    " WHERE egreso.operacionId = :egresoId " +
+                    " AND entidad IN ( SELECT entidadesUsuario from Entidad entidadesUsuario " +
+                    "   JOIN entidadesUsuario.usuariosEntidad ue " +
+                    "   JOIN ue.usuario usuario " +
+                    "   WHERE usuario.usuarioId = :userId ) ")
+    Page<Egreso> getEgresosRelatedById(Pageable pageable, @Param("egresoId") Long egresoId,
+                                       @Param("userId") Long userId);
 }

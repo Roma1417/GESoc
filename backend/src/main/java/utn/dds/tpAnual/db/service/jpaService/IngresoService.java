@@ -64,4 +64,12 @@ import java.util.Optional;
         Usuario usuario = usuarioService.getUsuarioByUsername(username);
         return ingresoRepository.getAllRelated(usuario.getUsuarioId(), pageable);
     }
+
+    public Page<Ingreso> findAllRelatedById(PageableRequest pageableRequest, String username, Long ingresoId) {
+        Pageable pageable = pageableRequest.toPageable();
+        Usuario usuario = usuarioService.getUsuarioByUsername(username);
+        return ingresoRepository.getAllRelatedById(usuario.getUsuarioId(), pageable, ingresoId);
+
+    }
+
 }

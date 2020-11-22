@@ -22,6 +22,7 @@ public class EgresoDTO extends StandardDTO<Egreso> {
     private Integer cantidadPresupuestosMinimos;
     private LocalDate fechaOperacion;
     private LocalDate fechaCreacion;
+    private Long idIngresoAsociado;
     private Float total;
 
     @Override
@@ -33,6 +34,9 @@ public class EgresoDTO extends StandardDTO<Egreso> {
         }
         if (object.getProveedor() != null){
             egresoDTO.setProveedor(new ProveedorDTO().from(object.getProveedor()));
+        }
+        if(object.getIngreso() != null) {
+            egresoDTO.setIdIngresoAsociado(object.getIngreso().getOperacionId());
         }
         egresoDTO.setDetalles(object.getDetallesOperacion()
                 .stream()
@@ -150,5 +154,11 @@ public class EgresoDTO extends StandardDTO<Egreso> {
         this.fechaCreacion = fechaCreacion;
     }
 
+    public Long getIdIngresoAsociado() {
+        return idIngresoAsociado;
+    }
 
+    public void setIdIngresoAsociado(Long idIngresoAsociado) {
+        this.idIngresoAsociado = idIngresoAsociado;
+    }
 }

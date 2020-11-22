@@ -6,7 +6,7 @@
     <v-row class="px-5">
       <TheResponsiveColumn>
         <TheAsyncAutocompleteInput
-          v-model="detailAux.item"
+          v-model="detailAux"
           item-text="descripcion"
           :ignore-items="detalles.map(detalle => detalle.item)"
           :match-ignore-function="(i1, i2) => i1.id === i2.id"
@@ -127,13 +127,13 @@ export default {
       this.detalles.splice(index, 1)
     },
     addNewDetail () {
-      if (this.detailAux.item) {
+      if (this.detailAux) {
         const newDetail = {
-          item: this.detailAux.item,
+          item: this.detailAux,
           cantidad: null,
           precio: null
         }
-        this.detailAux.item = null
+        this.detailAux = null
         this.detalles.push(newDetail)
       }
     }

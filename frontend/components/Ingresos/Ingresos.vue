@@ -23,11 +23,12 @@
         :total="totalList"
         @change="getIngresos()"
       >
-        <template #[`item.actions`]="{ }">
-          VINCULAR
-          <v-icon>
-            mdi-link-variant
-          </v-icon>
+        <template #[`item.actions`]="{ item }">
+          <VinculacionForm
+            :title-text="$t('vincular.ingresoTitle')"
+            :vincular-tooltip-text="$t('vincular.ingreso')"
+            :ingreso-a-vincular="item"
+          />
         </template>
       </TheFilterTable>
     </template>

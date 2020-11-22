@@ -7,14 +7,14 @@
       <TheResponsiveColumn>
         <TheTextInput
           v-model="documentoComercial.numero"
-          :label="this.$t('documento_comercial.numero')"
+          :label="$t('documento_comercial.numero')"
           :rules="[$rl.required(),$rl.positive()]"
         />
       </TheResponsiveColumn>
       <TheResponsiveColumn>
         <TheTextInput
           v-model="documentoComercial.tipoDocumento"
-          :label="this.$t('documento_comercial.tipo')"
+          :label="$t('documento_comercial.tipo')"
           :rules="[$rl.required(),$rl.positive()]"
         />
       </TheResponsiveColumn>

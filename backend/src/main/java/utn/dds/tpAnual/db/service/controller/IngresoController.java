@@ -27,6 +27,16 @@ public class IngresoController {
         return ingresos;
     }
 
+    @RequestMapping("ingreso/{ingresoId}")
+    public PageableResponse<IngresoDTO, Ingreso> getIngresosById(@RequestParam(name ="page", defaultValue = "1") Long page,
+                                    @RequestParam(name ="itemsPerPage", defaultValue = "20") Long itemsPerPage,
+                                    @PathVariable("ingresoId") Long ingresoId){
+        String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        PageableRequest pageableRequest = new PageableRequest(username, page, itemsPerPage);
+        PageableResponse<IngresoDTO, Ingreso> ingresos = ingresoResourceBean.getIngresosById(pageableRequest, username, ingresoId);
+        return ingresos;
+    }
+
     @PostMapping("ingreso")
     public IngresoDTO crearIngreso(@RequestBody IngresoDTO ingresoDTO){
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

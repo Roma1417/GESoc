@@ -37,7 +37,7 @@ export default {
   },
   data () {
     return {
-      inputUsuario: '',
+      inputUsuario: null,
       loading: false,
       items: []
     }
