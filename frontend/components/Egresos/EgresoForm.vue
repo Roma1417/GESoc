@@ -34,7 +34,7 @@
           <TheResponsiveColumn>
             <TheTextInput
               v-model="egreso.codigoOperacion"
-              :label="this.$t('egresos.codigo_operacion')"
+              :label="$t('egresos.codigo_operacion')"
               :rules="[$rl.required()]"
             />
           </TheResponsiveColumn>
@@ -68,14 +68,14 @@
           <TheResponsiveColumn>
             <TheTextInput
               v-model="egreso.cantidadPresupuestosMinimos"
-              :label="this.$t('egresos.presupuestos_minimos')"
+              :label="$t('egresos.presupuestos_minimos')"
               :rules="[$rl.required(),$rl.positive()]"
             />
           </TheResponsiveColumn>
           <TheResponsiveColumn>
             <TheDateInput
               v-model="egreso.fechaOperacion"
-              :label="this.$t('egresos.fecha_operacion')"
+              :label="$t('egresos.fecha_operacion')"
               :clearable="false"
               :rules="[$rl.required()]"
             />

@@ -11,7 +11,6 @@
   >
     <template #activator="{on}">
       <TheButtonWithToolTip
-        :disabled="disabledForEgreso"
         icon="mdi-link-variant"
         :title="vincularTooltipText"
         v-on="on"
@@ -93,7 +92,6 @@ export default {
     return {
       loading: false,
       showForm: false,
-      disabledForEgreso: false,
       vinculacion: {}
     }
   },
@@ -134,7 +132,6 @@ export default {
     updateIdIngresoAsociado () {
       if (this.egresoAVincular) {
         this.egresoAVincular.idIngresoAsociado = this.vinculacion.idIngreso
-        this.disabledForEgreso = true
       }
     }
   }

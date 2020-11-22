@@ -32,6 +32,7 @@
       >
         <template #[`item.actions`]="{ item }">
           <VinculacionForm
+            v-if="!item.idIngresoAsociado"
             :title-text="$t('vincular.egresoTitle')"
             :vincular-tooltip-text="$t('vincular.egreso')"
             :egreso-a-vincular="item"
