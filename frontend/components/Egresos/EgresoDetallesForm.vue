@@ -31,7 +31,7 @@
       class="px-4"
       :items="detalles"
       :headers="headers"
-      :total="totalList"
+      :total="detalles.length"
     >
       <template #[`item.cantidad`]="{ item }">
         <TheNumericInput
@@ -78,8 +78,7 @@ export default {
   },
   data () {
     return {
-      detailAux: {},
-      totalList: 5
+      detailAux: {}
     }
   },
   computed: {

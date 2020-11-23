@@ -44,6 +44,7 @@ public class PresupuestoDTO extends StandardDTO<Presupuesto> {
         if (object.getEntidadRealizadora() != null) {
             presupuestoDTO.setEntidadRealizadora(new EntidadDTO().from(object.getEntidadRealizadora()));
         }
+        presupuestoDTO.setEgresoID(object.getEgreso().getOperacionId());
         return presupuestoDTO;
     }
 

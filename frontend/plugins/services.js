@@ -9,6 +9,7 @@ import Entidad from '../services/Entidad'
 import ValidationRule from '../services/ValidationRule'
 import MedioPago from '../services/MedioPago'
 import Proveedor from '../services/Proveedor'
+import Presupuesto from '~/services/Presupuesto'
 import Mensaje from '../services/Mensaje'
 
 export default function ({ app }, inject) {
@@ -18,6 +19,8 @@ export default function ({ app }, inject) {
   inject('egresoService', egreso)
   const ingreso = new Ingreso({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })
   inject('ingresoService', ingreso)
+  const presupuesto = new Presupuesto({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })
+  inject('presupuestoService', presupuesto)
   const pais = new Pais({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })
   inject('paisService', pais)
   const moneda = new Moneda({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })

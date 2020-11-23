@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
+import utn.dds.tpAnual.db.entity.usuario.Usuario;
 
 import javax.persistence.*;
 
@@ -21,10 +22,14 @@ public class Presupuesto extends Operacion {
 	@JoinColumn(name = "PRESUPUESTO_ID")
 	private List<DetallePrecio> detallesPrecio;
 
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Egreso egreso;
+
 	public Presupuesto(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,
-					   List<DetallePrecio> detallesPrecio) {
+					   List<DetallePrecio> detallesPrecio, Egreso egreso) {
 		super(documentoComercial, entidadRealizadora, codigoOperacion);
 		this.detallesPrecio = detallesPrecio;
+		this.setEgreso(egreso);
 	}
 
 	public Presupuesto() {
@@ -48,7 +53,15 @@ public class Presupuesto extends Operacion {
 	public List<DetallePrecio> getDetallesPrecio(){
 		return detallesPrecio;
 	}
-	
+
+	public Egreso getEgreso() {
+		return egreso;
+	}
+
+	public void setEgreso(Egreso egreso) {
+		this.egreso = egreso;
+	}
+
 	@Override
 	public String toString() {
 		return new ToStringBuilder(this)

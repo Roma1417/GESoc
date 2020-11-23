@@ -1,5 +1,6 @@
 package utn.dds.tpAnual.db.dto.transaccion;
 
+import org.hibernate.annotations.common.reflection.java.generics.IdentityTypeEnvironment;
 import utn.dds.tpAnual.db.dto.StandardDTO;
 import utn.dds.tpAnual.db.entity.transaccion.DetalleOperacion;
 
@@ -15,7 +16,12 @@ public class DetalleOperacionDTO  extends StandardDTO<DetalleOperacion> {
 
     @Override
     public DetalleOperacionDTO from(DetalleOperacion object) {
-        return null;
+        DetalleOperacionDTO detalleOperacionDTO = new DetalleOperacionDTO();
+        detalleOperacionDTO.setDetalleOperacionId(object.getDetalleOperacionId());
+        detalleOperacionDTO.setPrecio(object.getPrecio());
+        detalleOperacionDTO.setCantidad(object.getCantidad());
+        detalleOperacionDTO.setItem(new ItemDTO().from(object.getItem()));
+        return detalleOperacionDTO;
     }
 
     @Override

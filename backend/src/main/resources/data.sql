@@ -12,8 +12,10 @@ INSERT INTO usuario (usuario, cantidad_intentos, contrasenia, fecha_espera, nomb
 VALUES('marian', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3',null,'Mariano');
 
 
--- MOCK EGRESO
-		--
+---------------------
+---- MOCK EGRESO ----
+---------------------
+
 		    insert
     into
         item
@@ -92,7 +94,7 @@ VALUES('marian', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a
         documento_comercial
         (moneda_id, numero, pais_id, tipo_documento)
     values
-        (1, 123456, 1, 1) ;
+        (1, 123456, 1, 1);
 --
     insert
     into
@@ -139,7 +141,10 @@ VALUES('marian', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a
         (2, 1, 30, 80);
 
 
--- MOCK Mensajes
+-----------------------
+---- MOCK Mensajes ----
+-----------------------
+
 INSERT INTO mensaje (asunto, cuerpo, usuario_id)
 VALUES ('Resultado Validación', 'La validación fue exitosa', 1);
 INSERT INTO mensaje (asunto, cuerpo, usuario_id)
@@ -163,8 +168,11 @@ VALUES ('Resultado Validación', 'La validación fue exitosa', 5);
 INSERT INTO mensaje (asunto, cuerpo, usuario_id)
 VALUES ('Resultado Validación', 'La validación no fue exitosa', 5);
 
--- MOCK INGRESO
-		--
+
+----------------------
+---- MOCK INGRESO ----
+----------------------
+
 		insert
     into
         documento_comercial
@@ -216,3 +224,48 @@ VALUES ('Resultado Validación', 'La validación no fue exitosa', 5);
     values
          (2,5);
 
+--------------------------
+---- MOCK PRESUPUESTO ----
+--------------------------
+
+    insert
+    into
+        usuario_entidad
+        (entidad_id, usuario_id)
+    values
+         (1,5);
+
+    insert
+    into
+        presupuesto
+        (id, codigo_operacion, documento_comercial_id, entidad_realizadora_id, fecha_creacion, egreso_id)
+    values
+        (7, 123, 1, 1, '20200812', 80);
+
+    insert
+    into
+        presupuesto
+        (id, codigo_operacion, documento_comercial_id, entidad_realizadora_id, fecha_creacion, egreso_id)
+    values
+        (4, 123, 1, 2, '20201020', 80);
+
+    insert
+    into
+        detalle_precio
+        (id, precio, detalle_operacion_id, presupuesto_id)
+    values
+        (1, 70, 1, 7);
+
+    insert
+    into
+        detalle_precio
+        (id, precio, detalle_operacion_id, presupuesto_id)
+    values
+        (2, 40, 1, 7);
+
+    insert
+    into
+        detalle_precio
+        (id, precio, detalle_operacion_id, presupuesto_id)
+    values
+        (7, 55, 1, 4);

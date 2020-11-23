@@ -21,7 +21,7 @@ module.exports = {
     'max-depth': [1, {
       max: 4
     }],
-    'max-len': [1, 90],
+    'max-len': [1, 110],
     'max-lines': [1, 350]
   }
 }
