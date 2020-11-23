@@ -23,7 +23,7 @@
     <div class="text-center">
       <v-pagination
         v-if="paged"
-        v-model="currentPage"
+        v-model="pageProp"
         :length="pagesLength"
         @input="onPageChange"
       />
@@ -82,6 +82,10 @@ export default {
       type: Boolean,
       default: false
     },
+    page: {
+      type: Number,
+      default: null
+    },
     firstPageLocked: {
       type: Boolean,
       default: false
@@ -89,8 +93,17 @@ export default {
   },
   data () {
     return {
-      valid: true,
-      currentPage: 1
+      valid: true
+    }
+  },
+  computed: {
+    pageProp: {
+      get () {
+        return this.page
+      },
+      set (val) {
+        this.$emit('update:page', val)
+      }
     }
   },
   methods: {
@@ -98,11 +111,13 @@ export default {
       this.$refs.form.validate()
       if (this.valid) {
         this.$emit('onConfirm')
+        this.resetPages()
       } else {
         this.toastError('Revise los campos para proceder')
       }
     },
     cancel () {
+      this.resetPages()
       this.$emit('onCancel')
       this.resetValidation()
     },
@@ -110,12 +125,15 @@ export default {
       this.$refs.form.resetValidation()
     },
     onPageChange (page) {
-      const firsPage = 1
-      if (this.firstPageLocked) {
-        this.currentPage = firsPage
-        page = firsPage
+      if (page !== 1 && this.firstPageLocked) {
+        this.resetPages()
+        this.$emit('pageChangeStopped', page)
+      } else {
+        this.$emit('onPageChanged', page)
       }
-      this.$emit('onPageChanged', page)
+    },
+    resetPages () {
+      this.pageProp = 1
     }
   }
 }
