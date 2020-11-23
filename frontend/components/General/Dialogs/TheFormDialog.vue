@@ -22,8 +22,8 @@
     </v-card-text>
     <div class="text-center">
       <v-pagination
-        v-if="paged"
-        v-model="currentPage"
+        v-if="pageNumber"
+        v-model="pageNumber"
         :length="pagesLength"
         @input="onPageChange"
       />
@@ -78,9 +78,9 @@ export default {
       type: Number,
       default: 1
     },
-    paged: {
-      type: Boolean,
-      default: false
+    pageNumber: {
+      type: Number,
+      default: 0
     },
     firstPageLocked: {
       type: Boolean,
@@ -90,7 +90,7 @@ export default {
   data () {
     return {
       valid: true,
-      currentPage: 1
+      firsPage: 1
     }
   },
   methods: {
@@ -110,11 +110,10 @@ export default {
       this.$refs.form.resetValidation()
     },
     onPageChange (page) {
-      const firsPage = 1
       if (this.firstPageLocked) {
-        this.currentPage = firsPage
-        page = firsPage
+        page = this.firsPage
       }
+      this.$emit('update:pageNumber', page)
       this.$emit('onPageChanged', page)
     }
   }

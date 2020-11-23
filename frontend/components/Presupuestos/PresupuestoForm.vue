@@ -4,7 +4,7 @@
     :header-message="titleText"
     :loading="loading"
     v-bind="$attrs"
-    paged
+    :page-number.sync="page"
     :pages-length="2"
     :first-page-locked="!presupuesto.egreso"
     @onConfirm="saveOrUpdate"
@@ -145,8 +145,10 @@ export default {
         .finally(() => { this.loading = false })
     },
     changePage (page) {
-      this.presupuesto.egreso ? this.page = page
-        : this.toastError(this.$t('presupuestos.error_cargar_egreso'))
+      this.page = page
+      if (!this.presupuesto.egreso) {
+        this.toastError(this.$t('presupuestos.error_cargar_egreso'))
+      }
     },
     closeForm () {
       this.presupuesto = {
