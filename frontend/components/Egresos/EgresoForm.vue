@@ -6,9 +6,9 @@
     v-bind="$attrs"
     paged
     :pages-length="2"
+    :page.sync="page"
     @onConfirm="saveOrUpdate"
     @onCancel="closeForm"
-    @onPageChanged="changePage"
     v-on="$listeners"
   >
     <template #activator="{on}">
@@ -166,9 +166,6 @@ export default {
           }
         })
         .finally(() => { this.loading = false })
-    },
-    changePage (page) {
-      this.page = page
     },
     closeForm () {
       this.egreso = {

@@ -7,9 +7,10 @@
     paged
     :pages-length="2"
     :first-page-locked="!presupuesto.egreso"
+    :page.sync="page"
     @onConfirm="saveOrUpdate"
     @onCancel="closeForm"
-    @onPageChanged="changePage"
+    @pageChangeStopped="pageChangeStopped"
     v-on="$listeners"
   >
     <template #activator="{on}">
@@ -104,11 +105,11 @@ export default {
     return {
       loading: false,
       showForm: false,
-      page: 1,
       presupuesto: {
         documentoComercial: {},
         detallesPrecio: []
-      }
+      },
+      page: 1
     }
   },
   computed: {
@@ -144,9 +145,8 @@ export default {
         })
         .finally(() => { this.loading = false })
     },
-    changePage (page) {
-      this.presupuesto.egreso ? this.page = page
-        : this.toastError(this.$t('presupuestos.error_cargar_egreso'))
+    pageChangeStopped (page) {
+      this.toastError(this.$t('presupuestos.error_cargar_egreso'))
     },
     closeForm () {
       this.presupuesto = {
