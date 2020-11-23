@@ -153,6 +153,8 @@ VALUES ('Resultado Validación', 'La validación fue exitosa', 3);
 INSERT INTO mensaje (asunto, cuerpo, usuario_id)
 VALUES ('Resultado Validación', 'La validación no fue exitosa', 3);
 INSERT INTO mensaje (asunto, cuerpo, usuario_id)
+VALUES ('Mensaje Largo', 'Hola, este es un mensaje suficientemente largo como para ver como queda si lo acorto en la pantalla de mensajes', 3);
+INSERT INTO mensaje (asunto, cuerpo, usuario_id)
 VALUES ('Resultado Validación', 'La validación fue exitosa', 4);
 INSERT INTO mensaje (asunto, cuerpo, usuario_id)
 VALUES ('Resultado Validación', 'La validación no fue exitosa', 4);
