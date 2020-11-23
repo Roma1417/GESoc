@@ -4,7 +4,7 @@
     :header-message="titleText"
     :loading="loading"
     v-bind="$attrs"
-    :page-number.sync="page"
+    paged
     :pages-length="2"
     @onConfirm="saveOrUpdate"
     @onCancel="closeForm"
