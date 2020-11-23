@@ -6,6 +6,7 @@
   "items-per-page": "Items por página",
   "save": "Guardar",
   "cancel": "Cancelar",
+  "accept": "Aceptar",
   "no_data_text": "Sin datos",
    "$vuetify": {
      "dataIterator": {
@@ -148,7 +149,9 @@
    },
    "mensajes": {
     "menu": "Mensajes",
-    "welcome_description": "Ver mis mensajes"
+    "welcome_description": "Ver mis mensajes",
+    "asunto": "Asunto",
+    "cuerpo": "Cuerpo"
    },
    "usuario": {
      "menu": "Usuario"
