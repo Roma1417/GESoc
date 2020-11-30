@@ -1,0 +1,183 @@
+{
+  "actions": "Acciones",
+  "search": "Buscar",
+  "loading": "Cargando",
+  "saved-ok": "Guardado Exitosamente!",
+  "items-per-page": "Items por página",
+  "save": "Guardar",
+  "cancel": "Cancelar",
+  "accept": "Aceptar",
+  "no_data_text": "Sin datos",
+   "$vuetify": {
+     "dataIterator": {
+       "rowsPerPageText": "Filas por página:",
+       "rowsPerPageAll": "Todos",
+       "pageText": "{0}-{1} de {2}",
+       "noResultsText": "No hay resultados",
+       "nextPage": "Siguiente",
+       "prevPage": "Anterior"
+     },
+     "dataTable": {
+       "rowsPerPageText": "Filas por página:"
+     },
+     "noDataText": "No se encontraron datos"
+   },
+   "fechas": {
+    "datefrom": "Fecha desde",
+    "dateTo": "Fecha hasta"
+   },
+   "login": {
+     "title": "Bienvenido a GESOC",
+     "username": "Usuario",
+     "password": "Contraseña",
+     "enter_credentials": "Por favor ingrese sus credenciales de acceso",
+     "message": "El mejor sistema del mercado para la ",
+     "message_highlight": "Contabilidad de Gestión"
+   },
+   "validations": {
+     "required": "El campo es requerido",
+     "positive": "El valor debe ser mayor a 0"
+   },
+   "buttons": {
+   "cancelButton": "Cancelar",
+   "confirmButton": "Aceptar"
+   },
+   "home": "Inicio",
+   "transacciones": {
+     "menu": "Transacciones",
+     "egresos": "Egresos",
+     "ingresos": "Ingresos",
+     "presupuestos": "Presupuestos"
+   },
+   "egresos": {
+     "titulo": "Egreso",
+     "menu": "Egresos",
+     "detalles": "Detalles del egreso",
+     "welcome_description": "Ver mis egresos",
+     "id": "ID",
+     "proveedor": "Proveedor",
+     "fecha_operacion": "Fecha operación",
+     "total": "Total",
+     "entidad_realizadora": "Entidad",
+     "crear": "Crear egreso",
+     "editar": "Editar egreso",
+     "codigo_operacion": "Código de operación",
+     "medio_pago": "Medio de pago",
+     "presupuestos_minimos": "Cantidad de presupuestos mínimos",
+     "error_sin_detalles": "El egreso no posee ningun detalle asociado."
+   },
+   "detalles": {
+    "cantidad": "Cantidad",
+    "precio": "Precio",
+    "total": "Total"
+
+   },
+   "ingresos": {
+    "menu": "Ingresos",
+    "welcome_description": "Ver mis ingresos",
+    "id": "ID",
+    "entidad_realizadora": "Entidad",
+    "descripcion": "Descripcion",
+    "total": "Total" ,
+    "crear": "Crear Ingreso",
+    "editar": "Editar ingreso",
+    "documento_comercial": "Documento Comercial",
+    "titulo": "Ingreso",
+    "codigo_operacion": "Código de operación"
+   },
+   "presupuestos": {
+    "menu": "Presupuestos",
+    "id": "ID",
+    "entidad_realizadora": "Entidad",
+    "detalles_precio":"Detalle de precios",
+    "detalles_operacion_ID":"ID Detalle Operación",
+    "total": "Total" ,
+    "titulo": "Presupuesto",
+    "documento_comercial": "Documento Comercial",
+    "codigo_operacion": "Código de operación",
+    "fecha_creacion": "Fecha de creación",
+    "egreso_id": "Egreso asociado",
+    "crear": "Crear presupuesto",
+    "error_sin_detalles": "El presupuesto no posee ningun detalle asociado.",
+    "error_cargar_egreso": "No ha seleccionado ningún egreso.",
+    "info_cargar_precios": "Complete los precios que desee."
+  },
+   "entidad": {
+    "entidad": "Entidad"
+   },
+   "entidades": {
+    "menu": "Entidades",
+    "id": "ID",
+    "nombre": "Nombre",
+    "title": "Entidades",
+    "search": "Buscá una entidad"
+   },
+   "documento_comercial": {
+    "numero": "Número",
+    "tipo": "Tipo de documento",
+    "pais": "País",
+    "moneda": "Moneda",
+    "titulo": "Documento Comercial"
+   },
+   "moneda": {
+    "moneda": "Moneda"
+   },
+   "medio_pago": {
+    "medio_pago": "Medio de pago"
+   },
+   "pais": {
+    "pais": "País"
+   },
+   "categorias": {
+    "editar": "Editar",
+    "categorias": "Categorias"
+   },
+   "items": {
+    "item": "Item",
+    "menu": "Items",
+    "info_ingresar_item": "Presione enter para ingresar el item seleccionado.",
+    "search": "Buscá un item",
+    "id": "ID",
+    "descripcion": "Descripcion",
+    "categorias": {
+      "table": "Categorías",
+      "editar": "Editar",
+      "edit": "Editar Categorías",
+      "autocomplete": "Categorías",
+      "form": "Editar Categorías"
+    }
+   },
+   "mensajes": {
+    "menu": "Mensajes",
+    "welcome_description": "Ver mis mensajes",
+    "asunto": "Asunto",
+    "cuerpo": "Cuerpo"
+   },
+   "usuario": {
+     "menu": "Usuario"
+   },
+   "sesion": {
+     "salir": "Salir"
+   },
+   "dashboard": {
+     "welcome": "Bienvenido seleccione la acción que desee realizar"
+   },
+   "errors": {
+     "session": "Error de sesión, por favor vuelva a ingresar",
+     "session_login": "Ir al login",
+     "login": "Usuario o contraseña inválidos"
+   },
+   "vincular": {
+     "egreso": "Vincular egreso con un ingreso",
+     "ingreso": "Vincular ingreso con egresos",
+     "ingresoTitle": "Vinculación de ingreso",
+     "egresoTitle": "Vinculación de egreso",
+     "solicitud": "Ingrese el ID correspondiente para realizar la vinculación.",
+     "info_egreso_id": "Recuerde vincular el egreso con un ingreso de la misma entidad.",
+     "info_ingreso_id": "Recuerde vincular el ingreso con un egreso de la misma entidad."
+   },
+   "attributes": {
+     "undefined": ""
+   }
+}
+  

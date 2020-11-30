@@ -1,0 +1,99 @@
+
+$base-color: #1B3664;
+$primary-color: #568A9A;
+$secondary-color: #2E446F;
+body, body *{
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif2m;
+}
+
+.subHeader{
+  font-size: 0.9em;
+  color: $base-color;
+}
+
+.headline {
+  color: $secondary-color;
+  letter-spacing: 2px!important;
+  font-weight: 500!important;
+}
+
+.subheadline{
+  font-size: 1.1em !important;
+}
+
+.primary-color {
+  color: $primary-color !important;
+}
+
+.divider-height{
+  height: 80vh!important;
+}
+
+.header-data-user{
+  display: inline-flex;
+  color: $base-color;
+  font-size: 0.8em;
+}
+
+.w-100{
+  width: 100% !important;
+}
+
+.mh-6{
+  max-height: 6em!important;
+}
+
+.text-primary{
+  color: $base-color;
+}
+
+.v-list-item--active{
+  font-weight: bold!important;
+  color: $base-color!important;
+}
+
+.nuxt-component{
+  padding-top:2em;
+  padding-bottom:2em;
+}
+
+.base-background{
+  border-bottom: 2px solid $base-color;
+  border-top: 2px solid $base-color;
+  background-color: #e0e0e0 !important;
+}
+
+.toasted-ok {
+  background-color: #2E7D32;
+  padding: 0.4em 2em!important;
+  border-radius: 5px;
+  color:white;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.header-data-user{
+  display: inline-flex;
+  color: $base-color;
+  font-size: 0.9em;
+  font-weight: bold !important;
+}
+
+.hideInput{
+  position: absolute !important;
+  left: -99999px !important;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
