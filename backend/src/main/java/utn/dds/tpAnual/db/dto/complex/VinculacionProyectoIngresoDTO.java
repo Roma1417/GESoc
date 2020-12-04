@@ -1,17 +1,25 @@
 package utn.dds.tpAnual.db.dto.complex;
 
-public class VinculacionEgresoIngresoDTO {
+public class VinculacionProyectoIngresoDTO {
 
+    private Long proyectoId;
     private Long ingresoId;
-    private Long egresoId;
 
-    public VinculacionEgresoIngresoDTO(){
+    public VinculacionProyectoIngresoDTO(){
 
     }
 
-    public VinculacionEgresoIngresoDTO(Long ingresoId, Long egresoId) {
+    public VinculacionProyectoIngresoDTO(Long proyectoId, Long ingresoId) {
+        this.proyectoId = proyectoId;
         this.ingresoId = ingresoId;
-        this.egresoId = egresoId;
+    }
+
+    public Long getProyectoId() {
+        return proyectoId;
+    }
+
+    public void setProyectoId(Long proyectoId) {
+        this.proyectoId = proyectoId;
     }
 
     public Long getIngresoId() {
@@ -20,13 +28,5 @@ public class VinculacionEgresoIngresoDTO {
 
     public void setIngresoId(Long ingresoId) {
         this.ingresoId = ingresoId;
-    }
-
-    public Long getEgresoId() {
-        return egresoId;
-    }
-
-    public void setEgresoId(Long egresoId) {
-        this.egresoId = egresoId;
     }
 }

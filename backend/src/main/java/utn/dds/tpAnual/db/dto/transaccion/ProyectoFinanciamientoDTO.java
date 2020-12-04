@@ -1,61 +1,56 @@
 package utn.dds.tpAnual.db.dto.transaccion;
 
-import utn.dds.tpAnual.db.dto.*;
+import utn.dds.tpAnual.db.dto.StandardDTO;
 import utn.dds.tpAnual.db.dto.entidad.EntidadDTO;
 import utn.dds.tpAnual.db.dto.proveedor.ProveedorDTO;
-import utn.dds.tpAnual.db.entity.transaccion.DetalleOperacion;
+import utn.dds.tpAnual.db.dto.usuario.UserDTO;
 import utn.dds.tpAnual.db.entity.transaccion.Egreso;
+import utn.dds.tpAnual.db.entity.transaccion.Ingreso;
+import utn.dds.tpAnual.db.entity.transaccion.ProyectoFinanciamiento;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class EgresoDTO extends StandardDTO<Egreso> {
-    private Long idEgreso;
+public class ProyectoFinanciamientoDTO extends StandardDTO<ProyectoFinanciamiento> {
+    private Long idProyecto;
     private EntidadDTO entidadRealizadora;
-    private List<DetalleOperacionDTO> detalles;
-    private List<PresupuestoDTO> presupuestos;
-    private ProveedorDTO proveedor;
-    private MedioPagoDTO medioPago;
-    private DocumentoComercialDTO documentoComercial;
-    private Integer codigoOperacion;
-    private Integer cantidadPresupuestosMinimos;
-    private LocalDate fechaOperacion;
-    private LocalDate fechaCreacion;
-    private Long idIngresoAsociado;
+    private UserDTO director;
+    private Integer presupuestosMinimos;
+    private Float montoMaximoSinPresupuestos;
+    private List<Egreso> egresos;
+    private List<Ingreso> ingresos;
     private Float total;
 
     @Override
-    public EgresoDTO from(Egreso object){
-        EgresoDTO egresoDTO = new EgresoDTO();
-        egresoDTO.setIdEgreso(object.getOperacionId());
+    public ProyectoFinanciamientoDTO from(ProyectoFinanciamiento object){
+        ProyectoFinanciamientoDTO proyectoDTO = new ProyectoFinanciamientoDTO();
+        proyectoDTO.setIdProyecto(object.getOperacionId());
         if (object.getEntidadRealizadora() != null) {
-            egresoDTO.setEntidadRealizadora(new EntidadDTO().from(object.getEntidadRealizadora()));
+            proyectoDTO.setEntidadRealizadora(new EntidadDTO().from(object.getEntidadRealizadora()));
         }
-        if (object.getProveedor() != null){
-            egresoDTO.setProveedor(new ProveedorDTO().from(object.getProveedor()));
+        if (object.getDirector() != null) {
+            proyectoDTO.setDirector(new UserDTO().from(object.getDirector()));
         }
-        if(object.getIngreso() != null) {
-            egresoDTO.setIdIngresoAsociado(object.getIngreso().getOperacionId());
-        }
-        egresoDTO.setDetalles(object.getDetallesOperacion()
-                .stream()
-                .map(detalleOperacion ->  new DetalleOperacionDTO().from(detalleOperacion))
-                .collect(Collectors.toList()));
-        egresoDTO.setTotal(object.getTotal());
-        egresoDTO.setProveedor(new ProveedorDTO().from(object.getProveedor()));
-        egresoDTO.setFechaOperacion(object.getFechaOperacion());
-        egresoDTO.setCantidadPresupuestosMinimos(object.getCantidadPresupuestosMinimos());
-        egresoDTO.setCodigoOperacion(object.getCodigoOperacion());
-        egresoDTO.setFechaCreacion(object.getFecha());
-        egresoDTO.setMedioPago(new MedioPagoDTO().from(object.getMedioPago()));
-        egresoDTO.setDocumentoComercial(new DocumentoComercialDTO().from(object.getDocumentoComercial()));
-        return egresoDTO;
+        proyectoDTO.setTotal(object.getTotal());
+        proyectoDTO.setPresupuestosMinimos(object.getPresupuestosMinimos());
+        proyectoDTO.setMontoMaximoSinPresupuestos(object.getMontoSinPresupuesto());
+        proyectoDTO.setEgresos(object.getEgresos());
+        proyectoDTO.setIngresos(object.getIngresos());
+        return proyectoDTO;
     }
 
     @Override
-    public Egreso toEntity() {
+    public ProyectoFinanciamiento toEntity() {
         return null;
+    }
+
+    public Long getIdProyecto() {
+        return idProyecto;
+    }
+
+    public void setIdProyecto(Long idProyecto) {
+        this.idProyecto = idProyecto;
     }
 
     public EntidadDTO getEntidadRealizadora() {
@@ -66,76 +61,44 @@ public class EgresoDTO extends StandardDTO<Egreso> {
         this.entidadRealizadora = entidadRealizadora;
     }
 
-    public List<DetalleOperacionDTO> getDetalles() {
-        return detalles;
+    public UserDTO getDirector() {
+        return director;
     }
 
-    public void setDetalles(List<DetalleOperacionDTO> detalles) {
-        this.detalles = detalles;
+    public void setDirector(UserDTO director) {
+        this.director = director;
     }
 
-    public ProveedorDTO getProveedor() {
-        return proveedor;
+    public Integer getPresupuestosMinimos() {
+        return presupuestosMinimos;
     }
 
-    public void setProveedor(ProveedorDTO proveedor) {
-        this.proveedor = proveedor;
+    public void setPresupuestosMinimos(Integer presupuestosMinimos) {
+        this.presupuestosMinimos = presupuestosMinimos;
     }
 
-    public MedioPagoDTO getMedioPago() {
-        return medioPago;
+    public Float getMontoMaximoSinPresupuestos() {
+        return montoMaximoSinPresupuestos;
     }
 
-    public void setMedioPago(MedioPagoDTO medioPago) {
-        this.medioPago = medioPago;
+    public void setMontoMaximoSinPresupuestos(Float montoMaximoSinPresupuestos) {
+        this.montoMaximoSinPresupuestos = montoMaximoSinPresupuestos;
     }
 
-    public DocumentoComercialDTO getDocumentoComercial() {
-        return documentoComercial;
+    public List<Egreso> getEgresos() {
+        return egresos;
     }
 
-    public void setDocumentoComercial(DocumentoComercialDTO documentoComercial) {
-        this.documentoComercial = documentoComercial;
+    public void setEgresos(List<Egreso> egresos) {
+        this.egresos = egresos;
     }
 
-    public Integer getCodigoOperacion() {
-        return codigoOperacion;
+    public List<Ingreso> getIngresos() {
+        return ingresos;
     }
 
-    public void setCodigoOperacion(Integer codigoOperacion) {
-        this.codigoOperacion = codigoOperacion;
-    }
-
-    public LocalDate getFechaOperacion() {
-        return fechaOperacion;
-    }
-
-    public void setFechaOperacion(LocalDate fechaOperacion) {
-        this.fechaOperacion = fechaOperacion;
-    }
-
-    public Integer getCantidadPresupuestosMinimos() {
-        return cantidadPresupuestosMinimos;
-    }
-
-    public void setCantidadPresupuestosMinimos(Integer cantidadPresupuestosMinimos) {
-        this.cantidadPresupuestosMinimos = cantidadPresupuestosMinimos;
-    }
-
-    public List<PresupuestoDTO> getPresupuestos() {
-        return presupuestos;
-    }
-
-    public void setPresupuestos(List<PresupuestoDTO> presupuestos) {
-        this.presupuestos = presupuestos;
-    }
-
-    public Long getIdEgreso() {
-        return idEgreso;
-    }
-
-    public void setIdEgreso(Long idEgreso) {
-        this.idEgreso = idEgreso;
+    public void setIngresos(List<Ingreso> ingresos) {
+        this.ingresos = ingresos;
     }
 
     public Float getTotal() {
@@ -144,21 +107,5 @@ public class EgresoDTO extends StandardDTO<Egreso> {
 
     public void setTotal(Float total) {
         this.total = total;
-    }
-
-    public LocalDate getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public void setFechaCreacion(LocalDate fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
-
-    public Long getIdIngresoAsociado() {
-        return idIngresoAsociado;
-    }
-
-    public void setIdIngresoAsociado(Long idIngresoAsociado) {
-        this.idIngresoAsociado = idIngresoAsociado;
     }
 }
