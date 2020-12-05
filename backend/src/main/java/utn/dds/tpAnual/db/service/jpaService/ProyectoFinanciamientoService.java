@@ -49,8 +49,8 @@ import java.util.Optional;
         return proyectos.isEmpty() ? null : proyectos.get(0);
     }
 
-    public Optional<ProyectoFinanciamiento> findFullById(Long proyectoId) {
-        return proyectoFinanciamientoRepository.findFullById(proyectoId);
+    public Optional<ProyectoFinanciamiento> findById(Long proyectoId) {
+        return proyectoFinanciamientoRepository.findById(proyectoId);
     }
 
     public Page<ProyectoFinanciamiento>findAllRelated(PageableRequest pageableRequest, String username) {

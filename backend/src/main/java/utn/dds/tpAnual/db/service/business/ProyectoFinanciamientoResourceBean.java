@@ -41,13 +41,13 @@ public class ProyectoFinanciamientoResourceBean {
         return new PageableResponse().fromPage(proyectos, new ProyectoFinanciamientoDTO());
     }
 
-    public PageableResponse<IngresoDTO, Ingreso> getIngresosById(PageableRequest pageableRequest, String username, Long ingresoId) {
-        Page<Ingreso> ingresos = ingresoService.findAllRelatedById(pageableRequest, username, ingresoId);
-        return new PageableResponse().fromPage(ingresos, new IngresoDTO());
+    public PageableResponse<ProyectoFinanciamientoDTO, ProyectoFinanciamiento> getProyectosById(PageableRequest pageableRequest, String username, Long proyetoId) {
+        Page<ProyectoFinanciamiento> proyectos = proyectoFinanciamientoService.findAllRelatedById(pageableRequest, username, proyectoId);
+        return new PageableResponse().fromPage(proyectos, new ProyectoFinanciamientoDTO());
     }
     public void vincularEgreso(VinculacionProyectoEgresoDTO vinculacion) {
         Optional<Egreso> egresoOptional = egresoService.findFullById(vinculacion.getEgresoId());
-        Optional<ProyectoFinanciamiento> proyectoOptional = proyectoFinanciamientoService.findFullById(vinculacion.getProyectoId());
+        Optional<ProyectoFinanciamiento> proyectoOptional = proyectoFinanciamientoService.findById(vinculacion.getProyectoId());
         if (!egresoOptional.isPresent() || !proyectoOptional.isPresent()){
             throw new RuntimeException("Los registros no fueron encontrados");
         }
@@ -58,7 +58,7 @@ public class ProyectoFinanciamientoResourceBean {
         egresoService.save(egreso);
     }
     public void vincularIngreso(VinculacionProyectoIngresoDTO vinculacion) {
-        Optional<ProyectoFinanciamiento> proyectoOptional = proyectoFinanciamientoService.findFullById(vinculacion.getProyectoId());
+        Optional<ProyectoFinanciamiento> proyectoOptional = proyectoFinanciamientoService.findById(vinculacion.getProyectoId());
         Optional<Ingreso> ingresoOptional = ingresoService.findFullById(vinculacion.getIngresoId());
         if (!proyectoOptional.isPresent() || !ingresoOptional.isPresent()){
             throw new RuntimeException("Los registros no fueron encontrados");

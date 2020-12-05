@@ -28,10 +28,8 @@ public interface ProyectoFinanciamientoRepository extends JpaRepository<Proyecto
     List<ProyectoFinanciamiento> getProyectoById(@Param("operacionIdProyecto") Long operacionId);
 
     @Query("SELECT DISTINCT p FROM ProyectoFinanciamiento p" +
-            " JOIN FETCH p.entidadRealizadora entidad " +
-            " JOIN FETCH p.documentoComercial d " +
             " WHERE p.operacionId = :proyectoId")
-    Optional<ProyectoFinanciamiento> findFullById(@Param("proyectoId") Long proyectoId);
+    Optional<ProyectoFinanciamiento> findById(@Param("proyectoId") Long proyectoId);
 
     @Query(value = "SELECT p FROM ProyectoFinanciamiento p " +
             " JOIN FETCH p.entidadRealizadora entidad " +
