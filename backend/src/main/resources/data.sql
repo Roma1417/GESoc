@@ -269,3 +269,14 @@ VALUES ('Resultado Validación', 'La validación no fue exitosa', 5);
         (id, precio, detalle_operacion_id, presupuesto_id)
     values
         (7, 55, 1, 4);
+
+--------------------------
+---- MOCK PROYECTO ----
+--------------------------
+
+    insert
+    into
+        proyecto_financiamiento
+        (id, monto_sin_presupuesto, presupuestos_minimos, director_id, entidad_realizadora_id)
+    values
+        (1, 1000, 3, 3, 2)

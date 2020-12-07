@@ -51,6 +51,12 @@ import java.util.Optional;
         return proyectoFinanciamientoRepository.getAllRelated(usuario.getUsuarioId(), pageable);
     }
 
+    public Page<ProyectoFinanciamiento>findAllRelatedById(PageableRequest pageableRequest, String username, Long proyectoId) {
+        Pageable pageable = pageableRequest.toPageable();
+        Usuario usuario = usuarioService.getUsuarioByUsername(username);
+        return proyectoFinanciamientoRepository.getAllRelatedById(usuario.getUsuarioId(), pageable, proyectoId);
+    }
+
     @Override
     public void save(ProyectoFinanciamiento entity) {
         entidadService.saveIfNotExists(entity.getEntidadRealizadora());

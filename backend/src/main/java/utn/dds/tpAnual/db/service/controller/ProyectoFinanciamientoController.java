@@ -32,15 +32,15 @@ public class ProyectoFinanciamientoController {
         return proyectos;
     }
 
-    /*@RequestMapping("proyectoFinanciamiento/{proyectoId}")
+    @RequestMapping("proyecto/{proyectoId}")
     public PageableResponse<ProyectoFinanciamientoDTO, ProyectoFinanciamiento> getProyectosById(@RequestParam(name ="page", defaultValue = "1") Long page,
                                     @RequestParam(name ="itemsPerPage", defaultValue = "20") Long itemsPerPage,
                                     @PathVariable("proyectoId") Long proyectoId){
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         PageableRequest pageableRequest = new PageableRequest(username, page, itemsPerPage);
-        PageableResponse<ProyectoFinanciamientoDTO, ProyectoFinanciamiento> proyectos = proyectoFinanciamientoResourceBean.getProyectosById(pageableRequest, username, ingresoId);
+        PageableResponse<ProyectoFinanciamientoDTO, ProyectoFinanciamiento> proyectos = proyectoFinanciamientoResourceBean.getProyectosById(pageableRequest, username, proyectoId);
         return proyectos;
-    }*/
+    }
 
     @PostMapping("proyecto")
     public ProyectoFinanciamientoDTO crearProyecto(@RequestBody ProyectoFinanciamientoDTO proyectoDTO){

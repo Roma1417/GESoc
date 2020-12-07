@@ -47,12 +47,12 @@ public class ProyectoFinanciamientoResourceBean {
         Page<ProyectoFinanciamiento> proyectos = proyectoFinanciamientoService.findAllRelated(pageableRequest, username);
         return new PageableResponse().fromPage(proyectos, new ProyectoFinanciamientoDTO());
     }
-/*
-    public PageableResponse<ProyectoFinanciamientoDTO, ProyectoFinanciamiento> getProyectosById(PageableRequest pageableRequest, String username, Long proyetoId) {
+
+    public PageableResponse<ProyectoFinanciamientoDTO, ProyectoFinanciamiento> getProyectosById(PageableRequest pageableRequest, String username, Long proyectoId) {
         Page<ProyectoFinanciamiento> proyectos = proyectoFinanciamientoService.findAllRelatedById(pageableRequest, username, proyectoId);
         return new PageableResponse().fromPage(proyectos, new ProyectoFinanciamientoDTO());
     }
-    */
+
     public void vincularEgreso(VinculacionProyectoEgresoDTO vinculacion) {
         Optional<Egreso> egresoOptional = egresoService.findFullById(vinculacion.getEgresoId());
         Optional<ProyectoFinanciamiento> proyectoOptional = proyectoFinanciamientoService.findById(vinculacion.getProyectoId());
