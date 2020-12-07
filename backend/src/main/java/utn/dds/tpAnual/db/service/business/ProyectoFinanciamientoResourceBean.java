@@ -36,15 +36,23 @@ public class ProyectoFinanciamientoResourceBean {
     @Autowired
     private EgresoService egresoService;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
+    @Autowired
+    private EntidadService entidadService;
+
+
     public PageableResponse<ProyectoFinanciamientoDTO, ProyectoFinanciamiento> getProyectos(PageableRequest pageableRequest, String username) {
         Page<ProyectoFinanciamiento> proyectos = proyectoFinanciamientoService.findAllRelated(pageableRequest, username);
         return new PageableResponse().fromPage(proyectos, new ProyectoFinanciamientoDTO());
     }
-
+/*
     public PageableResponse<ProyectoFinanciamientoDTO, ProyectoFinanciamiento> getProyectosById(PageableRequest pageableRequest, String username, Long proyetoId) {
         Page<ProyectoFinanciamiento> proyectos = proyectoFinanciamientoService.findAllRelatedById(pageableRequest, username, proyectoId);
         return new PageableResponse().fromPage(proyectos, new ProyectoFinanciamientoDTO());
     }
+    */
     public void vincularEgreso(VinculacionProyectoEgresoDTO vinculacion) {
         Optional<Egreso> egresoOptional = egresoService.findFullById(vinculacion.getEgresoId());
         Optional<ProyectoFinanciamiento> proyectoOptional = proyectoFinanciamientoService.findById(vinculacion.getProyectoId());
@@ -55,8 +63,10 @@ public class ProyectoFinanciamientoResourceBean {
         ProyectoFinanciamiento proyecto = proyectoOptional.get();
         //EgresoRules.getInstance().validarVinculacion(egreso, ingreso);
         proyecto.vincularEgreso(egreso);
+        proyectoFinanciamientoService.save(proyecto);
         egresoService.save(egreso);
     }
+
     public void vincularIngreso(VinculacionProyectoIngresoDTO vinculacion) {
         Optional<ProyectoFinanciamiento> proyectoOptional = proyectoFinanciamientoService.findById(vinculacion.getProyectoId());
         Optional<Ingreso> ingresoOptional = ingresoService.findFullById(vinculacion.getIngresoId());
@@ -67,6 +77,21 @@ public class ProyectoFinanciamientoResourceBean {
         Ingreso ingreso = ingresoOptional.get();
         //EgresoRules.getInstance().validarVinculacion(egreso, ingreso);
         proyecto.vincularIngreso(ingreso);
+        proyectoFinanciamientoService.save(proyecto);
         ingresoService.save(ingreso);
     }
+
+    public ProyectoFinanciamientoDTO crearProyecto(ProyectoFinanciamientoDTO proyectoDTO, String username){
+        ProyectoFinanciamiento proyecto = proyectoDTO.toEntity();
+        Usuario usuario = usuarioService.getUsuarioByUsername(username);
+        Optional<Entidad> entidadRealizadora = entidadService.findAllRelated(usuario, proyectoDTO.getEntidadRealizadora().getIdEntidad());
+
+        //IngresoRules.getInstance().validarCrearIngreso(entidadRealizadora, documentoComercial, ingreso, pais, moneda);
+
+        proyecto.setEntidadRealizadora(entidadRealizadora.get());
+        proyectoFinanciamientoService.save(proyecto);
+        proyectoDTO.setId(proyecto.getProyectoId());
+        return proyectoDTO;
+    }
+
 }

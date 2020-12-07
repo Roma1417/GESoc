@@ -95,7 +95,7 @@ public class ProyectoFinanciamientoResourceBeanTest {
         ingresoService.save(ingreso);
         entidadService.save(entidad);
 
-        VinculacionProyectoIngresoDTO vinculacion = new VinculacionProyectoIngresoDTO(proyecto.getOperacionId(),
+        VinculacionProyectoIngresoDTO vinculacion = new VinculacionProyectoIngresoDTO(proyecto.getProyectoId(),
                 ingreso.getOperacionId());
         proyectoFinanciamientoResourceBean.vincularIngreso(vinculacion);
         assertTrue(proyecto.getIngresos().contains(ingreso));
@@ -111,7 +111,7 @@ public class ProyectoFinanciamientoResourceBeanTest {
         egresoService.save(egreso);
         entidadService.save(entidad);
 
-        VinculacionProyectoEgresoDTO vinculacion = new VinculacionProyectoEgresoDTO(proyecto.getOperacionId(),
+        VinculacionProyectoEgresoDTO vinculacion = new VinculacionProyectoEgresoDTO(proyecto.getProyectoId(),
                 egreso.getOperacionId());
         proyectoFinanciamientoResourceBean.vincularEgreso(vinculacion);
         assertTrue(proyecto.getEgresos().contains(egreso));

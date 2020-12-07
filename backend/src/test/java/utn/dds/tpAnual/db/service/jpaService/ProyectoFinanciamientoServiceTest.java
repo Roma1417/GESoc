@@ -22,8 +22,8 @@ public class ProyectoFinanciamientoServiceTest {
     public void persistenceTest() {
         ProyectoFinanciamiento proyecto = new ProyectoFinanciamiento();
         proyectoFinanciamientoService.save(proyecto);
-        ProyectoFinanciamiento proyectoObtenido = proyectoFinanciamientoService.getProyectoById(proyecto.getOperacionId());
-        assertTrue(proyecto.getCodigoOperacion() == proyectoObtenido.getCodigoOperacion());
+        ProyectoFinanciamiento proyectoObtenido = proyectoFinanciamientoService.getProyectoById(proyecto.getProyectoId());
+        assertTrue(proyecto.getProyectoId() == proyectoObtenido.getProyectoId());
     }
 
 }

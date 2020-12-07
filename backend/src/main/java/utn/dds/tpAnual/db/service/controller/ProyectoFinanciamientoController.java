@@ -22,8 +22,8 @@ public class ProyectoFinanciamientoController {
     @Autowired
     private ProyectoFinanciamientoResourceBean proyectoFinanciamientoResourceBean;
 
-    @RequestMapping("proyectoFinanciamiento")
-    public PageableResponse<ProyectoFinanciamientoDTO, ProyectoFinanciamiento> getProyecto(@RequestParam(name ="page", defaultValue = "1") Long page,
+    @RequestMapping("proyecto")
+    public PageableResponse<ProyectoFinanciamientoDTO, ProyectoFinanciamiento> getProyectos(@RequestParam(name ="page", defaultValue = "1") Long page,
                                                                                            @RequestParam(name ="itemsPerPage", defaultValue = "20")
                                                                      Long itemsPerPage){
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -42,24 +42,22 @@ public class ProyectoFinanciamientoController {
         return proyectos;
     }*/
 
-    /*
-    @PostMapping("ingreso")
-    public IngresoDTO crearIngreso(@RequestBody IngresoDTO ingresoDTO){
+    @PostMapping("proyecto")
+    public ProyectoFinanciamientoDTO crearProyecto(@RequestBody ProyectoFinanciamientoDTO proyectoDTO){
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        IngresoDTO ingresoCreado = ingresoResourceBean.crearIngreso(ingresoDTO, username);
-        return ingresoCreado;
+        ProyectoFinanciamientoDTO proyectoCreado = proyectoFinanciamientoResourceBean.crearProyecto(proyectoDTO, username);
+        return proyectoCreado;
     }
-    */
 
     @PostMapping("vincularEgreso")
-    public String vincularProyectoEgreso(@RequestBody VinculacionProyectoEgresoDTO vinculacion){
+    public String vincularEgreso(@RequestBody VinculacionProyectoEgresoDTO vinculacion){
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         proyectoFinanciamientoResourceBean.vincularEgreso(vinculacion);
         return "Ok";
     }
 
     @PostMapping("vincularIngreso")
-    public String vincularProyectoIngreso(@RequestBody VinculacionProyectoIngresoDTO vinculacion){
+    public String vincularIngreso(@RequestBody VinculacionProyectoIngresoDTO vinculacion){
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         proyectoFinanciamientoResourceBean.vincularIngreso(vinculacion);
         return "Ok";

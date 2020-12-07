@@ -1,5 +1,6 @@
 package utn.dds.tpAnual.db.entity.transaccion;
 
+import utn.dds.tpAnual.db.entity.entidad.Entidad;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 
 import javax.persistence.*;
@@ -8,7 +9,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "PROYECTO_FINANCIAMIENTO")
-public class ProyectoFinanciamiento extends Operacion{
+public class ProyectoFinanciamiento{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", unique = true, nullable = false)
+    private Long proyectoId;
 
     @Column(name = "MONTO_SIN_PRESUPUESTO")
     private Float montoSinPresupuesto;
@@ -25,8 +31,15 @@ public class ProyectoFinanciamiento extends Operacion{
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Usuario director;
 
-    public Float getTotal() {
-        return 0F;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Entidad entidadRealizadora;
+
+    public Long getProyectoId() {
+        return proyectoId;
+    }
+
+    public void setProyectoId(Long proyectoId) {
+        this.proyectoId = proyectoId;
     }
 
     public Float getMontoSinPresupuesto() {
@@ -67,6 +80,14 @@ public class ProyectoFinanciamiento extends Operacion{
 
     public void setDirector(Usuario director) {
         this.director = director;
+    }
+
+    public Entidad getEntidadRealizadora() {
+        return entidadRealizadora;
+    }
+
+    public void setEntidadRealizadora(Entidad entidadRealizadora) {
+        this.entidadRealizadora = entidadRealizadora;
     }
 
     public void vincularEgreso(Egreso egreso) {

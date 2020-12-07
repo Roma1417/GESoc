@@ -13,44 +13,37 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ProyectoFinanciamientoDTO extends StandardDTO<ProyectoFinanciamiento> {
-    private Long idProyecto;
+    private Long id;
     private EntidadDTO entidadRealizadora;
     private UserDTO director;
     private Integer presupuestosMinimos;
     private Float montoMaximoSinPresupuestos;
-    private List<Egreso> egresos;
-    private List<Ingreso> ingresos;
-    private Float total;
+    private List<EgresoDTO> egresos;
+    private List<IngresoDTO> ingresos;
 
     @Override
     public ProyectoFinanciamientoDTO from(ProyectoFinanciamiento object){
         ProyectoFinanciamientoDTO proyectoDTO = new ProyectoFinanciamientoDTO();
-        proyectoDTO.setIdProyecto(object.getOperacionId());
+        proyectoDTO.setId(object.getProyectoId());
         if (object.getEntidadRealizadora() != null) {
             proyectoDTO.setEntidadRealizadora(new EntidadDTO().from(object.getEntidadRealizadora()));
         }
         if (object.getDirector() != null) {
             proyectoDTO.setDirector(new UserDTO().from(object.getDirector()));
         }
-        proyectoDTO.setTotal(object.getTotal());
         proyectoDTO.setPresupuestosMinimos(object.getPresupuestosMinimos());
         proyectoDTO.setMontoMaximoSinPresupuestos(object.getMontoSinPresupuesto());
-        proyectoDTO.setEgresos(object.getEgresos());
-        proyectoDTO.setIngresos(object.getIngresos());
+        proyectoDTO.setEgresos(object.getEgresos().stream().map( unEgreso -> new EgresoDTO().from(unEgreso)).collect(Collectors.toList()));
+        proyectoDTO.setIngresos(object.getIngresos().stream().map( unIngreso -> new IngresoDTO().from(unIngreso)).collect(Collectors.toList()));
         return proyectoDTO;
     }
 
-    @Override
-    public ProyectoFinanciamiento toEntity() {
-        return null;
+    public Long getId() {
+        return id;
     }
 
-    public Long getIdProyecto() {
-        return idProyecto;
-    }
-
-    public void setIdProyecto(Long idProyecto) {
-        this.idProyecto = idProyecto;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public EntidadDTO getEntidadRealizadora() {
@@ -85,27 +78,26 @@ public class ProyectoFinanciamientoDTO extends StandardDTO<ProyectoFinanciamient
         this.montoMaximoSinPresupuestos = montoMaximoSinPresupuestos;
     }
 
-    public List<Egreso> getEgresos() {
+    public List<EgresoDTO> getEgresos() {
         return egresos;
     }
 
-    public void setEgresos(List<Egreso> egresos) {
+    public void setEgresos(List<EgresoDTO> egresos) {
         this.egresos = egresos;
     }
 
-    public List<Ingreso> getIngresos() {
+    public List<IngresoDTO> getIngresos() {
         return ingresos;
     }
 
-    public void setIngresos(List<Ingreso> ingresos) {
+    public void setIngresos(List<IngresoDTO> ingresos) {
         this.ingresos = ingresos;
     }
 
-    public Float getTotal() {
-        return total;
+    @Override
+    public ProyectoFinanciamiento toEntity() {
+        return null;
     }
 
-    public void setTotal(Float total) {
-        this.total = total;
-    }
+
 }
