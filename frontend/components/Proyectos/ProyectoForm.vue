@@ -26,31 +26,33 @@
         </v-card-title>
         <v-row class="px-2">
           <v-col md="6" cols="12">
-            <TheTextInput
-              v-model="proyecto.nombre"
-              :label="this.$t('proyectos.nombre')"
+            <TheAsyncAutocompleteInput
+              v-model="proyecto.entidadRealizadora"
+              item-text="nombre"
+              :get-items-function="$entidadService.getEntidades"
+              :label="$t('proyectos.entidad')"
               :rules="[$rl.required()]"
-              maxlength="20"
             />
           </v-col>
           <v-col md="6" cols="12">
-            <TheTextInput
+            <TheAsyncAutocompleteInput
               v-model="proyecto.director"
-              :label="this.$t('proyectos.director')"
+              item-text="nombre"
+              :get-items-function="$userService.getUsuarios"
+              :label="$t('proyectos.director')"
               :rules="[$rl.required()]"
-              maxlength="20"
             />
           </v-col>
           <v-col md="6" cols="12">
             <TheTextInput
-              v-model="proyecto.presupuestos"
+              v-model="proyecto.presupuestosMinimos"
               :label="this.$t('proyectos.presupuestos_exigibles')"
               :rules="[$rl.required(),$rl.positive()]"
             />
           </v-col>
           <v-col md="6" cols="12">
             <TheTextInput
-              v-model="proyecto.monto"
+              v-model="proyecto.montoMaximoSinPresupuestos"
               :label="this.$t('proyectos.monto')"
               :rules="[$rl.required(),$rl.positive()]"
             />
@@ -64,11 +66,13 @@
 import TheFormDialog from '~/components/General/Dialogs/TheFormDialog'
 import TheCreateButton from '~/components/General/Buttons/TheCreateButton'
 import TheTextInput from '~/components/General/Inputs/TheTextInput'
+import TheAsyncAutocompleteInput from '~/components/General/Inputs/TheAsyncAutocompleteInput'
 export default {
   components: {
     TheFormDialog,
     TheCreateButton,
-    TheTextInput
+    TheTextInput,
+    TheAsyncAutocompleteInput
   },
   props: {
     item: {
@@ -84,7 +88,10 @@ export default {
     return {
       loading: false,
       showForm: false,
-      proyecto: {}
+      proyecto: {
+        entidadRealizadora: {},
+        director: {}
+      }
     }
   },
   computed: {
@@ -106,7 +113,10 @@ export default {
         .finally(() => { this.loading = false })
     },
     closeForm () {
-      this.proyecto = {}
+      this.proyecto = {
+        entidadRealizadora: {},
+        director: {}
+      }
       this.$refs.form.resetValidation()
       this.showForm = false
     }

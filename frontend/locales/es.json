@@ -63,7 +63,8 @@
      "nombre": "Nombre",
      "total": "Total Asignado",
      "acciones": "Acciones",
-     "monto": "Monto Inicial Asignado"
+     "monto": "Monto Inicial Asignado",
+     "entidad": "Entidad Realizadora"
    },
    "egresos": {
      "titulo": "Egreso",
