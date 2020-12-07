@@ -62,6 +62,10 @@ export default {
             {
               title: 'transacciones.presupuestos',
               to: '/transacciones/presupuestos'
+            },
+            {
+              title: 'transacciones.proyectos',
+              to: '/transacciones/proyectos'
             }
           ]
         },

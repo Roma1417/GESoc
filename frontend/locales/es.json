@@ -47,7 +47,23 @@
      "menu": "Transacciones",
      "egresos": "Egresos",
      "ingresos": "Ingresos",
-     "presupuestos": "Presupuestos"
+     "presupuestos": "Presupuestos",
+     "proyectos": "Proyectos"
+   },
+   "proyectos":{
+     "titulo": "Proyectos de Financiamiento",
+     "titulo_creacion": "Proyecto de Financiamiento",
+     "menu": "Proyectos de Financiamiento",
+     "search": "Buscar Proyecto",
+     "crear": "Crear Proyecto",
+     "id": "ID",
+     "director": "Director Asignado",
+     "ingresos": "Igresos Asociados",
+     "presupuestos_exigibles": "Presupuestos exigibles",
+     "nombre": "Nombre",
+     "total": "Total Asignado",
+     "acciones": "Acciones",
+     "monto": "Monto Inicial Asignado"
    },
    "egresos": {
      "titulo": "Egreso",
