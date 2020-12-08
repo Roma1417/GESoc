@@ -2,6 +2,8 @@ package utn.dds.tpAnual.db.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -9,6 +11,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.http.HttpMethod;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,6 +19,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import utn.dds.tpAnual.db.entity.usuario.Usuario;
+import utn.dds.tpAnual.db.mongo.repository.TestRepository;
 import utn.dds.tpAnual.db.service.security.JWTAuthorizationFilter;
 
 
@@ -26,12 +31,16 @@ import utn.dds.tpAnual.db.service.security.JWTAuthorizationFilter;
 @ComponentScan(basePackages = {"utn.dds.tpAnual.db.service","utn.dds.tpAnual.db.scheduler", "utn.dds.tpAnual.db.api.service"})
 @EntityScan(basePackages = "utn.dds.tpAnual.db.entity")
 @EnableJpaRepositories("utn.dds.tpAnual.db.repository")
+@EnableMongoRepositories("utn.dds.tpAnual.db.mongo.repository")
 @ConditionalOnProperty(
         value = "app.scheduling.enable", havingValue = "true", matchIfMissing = true
 )
-public class JettyHibernateSpring {
+public class JettyHibernateSpring  implements CommandLineRunner {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @Autowired
+    private TestRepository repository;
 
     public static void main(String[] args) {
         SpringApplication.run(JettyHibernateSpring.class, args);
@@ -51,4 +60,20 @@ public class JettyHibernateSpring {
                     .anyRequest().authenticated();
         }
     }
+
+    @Override
+    public void run(String... args) throws Exception {
+
+        repository.deleteAll();
+
+        // save a couple of customers
+        repository.save(new Usuario("Pepe", "Gomez", "123"));
+
+        // fetch all customers
+        repository.findAll();
+        repository.findAllByNombre("Pepe");
+
+    }
+
+
 }
