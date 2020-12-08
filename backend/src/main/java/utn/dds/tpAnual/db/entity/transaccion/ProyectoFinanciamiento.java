@@ -5,7 +5,9 @@ import utn.dds.tpAnual.db.entity.usuario.Usuario;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "PROYECTO_FINANCIAMIENTO")
@@ -26,24 +28,24 @@ public class ProyectoFinanciamiento{
     private Integer presupuestosMinimos;
 
     @OneToMany(mappedBy = "proyecto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Egreso> egresos;
+    private Set<Egreso> egresos;
 
     @OneToMany(mappedBy = "proyecto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Ingreso> ingresos;
+    private Set<Ingreso> ingresos;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     private Usuario director;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     private Entidad entidadRealizadora;
 
     public ProyectoFinanciamiento(Float montoSinPresupuesto, Integer presupuestosMinimos,
-                                  List<Egreso> egresos, List<Ingreso> ingresos, Usuario director,
+                                  Set<Egreso> egresos, Set<Ingreso> ingresos, Usuario director,
                                   Entidad entidadRealizadora) {
         this.montoSinPresupuesto = montoSinPresupuesto;
         this.presupuestosMinimos = presupuestosMinimos;
-        setEgresos(egresos);
-        setIngresos(ingresos);
+        this.egresos = egresos;
+        this.ingresos = ingresos;
         this.director = director;
         this.entidadRealizadora = entidadRealizadora;
     }
@@ -74,19 +76,19 @@ public class ProyectoFinanciamiento{
         this.presupuestosMinimos = presupuestosMinimos;
     }
 
-    public List<Egreso> getEgresos() {
+    public Set<Egreso> getEgresos() {
         return egresos;
     }
 
-    public void setEgresos(List<Egreso> egresos) {
+    public void setEgresos(Set<Egreso> egresos) {
         this.egresos = egresos;
     }
 
-    public List<Ingreso> getIngresos() {
+    public Set<Ingreso> getIngresos() {
         return ingresos;
     }
 
-    public void setIngresos(List<Ingreso> ingresos) {
+    public void setIngresos(Set<Ingreso> ingresos) {
         this.ingresos = ingresos;
     }
 
@@ -116,7 +118,7 @@ public class ProyectoFinanciamiento{
 
     public void vincularEgreso(Egreso egreso) {
         if (egresos == null) {
-            egresos= new ArrayList<>();
+            egresos = new HashSet<>();
         }
         egresos.add(egreso);
         egreso.setProyecto(this);
@@ -124,7 +126,7 @@ public class ProyectoFinanciamiento{
 
     public void vincularIngreso(Ingreso ingreso) {
         if (ingresos == null) {
-            ingresos= new ArrayList<>();
+            ingresos= new HashSet<>();
         }
         ingresos.add(ingreso);
         ingreso.setProyecto(this);

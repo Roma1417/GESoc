@@ -19,15 +19,17 @@ import java.util.Optional;
 @Repository
 public interface ProyectoFinanciamientoRepository extends JpaRepository<ProyectoFinanciamiento, Long> {
 
-//    @Query("SELECT DISTINCT p FROM ProyectoFinanciamiento p " +
-//            " WHERE p.entidadRealizadora = :entidad ")
-//    List<ProyectoFinanciamiento> getProyectosByEntidadRealizadora(@Param("entidad") Entidad entidad);
-//
+
     @Query("SELECT p FROM ProyectoFinanciamiento p " +
             " WHERE p.proyectoId = :operacionIdProyecto")
     List<ProyectoFinanciamiento> getProyectoById(@Param("operacionIdProyecto") Long operacionId);
 
-    @Query("SELECT DISTINCT p FROM ProyectoFinanciamiento p" +
+    @Query("SELECT DISTINCT p FROM ProyectoFinanciamiento p " +
+            "LEFT JOIN FETCH p.egresos eg " +
+            "LEFT JOIN FETCH p.ingresos ig " +
+            "JOIN FETCH p.director dir " +
+            "JOIN FETCH dir.usuariosEntidad ue " +
+            "JOIN FETCH ue.entidad " +
             " WHERE p.proyectoId = :proyectoId")
     Optional<ProyectoFinanciamiento> findById(@Param("proyectoId") Long proyectoId);
 

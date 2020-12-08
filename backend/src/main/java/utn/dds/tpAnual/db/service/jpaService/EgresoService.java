@@ -32,6 +32,9 @@ import java.util.Optional;
     @Autowired
     private UsuarioService usuarioService;
 
+    @Autowired
+    private ProyectoFinanciamientoService proyectoFinanciamientoService;
+
     @Override
     public JpaRepository<Egreso, Long> getRepository() {
         return egresoRepository;

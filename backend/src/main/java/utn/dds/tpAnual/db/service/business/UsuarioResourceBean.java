@@ -32,7 +32,6 @@ public class UsuarioResourceBean {
 
     public UserDTO login(String username, String contrasenia){
         Usuario user = usuarioService.getUsuarioByUsername(username);
-        //TODO: REMOVER
         if (user == null) {
             throw new SecurityException("Usuario invalido");
         }

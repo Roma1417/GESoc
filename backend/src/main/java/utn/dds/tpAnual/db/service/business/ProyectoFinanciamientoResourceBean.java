@@ -65,13 +65,12 @@ public class ProyectoFinanciamientoResourceBean {
         ProyectoFinanciamientoRules.getInstance().validarVinculacion(proyecto, egreso);
         proyecto.vincularEgreso(egreso);
         proyectoFinanciamientoService.save(proyecto);
-        egresoService.save(egreso);
     }
 
     public void vincularIngreso(VinculacionProyectoIngresoDTO vinculacion) {
         Optional<ProyectoFinanciamiento> proyectoOptional = proyectoFinanciamientoService
                 .findById(vinculacion.getProyectoId());
-        Optional<Ingreso> ingresoOptional = ingresoService.findFullById(vinculacion.getIngresoId());
+        Optional<Ingreso> ingresoOptional = ingresoService.findById(vinculacion.getIngresoId());
         if (!proyectoOptional.isPresent() || !ingresoOptional.isPresent()){
             throw new RuntimeException("Los registros no fueron encontrados");
         }
