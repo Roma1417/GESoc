@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "MONEDA")
-public class Moneda  implements EntityInterface {
+public class Moneda implements EntityInterface {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -70,5 +70,9 @@ public class Moneda  implements EntityInterface {
 	public void setSimbolo(String simbolo) {
 		this.simbolo = simbolo;
 	}
-	
+
+	@Override
+	public Long getId() {
+		return null;
+	}
 }

@@ -2,6 +2,7 @@ package utn.dds.tpAnual.db.entity.categorizacion.criterioCompra;
 
 import java.util.List;
 
+import utn.dds.tpAnual.db.entity.EntityInterface;
 import utn.dds.tpAnual.db.entity.transaccion.Presupuesto;
 
 import javax.persistence.*;
@@ -14,7 +15,7 @@ import javax.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "CRITERIO_COMPRA")
-public abstract class CriterioCompra {
+public abstract class CriterioCompra implements EntityInterface {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

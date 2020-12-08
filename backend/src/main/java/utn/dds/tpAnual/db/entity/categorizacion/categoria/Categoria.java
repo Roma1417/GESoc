@@ -1,12 +1,13 @@
 package utn.dds.tpAnual.db.entity.categorizacion.categoria;
 
+import utn.dds.tpAnual.db.entity.EntityInterface;
 import utn.dds.tpAnual.db.entity.categorizacion.criterioCategorizacion.CriterioCategorizacion;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "CATEGORIA")
-public class Categoria {
+public class Categoria implements EntityInterface {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,5 +52,10 @@ public class Categoria {
 
 	public void setCriterioCategorizacion(CriterioCategorizacion criterioCategorizacion) {
 		this.criterioCategorizacion = criterioCategorizacion;
+	}
+
+	@Override
+	public Long getId() {
+		return null;
 	}
 }

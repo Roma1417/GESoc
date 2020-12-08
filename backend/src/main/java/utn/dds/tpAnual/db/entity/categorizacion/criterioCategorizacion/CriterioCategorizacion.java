@@ -1,5 +1,6 @@
 package utn.dds.tpAnual.db.entity.categorizacion.criterioCategorizacion;
 
+import utn.dds.tpAnual.db.entity.EntityInterface;
 import utn.dds.tpAnual.db.entity.categorizacion.categoria.Categoria;
 import utn.dds.tpAnual.db.entity.transaccion.Item;
 
@@ -10,7 +11,7 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "CRITERIO_CATEGORIZACION")
-public class CriterioCategorizacion {
+public class CriterioCategorizacion implements EntityInterface {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,5 +60,10 @@ public class CriterioCategorizacion {
 			categorias = new ArrayList<>();
 		}
 		categorias.add(categoria);
+	}
+
+	@Override
+	public Long getId() {
+		return null;
 	}
 }

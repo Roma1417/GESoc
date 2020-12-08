@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "CIUDAD")
-public class Ciudad  implements EntityInterface {
+public class Ciudad implements EntityInterface {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,4 +63,9 @@ public class Ciudad  implements EntityInterface {
 		this.idAPI = idAPI;
 	}
 
+
+	@Override
+	public Long getId() {
+		return null;
+	}
 }

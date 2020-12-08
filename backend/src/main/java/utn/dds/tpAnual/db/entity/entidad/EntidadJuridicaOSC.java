@@ -23,4 +23,8 @@ public class EntidadJuridicaOSC extends EntidadJuridica {
 		super(nombre);
 	}
 
+	@Override
+	public Long getId() {
+		return null;
+	}
 }

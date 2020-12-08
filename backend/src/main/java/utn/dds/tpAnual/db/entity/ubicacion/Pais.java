@@ -55,4 +55,8 @@ public class Pais  implements EntityInterface {
 		this.idAPI = idAPI;
 	}
 
+	@Override
+	public Long getId() {
+		return null;
+	}
 }

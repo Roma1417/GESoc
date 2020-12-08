@@ -10,6 +10,7 @@ import java.util.Set;
 
 import com.google.common.hash.Hashing;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import utn.dds.tpAnual.db.entity.EntityInterface;
 import utn.dds.tpAnual.db.entity.afip.RequisitoSectorEmpresa;
 
 import javax.persistence.*;
@@ -21,7 +22,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "USUARIO")
-public class Usuario implements Serializable {
+public class Usuario implements Serializable, EntityInterface {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -171,5 +172,10 @@ public class Usuario implements Serializable {
 
 	public void addCantidadIntentos() {
 		cantidadIntentos ++;
+	}
+
+	@Override
+	public Long getId() {
+		return null;
 	}
 }

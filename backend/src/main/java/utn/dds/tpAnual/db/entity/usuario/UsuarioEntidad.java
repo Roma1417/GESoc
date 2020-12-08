@@ -1,5 +1,6 @@
 package utn.dds.tpAnual.db.entity.usuario;
 
+import utn.dds.tpAnual.db.entity.EntityInterface;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "USUARIO_ENTIDAD")
-public class UsuarioEntidad {
+public class UsuarioEntidad implements EntityInterface {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -71,5 +72,10 @@ public class UsuarioEntidad {
 
 	public boolean puedeVerMensajesDeOtros() {
 		return this.tipoUsuario.puedeVerMensajesDeOtros();
+	}
+
+	@Override
+	public Long getId() {
+		return null;
 	}
 }

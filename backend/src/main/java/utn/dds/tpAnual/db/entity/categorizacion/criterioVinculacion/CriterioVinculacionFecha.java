@@ -43,4 +43,8 @@ public class CriterioVinculacionFecha extends CriterioVinculacion{
     }
 
 
+    @Override
+    public Long getId() {
+        return null;
+    }
 }

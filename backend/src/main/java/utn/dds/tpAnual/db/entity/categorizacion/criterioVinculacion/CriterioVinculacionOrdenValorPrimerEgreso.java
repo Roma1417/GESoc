@@ -36,4 +36,8 @@ public class CriterioVinculacionOrdenValorPrimerEgreso extends CriterioVinculaci
     }
 
 
+    @Override
+    public Long getId() {
+        return null;
+    }
 }

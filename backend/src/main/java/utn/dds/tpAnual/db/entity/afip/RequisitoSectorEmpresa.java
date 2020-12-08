@@ -1,5 +1,6 @@
 package utn.dds.tpAnual.db.entity.afip;
 
+import utn.dds.tpAnual.db.entity.EntityInterface;
 import utn.dds.tpAnual.db.entity.afip.tamanios.TamanioEmpresa;
 
 /**
@@ -12,7 +13,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "REQUISITO_SECTOR_EMPRESA")
-public class RequisitoSectorEmpresa implements Comparable<RequisitoSectorEmpresa>{
+public class RequisitoSectorEmpresa implements Comparable<RequisitoSectorEmpresa>, EntityInterface {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -90,6 +91,10 @@ public class RequisitoSectorEmpresa implements Comparable<RequisitoSectorEmpresa
 		int otraJerarquia = requisitoSectorEmpresa.getTamanioEmpresa().getJerarquia();
 		return jerarquia == otraJerarquia ? 0 : 
 			jerarquia > otraJerarquia ? 1 : -1;
-	}    
+	}
 
+	@Override
+	public Long getId() {
+		return null;
+	}
 }

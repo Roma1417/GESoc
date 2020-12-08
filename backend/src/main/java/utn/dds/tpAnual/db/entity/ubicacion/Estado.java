@@ -62,4 +62,9 @@ public class Estado  implements EntityInterface {
 	public void setEstadoId(Long estadoId) {
 		this.estadoId = estadoId;
 	}
+
+	@Override
+	public Long getId() {
+		return null;
+	}
 }

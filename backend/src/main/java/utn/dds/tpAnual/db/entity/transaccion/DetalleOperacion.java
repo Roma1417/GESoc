@@ -1,6 +1,7 @@
 package utn.dds.tpAnual.db.entity.transaccion;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import utn.dds.tpAnual.db.entity.EntityInterface;
 
 import javax.persistence.*;
 
@@ -12,7 +13,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "DETALLE_OPERACION")
-public class DetalleOperacion {
+public class DetalleOperacion implements EntityInterface {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -86,5 +87,9 @@ public class DetalleOperacion {
 			    .append("\ncantidad", cantidad)
 			    .toString();
 	}
-	
+
+	@Override
+	public Long getId() {
+		return null;
+	}
 }

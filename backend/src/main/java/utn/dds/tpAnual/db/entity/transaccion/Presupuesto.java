@@ -17,7 +17,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "PRESUPUESTO")
-public class Presupuesto extends Operacion  implements EntityInterface {
+public class Presupuesto extends Operacion{
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "PRESUPUESTO_ID")
@@ -68,5 +68,10 @@ public class Presupuesto extends Operacion  implements EntityInterface {
 		return new ToStringBuilder(this)
 			    .append("\ndetallesPrecio", detallesPrecio)
 			    .toString();
+	}
+
+	@Override
+	public Long getId() {
+		return null;
 	}
 }

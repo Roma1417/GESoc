@@ -123,4 +123,9 @@ public class Egreso extends OperacionEfectuada {
 	public void setIngreso(Ingreso ingreso) {
 		this.ingreso = ingreso;
 	}
+
+	@Override
+	public Long getId() {
+		return null;
+	}
 }

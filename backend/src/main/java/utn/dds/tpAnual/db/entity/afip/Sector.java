@@ -3,6 +3,7 @@ package utn.dds.tpAnual.db.entity.afip;
 import java.util.Collections;
 import java.util.List;
 
+import utn.dds.tpAnual.db.entity.EntityInterface;
 import utn.dds.tpAnual.db.entity.afip.tamanios.TamanioEmpresa;
 
 /**
@@ -14,7 +15,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "SECTOR")
-public class Sector {
+public class Sector implements EntityInterface {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -79,4 +80,8 @@ public class Sector {
 		return this.nombreSector;
 	}
 
+	@Override
+	public Long getId() {
+		return null;
+	}
 }
