@@ -37,6 +37,17 @@ export default class User {
     })
   }
 
+  getUsers ({ page, itemsPerPage }, user) {
+    const params = {
+      page,
+      itemsPerPage
+    }
+    if (user && user.length) {
+      params.users = user.map(user => user.userId).join(',')
+    }
+    return this.$axios.getOrFalse('/api/users', { params })
+  }
+
   getUsuario () {
     return this.$axios.getOrFalse('/api/user')
   }

@@ -56,7 +56,6 @@ export default {
     },
     totalList: 5,
     proyectosFinanciamiento: [],
-    filter: {},
     loading: false
   }),
   computed: {

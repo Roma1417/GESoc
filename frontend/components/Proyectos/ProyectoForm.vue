@@ -38,7 +38,7 @@
             <TheAsyncAutocompleteInput
               v-model="proyectoFinanciamiento.director"
               item-text="nombre"
-              :get-items-function="$userService.getUsuarios"
+              :get-items-function="$userService.getUsers"
               :label="$t('proyectos.director')"
               :rules="[$rl.required()]"
             />
@@ -102,7 +102,7 @@ export default {
   methods: {
     saveOrUpdate () {
       this.loading = true
-      this.$proyectoFinanciamientoService.crearProyecto(this.crearProyecto)
+      this.$proyectoFinanciamientoService.crearProyecto(this.proyectoFinanciamiento)
         .then((response) => {
           if (response) {
             this.closeForm()
