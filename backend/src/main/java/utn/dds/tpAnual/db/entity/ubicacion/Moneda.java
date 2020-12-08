@@ -1,5 +1,7 @@
 package utn.dds.tpAnual.db.entity.ubicacion;
 
+import utn.dds.tpAnual.db.entity.EntityInterface;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "MONEDA")
-public class Moneda {
+public class Moneda  implements EntityInterface {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

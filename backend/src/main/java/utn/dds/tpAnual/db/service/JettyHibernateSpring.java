@@ -2,8 +2,6 @@ package utn.dds.tpAnual.db.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -19,8 +17,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import utn.dds.tpAnual.db.entity.usuario.Usuario;
-import utn.dds.tpAnual.db.mongo.repository.TestRepository;
 import utn.dds.tpAnual.db.service.security.JWTAuthorizationFilter;
 
 
@@ -28,19 +24,18 @@ import utn.dds.tpAnual.db.service.security.JWTAuthorizationFilter;
 @Configuration
 @EnableTransactionManagement
 @EnableScheduling
-@ComponentScan(basePackages = {"utn.dds.tpAnual.db.service","utn.dds.tpAnual.db.scheduler", "utn.dds.tpAnual.db.api.service"})
+@ComponentScan(basePackages = {"utn.dds.tpAnual.db.service","utn.dds.tpAnual.db.scheduler",
+        "utn.dds.tpAnual.db.api.service", "utn.dds.tpAnual.db.service.mongo.service"})
 @EntityScan(basePackages = "utn.dds.tpAnual.db.entity")
 @EnableJpaRepositories("utn.dds.tpAnual.db.repository")
-@EnableMongoRepositories("utn.dds.tpAnual.db.mongo.repository")
+@EnableMongoRepositories("utn.dds.tpAnual.db.service.mongo.repository")
 @ConditionalOnProperty(
         value = "app.scheduling.enable", havingValue = "true", matchIfMissing = true
 )
-public class JettyHibernateSpring  implements CommandLineRunner {
+public class JettyHibernateSpring {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
-    private TestRepository repository;
 
     public static void main(String[] args) {
         SpringApplication.run(JettyHibernateSpring.class, args);
@@ -60,20 +55,5 @@ public class JettyHibernateSpring  implements CommandLineRunner {
                     .anyRequest().authenticated();
         }
     }
-
-    @Override
-    public void run(String... args) throws Exception {
-
-        repository.deleteAll();
-
-        // save a couple of customers
-        repository.save(new Usuario("Pepe", "Gomez", "123"));
-
-        // fetch all customers
-        repository.findAll();
-        repository.findAllByNombre("Pepe");
-
-    }
-
 
 }

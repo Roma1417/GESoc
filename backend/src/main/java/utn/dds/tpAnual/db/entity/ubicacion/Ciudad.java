@@ -1,10 +1,12 @@
 package utn.dds.tpAnual.db.entity.ubicacion;
 
+import utn.dds.tpAnual.db.entity.EntityInterface;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "CIUDAD")
-public class Ciudad {
+public class Ciudad  implements EntityInterface {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

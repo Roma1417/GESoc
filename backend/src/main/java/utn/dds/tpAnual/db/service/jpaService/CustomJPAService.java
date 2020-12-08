@@ -1,17 +1,40 @@
 package utn.dds.tpAnual.db.service.jpaService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
+import utn.dds.tpAnual.db.service.mongo.service.RegistroOperacionService;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public abstract class CustomJPAService <T> {
+
+    @Autowired
+    private RegistroOperacionService registroOperacionService;
+
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public abstract JpaRepository <T, Long> getRepository();
 
     public void save (T entity){
         getRepository().save(entity);
+        if (!entityManager.contains(entity) && entityManager.find(entity.getClass(), entity) == null) {
+            registroOperacionService.registrarAlta(entity);
+        } else {
+            registroOperacionService.registrarModificacion(entity);
+        }
+    }
+
+    public void delete(T entity){
+        getRepository().delete(entity);
+        registroOperacionService.registrarBaja(entity);
     }
 
     public void saveAll (Collection<T> entities){
