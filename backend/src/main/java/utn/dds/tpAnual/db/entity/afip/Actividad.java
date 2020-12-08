@@ -78,6 +78,6 @@ public class Actividad implements EntityInterface {
 
 	@Override
 	public Long getId() {
-		return null;
+		return getActividadId();
 	}
 }

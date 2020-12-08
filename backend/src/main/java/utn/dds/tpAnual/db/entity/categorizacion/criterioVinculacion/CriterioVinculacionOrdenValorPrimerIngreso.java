@@ -35,9 +35,4 @@ public class CriterioVinculacionOrdenValorPrimerIngreso extends CriterioVinculac
         return vincularListasYaOrdenadasPrimerIngreso(ingresos, egresos, reglas);
     }
 
-
-    @Override
-    public Long getId() {
-        return null;
-    }
 }

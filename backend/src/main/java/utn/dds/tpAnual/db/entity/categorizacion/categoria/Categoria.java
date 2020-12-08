@@ -56,6 +56,6 @@ public class Categoria implements EntityInterface {
 
 	@Override
 	public Long getId() {
-		return null;
+		return getIdCategoria();
 	}
 }

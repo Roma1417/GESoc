@@ -45,8 +45,4 @@ public class CriterioVinculacionMix extends CriterioVinculacion{
         criteriosVinculacion.add(criterioVinculacion);
     }
 
-    @Override
-    public Long getId() {
-        return null;
-    }
 }

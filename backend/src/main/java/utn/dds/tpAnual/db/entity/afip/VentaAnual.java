@@ -66,6 +66,6 @@ public class VentaAnual implements EntityInterface {
 
 	@Override
 	public Long getId() {
-		return null;
+		return getVentaAnualId();
 	}
 }

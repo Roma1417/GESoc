@@ -82,6 +82,6 @@ public class Sector implements EntityInterface {
 
 	@Override
 	public Long getId() {
-		return null;
+		return getSectorId();
 	}
 }

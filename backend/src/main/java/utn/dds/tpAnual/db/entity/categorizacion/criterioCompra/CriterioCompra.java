@@ -46,4 +46,9 @@ public abstract class CriterioCompra implements EntityInterface {
 	}
 
 	public abstract Presupuesto getPresupuestoQueCumpla(List<Presupuesto> presupuestos);
+
+	@Override
+	public Long getId() {
+		return getCriterioCompraId();
+	}
 }

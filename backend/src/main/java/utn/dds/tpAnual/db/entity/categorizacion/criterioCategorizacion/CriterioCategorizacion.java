@@ -64,6 +64,6 @@ public class CriterioCategorizacion implements EntityInterface {
 
 	@Override
 	public Long getId() {
-		return null;
+		return getCriterioCategorizacionId();
 	}
 }

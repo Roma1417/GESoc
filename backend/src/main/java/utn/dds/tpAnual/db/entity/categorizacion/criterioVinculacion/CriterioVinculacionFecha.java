@@ -42,9 +42,4 @@ public class CriterioVinculacionFecha extends CriterioVinculacion{
         operacionesEfectuada.sort(Comparator.comparing(Operacion::getFecha));
     }
 
-
-    @Override
-    public Long getId() {
-        return null;
-    }
 }

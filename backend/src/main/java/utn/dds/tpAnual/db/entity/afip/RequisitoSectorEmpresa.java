@@ -95,6 +95,6 @@ public class RequisitoSectorEmpresa implements Comparable<RequisitoSectorEmpresa
 
 	@Override
 	public Long getId() {
-		return null;
+		return getRequisitoSectorEmpresaId();
 	}
 }

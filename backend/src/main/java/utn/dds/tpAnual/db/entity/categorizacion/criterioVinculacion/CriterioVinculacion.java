@@ -79,5 +79,9 @@ public abstract class CriterioVinculacion implements EntityInterface {
         operacionesEfectuada.sort(Comparator.comparing(Operacion::getTotal));
     }
 
+    @Override
+    public Long getId() {
+        return getCriterioId();
+    }
 
 }
