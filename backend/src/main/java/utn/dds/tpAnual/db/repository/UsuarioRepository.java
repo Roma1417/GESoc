@@ -1,9 +1,12 @@
 package utn.dds.tpAnual.db.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import utn.dds.tpAnual.db.entity.categorizacion.categoria.Categoria;
 import utn.dds.tpAnual.db.entity.proveedor.Proveedor;
 import utn.dds.tpAnual.db.entity.ubicacion.DireccionPostal;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
@@ -24,5 +27,9 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
             " JOIN FETCH ue.entidad " +
             " WHERE u.usuarioId = :userID OR u.usuario = :username")
     Usuario getUsuarioConEntidadesByIdOrUser(@Param("userID") Long userID, @Param("username") String username);
+
+    @Query("SELECT u FROM Usuario u " +
+            " WHERE (:nombre IS NULL OR upper(u.nombre) LIKE concat('%', upper(:nombre), '%'))")
+    Page<Usuario> getUsuarioByNameLike(@Param("nombre") String nombre, Pageable pageable);
 
 }

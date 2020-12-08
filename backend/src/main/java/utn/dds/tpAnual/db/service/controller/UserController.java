@@ -3,11 +3,14 @@ package utn.dds.tpAnual.db.service.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import utn.dds.tpAnual.db.dto.categoria.CategoriaDTO;
 import utn.dds.tpAnual.db.dto.usuario.MensajeDTO;
 import utn.dds.tpAnual.db.dto.usuario.UserDTO;
 import utn.dds.tpAnual.db.dto.pageable.PageableRequest;
 import utn.dds.tpAnual.db.dto.pageable.PageableResponse;
+import utn.dds.tpAnual.db.entity.categorizacion.categoria.Categoria;
 import utn.dds.tpAnual.db.entity.usuario.Mensaje;
+import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.service.business.MensajeResourceBean;
 import utn.dds.tpAnual.db.service.business.UsuarioResourceBean;
 import utn.dds.tpAnual.db.service.rules.UsuarioRules;
@@ -62,5 +65,15 @@ public class UserController {
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserDTO userDTO = usuarioResourceBean.getUser(username);
         return userDTO;
+    }
+
+    @RequestMapping("users")
+    public PageableResponse<UserDTO, Usuario> getUsers(@RequestParam(name ="page", defaultValue = "1") Long page,
+                                                       @RequestParam(name ="itemsPerPage", defaultValue = "20") Long itemsPerPage,
+                                                       @RequestParam(name ="name", required = false) String nombreUsuario){
+        String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        PageableRequest pageableRequest = new PageableRequest(username, page, itemsPerPage);
+        PageableResponse<UserDTO, Usuario>  usuarios = usuarioResourceBean.getUsuarios(pageableRequest, nombreUsuario);
+        return usuarios;
     }
 }
