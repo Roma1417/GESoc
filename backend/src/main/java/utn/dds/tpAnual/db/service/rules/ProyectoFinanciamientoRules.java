@@ -33,5 +33,6 @@ public class ProyectoFinanciamientoRules {
         if (usuario == null) {
             throw new RuntimeException("El director asignado no existe.");
         }
+        // Validar monto. Presup. minimo.
     }
 }

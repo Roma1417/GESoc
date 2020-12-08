@@ -69,7 +69,8 @@ public class ProyectoFinanciamientoResourceBean {
     }
 
     public void vincularIngreso(VinculacionProyectoIngresoDTO vinculacion) {
-        Optional<ProyectoFinanciamiento> proyectoOptional = proyectoFinanciamientoService.findById(vinculacion.getProyectoId());
+        Optional<ProyectoFinanciamiento> proyectoOptional = proyectoFinanciamientoService
+                .findById(vinculacion.getProyectoId());
         Optional<Ingreso> ingresoOptional = ingresoService.findFullById(vinculacion.getIngresoId());
         if (!proyectoOptional.isPresent() || !ingresoOptional.isPresent()){
             throw new RuntimeException("Los registros no fueron encontrados");
@@ -86,9 +87,11 @@ public class ProyectoFinanciamientoResourceBean {
         ProyectoFinanciamiento proyecto = new ProyectoFinanciamiento();
         Usuario usuario = usuarioService.getUsuarioByUsername(username);
         Usuario director = usuarioService.getUsuarioByUsername(proyectoDTO.getDirector().getUsername());
-        Optional<Entidad> entidadRealizadora = entidadService.findAllRelated(usuario, proyectoDTO.getEntidadRealizadora().getIdEntidad());
+        Optional<Entidad> entidadRealizadora = entidadService
+                .findAllRelated(usuario, proyectoDTO.getEntidadRealizadora().getIdEntidad());
 
-        ProyectoFinanciamientoRules.getInstance().validarCrearProyectoFinanciamiento(proyectoDTO, entidadRealizadora, director);
+        ProyectoFinanciamientoRules.getInstance()
+                .validarCrearProyectoFinanciamiento(proyectoDTO, entidadRealizadora, director);
 
         proyecto.setEntidadRealizadora(entidadRealizadora.get());
         proyecto.setDirector(director);
