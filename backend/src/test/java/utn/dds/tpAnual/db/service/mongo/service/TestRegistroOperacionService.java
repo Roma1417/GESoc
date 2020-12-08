@@ -70,12 +70,32 @@ public class TestRegistroOperacionService {
     }
 
     @Test
-    public void getDeAltaDevuelve () {
+    public void getDeAltaPorNombreClaseYTipoOperacionDevuelve () {
         Usuario usuario = new Usuario("UsuarioBuscado1", "UsuarioBuscado1", "123");
         usuarioService.save(usuario);
         Page<RegistroOperacion> registroOperacionPage = registroOperacionService
                 .getRegistroOperacionByTipo(new PageableRequest("Pepe",1l, 10l ), TipoOperacion.ALTA,
                         "Usuario");
+        assertTrue(registroOperacionPage.getTotalElements() == 1l);
+    }
+
+    @Test
+    public void getDeAltaPorNombreClaseDevuelve () {
+        Usuario usuario = new Usuario("UsuarioBuscado2", "UsuarioBuscado2", "123");
+        usuarioService.save(usuario);
+        Page<RegistroOperacion> registroOperacionPage = registroOperacionService
+                .getRegistroOperacionByTipo(new PageableRequest("Pepe",1l, 10l ), null,
+                        "Usuario");
+        assertTrue(registroOperacionPage.getTotalElements() == 1l);
+    }
+
+    @Test
+    public void getDeAltaPorTipoOperacionDevuelve () {
+        Usuario usuario = new Usuario("UsuarioBuscado3", "UsuarioBuscado3", "123");
+        usuarioService.save(usuario);
+        Page<RegistroOperacion> registroOperacionPage = registroOperacionService
+                .getRegistroOperacionByTipo(new PageableRequest("Pepe",1l, 10l ), TipoOperacion.ALTA,
+                        null);
         assertTrue(registroOperacionPage.getTotalElements() == 1l);
     }
 
