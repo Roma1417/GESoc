@@ -21,6 +21,7 @@ import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.service.jpaService.*;
 import utn.dds.tpAnual.db.service.rules.EgresoRules;
 import utn.dds.tpAnual.db.service.rules.IngresoRules;
+import utn.dds.tpAnual.db.service.rules.ProyectoFinanciamientoRules;
 
 import java.util.Optional;
 
@@ -82,13 +83,18 @@ public class ProyectoFinanciamientoResourceBean {
     }
 
     public ProyectoFinanciamientoDTO crearProyecto(ProyectoFinanciamientoDTO proyectoDTO, String username){
-        ProyectoFinanciamiento proyecto = proyectoDTO.toEntity();
+        ProyectoFinanciamiento proyecto = new ProyectoFinanciamiento();
         Usuario usuario = usuarioService.getUsuarioByUsername(username);
+        Usuario director = usuarioService.getUsuarioByUsername(proyectoDTO.getDirector().getUsername());
         Optional<Entidad> entidadRealizadora = entidadService.findAllRelated(usuario, proyectoDTO.getEntidadRealizadora().getIdEntidad());
 
-        //IngresoRules.getInstance().validarCrearIngreso(entidadRealizadora, documentoComercial, ingreso, pais, moneda);
+        ProyectoFinanciamientoRules.getInstance().validarCrearProyectoFinanciamiento(proyectoDTO, entidadRealizadora, director);
 
         proyecto.setEntidadRealizadora(entidadRealizadora.get());
+        proyecto.setDirector(director);
+        proyecto.setMontoSinPresupuesto(proyectoDTO.getMontoMaximoSinPresupuestos());
+        proyecto.setPresupuestosMinimos(proyectoDTO.getPresupuestosMinimos());
+
         proyectoFinanciamientoService.save(proyecto);
         proyectoDTO.setId(proyecto.getProyectoId());
         return proyectoDTO;

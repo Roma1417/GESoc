@@ -51,9 +51,9 @@
      "proyectos": "Proyectos"
    },
    "proyectos":{
-     "titulo": "Proyectos de Financiamiento",
+     "titulo": "Proyectos de financiamiento",
      "titulo_creacion": "Proyecto de Financiamiento",
-     "menu": "Proyectos de Financiamiento",
+     "menu": "Proyectos de financiamiento",
      "search": "Buscar Proyecto",
      "crear": "Crear Proyecto",
      "id": "ID",
