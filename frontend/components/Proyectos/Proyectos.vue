@@ -2,23 +2,15 @@
   <TheLayoutWithHeader title="proyectos.titulo" :loading="loading">
     <template #filter>
       <v-row no-gutters>
-        <v-col>
-          <TheTextInput
-            v-model="filter.nombre"
-            clearable
-            :label="$t('proyectos.search')"
-            maxlength="32"
-          />
-        </v-col>
         <v-col class="text-right">
           <ThePrimaryButton
             class="my-4"
             :inner-text="$t('search')"
             icon="mdi-magnify"
-            @click="getEgresos()"
+            @click="getProyectos()"
           />
           <ProyectoForm
-            @created="getEgresos()"
+            @created="getProyectos()"
           />
         </v-col>
       </v-row>
@@ -26,10 +18,10 @@
     <template #body>
       <TheFilterTable
         :page-info.sync="pageInfo"
-        :items="egresos"
+        :items="proyectosFinanciamiento"
         :headers="headers"
         :total="totalList"
-        @change="getEgresos()"
+        @change="getProyectos()"
       >
         <template #[`item.actions`]="{ item }">
           <VinculacionForm
@@ -47,7 +39,6 @@
 import TheLayoutWithHeader from '~/components/General/Layouts/TheLayoutWithHeader'
 import TheFilterTable from '~/components/General/Tables/TheFilterTable'
 import ThePrimaryButton from '~/components/General/Buttons/ThePrimaryButton'
-import TheTextInput from '~/components/General/Inputs/TheTextInput'
 import ProyectoForm from '~/components/Proyectos/ProyectoForm'
 import VinculacionForm from '~/components/Egresos/VinculacionForm' // Esto se va ir ALV
 export default {
@@ -55,7 +46,6 @@ export default {
     TheLayoutWithHeader,
     TheFilterTable,
     ThePrimaryButton,
-    TheTextInput,
     ProyectoForm,
     VinculacionForm
   },
@@ -65,8 +55,7 @@ export default {
       itemsPerPage: 20
     },
     totalList: 5,
-    // Adaptar esto para que queden bien los campos que se van a mostrar
-    egresos: [],
+    proyectosFinanciamiento: [],
     filter: {},
     loading: false
   }),
@@ -77,31 +66,31 @@ export default {
           text: this.$t('proyectos.id'),
           align: 'center',
           sortable: false,
-          value: 'idEgreso'
+          value: 'id'
         },
         {
-          text: this.$t('proyectos.director'),
-          align: 'start',
-          sortable: false,
-          value: 'proveedor.nombreRazonSocial'
-        },
-        {
-          text: this.$t('proyectos.presupuestos_exigibles'),
+          text: this.$t('proyectos.entidad'),
           align: 'start',
           sortable: false,
           value: 'entidadRealizadora.nombre'
         },
         {
-          text: this.$t('proyectos.ingresos'),
+          text: this.$t('proyectos.director'),
           align: 'start',
           sortable: false,
-          value: 'fechaOperacion'
+          value: 'director.nombre'
         },
         {
-          text: this.$t('proyectos.total'),
+          text: this.$t('proyectos.presupuestos_exigibles'),
+          align: 'start',
+          sortable: false,
+          value: 'presupuestosMinimos'
+        },
+        {
+          text: this.$t('proyectos.monto'),
           align: 'end',
           sortable: false,
-          value: 'total'
+          value: 'montoMaximoSinPresupuestos'
         },
         {
           text: this.$t('actions'),
@@ -112,13 +101,13 @@ export default {
     }
   },
   methods: {
-    getEgresos () {
+    getProyectos () {
       this.loading = true
-      this.$egresoService.getEgresos(this.pageInfo, this.filter.categorias)
+      this.$proyectoFinanciamientoService.getProyectos(this.pageInfo)
         .then((result) => {
           if (result) {
             this.totalList = result.total
-            this.egresos = result.data
+            this.proyectosFinanciamiento = result.data
           }
         }).finally(this.stopLoading)
     },

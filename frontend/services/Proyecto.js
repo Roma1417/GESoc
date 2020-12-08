@@ -1,4 +1,4 @@
-export default class Proyecto {
+export default class ProyectoFinanciamiento {
   constructor (ctx) {
     this.$axios = ctx.$axios
   }

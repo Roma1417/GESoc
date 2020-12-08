@@ -27,7 +27,7 @@
         <v-row class="px-2">
           <v-col md="6" cols="12">
             <TheAsyncAutocompleteInput
-              v-model="proyecto.entidadRealizadora"
+              v-model="proyectoFinanciamiento.entidadRealizadora"
               item-text="nombre"
               :get-items-function="$entidadService.getEntidades"
               :label="$t('proyectos.entidad')"
@@ -36,7 +36,7 @@
           </v-col>
           <v-col md="6" cols="12">
             <TheAsyncAutocompleteInput
-              v-model="proyecto.director"
+              v-model="proyectoFinanciamiento.director"
               item-text="nombre"
               :get-items-function="$userService.getUsuarios"
               :label="$t('proyectos.director')"
@@ -45,14 +45,14 @@
           </v-col>
           <v-col md="6" cols="12">
             <TheTextInput
-              v-model="proyecto.presupuestosMinimos"
+              v-model="proyectoFinanciamiento.presupuestosMinimos"
               :label="this.$t('proyectos.presupuestos_exigibles')"
               :rules="[$rl.required(),$rl.positive()]"
             />
           </v-col>
           <v-col md="6" cols="12">
             <TheTextInput
-              v-model="proyecto.montoMaximoSinPresupuestos"
+              v-model="proyectoFinanciamiento.montoMaximoSinPresupuestos"
               :label="this.$t('proyectos.monto')"
               :rules="[$rl.required(),$rl.positive()]"
             />
@@ -88,7 +88,7 @@ export default {
     return {
       loading: false,
       showForm: false,
-      proyecto: {
+      proyectoFinanciamiento: {
         entidadRealizadora: {},
         director: {}
       }
@@ -102,7 +102,7 @@ export default {
   methods: {
     saveOrUpdate () {
       this.loading = true
-      this.$proyectoService.crearProyecto(this.crearProyecto)
+      this.$proyectoFinanciamientoService.crearProyecto(this.crearProyecto)
         .then((response) => {
           if (response) {
             this.closeForm()
@@ -113,7 +113,7 @@ export default {
         .finally(() => { this.loading = false })
     },
     closeForm () {
-      this.proyecto = {
+      this.proyectoFinanciamiento = {
         entidadRealizadora: {},
         director: {}
       }

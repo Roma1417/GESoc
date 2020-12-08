@@ -11,7 +11,7 @@ import MedioPago from '../services/MedioPago'
 import Proveedor from '../services/Proveedor'
 import Mensaje from '../services/Mensaje'
 import Presupuesto from '~/services/Presupuesto'
-import Proyecto from '~/services/Proyecto'
+import ProyectoFinanciamiento from '~/services/Proyecto'
 
 export default function ({ app }, inject) {
   const user = new User({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })
@@ -20,8 +20,8 @@ export default function ({ app }, inject) {
   inject('egresoService', egreso)
   const ingreso = new Ingreso({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })
   inject('ingresoService', ingreso)
-  const proyecto = new Proyecto({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })
-  inject('proyectoService', proyecto)
+  const proyectoFinanciamiento = new ProyectoFinanciamiento({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })
+  inject('proyectoFinanciamientoService', proyectoFinanciamiento)
   const presupuesto = new Presupuesto({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })
   inject('presupuestoService', presupuesto)
   const pais = new Pais({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })
