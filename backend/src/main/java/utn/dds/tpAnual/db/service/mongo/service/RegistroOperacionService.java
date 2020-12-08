@@ -38,4 +38,8 @@ public class RegistroOperacionService {
     public List<RegistroOperacion> findAll(){
         return registroOperacionRepository.findAll();
     }
+
+    public void deleteAll(){
+        registroOperacionRepository.deleteAll();
+    }
 }

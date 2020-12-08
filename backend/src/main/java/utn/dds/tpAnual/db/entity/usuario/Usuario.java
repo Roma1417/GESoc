@@ -176,6 +176,6 @@ public class Usuario implements Serializable, EntityInterface {
 
 	@Override
 	public Long getId() {
-		return null;
+		return usuarioId;
 	}
 }
