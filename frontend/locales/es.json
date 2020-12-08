@@ -36,7 +36,8 @@
    },
    "validations": {
      "required": "El campo es requerido",
-     "positive": "El valor debe ser mayor a 0"
+     "positive": "El valor debe ser mayor a 0",
+     "positive_or_zero": "El valor debe ser mayor o igual a 0"
    },
    "buttons": {
    "cancelButton": "Cancelar",

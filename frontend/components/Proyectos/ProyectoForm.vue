@@ -47,7 +47,7 @@
             <TheTextInput
               v-model="proyectoFinanciamiento.presupuestosMinimos"
               :label="this.$t('proyectos.presupuestos_exigibles')"
-              :rules="[$rl.required(),$rl.positive()]"
+              :rules="[$rl.required(),$rl.positiveOrZero()]"
             />
           </v-col>
           <v-col md="6" cols="12">

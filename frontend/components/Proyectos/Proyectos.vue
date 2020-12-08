@@ -26,7 +26,7 @@
         <template #[`item.actions`]="{ item }">
           <VinculacionForm
             :title-text="$t('vincular.proyectoIngresoTitle')"
-            button-icon="mdi-link-variant-plus"
+            button-icon="mdi-cash-plus"
             :vincular-tooltip-text="$t('vincular.proyecto_ingreso')"
             :objeto-a-vincular="item"
             :vincular-con-egreso="false"
@@ -36,7 +36,7 @@
           />
           <VinculacionForm
             :title-text="$t('vincular.proyectoEgresoTitle')"
-            button-icon="mdi-link-variant-minus"
+            button-icon="mdi-cash-minus"
             :vincular-tooltip-text="$t('vincular.proyecto_egreso')"
             :objeto-a-vincular="item"
             :vinculacion-function="$proyectoFinanciamientoService.vincularProyecto"

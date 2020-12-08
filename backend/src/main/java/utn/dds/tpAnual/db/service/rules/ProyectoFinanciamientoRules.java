@@ -30,8 +30,8 @@ public class ProyectoFinanciamientoRules {
         if (usuario == null) {
             throw new RuntimeException("El director asignado no existe.");
         }
-        if (proyectoDTO.getPresupuestosMinimos() <= 0) {
-            throw new RuntimeException("La cantidad de presupuestos minimos debe ser mayor a 0.");
+        if (proyectoDTO.getPresupuestosMinimos() < 0) {
+            throw new RuntimeException("La cantidad de presupuestos minimos debe ser mayor o igual a 0.");
         }
         if (proyectoDTO.getMontoMaximoSinPresupuestos() <= 0) {
             throw new RuntimeException("El monto maximo sin presupuestos debe ser mayor a 0.");
