@@ -19,6 +19,9 @@ public class ProyectoFinanciamiento{
     @Column(name = "MONTO_SIN_PRESUPUESTO")
     private Float montoSinPresupuesto;
 
+    @Column(name = "MONTO_INICIAL_ASIGNADO")
+    private Float montoInicialAsignado;
+
     @Column(name = "PRESUPUESTOS_MINIMOS")
     private Integer presupuestosMinimos;
 
@@ -101,6 +104,14 @@ public class ProyectoFinanciamiento{
 
     public void setEntidadRealizadora(Entidad entidadRealizadora) {
         this.entidadRealizadora = entidadRealizadora;
+    }
+
+    public Float getMontoInicialAsignado() {
+        return montoInicialAsignado;
+    }
+
+    public void setMontoInicialAsignado(Float montoInicialAsignado) {
+        this.montoInicialAsignado = montoInicialAsignado;
     }
 
     public void vincularEgreso(Egreso egreso) {

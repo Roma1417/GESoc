@@ -25,7 +25,7 @@
           {{ $t('proyectos.titulo_creacion') }}
         </v-card-title>
         <v-row class="px-2">
-          <v-col md="6" cols="12">
+          <TheResponsiveColumn>
             <TheAsyncAutocompleteInput
               v-model="proyectoFinanciamiento.entidadRealizadora"
               item-text="nombre"
@@ -33,8 +33,8 @@
               :label="$t('proyectos.entidad')"
               :rules="[$rl.required()]"
             />
-          </v-col>
-          <v-col md="6" cols="12">
+          </TheResponsiveColumn>
+          <TheResponsiveColumn>
             <TheAsyncAutocompleteInput
               v-model="proyectoFinanciamiento.director"
               item-text="nombre"
@@ -42,21 +42,28 @@
               :label="$t('proyectos.director')"
               :rules="[$rl.required()]"
             />
-          </v-col>
-          <v-col md="6" cols="12">
+          </TheResponsiveColumn>
+          <TheResponsiveColumn>
             <TheTextInput
               v-model="proyectoFinanciamiento.presupuestosMinimos"
-              :label="this.$t('proyectos.presupuestos_exigibles')"
+              :label="$t('proyectos.presupuestos_exigibles')"
               :rules="[$rl.required(),$rl.positiveOrZero()]"
             />
-          </v-col>
-          <v-col md="6" cols="12">
+          </TheResponsiveColumn>
+          <TheResponsiveColumn>
             <TheTextInput
               v-model="proyectoFinanciamiento.montoMaximoSinPresupuestos"
-              :label="this.$t('proyectos.monto')"
-              :rules="[$rl.required(),$rl.positive()]"
+              :label="$t('proyectos.monto_maximo_sin_presupuestos')"
+              :rules="[$rl.required(),$rl.positiveOrZero()]"
             />
-          </v-col>
+          </TheResponsiveColumn>
+          <TheResponsiveColumn>
+            <TheTextInput
+              v-model="proyectoFinanciamiento.montoInicialAsignado"
+              :label="$t('proyectos.monto_inicial')"
+              :rules="[$rl.required(),$rl.positiveOrZero()]"
+            />
+          </TheResponsiveColumn>
         </v-row>
       </v-card>
     </template>

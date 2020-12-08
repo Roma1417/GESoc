@@ -64,7 +64,8 @@
      "nombre": "Nombre",
      "total": "Total Asignado",
      "acciones": "Acciones",
-     "monto": "Monto Inicial Asignado",
+     "monto_maximo_sin_presupuestos": "Monto máximo sin presupuestos",
+     "monto_inicial": "Monto inicial asignado",
      "entidad": "Entidad Realizadora"
    },
    "egresos": {

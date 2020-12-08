@@ -97,6 +97,7 @@ public class ProyectoFinanciamientoResourceBean {
         proyecto.setDirector(director);
         proyecto.setMontoSinPresupuesto(proyectoDTO.getMontoMaximoSinPresupuestos());
         proyecto.setPresupuestosMinimos(proyectoDTO.getPresupuestosMinimos());
+        proyecto.setMontoInicialAsignado(proyectoDTO.getMontoInicialAsignado());
 
         proyectoFinanciamientoService.save(proyecto);
         proyectoDTO.setId(proyecto.getProyectoId());

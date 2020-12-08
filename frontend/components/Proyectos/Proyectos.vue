@@ -99,10 +99,18 @@ export default {
           value: 'presupuestosMinimos'
         },
         {
-          text: this.$t('proyectos.monto'),
+          text: this.$t('proyectos.monto_maximo_sin_presupuestos'),
           align: 'end',
           sortable: false,
-          value: 'montoMaximoSinPresupuestos'
+          value: 'montoMaximoSinPresupuestos',
+          width: '15%'
+        },
+        {
+          text: this.$t('proyectos.monto_inicial'),
+          align: 'end',
+          sortable: false,
+          value: 'montoInicialAsignado',
+          width: '15%'
         },
         {
           text: this.$t('actions'),

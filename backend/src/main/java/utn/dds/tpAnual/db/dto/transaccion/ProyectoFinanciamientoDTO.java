@@ -18,6 +18,7 @@ public class ProyectoFinanciamientoDTO extends StandardDTO<ProyectoFinanciamient
     private UserDTO director;
     private Integer presupuestosMinimos;
     private Float montoMaximoSinPresupuestos;
+    private Float montoInicialAsignado;
     private List<EgresoDTO> egresos;
     private List<IngresoDTO> ingresos;
 
@@ -25,6 +26,7 @@ public class ProyectoFinanciamientoDTO extends StandardDTO<ProyectoFinanciamient
     public ProyectoFinanciamientoDTO from(ProyectoFinanciamiento object){
         ProyectoFinanciamientoDTO proyectoDTO = new ProyectoFinanciamientoDTO();
         proyectoDTO.setId(object.getProyectoId());
+        proyectoDTO.setMontoInicialAsignado(object.getMontoInicialAsignado());
         if (object.getEntidadRealizadora() != null) {
             proyectoDTO.setEntidadRealizadora(new EntidadDTO().from(object.getEntidadRealizadora()));
         }
@@ -80,6 +82,14 @@ public class ProyectoFinanciamientoDTO extends StandardDTO<ProyectoFinanciamient
 
     public void setMontoMaximoSinPresupuestos(Float montoMaximoSinPresupuestos) {
         this.montoMaximoSinPresupuestos = montoMaximoSinPresupuestos;
+    }
+
+    public Float getMontoInicialAsignado() {
+        return montoInicialAsignado;
+    }
+
+    public void setMontoInicialAsignado(Float montoInicialAsignado) {
+        this.montoInicialAsignado = montoInicialAsignado;
     }
 
     public List<EgresoDTO> getEgresos() {

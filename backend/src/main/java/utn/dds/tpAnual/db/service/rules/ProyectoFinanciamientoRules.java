@@ -33,8 +33,11 @@ public class ProyectoFinanciamientoRules {
         if (proyectoDTO.getPresupuestosMinimos() < 0) {
             throw new RuntimeException("La cantidad de presupuestos minimos debe ser mayor o igual a 0.");
         }
-        if (proyectoDTO.getMontoMaximoSinPresupuestos() <= 0) {
-            throw new RuntimeException("El monto maximo sin presupuestos debe ser mayor a 0.");
+        if (proyectoDTO.getMontoMaximoSinPresupuestos() < 0) {
+            throw new RuntimeException("El monto maximo sin presupuestos debe ser mayor o igual a 0.");
+        }
+        if (proyectoDTO.getMontoInicialAsignado() < 0) {
+            throw new RuntimeException("El monto inicial asignado debe ser mayor o igual a 0.");
         }
     }
     public void validarVinculacion(ProyectoFinanciamiento proyecto, Egreso egreso){
