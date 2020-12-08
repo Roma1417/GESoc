@@ -279,4 +279,4 @@ VALUES ('Resultado Validación', 'La validación no fue exitosa', 5);
         proyecto_financiamiento
         (id, monto_sin_presupuesto, presupuestos_minimos, director_id, entidad_realizadora_id)
     values
-        (1, 1000, 3, 3, 2)
+        (900, 1000, 3, 3, 2)

@@ -27,7 +27,10 @@
           <VinculacionForm
             :title-text="$t('vincular.ingresoTitle')"
             :vincular-tooltip-text="$t('vincular.ingreso')"
-            :ingreso-a-vincular="item"
+            :mensaje-ingreso-de-id="$t('vincular.info_ingreso_id')"
+            :objeto-a-vincular="item"
+            :vinculacion-function="$egresoService.vincularEgresoIngreso"
+            @created="getIngresos()"
           />
         </template>
       </TheFilterTable>

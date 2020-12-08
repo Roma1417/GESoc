@@ -35,7 +35,11 @@
             v-if="!item.idIngresoAsociado"
             :title-text="$t('vincular.egresoTitle')"
             :vincular-tooltip-text="$t('vincular.egreso')"
-            :egreso-a-vincular="item"
+            :mensaje-ingreso-de-id="$t('vincular.info_egreso_id')"
+            :objeto-a-vincular="item"
+            :vinculacion-function="$egresoService.vincularEgresoIngreso"
+            :vincular-con-egreso="false"
+            @created="getEgresos()"
           />
         </template>
       </TheFilterTable>

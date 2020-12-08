@@ -25,10 +25,23 @@
       >
         <template #[`item.actions`]="{ item }">
           <VinculacionForm
-            v-if="!item.idIngresoAsociado"
-            :title-text="$t('vincular.egresoTitle')"
-            :vincular-tooltip-text="$t('vincular.egreso')"
-            :egreso-a-vincular="item"
+            :title-text="$t('vincular.proyectoIngresoTitle')"
+            button-icon="mdi-link-variant-plus"
+            :vincular-tooltip-text="$t('vincular.proyecto_ingreso')"
+            :objeto-a-vincular="item"
+            :vincular-con-egreso="false"
+            :vinculacion-function="$proyectoFinanciamientoService.vincularProyecto"
+            :mensaje-ingreso-de-id="$t('vincular.info_proyecto_ingreso_id')"
+            @created="getProyectos()"
+          />
+          <VinculacionForm
+            :title-text="$t('vincular.proyectoEgresoTitle')"
+            button-icon="mdi-link-variant-minus"
+            :vincular-tooltip-text="$t('vincular.proyecto_egreso')"
+            :objeto-a-vincular="item"
+            :vinculacion-function="$proyectoFinanciamientoService.vincularProyecto"
+            :mensaje-ingreso-de-id="$t('vincular.info_proyecto_egreso_id')"
+            @created="getProyectos()"
           />
         </template>
       </TheFilterTable>
