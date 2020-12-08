@@ -62,12 +62,18 @@ export default {
             {
               title: 'transacciones.presupuestos',
               to: '/transacciones/presupuestos'
-            },
-            {
-              title: 'transacciones.proyectos',
-              to: '/transacciones/proyectos'
             }
           ]
+        },
+        {
+          title: 'proyectos.menu',
+          icon: 'mdi-file-document-multiple',
+          to: '/proyectos'
+        },
+        {
+          title: 'auditoria.menu',
+          icon: 'mdi-text-box-search',
+          to: '/auditoria'
         },
         {
           title: 'entidades.menu',

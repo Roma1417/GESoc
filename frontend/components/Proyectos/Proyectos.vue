@@ -53,7 +53,7 @@ import TheLayoutWithHeader from '~/components/General/Layouts/TheLayoutWithHeade
 import TheFilterTable from '~/components/General/Tables/TheFilterTable'
 import ThePrimaryButton from '~/components/General/Buttons/ThePrimaryButton'
 import ProyectoForm from '~/components/Proyectos/ProyectoForm'
-import VinculacionForm from '~/components/Egresos/VinculacionForm' // Esto se va ir ALV
+import VinculacionForm from '~/components/Vinculacion/VinculacionForm'
 export default {
   components: {
     TheLayoutWithHeader,

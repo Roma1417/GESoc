@@ -48,13 +48,12 @@
      "menu": "Transacciones",
      "egresos": "Egresos",
      "ingresos": "Ingresos",
-     "presupuestos": "Presupuestos",
-     "proyectos": "Proyectos"
+     "presupuestos": "Presupuestos"
    },
    "proyectos":{
      "titulo": "Proyectos de financiamiento",
      "titulo_creacion": "Proyecto de Financiamiento",
-     "menu": "Proyectos de financiamiento",
+     "menu": "Proyectos",
      "search": "Buscar Proyecto",
      "crear": "Crear Proyecto",
      "id": "ID",
@@ -67,6 +66,14 @@
      "monto_maximo_sin_presupuestos": "Monto máximo sin presupuestos",
      "monto_inicial": "Monto inicial asignado",
      "entidad": "Entidad Realizadora"
+   },
+   "auditoria": {
+     "menu": "Auditoría",
+     "titulo": "Auditoría de operaciones",
+     "fecha_hora" : "Fecha y hora",
+     "tipo_operacion": "Tipo de operación",
+     "entidad_afectada": "Entidad afectada",
+     "entidad": "Entidad"
    },
    "egresos": {
      "titulo": "Egreso",
