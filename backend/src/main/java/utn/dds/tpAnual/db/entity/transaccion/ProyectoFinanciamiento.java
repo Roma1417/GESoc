@@ -22,10 +22,10 @@ public class ProyectoFinanciamiento{
     @Column(name = "PRESUPUESTOS_MINIMOS")
     private Integer presupuestosMinimos;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "proyecto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Egreso> egresos;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "proyecto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Ingreso> ingresos;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -33,6 +33,19 @@ public class ProyectoFinanciamiento{
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Entidad entidadRealizadora;
+
+    public ProyectoFinanciamiento(Float montoSinPresupuesto, Integer presupuestosMinimos,
+                                  List<Egreso> egresos, List<Ingreso> ingresos, Usuario director,
+                                  Entidad entidadRealizadora) {
+        this.montoSinPresupuesto = montoSinPresupuesto;
+        this.presupuestosMinimos = presupuestosMinimos;
+        setEgresos(egresos);
+        setIngresos(ingresos);
+        this.director = director;
+        this.entidadRealizadora = entidadRealizadora;
+    }
+
+    public ProyectoFinanciamiento(){}
 
     public Long getProyectoId() {
         return proyectoId;

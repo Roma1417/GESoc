@@ -67,6 +67,7 @@ public class ProyectoFinanciamientoResourceBeanTest {
         PageableRequest pageableRequest = new PageableRequest(usuario.getNombre(),1L, 5L);
         ProyectoFinanciamiento proyecto = new ProyectoFinanciamiento();
         proyecto.setEntidadRealizadora(entidad);
+        proyecto.setDirector(usuario);
         proyectoFinanciamientoService.save(proyecto);
         PageableResponse<ProyectoFinanciamientoDTO, ProyectoFinanciamiento> proyectosEncontrados = proyectoFinanciamientoResourceBean.getProyectos(pageableRequest, usuario.getNombre());
         assertTrue(!proyectosEncontrados.getData().isEmpty());
@@ -104,7 +105,8 @@ public class ProyectoFinanciamientoResourceBeanTest {
     @Test
     public void vinculacionProyectoEgresoValidosSuccess(){
         EntidadJuridicaEmpresa entidad = new EntidadJuridicaEmpresaBuilder().withNombre("Entidad2").build();
-        ProyectoFinanciamiento proyecto = new ProyectoFinanciamiento();
+        Usuario usuario = getTestUsuario(entidad);
+        ProyectoFinanciamiento proyecto = new ProyectoFinanciamiento(4000F, 1, null, null, usuario, entidad);
         Egreso egreso = getMockEgreso(entidad);
 
         proyectoFinanciamientoService.save(proyecto);

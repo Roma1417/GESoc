@@ -62,7 +62,7 @@ public class ProyectoFinanciamientoResourceBean {
         }
         Egreso egreso = egresoOptional.get();
         ProyectoFinanciamiento proyecto = proyectoOptional.get();
-        //EgresoRules.getInstance().validarVinculacion(egreso, ingreso);
+        ProyectoFinanciamientoRules.getInstance().validarVinculacion(proyecto, egreso);
         proyecto.vincularEgreso(egreso);
         proyectoFinanciamientoService.save(proyecto);
         egresoService.save(egreso);
@@ -77,7 +77,7 @@ public class ProyectoFinanciamientoResourceBean {
         }
         ProyectoFinanciamiento proyecto = proyectoOptional.get();
         Ingreso ingreso = ingresoOptional.get();
-        //EgresoRules.getInstance().validarVinculacion(egreso, ingreso);
+        ProyectoFinanciamientoRules.getInstance().validarVinculacion(proyecto, ingreso);
         proyecto.vincularIngreso(ingreso);
         proyectoFinanciamientoService.save(proyecto);
         ingresoService.save(ingreso);

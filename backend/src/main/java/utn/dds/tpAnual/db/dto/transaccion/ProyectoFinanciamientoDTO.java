@@ -33,8 +33,12 @@ public class ProyectoFinanciamientoDTO extends StandardDTO<ProyectoFinanciamient
         }
         proyectoDTO.setPresupuestosMinimos(object.getPresupuestosMinimos());
         proyectoDTO.setMontoMaximoSinPresupuestos(object.getMontoSinPresupuesto());
-        proyectoDTO.setEgresos(object.getEgresos().stream().map( unEgreso -> new EgresoDTO().from(unEgreso)).collect(Collectors.toList()));
-        proyectoDTO.setIngresos(object.getIngresos().stream().map( unIngreso -> new IngresoDTO().from(unIngreso)).collect(Collectors.toList()));
+        if (egresos != null) {
+            proyectoDTO.setEgresos(object.getEgresos().stream().map( unEgreso -> new EgresoDTO().from(unEgreso)).collect(Collectors.toList()));
+        }
+        if (ingresos != null) {
+            proyectoDTO.setIngresos(object.getIngresos().stream().map(unIngreso -> new IngresoDTO().from(unIngreso)).collect(Collectors.toList()));
+        }
         return proyectoDTO;
     }
 

@@ -64,9 +64,9 @@ import java.util.Optional;
         super.save(entity);
     }
 
-//    @Override
-//    public void saveAll(Collection<ProyectoFinanciamiento> entities) {
-//        entities.forEach(this::save);
-//    }
+    @Override
+    public void saveAll(Collection<ProyectoFinanciamiento> entities) {
+        entities.forEach(this::save);
+    }
 
 }
