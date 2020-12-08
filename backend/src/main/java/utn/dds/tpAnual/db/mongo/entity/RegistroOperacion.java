@@ -8,14 +8,16 @@ public class RegistroOperacion {
     private LocalDateTime fechaOperacion;
     private TipoOperacion tipoOperacion;
     private Object objetoModificado;
+    private String nombreClase;
 
     public RegistroOperacion(){
     }
 
-    public RegistroOperacion(LocalDateTime fechaOperacion, TipoOperacion tipoOperacion, Object objetoModificado) {
+    public RegistroOperacion(LocalDateTime fechaOperacion, TipoOperacion tipoOperacion, Object objetoModificado, String nombreClase) {
         this.fechaOperacion = fechaOperacion;
         this.tipoOperacion = tipoOperacion;
         this.objetoModificado = objetoModificado;
+        this.nombreClase = nombreClase;
     }
 
     public LocalDateTime getFechaOperacion() {
@@ -40,5 +42,13 @@ public class RegistroOperacion {
 
     public void setObjetoModificado(Object objetoModificado) {
         this.objetoModificado = objetoModificado;
+    }
+
+    public String getNombreClase() {
+        return nombreClase;
+    }
+
+    public void setNombreClase(String nombreClase) {
+        this.nombreClase = nombreClase;
     }
 }

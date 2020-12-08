@@ -6,12 +6,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
 import org.springframework.data.mongodb.core.mapping.TextScore;
 import org.springframework.test.context.junit4.SpringRunner;
+import utn.dds.tpAnual.db.dto.pageable.PageableRequest;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.mongo.auditoria.TipoOperacion;
 import utn.dds.tpAnual.db.mongo.entity.RegistroOperacion;
 import utn.dds.tpAnual.db.service.jpaService.UsuarioService;
+
+import java.util.Collection;
 
 import static org.junit.Assert.assertTrue;
 
@@ -33,7 +37,7 @@ public class TestRegistroOperacionService {
     @Test
     public void persistenceTest() {
         Usuario usuario = new Usuario("Pepe", "Pepa", "123");
-        registroOperacionService.registrarAlta(usuario);
+        registroOperacionService.registrarAlta(usuario, "usuario");
         assertTrue(!registroOperacionService.findAll().isEmpty());
     }
 
@@ -63,6 +67,24 @@ public class TestRegistroOperacionService {
         usuarioService.save(usuario);
         RegistroOperacion registroOperacion = registroOperacionService.findAll().get(1);
         assertTrue(registroOperacion.getTipoOperacion().equals(TipoOperacion.MODIFICACION));
+    }
+
+    @Test
+    public void getDeAltaDevuelve () {
+        Usuario usuario = new Usuario("UsuarioBuscado1", "UsuarioBuscado1", "123");
+        usuarioService.save(usuario);
+        Page<RegistroOperacion> registroOperacionPage = registroOperacionService
+                .getRegistroOperacionByTipo(new PageableRequest("Pepe",1l, 10l ), TipoOperacion.ALTA,
+                        "Usuario");
+        assertTrue(registroOperacionPage.getTotalElements() == 1l);
+    }
+
+    @Test
+    public void getDeNombresEntidadDevuelve (){
+        Usuario usuario = new Usuario("UsuarioBuscado", "UsuarioBuscado", "123");
+        usuarioService.save(usuario);
+        Collection<String> nombresClase = registroOperacionService.findAllNombresEntidad();
+        assertTrue(nombresClase.size() == 1);
     }
 
 }
