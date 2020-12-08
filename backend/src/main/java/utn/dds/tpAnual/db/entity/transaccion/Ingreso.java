@@ -19,6 +19,9 @@ public class Ingreso extends Operacion{
 	@OneToMany(mappedBy="ingreso", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Egreso> egresosAsociados;
 
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private ProyectoFinanciamiento proyecto;
+
 	public Ingreso(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,
 				   Float total, String descripcion, List<Egreso> EgresosAsociados) {
 		super(documentoComercial, entidadRealizadora, codigoOperacion);
@@ -72,6 +75,13 @@ public class Ingreso extends Operacion{
 						.reduce(0F, (valor, acumulador) -> valor + acumulador);
 	}
 
+	public ProyectoFinanciamiento getProyecto() {
+		return proyecto;
+	}
+
+	public void setProyecto(ProyectoFinanciamiento proyecto) {
+		this.proyecto = proyecto;
+	}
 
 	public void vincularEgreso(Egreso egreso) {
 		if (egresosAsociados == null) {

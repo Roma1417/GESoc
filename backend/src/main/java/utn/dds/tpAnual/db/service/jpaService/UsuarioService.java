@@ -3,6 +3,7 @@ package utn.dds.tpAnual.db.service.jpaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import utn.dds.tpAnual.db.entity.entidad.Entidad;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.repository.UsuarioRepository;
 
@@ -31,5 +32,14 @@ public class UsuarioService extends CustomJPAService<Usuario> {
 
     public Usuario getUsuarioConEntidadesByIdOrUser(Long userID, String user) {
         return usuarioRepository.getUsuarioConEntidadesByIdOrUser(userID, user);
+    }
+
+    public void saveIfNotExists(Usuario usuario){
+        if (usuario != null) {
+            if (usuario.getUsuarioId() == null ||
+                    !existsById(usuario.getUsuarioId())){
+                save(usuario);
+            }
+        }
     }
 }

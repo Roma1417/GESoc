@@ -1,6 +1,7 @@
 package utn.dds.tpAnual.db.service.jpaService;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import utn.dds.tpAnual.db.entity.usuario.Usuario;
 
 import java.util.Collection;
 import java.util.List;
