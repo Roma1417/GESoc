@@ -45,7 +45,7 @@ public class Egreso extends OperacionEfectuada {
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Ingreso ingreso;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	private ProyectoFinanciamiento proyecto;
 
 

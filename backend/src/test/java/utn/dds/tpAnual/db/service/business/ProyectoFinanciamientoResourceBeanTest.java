@@ -88,9 +88,13 @@ public class ProyectoFinanciamientoResourceBeanTest {
 
     @Test
     public void vinculacionProyectoIngresoValidosSuccess(){
-        EntidadJuridicaEmpresa entidad = new EntidadJuridicaEmpresaBuilder().withNombre("Entidad2").build();
+        Entidad entidad = getTestEntidad("1");
+        Usuario usuario = getTestUsuario(entidad);
         ProyectoFinanciamiento proyecto = new ProyectoFinanciamiento();
         Ingreso ingreso = getMockIngreso(entidad);
+
+        proyecto.setEntidadRealizadora(entidad);
+        proyecto.setDirector(usuario);
 
         proyectoFinanciamientoService.save(proyecto);
         ingresoService.save(ingreso);

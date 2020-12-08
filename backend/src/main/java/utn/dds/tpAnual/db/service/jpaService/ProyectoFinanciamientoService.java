@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import utn.dds.tpAnual.db.dto.pageable.PageableRequest;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
+import utn.dds.tpAnual.db.entity.transaccion.Egreso;
+import utn.dds.tpAnual.db.entity.transaccion.Ingreso;
 import utn.dds.tpAnual.db.entity.transaccion.ProyectoFinanciamiento;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.repository.ProyectoFinanciamientoRepository;
@@ -27,15 +29,17 @@ import java.util.Optional;
     @Autowired
     private UsuarioService usuarioService;
 
+    @Autowired
+    private EgresoService egresoService;
+
+    @Autowired
+    private IngresoService ingresoService;
+
     @Override
     public JpaRepository<ProyectoFinanciamiento, Long> getRepository() {
         return proyectoFinanciamientoRepository;
     }
 
-//    public List<ProyectoFinanciamiento> getProyectosByEntidadRealizadora(Entidad entidad){
-//        return proyectoFinanciamientoRepository.getProyectosByEntidadRealizadora(entidad);
-//    }
-//
     public ProyectoFinanciamiento getProyectoById(Long operacionId) {
         List<ProyectoFinanciamiento> proyectos = proyectoFinanciamientoRepository.getProyectoById(operacionId);
         return proyectos.isEmpty() ? null : proyectos.get(0);
@@ -57,11 +61,14 @@ import java.util.Optional;
         return proyectoFinanciamientoRepository.getAllRelatedById(usuario.getUsuarioId(), pageable, proyectoId);
     }
 
-    @Override
-    public void save(ProyectoFinanciamiento entity) {
-        entidadService.saveIfNotExists(entity.getEntidadRealizadora());
-        usuarioService.saveIfNotExists(entity.getDirector());
-        super.save(entity);
+    public void saveIfNotExists(ProyectoFinanciamiento proyectoFinanciamiento){
+        if (proyectoFinanciamiento != null) {
+            usuarioService.saveIfNotExists(proyectoFinanciamiento.getDirector());
+            if (proyectoFinanciamiento.getProyectoId() == null ||
+                    !existsById(proyectoFinanciamiento.getProyectoId())){
+                save(proyectoFinanciamiento);
+            }
+        }
     }
 
     @Override
