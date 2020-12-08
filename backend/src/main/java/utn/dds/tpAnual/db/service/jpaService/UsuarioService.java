@@ -1,8 +1,11 @@
 package utn.dds.tpAnual.db.service.jpaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import utn.dds.tpAnual.db.dto.pageable.PageableRequest;
+import utn.dds.tpAnual.db.entity.categorizacion.categoria.Categoria;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.repository.UsuarioRepository;
@@ -41,5 +44,9 @@ public class UsuarioService extends CustomJPAService<Usuario> {
                 save(usuario);
             }
         }
+    }
+
+    public Page<Usuario> getUsuarios(PageableRequest pageableRequest, String nombreUsuario) {
+        return usuarioRepository.getUsuarioByNameLike(nombreUsuario, pageableRequest.toPageable());
     }
 }

@@ -3,11 +3,16 @@ package utn.dds.tpAnual.db.service.business;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.stereotype.Service;
 import utn.dds.tpAnual.db.configuracion.ConfiguracionEnum;
+import utn.dds.tpAnual.db.dto.categoria.CategoriaDTO;
+import utn.dds.tpAnual.db.dto.pageable.PageableRequest;
+import utn.dds.tpAnual.db.dto.pageable.PageableResponse;
 import utn.dds.tpAnual.db.dto.usuario.UserDTO;
+import utn.dds.tpAnual.db.entity.categorizacion.categoria.Categoria;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.service.jpaService.ConfiguracionService;
@@ -73,5 +78,10 @@ public class UsuarioResourceBean {
     public UserDTO getUser(String username) {
         Usuario user = usuarioService.getUsuarioByUsername(username);
         return new UserDTO().from(user);
+    }
+
+    public PageableResponse<UserDTO, Usuario> getUsuarios(PageableRequest pageableRequest, String nombreUsuario) {
+        Page<Usuario> usuarios = usuarioService.getUsuarios(pageableRequest, nombreUsuario);
+        return new PageableResponse().fromPage(usuarios, new UserDTO());
     }
 }
