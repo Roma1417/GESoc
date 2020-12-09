@@ -4,9 +4,6 @@ export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
 
-  // Target (https://go.nuxtjs.dev/config-target)
-  target: 'static',
-
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     titleTemplate: '%s - GESOC',
@@ -39,10 +36,10 @@ export default {
   ** Proxy cfg
   */
   proxy: {
-    '/api': {
-      target: process.env.BACKEND_URL || 'http://localhost:8080/api',
+    '/api/': {
+      target: process.env.BACKEND_URL || 'https://gesoc-backend.herokuapp.com/api',
       pathRewrite: {
-        '^/api': '/'
+        '^/api': ''
       }
     }
   },
@@ -68,7 +65,9 @@ export default {
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    credentials: true
+  },
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
