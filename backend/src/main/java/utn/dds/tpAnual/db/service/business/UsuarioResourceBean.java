@@ -40,6 +40,7 @@ public class UsuarioResourceBean {
         }
         if (!user.matchContrasenia(contrasenia)) {
             user.addCantidadIntentos();
+            usuarioService.save(user);
             throw new SecurityException("Credenciales inválidas");
         }
         return new UserDTO().from(user);

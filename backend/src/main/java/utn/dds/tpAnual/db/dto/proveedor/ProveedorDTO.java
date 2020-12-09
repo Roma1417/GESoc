@@ -19,6 +19,9 @@ public class ProveedorDTO extends StandardDTO<Proveedor> {
 
     @Override
     public ProveedorDTO from(Proveedor object) {
+        if (object == null) {
+            return null;
+        }
         ProveedorDTO proveedor = new ProveedorDTO();
         loadTipoProveedor(object, proveedor);
         if(proveedor.getTipoProveedor().equals(TipoProveedor.JURIDICO)){

@@ -64,11 +64,7 @@ public abstract class CustomJPAService <T> {
         return getRepository().findById(id);
     }
 
-    public boolean puedePersistirseEnMongo(){
-        return true;
-    }
-
     public Object getEntity(Object entity) {
-        return puedePersistirseEnMongo() ? entity : "Objeto no persistible por recursividad";
+        return entity;
     }
 }
