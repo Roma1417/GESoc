@@ -1,5 +1,6 @@
 package utn.dds.tpAnual.db.entity.transaccion;
 
+import utn.dds.tpAnual.db.entity.EntityInterface;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 
@@ -11,7 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "PROYECTO_FINANCIAMIENTO")
-public class ProyectoFinanciamiento{
+public class ProyectoFinanciamiento implements EntityInterface {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -130,5 +131,10 @@ public class ProyectoFinanciamiento{
         }
         ingresos.add(ingreso);
         ingreso.setProyecto(this);
+    }
+
+    @Override
+    public Long getId() {
+        return proyectoId   ;
     }
 }

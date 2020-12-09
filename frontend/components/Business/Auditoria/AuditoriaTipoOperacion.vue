@@ -3,7 +3,7 @@
     :items="items"
     :loading="loading"
     hide-no-data
-    :label="$t('auditoria.entidad')"
+    :label="$t('auditoria.tipo_operacion')"
     v-bind="$attrs"
     v-on="$listeners"
   />
@@ -15,12 +15,12 @@ export default {
     items: []
   }),
   mounted () {
-    this.getEntidades()
+    this.getTiposOperaciones()
   },
   methods: {
-    getEntidades () {
+    getTiposOperaciones () {
       this.loading = true
-      this.$registroOperacionService.getEntidadesDeOperaciones().then((result) => {
+      this.$registroOperacionService.getTipoOperaciones().then((result) => {
         if (result) {
           this.items = result
         }

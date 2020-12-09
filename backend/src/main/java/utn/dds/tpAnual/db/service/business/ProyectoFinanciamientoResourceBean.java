@@ -79,7 +79,6 @@ public class ProyectoFinanciamientoResourceBean {
         ProyectoFinanciamientoRules.getInstance().validarVinculacion(proyecto, ingreso);
         proyecto.vincularIngreso(ingreso);
         proyectoFinanciamientoService.save(proyecto);
-        ingresoService.save(ingreso);
     }
 
     public ProyectoFinanciamientoDTO crearProyecto(ProyectoFinanciamientoDTO proyectoDTO, String username){

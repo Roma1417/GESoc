@@ -2,20 +2,14 @@
   <TheLayoutWithHeader title="auditoria.titulo" :loading="loading">
     <template #filter>
       <v-row no-gutters>
-        <TheResponsiveColumn>
-          <TheAsyncAutocompleteInput
+        <TheResponsiveColumn class="px-4">
+          <AuditoriaNombreClase
             v-model="filter.nombreClase"
-            item-text="xxxx"
-            :get-items-function="$registroOperacionService.getEntidadesDeOperaciones"
-            :label="$t('auditoria.entidad')"
           />
         </TheResponsiveColumn>
-        <TheResponsiveColumn>
-          <TheAsyncAutocompleteInput
+        <TheResponsiveColumn class="px-4">
+          <AuditoriaTipoOperacion
             v-model="filter.tipoOperacion"
-            item-text="xxxx"
-            :get-items-function="$registroOperacionService.getTipoOperaciones"
-            :label="$t('auditoria.tipo_operacion')"
           />
         </TheResponsiveColumn>
         <v-col class="text-right">
@@ -44,7 +38,7 @@
         @click:row="mostrarItem"
       >
         <template #[`item.objetoModificado`]="{ item }">
-          {{ ajustarTexto(item.objetoModificado, 100) }}
+          {{ ajustarTexto(JSON.stringify(item.objetoModificado), 100) }}
         </template>
       </TheFilterTable>
     </template>
@@ -55,12 +49,16 @@ import TheLayoutWithHeader from '~/components/General/Layouts/TheLayoutWithHeade
 import TheFilterTable from '~/components/General/Tables/TheFilterTable'
 import ThePrimaryButton from '~/components/General/Buttons/ThePrimaryButton'
 import TheMessageDialog from '~/components/General/Dialogs/TheMessageDialog'
+import AuditoriaNombreClase from '~/components/Business/Auditoria/AuditoriaNombreClase'
+import AuditoriaTipoOperacion from '~/components/Business/Auditoria/AuditoriaTipoOperacion'
 export default {
   components: {
     TheLayoutWithHeader,
     TheFilterTable,
     ThePrimaryButton,
-    TheMessageDialog
+    TheMessageDialog,
+    AuditoriaNombreClase,
+    AuditoriaTipoOperacion
   },
   data: () => ({
     pageInfo: {
@@ -127,11 +125,11 @@ export default {
     },
     mostrarItem (item) {
       this.operacion.nombreClase = item.nombreClase
-      this.operacion.objetoModificado = item.objetoModificado
-      this.mensaje.mostrar = true
+      this.operacion.objetoModificado = JSON.stringify(item.objetoModificado)
+      this.operacion.mostrar = true
     },
     closeDialog () {
-      this.mensaje.mostrar = false
+      this.operacion.mostrar = false
     }
   }
 }
