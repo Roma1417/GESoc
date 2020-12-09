@@ -30,4 +30,8 @@ import utn.dds.tpAnual.db.repository.PresupuestoRepository;
         return presupuestoRepository.getPresupuestoRelatedByCategoria(pageable, categoria, pageableRequest.getUser());
     }
 
+    @Override
+    public boolean puedePersistirseEnMongo() {
+        return false;
+    }
 }
