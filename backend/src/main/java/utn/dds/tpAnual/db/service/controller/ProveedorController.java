@@ -13,6 +13,7 @@ import utn.dds.tpAnual.db.service.business.ItemResourceBean;
 import utn.dds.tpAnual.db.service.business.ProveedorResourceBean;
 
 @RestController
+@CrossOrigin(origins="https://gesoc-app.herokuapp.com", allowCredentials = "true")
 @RequestMapping("/api/proveedor")
 public class ProveedorController {
 

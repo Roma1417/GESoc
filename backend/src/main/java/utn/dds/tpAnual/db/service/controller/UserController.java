@@ -3,22 +3,19 @@ package utn.dds.tpAnual.db.service.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import utn.dds.tpAnual.db.dto.categoria.CategoriaDTO;
 import utn.dds.tpAnual.db.dto.usuario.MensajeDTO;
 import utn.dds.tpAnual.db.dto.usuario.UserDTO;
 import utn.dds.tpAnual.db.dto.pageable.PageableRequest;
 import utn.dds.tpAnual.db.dto.pageable.PageableResponse;
-import utn.dds.tpAnual.db.entity.categorizacion.categoria.Categoria;
 import utn.dds.tpAnual.db.entity.usuario.Mensaje;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.service.business.MensajeResourceBean;
 import utn.dds.tpAnual.db.service.business.UsuarioResourceBean;
-import utn.dds.tpAnual.db.service.rules.UsuarioRules;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
+@CrossOrigin(origins="https://gesoc-app.herokuapp.com", allowCredentials = "true")
 @RequestMapping("/api")
 public class UserController {
 
@@ -43,11 +40,7 @@ public class UserController {
                          HttpServletResponse response) {
         UserDTO userDTO = usuarioResourceBean.login(username, pwd);
         String token = usuarioResourceBean.getJWTToken(username);
-        Cookie cookie = new Cookie("Authorization", token);
-        cookie.setHttpOnly(true);
-        cookie.setMaxAge(600000);
-        cookie.setPath(null);
-        response.addCookie(cookie);
+        response.setHeader("Set-Cookie", "Authorization="+token+"; HttpOnly; SameSite=none; Secure; Max-Age=600000; Path=null");
         return userDTO;
     }
 

@@ -11,6 +11,7 @@ import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.service.business.EgresoResourceBean;
 
 @RestController
+@CrossOrigin(origins="https://gesoc-app.herokuapp.com", allowCredentials = "true")
 @RequestMapping("/api/transaccion")
 public class EgresoController {
 
