@@ -4,7 +4,7 @@
       <v-row no-gutters>
         <TheResponsiveColumn>
           <TheAsyncAutocompleteInput
-            v-model="filter.entidad"
+            v-model="filter.nombreClase"
             item-text="xxxx"
             :get-items-function="$registroOperacionService.getEntidadesDeOperaciones"
             :label="$t('auditoria.entidad')"
@@ -31,7 +31,7 @@
     <template #body>
       <TheMessageDialog
         v-model="operacion.mostrar"
-        :header-message="operacion.fechaOperacion"
+        :header-message="operacion.nombreClase"
         :body-message="operacion.objetoModificado"
         @onAccept="closeDialog"
       />
@@ -73,7 +73,7 @@ export default {
     filter: {},
     operacion: {
       mostrar: false,
-      fechaOperacion: '',
+      nombreClase: '',
       objetoModificado: ''
     }
   }),
@@ -87,13 +87,19 @@ export default {
           value: 'fechaOperacion'
         },
         {
+          text: this.$t('auditoria.entidad'),
+          align: 'start',
+          sortable: false,
+          value: 'nombreClase'
+        },
+        {
           text: this.$t('auditoria.tipo_operacion'),
           align: 'start',
           sortable: false,
           value: 'tipoOperacion'
         },
         {
-          text: this.$t('auditoria.entidad_afectada'),
+          text: this.$t('auditoria.detalle_entidad'),
           align: 'start',
           sortable: false,
           value: 'objetoModificado'
@@ -105,7 +111,7 @@ export default {
     getOperaciones () {
       this.loading = true
       this.$registroOperacionService
-        .getOperaciones(this.filter.entidad, this.filter.tipoOperacion, this.pageInfo)
+        .getOperaciones(this.filter.nombreClase, this.filter.tipoOperacion, this.pageInfo)
         .then((result) => {
           if (result) {
             this.totalList = result.total
@@ -120,7 +126,7 @@ export default {
       return texto.substring(0, largo) + ((texto.length > largo) ? '...' : '')
     },
     mostrarItem (item) {
-      this.operacion.fechaOperacion = item.fechaOperacion
+      this.operacion.nombreClase = item.nombreClase
       this.operacion.objetoModificado = item.objetoModificado
       this.mensaje.mostrar = true
     },

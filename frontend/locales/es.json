@@ -72,8 +72,9 @@
      "titulo": "Auditoría de operaciones",
      "fecha_hora" : "Fecha y hora",
      "tipo_operacion": "Tipo de operación",
-     "entidad_afectada": "Entidad afectada",
-     "entidad": "Entidad"
+     "detalle_entidad": "Detalle de la entidad",
+     "entidad": "Entidad",
+     "nombre_clase": "Clase"
    },
    "egresos": {
      "titulo": "Egreso",
