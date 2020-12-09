@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.http.HttpMethod;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,15 +24,18 @@ import utn.dds.tpAnual.db.service.security.JWTAuthorizationFilter;
 @Configuration
 @EnableTransactionManagement
 @EnableScheduling
-@ComponentScan(basePackages = {"utn.dds.tpAnual.db.service","utn.dds.tpAnual.db.scheduler", "utn.dds.tpAnual.db.api.service"})
+@ComponentScan(basePackages = {"utn.dds.tpAnual.db.service","utn.dds.tpAnual.db.scheduler",
+        "utn.dds.tpAnual.db.api.service", "utn.dds.tpAnual.db.service.mongo.service"})
 @EntityScan(basePackages = "utn.dds.tpAnual.db.entity")
 @EnableJpaRepositories("utn.dds.tpAnual.db.repository")
+@EnableMongoRepositories("utn.dds.tpAnual.db.service.mongo.repository")
 @ConditionalOnProperty(
         value = "app.scheduling.enable", havingValue = "true", matchIfMissing = true
 )
 public class JettyHibernateSpring {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
+
 
     public static void main(String[] args) {
         SpringApplication.run(JettyHibernateSpring.class, args);
@@ -51,4 +55,5 @@ public class JettyHibernateSpring {
                     .anyRequest().authenticated();
         }
     }
+
 }

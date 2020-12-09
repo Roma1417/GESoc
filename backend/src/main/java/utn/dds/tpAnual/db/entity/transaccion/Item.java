@@ -2,6 +2,7 @@ package utn.dds.tpAnual.db.entity.transaccion;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import utn.dds.tpAnual.db.entity.EntityInterface;
 import utn.dds.tpAnual.db.entity.categorizacion.categoria.Categoria;
 import utn.dds.tpAnual.db.entity.categorizacion.criterioCategorizacion.CriterioCategorizacion;
 
@@ -19,7 +20,7 @@ import java.util.Optional;
 
 @Entity
 @Table(name = "ITEM")
-public class Item {
+public class Item implements EntityInterface {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -86,5 +87,10 @@ public class Item {
 			categorias = new ArrayList<>();
 		}
 		categorias.add(categoria);
+	}
+
+	@Override
+	public Long getId() {
+		return null;
 	}
 }

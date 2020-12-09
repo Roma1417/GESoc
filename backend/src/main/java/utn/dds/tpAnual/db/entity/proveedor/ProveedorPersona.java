@@ -36,4 +36,8 @@ public class ProveedorPersona extends Proveedor {
 	}
 
 
+	@Override
+	public Long getId() {
+		return null;
+	}
 }

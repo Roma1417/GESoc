@@ -42,5 +42,4 @@ public class CriterioVinculacionFecha extends CriterioVinculacion{
         operacionesEfectuada.sort(Comparator.comparing(Operacion::getFecha));
     }
 
-
 }

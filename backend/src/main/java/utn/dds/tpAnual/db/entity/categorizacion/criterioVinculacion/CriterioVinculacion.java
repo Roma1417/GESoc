@@ -1,4 +1,5 @@
 package utn.dds.tpAnual.db.entity.categorizacion.criterioVinculacion;
+import utn.dds.tpAnual.db.entity.EntityInterface;
 import utn.dds.tpAnual.db.entity.categorizacion.criterioVinculacion.RestanteVinculacion;
 import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.entity.transaccion.Ingreso;
@@ -13,7 +14,7 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "CRITERIO_VINCULACION")
-public abstract class CriterioVinculacion {
+public abstract class CriterioVinculacion implements EntityInterface {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -78,5 +79,9 @@ public abstract class CriterioVinculacion {
         operacionesEfectuada.sort(Comparator.comparing(Operacion::getTotal));
     }
 
+    @Override
+    public Long getId() {
+        return getCriterioId();
+    }
 
 }

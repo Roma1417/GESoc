@@ -38,4 +38,8 @@ public class ProveedorJuridico extends Proveedor {
 	}
 
 
+	@Override
+	public Long getId() {
+		return null;
+	}
 }

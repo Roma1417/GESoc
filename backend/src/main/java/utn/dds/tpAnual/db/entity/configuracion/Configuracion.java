@@ -1,10 +1,12 @@
 package utn.dds.tpAnual.db.entity.configuracion;
 
+import utn.dds.tpAnual.db.entity.EntityInterface;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "CONFIGURACION")
-public class Configuracion {
+public class Configuracion implements EntityInterface {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,4 +53,8 @@ public class Configuracion {
     }
 
 
+    @Override
+    public Long getId() {
+        return configuracionId;
+    }
 }

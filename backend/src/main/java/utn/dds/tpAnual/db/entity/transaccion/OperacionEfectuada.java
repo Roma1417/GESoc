@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import utn.dds.tpAnual.db.entity.EntityInterface;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
 
 import javax.persistence.*;
@@ -17,7 +18,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "OPERACION_EFECTUADA")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class OperacionEfectuada extends Operacion {
+public abstract class OperacionEfectuada extends Operacion implements EntityInterface {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "OPERACION_EFECTUADA_ID")

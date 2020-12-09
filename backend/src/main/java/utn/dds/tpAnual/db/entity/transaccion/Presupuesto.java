@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import utn.dds.tpAnual.db.entity.EntityInterface;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 
@@ -16,7 +17,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "PRESUPUESTO")
-public class Presupuesto extends Operacion {
+public class Presupuesto extends Operacion{
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "PRESUPUESTO_ID")
@@ -67,5 +68,10 @@ public class Presupuesto extends Operacion {
 		return new ToStringBuilder(this)
 			    .append("\ndetallesPrecio", detallesPrecio)
 			    .toString();
+	}
+
+	@Override
+	public Long getId() {
+		return null;
 	}
 }

@@ -1,10 +1,12 @@
 package utn.dds.tpAnual.db.entity.ubicacion;
 
+import utn.dds.tpAnual.db.entity.EntityInterface;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "ESTADO")
-public class Estado {
+public class Estado  implements EntityInterface {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,5 +61,10 @@ public class Estado {
 
 	public void setEstadoId(Long estadoId) {
 		this.estadoId = estadoId;
+	}
+
+	@Override
+	public Long getId() {
+		return null;
 	}
 }

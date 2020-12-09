@@ -1,6 +1,7 @@
 package utn.dds.tpAnual.db.entity.entidad;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import utn.dds.tpAnual.db.entity.EntityInterface;
 import utn.dds.tpAnual.db.entity.usuario.UsuarioEntidad;
 import utn.dds.tpAnual.db.entity.categorizacion.criterioVinculacion.CriterioVinculacion;
 
@@ -12,7 +13,7 @@ import java.util.List;
 @Entity
 @Table(name = "ENTIDAD")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Entidad {
+public abstract class Entidad implements EntityInterface {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)

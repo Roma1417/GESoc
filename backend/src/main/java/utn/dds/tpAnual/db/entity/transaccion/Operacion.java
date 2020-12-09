@@ -1,5 +1,6 @@
 package utn.dds.tpAnual.db.entity.transaccion;
 
+import utn.dds.tpAnual.db.entity.EntityInterface;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
 
 import javax.persistence.*;
@@ -13,7 +14,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "OPERACION")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Operacion {
+public abstract class Operacion implements EntityInterface {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)

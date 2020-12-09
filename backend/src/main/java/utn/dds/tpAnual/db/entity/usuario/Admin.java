@@ -23,4 +23,8 @@ public class Admin extends TipoUsuario {
 		return true;
 	}
 
+	@Override
+	public Long getId() {
+		return null;
+	}
 }

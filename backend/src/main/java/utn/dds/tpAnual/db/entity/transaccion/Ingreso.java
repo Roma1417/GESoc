@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "INGRESO")
-public class Ingreso extends Operacion{
+public class Ingreso extends Operacion {
 
 	@Column(name = "TOTAL")
 	private Float total;
@@ -89,5 +89,10 @@ public class Ingreso extends Operacion{
 		}
 		egresosAsociados.add(egreso);
 		egreso.setIngreso(this);
+	}
+
+	@Override
+	public Long getId() {
+		return null;
 	}
 }

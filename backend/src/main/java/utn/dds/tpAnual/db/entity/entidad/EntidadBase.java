@@ -27,4 +27,9 @@ public class EntidadBase extends Entidad {
 		super(nombre);
 		this.descripcion = descripcion;
 	}
+
+	@Override
+	public Long getId() {
+		return null;
+	}
 }
