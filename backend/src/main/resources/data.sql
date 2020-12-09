@@ -152,6 +152,13 @@ VALUES('dds', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27a
         ( nombre_razon_social, dni, dtype)
     values
         ('Un proveedor', '123456', 'ProveedorPersona');
+
+        		insert
+    into
+        proveedor
+        ( nombre_razon_social, cuit, dtype)
+    values
+        ('Otro proveedor', '201234567', 'ProveedorJuridico');
 		--
 		insert into pais
 		        (id_api, descripcion)
@@ -225,6 +232,30 @@ insert
         (id, nombre, cuit, codigo_igj,  razon_social, cantidad_personal)
     values
         (9, 'Telecenter', '121221238', '123',  'razon_social',  5);
+
+--
+insert
+    into
+        entidad_base
+        (id, nombre, descripcion, entidad_juridica_id)
+    values
+        (10, 'Telecenter Base 1', 'Base 1 Entidad Juridica Empresa',  9);
+
+--
+insert
+    into
+        entidad_juridica_osc
+        (id, nombre, cuit, codigo_igj, razon_social )
+    values
+        (11, 'Sony', '20202024567', 1334, 'Sony SRL');
+
+--
+insert
+    into
+        entidad_base
+        (id, nombre, descripcion, entidad_juridica_id)
+    values
+        (12, 'Sony Base 1', 'Base 1 Entidad Juridica OSC',  11);
 --
 	insert
     into
@@ -392,6 +423,27 @@ VALUES ('Mensaje generico 3', 'Este es el mensaje generico 3 de la cuenta "dds"'
         (entidad_id, usuario_id)
     values
          (2,5);
+
+    insert
+        into
+        usuario_entidad
+        (entidad_id, usuario_id)
+    values
+         (9,2);
+
+    insert
+        into
+        usuario_entidad
+        (entidad_id, usuario_id)
+    values
+         (10,2);
+
+    insert
+        into
+        usuario_entidad
+        (entidad_id, usuario_id)
+    values
+         (11,2);
 
 --------------------------
 ---- MOCK PRESUPUESTO ----
