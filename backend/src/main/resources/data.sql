@@ -326,15 +326,15 @@ VALUES ('Resultado Validación', 'La validación fue exitosa', 5);
 INSERT INTO mensaje (asunto, cuerpo, usuario_id)
 VALUES ('Resultado Validación', 'La validación no fue exitosa', 5);
 INSERT INTO mensaje (asunto, cuerpo, usuario_id)
-VALUES ('Mensaje generico 1', 'Este es el mensaje generico 3 de la cuenta "luciano"', 6);
+VALUES ('Mensaje generico 1', 'Este es el mensaje generico 1 de la cuenta "luciano"', 6);
 INSERT INTO mensaje (asunto, cuerpo, usuario_id)
-VALUES ('Mensaje generico 2', 'Este es el mensaje generico 3 de la cuenta "luciano"', 6);
+VALUES ('Mensaje generico 2', 'Este es el mensaje generico 2 de la cuenta "luciano"', 6);
 INSERT INTO mensaje (asunto, cuerpo, usuario_id)
 VALUES ('Mensaje generico 3', 'Este es el mensaje generico 3 de la cuenta "luciano"', 6);
 INSERT INTO mensaje (asunto, cuerpo, usuario_id)
-VALUES ('Mensaje generico 1', 'Este es el mensaje generico 3 de la cuenta "dds"', 7);
+VALUES ('Mensaje generico 1', 'Este es el mensaje generico 1 de la cuenta "dds"', 7);
 INSERT INTO mensaje (asunto, cuerpo, usuario_id)
-VALUES ('Mensaje generico 2', 'Este es el mensaje generico 3 de la cuenta "dds"', 7);
+VALUES ('Mensaje generico 2', 'Este es el mensaje generico 2 de la cuenta "dds"', 7);
 INSERT INTO mensaje (asunto, cuerpo, usuario_id)
 VALUES ('Mensaje generico 3', 'Este es el mensaje generico 3 de la cuenta "dds"', 7);
 
