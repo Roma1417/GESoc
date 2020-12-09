@@ -90,8 +90,6 @@ export default {
       ).then((result) => {
         if (result) {
           this.$router.push('/home')
-        } else {
-          this.toastError(this.$t('errors.login'))
         }
       }).finally(this.stopLoading)
     }
