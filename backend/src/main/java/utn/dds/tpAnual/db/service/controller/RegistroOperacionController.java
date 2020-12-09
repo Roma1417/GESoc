@@ -33,8 +33,9 @@ public class RegistroOperacionController {
                                                                             ){
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         PageableRequest pageableRequest = new PageableRequest(username, page, itemsPerPage);
+
         PageableResponse<RegistroOperacionDTO, RegistroOperacion>  operaciones = registroOperacionResourceBean.getRegistroOperacion(pageableRequest,
-                TipoOperacion.valueOf(tipoOperacion), nombreClase);
+                tipoOperacion != null ? TipoOperacion.valueOf(tipoOperacion) : null, nombreClase);
         return operaciones;
     }
 
