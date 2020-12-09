@@ -10,6 +10,10 @@ INSERT INTO usuario (usuario, cantidad_intentos, contrasenia, fecha_espera, nomb
 VALUES('frongi', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3',null,'Tomas');
 INSERT INTO usuario (usuario, cantidad_intentos, contrasenia, fecha_espera, nombre)
 VALUES('marian', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3',null,'Mariano');
+INSERT INTO usuario (usuario, cantidad_intentos, contrasenia, fecha_espera, nombre)
+VALUES('luciano', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3',null,'Luciano');
+INSERT INTO usuario (usuario, cantidad_intentos, contrasenia, fecha_espera, nombre)
+VALUES('dds', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3',null,'DDS');
 
 
 ---------------------
@@ -30,6 +34,34 @@ VALUES('marian', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a
     values
         ('Otro item');
 		--
+		    insert
+    into
+        item
+        (descripcion)
+    values
+        ('Item A');
+		--
+		    insert
+    into
+        item
+        (descripcion)
+    values
+        ('Item B');
+		--
+		    insert
+    into
+        item
+        (descripcion)
+    values
+        ('Item C');
+		--
+		    insert
+    into
+        item
+        (descripcion)
+    values
+        ('Item D');
+	    --
 		 insert
     into
         categoria
@@ -63,6 +95,48 @@ VALUES('marian', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a
         (descripcion)
     values
         ('Otra Categoria');
+		--
+		insert
+    into
+        item_categorias
+            (item_id, categorias_id)
+        values
+            (1, 1);
+		--
+		insert
+    into
+        item_categorias
+            (item_id, categorias_id)
+        values
+            (2, 2);
+		--
+		insert
+    into
+        item_categorias
+            (item_id, categorias_id)
+        values
+            (3, 2);
+		--
+		insert
+    into
+        item_categorias
+            (item_id, categorias_id)
+        values
+            (4, 4);
+		--
+		insert
+    into
+        item_categorias
+            (item_id, categorias_id)
+        values
+            (5, 4);
+		--
+		insert
+    into
+        item_categorias
+            (item_id, categorias_id)
+        values
+            (6, 1);
 		--
 		insert
     into
@@ -108,14 +182,98 @@ VALUES('marian', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a
         entidad_juridica_empresa
         (id, nombre, cuit, codigo_igj,  razon_social, cantidad_personal)
     values
-        (3, 'Una empresa', '121221231', '123',  'razon_social',  5);
+        (3, 'Una empresa', '121221232', '123',  'razon_social',  5);
+--
+    insert
+    into
+        entidad_juridica_empresa
+        (id, nombre, cuit, codigo_igj,  razon_social, cantidad_personal)
+    values
+        (4, 'Arcos Plateados', '121221233', '123',  'razon_social',  5);
+--
+    insert
+    into
+        entidad_juridica_empresa
+        (id, nombre, cuit, codigo_igj,  razon_social, cantidad_personal)
+    values
+        (5, 'MercadoLibre', '121221234', '123',  'razon_social',  5);
+--
+    insert
+    into
+        entidad_juridica_empresa
+        (id, nombre, cuit, codigo_igj,  razon_social, cantidad_personal)
+    values
+        (6, 'Carrefive', '121221235', '123',  'razon_social',  5);
+--
+insert
+    into
+        entidad_juridica_empresa
+        (id, nombre, cuit, codigo_igj,  razon_social, cantidad_personal)
+    values
+        (7, 'Totoshop', '121221236', '123',  'razon_social',  5);
+--
+insert
+    into
+        entidad_juridica_empresa
+        (id, nombre, cuit, codigo_igj,  razon_social, cantidad_personal)
+    values
+        (8, 'Burger Queen', '121221237', '123',  'razon_social',  5);
+--
+insert
+    into
+        entidad_juridica_empresa
+        (id, nombre, cuit, codigo_igj,  razon_social, cantidad_personal)
+    values
+        (9, 'Telecenter', '121221238', '123',  'razon_social',  5);
 --
 	insert
     into
 		usuario_entidad
         (entidad_id, usuario_id)
 	values
-		(1,1);
+		(4,7);
+--
+    insert
+    into
+		usuario_entidad
+        (entidad_id, usuario_id)
+	values
+		(5,6);
+--
+    insert
+    into
+		usuario_entidad
+        (entidad_id, usuario_id)
+	values
+		(6,7);
+--
+    insert
+    into
+		usuario_entidad
+        (entidad_id, usuario_id)
+	values
+		(7,6);
+--
+    insert
+    into
+		usuario_entidad
+        (entidad_id, usuario_id)
+	values
+		(7,7);
+--
+    insert
+    into
+		usuario_entidad
+        (entidad_id, usuario_id)
+	values
+		(8,6);
+--
+    insert
+    into
+		usuario_entidad
+        (entidad_id, usuario_id)
+	values
+		(8,7);
 --
 	insert
     into
@@ -133,7 +291,7 @@ VALUES('marian', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a
     values
         (80, 123, 1, 1, '20200812', '20200812', 2, false, 1, null, 1);
 --
-    		    insert
+    insert
     into
         detalle_operacion
         (cantidad, item_id, precio, operacion_efectuada_id)
@@ -167,7 +325,18 @@ INSERT INTO mensaje (asunto, cuerpo, usuario_id)
 VALUES ('Resultado Validación', 'La validación fue exitosa', 5);
 INSERT INTO mensaje (asunto, cuerpo, usuario_id)
 VALUES ('Resultado Validación', 'La validación no fue exitosa', 5);
-
+INSERT INTO mensaje (asunto, cuerpo, usuario_id)
+VALUES ('Mensaje generico 1', 'Este es el mensaje generico 1 de la cuenta "luciano"', 6);
+INSERT INTO mensaje (asunto, cuerpo, usuario_id)
+VALUES ('Mensaje generico 2', 'Este es el mensaje generico 2 de la cuenta "luciano"', 6);
+INSERT INTO mensaje (asunto, cuerpo, usuario_id)
+VALUES ('Mensaje generico 3', 'Este es el mensaje generico 3 de la cuenta "luciano"', 6);
+INSERT INTO mensaje (asunto, cuerpo, usuario_id)
+VALUES ('Mensaje generico 1', 'Este es el mensaje generico 1 de la cuenta "dds"', 7);
+INSERT INTO mensaje (asunto, cuerpo, usuario_id)
+VALUES ('Mensaje generico 2', 'Este es el mensaje generico 2 de la cuenta "dds"', 7);
+INSERT INTO mensaje (asunto, cuerpo, usuario_id)
+VALUES ('Mensaje generico 3', 'Este es el mensaje generico 3 de la cuenta "dds"', 7);
 
 ----------------------
 ---- MOCK INGRESO ----
