@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import utn.dds.tpAnual.db.dto.pageable.PageableRequest;
+import utn.dds.tpAnual.db.dto.transaccion.PresupuestoDTO;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
 import utn.dds.tpAnual.db.entity.transaccion.Presupuesto;
 import utn.dds.tpAnual.db.repository.PresupuestoRepository;
@@ -31,7 +32,8 @@ import utn.dds.tpAnual.db.repository.PresupuestoRepository;
     }
 
     @Override
-    public boolean puedePersistirseEnMongo() {
-        return false;
+    public Object getEntity(Object entity) {
+        return new PresupuestoDTO().from((Presupuesto) entity);
     }
+
 }

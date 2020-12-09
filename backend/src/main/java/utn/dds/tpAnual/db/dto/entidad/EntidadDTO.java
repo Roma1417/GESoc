@@ -19,6 +19,9 @@ public class EntidadDTO  extends StandardDTO<Entidad> {
 
     @Override
     public EntidadDTO from(Entidad object) {
+        if (object == null) {
+            return null;
+        }
         EntidadDTO entidad = new EntidadDTO();
         entidad.setNombre(object.getNombre());
         entidad.setIdEntidad(object.getEntidadId());

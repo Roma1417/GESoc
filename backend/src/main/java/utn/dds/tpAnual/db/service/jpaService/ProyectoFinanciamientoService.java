@@ -6,9 +6,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import utn.dds.tpAnual.db.dto.pageable.PageableRequest;
+import utn.dds.tpAnual.db.dto.transaccion.PresupuestoDTO;
+import utn.dds.tpAnual.db.dto.transaccion.ProyectoFinanciamientoDTO;
 import utn.dds.tpAnual.db.entity.entidad.Entidad;
 import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.entity.transaccion.Ingreso;
+import utn.dds.tpAnual.db.entity.transaccion.Presupuesto;
 import utn.dds.tpAnual.db.entity.transaccion.ProyectoFinanciamiento;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.repository.ProyectoFinanciamientoRepository;
@@ -77,7 +80,7 @@ import java.util.Optional;
     }
 
     @Override
-    public boolean puedePersistirseEnMongo() {
-        return false;
+    public Object getEntity(Object entity) {
+        return new ProyectoFinanciamientoDTO().from((ProyectoFinanciamiento) entity);
     }
 }

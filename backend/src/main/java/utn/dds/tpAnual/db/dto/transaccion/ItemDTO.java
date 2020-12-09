@@ -16,6 +16,9 @@ public class ItemDTO extends StandardDTO<Item> {
 
     @Override
     public ItemDTO from(Item object){
+        if (object == null) {
+            return null;
+        }
         List<Categoria> categorias = object.getCategorias();
         List<CategoriaDTO> categoriasDTO = new ArrayList<>();
         if (categorias != null){
