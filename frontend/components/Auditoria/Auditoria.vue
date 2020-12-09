@@ -5,11 +5,13 @@
         <TheResponsiveColumn class="px-4">
           <AuditoriaNombreClase
             v-model="filter.nombreClase"
+            clearable
           />
         </TheResponsiveColumn>
         <TheResponsiveColumn class="px-4">
           <AuditoriaTipoOperacion
             v-model="filter.tipoOperacion"
+            clearable
           />
         </TheResponsiveColumn>
         <v-col class="text-right">
@@ -38,7 +40,7 @@
         @click:row="mostrarItem"
       >
         <template #[`item.objetoModificado`]="{ item }">
-          {{ ajustarTexto(JSON.stringify(item.objetoModificado), 60) }}
+          {{ ajustarTexto(JSON.stringify(item.objetoModificado), 65) }}
         </template>
       </TheFilterTable>
     </template>
