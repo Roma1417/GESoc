@@ -25,10 +25,10 @@ public interface PresupuestoRepository extends JpaRepository<Presupuesto, Long> 
             " JOIN FETCH p.detallesPrecio det " +
             " JOIN FETCH det.detalleOperacion do " +
             " JOIN FETCH do.item items " +
-            " WHERE :categoria IS NULL OR " +
+            " WHERE (:categoria IS NULL OR " +
             "   items IN ( SELECT i FROM Item i " +
             "   INNER JOIN i.categorias c " +
-            "   WHERE c.descripcion = :categoria)  " +
+            "   WHERE c.descripcion = :categoria))  " +
             "   AND entidad IN ( SELECT entidadesUsuario from Entidad entidadesUsuario " +
             "   JOIN entidadesUsuario.usuariosEntidad ue " +
             "   JOIN ue.usuario usuario " +
@@ -40,10 +40,10 @@ public interface PresupuestoRepository extends JpaRepository<Presupuesto, Long> 
             " JOIN p.detallesPrecio det " +
             " JOIN det.detalleOperacion do " +
             " JOIN do.item items " +
-            " WHERE :categoria IS NULL OR " +
-            "   items IN ( SELECT i FROM Item i " +
-            "   INNER JOIN i.categorias c " +
-            "   WHERE c.descripcion = :categoria)  " +
+                    " WHERE (:categoria IS NULL OR " +
+                    "   items IN ( SELECT i FROM Item i " +
+                    "   INNER JOIN i.categorias c " +
+                    "   WHERE c.descripcion = :categoria))  " +
             "   AND entidad IN ( SELECT entidadesUsuario from Entidad entidadesUsuario " +
             "   JOIN entidadesUsuario.usuariosEntidad ue " +
             "   JOIN ue.usuario usuario " +
