@@ -38,7 +38,7 @@
         @click:row="mostrarItem"
       >
         <template #[`item.objetoModificado`]="{ item }">
-          {{ ajustarTexto(JSON.stringify(item.objetoModificado), 100) }}
+          {{ ajustarTexto(JSON.stringify(item.objetoModificado), 80) }}
         </template>
       </TheFilterTable>
     </template>
@@ -82,7 +82,8 @@ export default {
           text: this.$t('auditoria.fecha_hora'),
           align: 'center',
           sortable: false,
-          value: 'fechaOperacion'
+          value: 'fechaOperacion',
+          width: '20%'
         },
         {
           text: this.$t('auditoria.entidad'),
@@ -94,7 +95,8 @@ export default {
           text: this.$t('auditoria.tipo_operacion'),
           align: 'start',
           sortable: false,
-          value: 'tipoOperacion'
+          value: 'tipoOperacion',
+          width: '10%'
         },
         {
           text: this.$t('auditoria.detalle_entidad'),
