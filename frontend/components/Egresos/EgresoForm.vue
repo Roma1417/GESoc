@@ -146,9 +146,6 @@ export default {
       if (val && this.item) {
         this.egreso = cloneDeep(this.item)
       }
-      if (val && this.$refs.form) {
-        this.$refs.form.resetValidation()
-      }
     }
   },
   methods: {
@@ -176,6 +173,7 @@ export default {
         documentoComercial: {},
         detalles: []
       }
+      this.$refs.form.resetValidation()
       this.showForm = false
     }
   }
