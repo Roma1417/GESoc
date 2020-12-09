@@ -28,6 +28,7 @@
           <TheResponsiveColumn v-if="vincularConEgreso">
             <TheAsyncAutocompleteInput
               v-model="vinculacion.egreso"
+              type="number"
               item-text="idEgreso"
               :get-items-function="$egresoService.getEgresosById"
               :label="$t('egresos.titulo')"
@@ -37,6 +38,7 @@
           <TheResponsiveColumn v-if="!vincularConEgreso">
             <TheAsyncAutocompleteInput
               v-model="vinculacion.ingreso"
+              type="number"
               item-text="idIngreso"
               :get-items-function="$ingresoService.getIngresosById"
               :label="$t('ingresos.titulo')"
