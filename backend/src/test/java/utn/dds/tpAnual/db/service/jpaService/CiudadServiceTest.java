@@ -16,10 +16,11 @@ import utn.dds.tpAnual.db.entity.ubicacion.Ciudad;
 import utn.dds.tpAnual.db.repository.CiudadRepository;
 import utn.dds.tpAnual.db.scheduler.ProgramadorDeTareas;
 import utn.dds.tpAnual.db.service.jpaService.CiudadService;
+import utn.dds.tpAnual.db.service.mongo.repository.RegistroOperacionRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@MockBean(ProgramadorDeTareas.class)
+@MockBean({ProgramadorDeTareas.class, RegistroOperacionRepository.class })
 public class CiudadServiceTest {
 
     @Autowired

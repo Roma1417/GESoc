@@ -95,4 +95,9 @@ import java.util.Optional;
     public Optional<Egreso> findFullRelatedById(Long egresoID, Long userID) {
         return egresoRepository.findFullRelatedById(egresoID, userID);
     }
+
+    @Override
+    public boolean puedePersistirseEnMongo() {
+        return false;
+    }
 }

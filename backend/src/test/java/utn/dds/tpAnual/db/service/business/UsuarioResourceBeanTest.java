@@ -11,12 +11,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.scheduler.ProgramadorDeTareas;
 import utn.dds.tpAnual.db.service.jpaService.UsuarioService;
+import utn.dds.tpAnual.db.service.mongo.repository.RegistroOperacionRepository;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @RunWith(SpringRunner.class)
-@MockBean(ProgramadorDeTareas.class)
+@MockBean({ProgramadorDeTareas.class, RegistroOperacionRepository.class })
 @DataJpaTest(showSql=false)
 @DirtiesContext
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)

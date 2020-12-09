@@ -30,13 +30,15 @@ import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.entity.usuario.UsuarioEntidad;
 import utn.dds.tpAnual.db.scheduler.ProgramadorDeTareas;
 import utn.dds.tpAnual.db.service.jpaService.*;
+import utn.dds.tpAnual.db.service.mongo.repository.RegistroOperacionRepository;
+import utn.dds.tpAnual.db.service.mongo.service.RegistroOperacionService;
 
 import java.util.Arrays;
 
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
-@MockBean(ProgramadorDeTareas.class)
+@MockBean({ProgramadorDeTareas.class, RegistroOperacionRepository.class })
 @DataJpaTest(showSql=false)
 @DirtiesContext
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)

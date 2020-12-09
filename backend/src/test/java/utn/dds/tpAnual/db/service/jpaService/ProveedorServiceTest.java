@@ -11,12 +11,13 @@ import utn.dds.tpAnual.db.entity.proveedor.ProveedorPersona;
 import utn.dds.tpAnual.db.entity.ubicacion.DireccionPostal;
 import utn.dds.tpAnual.db.scheduler.ProgramadorDeTareas;
 import utn.dds.tpAnual.db.service.jpaService.ProveedorService;
+import utn.dds.tpAnual.db.service.mongo.repository.RegistroOperacionRepository;
 
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@MockBean(ProgramadorDeTareas.class)
+@MockBean({ProgramadorDeTareas.class, RegistroOperacionRepository.class })
 public class ProveedorServiceTest {
 
     @Autowired

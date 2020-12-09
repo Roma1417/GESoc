@@ -23,6 +23,7 @@ import utn.dds.tpAnual.db.service.jpaService.CiudadService;
 import utn.dds.tpAnual.db.service.jpaService.EstadoService;
 import utn.dds.tpAnual.db.service.jpaService.MonedaService;
 import utn.dds.tpAnual.db.service.jpaService.PaisService;
+import utn.dds.tpAnual.db.service.mongo.repository.RegistroOperacionRepository;
 
 
 import java.util.Arrays;
@@ -32,7 +33,7 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 
 @RunWith(SpringRunner.class)
-@MockBean(ProgramadorDeTareas.class)
+@MockBean({ProgramadorDeTareas.class, RegistroOperacionRepository.class })
 @DataJpaTest(showSql=false)
 @DirtiesContext
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)

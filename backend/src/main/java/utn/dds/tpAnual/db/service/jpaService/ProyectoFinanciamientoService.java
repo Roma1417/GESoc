@@ -76,4 +76,8 @@ import java.util.Optional;
         entities.forEach(this::save);
     }
 
+    @Override
+    public boolean puedePersistirseEnMongo() {
+        return false;
+    }
 }
