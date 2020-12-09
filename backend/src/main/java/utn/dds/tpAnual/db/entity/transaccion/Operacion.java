@@ -85,4 +85,9 @@ public abstract class Operacion implements EntityInterface {
 	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
+
+	@Override
+	public Long getId() {
+		return operacionId;
+	}
 }

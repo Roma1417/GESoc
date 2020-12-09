@@ -97,7 +97,7 @@ public class Egreso extends OperacionEfectuada {
 	}
 
 	public int getCantidadPresupuestosMinimos() {
-		return cantidadPresupuestosMinimos;
+		return proyecto != null ? proyecto.getPresupuestosMinimos() : cantidadPresupuestosMinimos;
 	}
 	
 	public CriterioCompra getCriterioCompra() {
