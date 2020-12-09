@@ -18,7 +18,7 @@ public class RegistroOperacionService {
     private RegistroOperacionRepository registroOperacionRepository;
 
 
-    public Page<RegistroOperacion> getRegistroOperacionByTipo(PageableRequest pageableRequest, TipoOperacion tipoOperacion,
+    public Page<RegistroOperacion> getRegistroOperacionByTipoAndNombreClase(PageableRequest pageableRequest, TipoOperacion tipoOperacion,
                                                               String nombreClase){
         if (tipoOperacion != null) {
             if (nombreClase != null) {

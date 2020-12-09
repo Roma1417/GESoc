@@ -1,20 +1,24 @@
-package utn.dds.tpAnual.db.mongo.entity;
+package utn.dds.tpAnual.db.dto.auditoria;
 
 import utn.dds.tpAnual.db.dto.StandardDTO;
+import utn.dds.tpAnual.db.entity.categorizacion.categoria.Categoria;
 import utn.dds.tpAnual.db.mongo.auditoria.TipoOperacion;
+import utn.dds.tpAnual.db.mongo.entity.RegistroOperacion;
 
 import java.time.LocalDateTime;
 
-public class RegistroOperacion {
+public class RegistroOperacionDTO   extends StandardDTO<RegistroOperacion> {
     private LocalDateTime fechaOperacion;
     private TipoOperacion tipoOperacion;
     private Object objetoModificado;
     private String nombreClase;
 
-    public RegistroOperacion(){
+
+    public RegistroOperacionDTO(){
+
     }
 
-    public RegistroOperacion(LocalDateTime fechaOperacion, TipoOperacion tipoOperacion, Object objetoModificado, String nombreClase) {
+    public RegistroOperacionDTO(LocalDateTime fechaOperacion, TipoOperacion tipoOperacion, Object objetoModificado, String nombreClase) {
         this.fechaOperacion = fechaOperacion;
         this.tipoOperacion = tipoOperacion;
         this.objetoModificado = objetoModificado;
@@ -53,4 +57,14 @@ public class RegistroOperacion {
         this.nombreClase = nombreClase;
     }
 
+    @Override
+    public StandardDTO from(RegistroOperacion object) {
+        return new RegistroOperacionDTO(object.getFechaOperacion(), object.getTipoOperacion(), object.getObjetoModificado(),
+                object.getNombreClase());
+    }
+
+    @Override
+    public RegistroOperacion toEntity() {
+        return null;
+    }
 }
