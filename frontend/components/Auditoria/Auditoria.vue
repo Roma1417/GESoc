@@ -38,7 +38,7 @@
         @click:row="mostrarItem"
       >
         <template #[`item.objetoModificado`]="{ item }">
-          {{ ajustarTexto(JSON.stringify(item.objetoModificado), 80) }}
+          {{ ajustarTexto(JSON.stringify(item.objetoModificado), 60) }}
         </template>
       </TheFilterTable>
     </template>

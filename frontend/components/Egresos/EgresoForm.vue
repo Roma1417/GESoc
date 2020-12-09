@@ -35,7 +35,7 @@
             <TheTextInput
               v-model="egreso.codigoOperacion"
               :label="$t('egresos.codigo_operacion')"
-              :rules="[$rl.required()]"
+              :rules="[$rl.required(), $rl.positiveOrZero()]"
             />
           </TheResponsiveColumn>
           <TheResponsiveColumn>
