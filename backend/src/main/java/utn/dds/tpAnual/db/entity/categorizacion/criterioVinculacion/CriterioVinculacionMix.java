@@ -44,4 +44,5 @@ public class CriterioVinculacionMix extends CriterioVinculacion{
         }
         criteriosVinculacion.add(criterioVinculacion);
     }
+
 }

@@ -1,5 +1,6 @@
 package utn.dds.tpAnual.db.entity.proveedor;
 
+import utn.dds.tpAnual.db.entity.EntityInterface;
 import utn.dds.tpAnual.db.entity.ubicacion.DireccionPostal;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "PROVEEDOR")
-public abstract class Proveedor {
+public abstract class Proveedor implements EntityInterface {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

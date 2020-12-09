@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "INGRESO")
-public class Ingreso extends Operacion{
+public class Ingreso extends Operacion {
 
 	@Column(name = "TOTAL")
 	private Float total;
@@ -18,6 +18,9 @@ public class Ingreso extends Operacion{
 
 	@OneToMany(mappedBy="ingreso", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Egreso> egresosAsociados;
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private ProyectoFinanciamiento proyecto;
 
 	public Ingreso(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,
 				   Float total, String descripcion, List<Egreso> EgresosAsociados) {
@@ -72,6 +75,13 @@ public class Ingreso extends Operacion{
 						.reduce(0F, (valor, acumulador) -> valor + acumulador);
 	}
 
+	public ProyectoFinanciamiento getProyecto() {
+		return proyecto;
+	}
+
+	public void setProyecto(ProyectoFinanciamiento proyecto) {
+		this.proyecto = proyecto;
+	}
 
 	public void vincularEgreso(Egreso egreso) {
 		if (egresosAsociados == null) {
@@ -79,5 +89,10 @@ public class Ingreso extends Operacion{
 		}
 		egresosAsociados.add(egreso);
 		egreso.setIngreso(this);
+	}
+
+	@Override
+	public Long getId() {
+		return null;
 	}
 }

@@ -24,4 +24,8 @@ public class Estandar extends TipoUsuario {
 		return false;
 	}
 
+	@Override
+	public Long getId() {
+		return null;
+	}
 }

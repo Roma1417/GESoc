@@ -1,5 +1,6 @@
 package utn.dds.tpAnual.db.dto.transaccion;
 
+import org.springframework.security.core.parameters.P;
 import utn.dds.tpAnual.db.dto.StandardDTO;
 import utn.dds.tpAnual.db.dto.ubicacion.MonedaDTO;
 import utn.dds.tpAnual.db.dto.ubicacion.PaisDTO;
@@ -20,6 +21,9 @@ public class DocumentoComercialDTO extends StandardDTO<DocumentoComercial> {
 
     @Override
     public DocumentoComercialDTO from(DocumentoComercial object) {
+        if (object == null) {
+            return null;
+        }
         DocumentoComercialDTO documentoComercialDTO = new DocumentoComercialDTO();
         documentoComercialDTO.setNumero(object.getNumero());
         documentoComercialDTO.setIdDocumento(object.getIdDocumento());

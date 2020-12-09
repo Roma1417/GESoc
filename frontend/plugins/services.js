@@ -11,6 +11,8 @@ import MedioPago from '../services/MedioPago'
 import Proveedor from '../services/Proveedor'
 import Mensaje from '../services/Mensaje'
 import Presupuesto from '~/services/Presupuesto'
+import ProyectoFinanciamiento from '~/services/Proyecto'
+import RegistroOperacion from '~/services/RegistroOperacion'
 
 export default function ({ app }, inject) {
   const user = new User({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })
@@ -19,6 +21,8 @@ export default function ({ app }, inject) {
   inject('egresoService', egreso)
   const ingreso = new Ingreso({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })
   inject('ingresoService', ingreso)
+  const proyectoFinanciamiento = new ProyectoFinanciamiento({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })
+  inject('proyectoFinanciamientoService', proyectoFinanciamiento)
   const presupuesto = new Presupuesto({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })
   inject('presupuestoService', presupuesto)
   const pais = new Pais({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })
@@ -37,6 +41,8 @@ export default function ({ app }, inject) {
   inject('proveedorService', proveedor)
   const mensaje = new Mensaje({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })
   inject('mensajeService', mensaje)
+  const registroOperacion = new RegistroOperacion({ $axios: app.$axios, $cookiz: app.$cookiz, $store: app.store })
+  inject('registroOperacionService', registroOperacion)
   const validationRule = new ValidationRule(app)
   inject('rl', validationRule)
 }

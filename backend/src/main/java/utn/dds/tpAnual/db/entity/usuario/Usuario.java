@@ -1,5 +1,6 @@
 package utn.dds.tpAnual.db.entity.usuario;
 
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.Set;
 
 import com.google.common.hash.Hashing;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import utn.dds.tpAnual.db.entity.EntityInterface;
 import utn.dds.tpAnual.db.entity.afip.RequisitoSectorEmpresa;
 
 import javax.persistence.*;
@@ -20,7 +22,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "USUARIO")
-public class Usuario {
+public class Usuario implements Serializable, EntityInterface {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -170,5 +172,10 @@ public class Usuario {
 
 	public void addCantidadIntentos() {
 		cantidadIntentos ++;
+	}
+
+	@Override
+	public Long getId() {
+		return usuarioId;
 	}
 }

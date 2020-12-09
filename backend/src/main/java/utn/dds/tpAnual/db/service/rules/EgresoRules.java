@@ -66,6 +66,9 @@ public class EgresoRules {
         if(egresoDTO.getCantidadPresupuestosMinimos() == null){
             throw new RuntimeException("Cantidad presupuestos minimos incompleto");
         }
+        if(egresoDTO.getCantidadPresupuestosMinimos() < 0){
+            throw new RuntimeException("Cantidad presupuestos minimos menor a cero");
+        }
 
     }
 }

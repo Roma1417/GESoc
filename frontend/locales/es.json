@@ -36,7 +36,8 @@
    },
    "validations": {
      "required": "El campo es requerido",
-     "positive": "El valor debe ser mayor a 0"
+     "positive": "El valor debe ser mayor a 0",
+     "positive_or_zero": "El valor debe ser mayor o igual a 0"
    },
    "buttons": {
    "cancelButton": "Cancelar",
@@ -48,6 +49,32 @@
      "egresos": "Egresos",
      "ingresos": "Ingresos",
      "presupuestos": "Presupuestos"
+   },
+   "proyectos":{
+     "titulo": "Proyectos de financiamiento",
+     "titulo_creacion": "Proyecto de Financiamiento",
+     "menu": "Proyectos",
+     "search": "Buscar Proyecto",
+     "crear": "Crear Proyecto",
+     "id": "ID",
+     "director": "Director Asignado",
+     "ingresos": "Igresos Asociados",
+     "presupuestos_exigibles": "Presupuestos exigibles",
+     "nombre": "Nombre",
+     "total": "Total Asignado",
+     "acciones": "Acciones",
+     "monto_maximo_sin_presupuestos": "Monto máximo sin presupuestos",
+     "monto_inicial": "Monto inicial asignado",
+     "entidad": "Entidad Realizadora"
+   },
+   "auditoria": {
+     "menu": "Auditoría",
+     "titulo": "Auditoría de operaciones",
+     "fecha_hora" : "Fecha y hora",
+     "tipo_operacion": "Tipo de operación",
+     "detalle_entidad": "Detalle de la entidad",
+     "entidad": "Entidad",
+     "nombre_clase": "Clase"
    },
    "egresos": {
      "titulo": "Egreso",
@@ -170,11 +197,17 @@
    "vincular": {
      "egreso": "Vincular egreso con un ingreso",
      "ingreso": "Vincular ingreso con egresos",
+     "proyecto_ingreso": "Vincular proyecto con un ingreso",
+     "proyecto_egreso": "Vincular proyecto con un egreso",
      "ingresoTitle": "Vinculación de ingreso",
      "egresoTitle": "Vinculación de egreso",
+     "proyectoIngresoTitle": "Vinculación de un ingreso a un proyecto",
+     "proyectoEgresoTitle": "Vinculación de un egreso a un proyecto",
      "solicitud": "Ingrese el ID correspondiente para realizar la vinculación.",
      "info_egreso_id": "Recuerde vincular el egreso con un ingreso de la misma entidad.",
-     "info_ingreso_id": "Recuerde vincular el ingreso con un egreso de la misma entidad."
+     "info_ingreso_id": "Recuerde vincular el ingreso con un egreso de la misma entidad.",
+     "info_proyecto_ingreso_id": "Recuerde vincular el proyecto con un ingreso de la misma entidad.",
+     "info_proyecto_egreso_id": "Recuerde vincular el proyecto con un egreso de la misma entidad."
    },
    "attributes": {
      "undefined": ""

@@ -35,7 +35,11 @@
             v-if="!item.idIngresoAsociado"
             :title-text="$t('vincular.egresoTitle')"
             :vincular-tooltip-text="$t('vincular.egreso')"
-            :egreso-a-vincular="item"
+            :mensaje-ingreso-de-id="$t('vincular.info_egreso_id')"
+            :objeto-a-vincular="item"
+            :vinculacion-function="$egresoService.vincularEgresoIngreso"
+            :vincular-con-egreso="false"
+            @created="getEgresos()"
           />
         </template>
       </TheFilterTable>
@@ -48,7 +52,7 @@ import TheFilterTable from '~/components/General/Tables/TheFilterTable'
 import ThePrimaryButton from '~/components/General/Buttons/ThePrimaryButton'
 import TheCategoriasAutocomplete from '~/components/Business/Autocomplete/TheCategoriasAutocomplete'
 import EgresoForm from '~/components/Egresos/EgresoForm'
-import VinculacionForm from '~/components/Egresos/VinculacionForm'
+import VinculacionForm from '~/components/Vinculacion/VinculacionForm'
 export default {
   components: {
     TheLayoutWithHeader,

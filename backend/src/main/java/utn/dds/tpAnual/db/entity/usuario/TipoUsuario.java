@@ -1,6 +1,8 @@
 package utn.dds.tpAnual.db.entity.usuario;
 
 
+import utn.dds.tpAnual.db.entity.EntityInterface;
+
 import javax.persistence.*;
 
 /**
@@ -11,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "TIPO_USUARIO")
-public abstract class TipoUsuario {
+public abstract class TipoUsuario implements EntityInterface {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

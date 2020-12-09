@@ -1,6 +1,7 @@
 package utn.dds.tpAnual.db.entity.afip;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import utn.dds.tpAnual.db.entity.EntityInterface;
 
 import javax.persistence.*;
 
@@ -12,7 +13,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name ="VENTA_ANUAL")
-public class VentaAnual {
+public class VentaAnual implements EntityInterface {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,5 +62,10 @@ public class VentaAnual {
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this);
+	}
+
+	@Override
+	public Long getId() {
+		return getVentaAnualId();
 	}
 }

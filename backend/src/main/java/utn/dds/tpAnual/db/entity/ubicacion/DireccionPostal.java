@@ -1,10 +1,12 @@
 package utn.dds.tpAnual.db.entity.ubicacion;
 
+import utn.dds.tpAnual.db.entity.EntityInterface;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "DIRECCION_POSTAL")
-public class DireccionPostal {
+public class DireccionPostal implements EntityInterface {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -71,5 +73,10 @@ public class DireccionPostal {
 
 	public void setDireccionPostalId(Long direccionPostalId) {
 		this.direccionPostalId = direccionPostalId;
+	}
+
+	@Override
+	public Long getId() {
+		return null;
 	}
 }

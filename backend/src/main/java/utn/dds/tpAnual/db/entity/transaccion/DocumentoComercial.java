@@ -1,5 +1,6 @@
 package utn.dds.tpAnual.db.entity.transaccion;
 
+import utn.dds.tpAnual.db.entity.EntityInterface;
 import utn.dds.tpAnual.db.entity.ubicacion.Moneda;
 import utn.dds.tpAnual.db.entity.ubicacion.Pais;
 
@@ -13,7 +14,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "DOCUMENTO_COMERCIAL")
-public class DocumentoComercial {
+public class DocumentoComercial implements EntityInterface {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -83,4 +84,8 @@ public class DocumentoComercial {
 		this.moneda = moneda;
 	}
 
+	@Override
+	public Long getId() {
+		return null;
+	}
 }

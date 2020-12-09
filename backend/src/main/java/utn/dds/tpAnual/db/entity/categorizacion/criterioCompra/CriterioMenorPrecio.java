@@ -44,4 +44,5 @@ public class CriterioMenorPrecio extends CriterioCompra {
 	private Presupuesto presupuestoDeMenorPrecio(Presupuesto unPresupuesto, Presupuesto otroPresupuesto){
 		return unPresupuesto.getTotal() < otroPresupuesto.getTotal() ? unPresupuesto : otroPresupuesto;
 	}
+
 }

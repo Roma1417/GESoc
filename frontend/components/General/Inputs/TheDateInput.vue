@@ -14,6 +14,7 @@
         prepend-icon="mdi-calendar"
         readonly
         :clearable="clearable"
+        v-bind="$attrs"
         @input="change"
         @click:clear="clear"
         v-on="on"

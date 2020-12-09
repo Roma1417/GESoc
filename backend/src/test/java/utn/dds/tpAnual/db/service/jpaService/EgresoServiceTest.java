@@ -10,12 +10,13 @@ import utn.dds.tpAnual.builders.EgresoBuilder;
 import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.scheduler.ProgramadorDeTareas;
 import utn.dds.tpAnual.db.service.jpaService.EgresoService;
+import utn.dds.tpAnual.db.service.mongo.repository.RegistroOperacionRepository;
 
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@MockBean(ProgramadorDeTareas.class)
+@MockBean({ProgramadorDeTareas.class, RegistroOperacionRepository.class })
 public class EgresoServiceTest {
 
     @Autowired

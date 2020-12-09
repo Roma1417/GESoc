@@ -66,6 +66,16 @@ export default {
           ]
         },
         {
+          title: 'proyectos.menu',
+          icon: 'mdi-file-document-multiple',
+          to: '/proyectos'
+        },
+        {
+          title: 'auditoria.menu',
+          icon: 'mdi-text-box-search',
+          to: '/auditoria'
+        },
+        {
           title: 'entidades.menu',
           icon: 'mdi-domain',
           to: '/entidades'

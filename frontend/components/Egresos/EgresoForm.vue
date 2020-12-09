@@ -1,5 +1,6 @@
 <template>
   <TheFormDialog
+    ref="form"
     v-model="showForm"
     :header-message="titleText"
     :loading="loading"
@@ -35,7 +36,7 @@
             <TheTextInput
               v-model="egreso.codigoOperacion"
               :label="$t('egresos.codigo_operacion')"
-              :rules="[$rl.required()]"
+              :rules="[$rl.required(), $rl.positiveOrZero()]"
             />
           </TheResponsiveColumn>
           <TheResponsiveColumn>
@@ -69,7 +70,7 @@
             <TheTextInput
               v-model="egreso.cantidadPresupuestosMinimos"
               :label="$t('egresos.presupuestos_minimos')"
-              :rules="[$rl.required(),$rl.positive()]"
+              :rules="[$rl.required(),$rl.positiveOrZero()]"
             />
           </TheResponsiveColumn>
           <TheResponsiveColumn>
@@ -172,6 +173,7 @@ export default {
         documentoComercial: {},
         detalles: []
       }
+      this.$refs.form.resetValidation()
       this.showForm = false
     }
   }

@@ -10,6 +10,10 @@ INSERT INTO usuario (usuario, cantidad_intentos, contrasenia, fecha_espera, nomb
 VALUES('frongi', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3',null,'Tomas');
 INSERT INTO usuario (usuario, cantidad_intentos, contrasenia, fecha_espera, nombre)
 VALUES('marian', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3',null,'Mariano');
+INSERT INTO usuario (usuario, cantidad_intentos, contrasenia, fecha_espera, nombre)
+VALUES('luciano', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3',null,'Luciano');
+INSERT INTO usuario (usuario, cantidad_intentos, contrasenia, fecha_espera, nombre)
+VALUES('dds', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3',null,'DDS');
 
 
 ---------------------
@@ -30,6 +34,34 @@ VALUES('marian', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a
     values
         ('Otro item');
 		--
+		    insert
+    into
+        item
+        (descripcion)
+    values
+        ('Item A');
+		--
+		    insert
+    into
+        item
+        (descripcion)
+    values
+        ('Item B');
+		--
+		    insert
+    into
+        item
+        (descripcion)
+    values
+        ('Item C');
+		--
+		    insert
+    into
+        item
+        (descripcion)
+    values
+        ('Item D');
+	    --
 		 insert
     into
         categoria
@@ -66,6 +98,48 @@ VALUES('marian', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a
 		--
 		insert
     into
+        item_categorias
+            (item_id, categorias_id)
+        values
+            (1, 1);
+		--
+		insert
+    into
+        item_categorias
+            (item_id, categorias_id)
+        values
+            (2, 2);
+		--
+		insert
+    into
+        item_categorias
+            (item_id, categorias_id)
+        values
+            (3, 2);
+		--
+		insert
+    into
+        item_categorias
+            (item_id, categorias_id)
+        values
+            (4, 4);
+		--
+		insert
+    into
+        item_categorias
+            (item_id, categorias_id)
+        values
+            (5, 4);
+		--
+		insert
+    into
+        item_categorias
+            (item_id, categorias_id)
+        values
+            (6, 1);
+		--
+		insert
+    into
         categoria
         (descripcion)
     values
@@ -78,6 +152,13 @@ VALUES('marian', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a
         ( nombre_razon_social, dni, dtype)
     values
         ('Un proveedor', '123456', 'ProveedorPersona');
+
+        		insert
+    into
+        proveedor
+        ( nombre_razon_social, cuit, dtype)
+    values
+        ('Otro proveedor', '201234567', 'ProveedorJuridico');
 		--
 		insert into pais
 		        (id_api, descripcion)
@@ -108,14 +189,122 @@ VALUES('marian', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a
         entidad_juridica_empresa
         (id, nombre, cuit, codigo_igj,  razon_social, cantidad_personal)
     values
-        (3, 'Una empresa', '121221231', '123',  'razon_social',  5);
+        (3, 'Una empresa', '121221232', '123',  'razon_social',  5);
+--
+    insert
+    into
+        entidad_juridica_empresa
+        (id, nombre, cuit, codigo_igj,  razon_social, cantidad_personal)
+    values
+        (4, 'Arcos Plateados', '121221233', '123',  'razon_social',  5);
+--
+    insert
+    into
+        entidad_juridica_empresa
+        (id, nombre, cuit, codigo_igj,  razon_social, cantidad_personal)
+    values
+        (5, 'MercadoLibre', '121221234', '123',  'razon_social',  5);
+--
+    insert
+    into
+        entidad_juridica_empresa
+        (id, nombre, cuit, codigo_igj,  razon_social, cantidad_personal)
+    values
+        (6, 'Carrefive', '121221235', '123',  'razon_social',  5);
+--
+insert
+    into
+        entidad_juridica_empresa
+        (id, nombre, cuit, codigo_igj,  razon_social, cantidad_personal)
+    values
+        (7, 'Totoshop', '121221236', '123',  'razon_social',  5);
+--
+insert
+    into
+        entidad_juridica_empresa
+        (id, nombre, cuit, codigo_igj,  razon_social, cantidad_personal)
+    values
+        (8, 'Burger Queen', '121221237', '123',  'razon_social',  5);
+--
+insert
+    into
+        entidad_juridica_empresa
+        (id, nombre, cuit, codigo_igj,  razon_social, cantidad_personal)
+    values
+        (9, 'Telecenter', '121221238', '123',  'razon_social',  5);
+
+--
+insert
+    into
+        entidad_base
+        (id, nombre, descripcion, entidad_juridica_id)
+    values
+        (10, 'Telecenter Base 1', 'Base 1 Entidad Juridica Empresa',  9);
+
+--
+insert
+    into
+        entidad_juridica_osc
+        (id, nombre, cuit, codigo_igj, razon_social )
+    values
+        (11, 'Sony', '20202024567', 1334, 'Sony SRL');
+
+--
+insert
+    into
+        entidad_base
+        (id, nombre, descripcion, entidad_juridica_id)
+    values
+        (12, 'Sony Base 1', 'Base 1 Entidad Juridica OSC',  11);
 --
 	insert
     into
 		usuario_entidad
         (entidad_id, usuario_id)
 	values
-		(1,1);
+		(4,7);
+--
+    insert
+    into
+		usuario_entidad
+        (entidad_id, usuario_id)
+	values
+		(5,6);
+--
+    insert
+    into
+		usuario_entidad
+        (entidad_id, usuario_id)
+	values
+		(6,7);
+--
+    insert
+    into
+		usuario_entidad
+        (entidad_id, usuario_id)
+	values
+		(7,6);
+--
+    insert
+    into
+		usuario_entidad
+        (entidad_id, usuario_id)
+	values
+		(7,7);
+--
+    insert
+    into
+		usuario_entidad
+        (entidad_id, usuario_id)
+	values
+		(8,6);
+--
+    insert
+    into
+		usuario_entidad
+        (entidad_id, usuario_id)
+	values
+		(8,7);
 --
 	insert
     into
@@ -133,7 +322,7 @@ VALUES('marian', 0, 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a
     values
         (80, 123, 1, 1, '20200812', '20200812', 2, false, 1, null, 1);
 --
-    		    insert
+    insert
     into
         detalle_operacion
         (cantidad, item_id, precio, operacion_efectuada_id)
@@ -167,7 +356,18 @@ INSERT INTO mensaje (asunto, cuerpo, usuario_id)
 VALUES ('Resultado Validación', 'La validación fue exitosa', 5);
 INSERT INTO mensaje (asunto, cuerpo, usuario_id)
 VALUES ('Resultado Validación', 'La validación no fue exitosa', 5);
-
+INSERT INTO mensaje (asunto, cuerpo, usuario_id)
+VALUES ('Mensaje generico 1', 'Este es el mensaje generico 1 de la cuenta "luciano"', 6);
+INSERT INTO mensaje (asunto, cuerpo, usuario_id)
+VALUES ('Mensaje generico 2', 'Este es el mensaje generico 2 de la cuenta "luciano"', 6);
+INSERT INTO mensaje (asunto, cuerpo, usuario_id)
+VALUES ('Mensaje generico 3', 'Este es el mensaje generico 3 de la cuenta "luciano"', 6);
+INSERT INTO mensaje (asunto, cuerpo, usuario_id)
+VALUES ('Mensaje generico 1', 'Este es el mensaje generico 1 de la cuenta "dds"', 7);
+INSERT INTO mensaje (asunto, cuerpo, usuario_id)
+VALUES ('Mensaje generico 2', 'Este es el mensaje generico 2 de la cuenta "dds"', 7);
+INSERT INTO mensaje (asunto, cuerpo, usuario_id)
+VALUES ('Mensaje generico 3', 'Este es el mensaje generico 3 de la cuenta "dds"', 7);
 
 ----------------------
 ---- MOCK INGRESO ----
@@ -224,6 +424,27 @@ VALUES ('Resultado Validación', 'La validación no fue exitosa', 5);
     values
          (2,5);
 
+    insert
+        into
+        usuario_entidad
+        (entidad_id, usuario_id)
+    values
+         (9,2);
+
+    insert
+        into
+        usuario_entidad
+        (entidad_id, usuario_id)
+    values
+         (10,2);
+
+    insert
+        into
+        usuario_entidad
+        (entidad_id, usuario_id)
+    values
+         (11,2);
+
 --------------------------
 ---- MOCK PRESUPUESTO ----
 --------------------------
@@ -269,3 +490,14 @@ VALUES ('Resultado Validación', 'La validación no fue exitosa', 5);
         (id, precio, detalle_operacion_id, presupuesto_id)
     values
         (7, 55, 1, 4);
+
+--------------------------
+---- MOCK PROYECTO ----
+--------------------------
+
+    insert
+    into
+        proyecto_financiamiento
+        (id, monto_inicial_asignado , monto_sin_presupuesto, presupuestos_minimos, director_id, entidad_realizadora_id)
+    values
+        (900, 2000, 1000, 3, 3, 2)

@@ -8,12 +8,13 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import utn.dds.tpAnual.db.entity.categorizacion.categoria.Categoria;
 import utn.dds.tpAnual.db.scheduler.ProgramadorDeTareas;
+import utn.dds.tpAnual.db.service.mongo.repository.RegistroOperacionRepository;
 
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@MockBean(ProgramadorDeTareas.class)
+@MockBean({ProgramadorDeTareas.class, RegistroOperacionRepository.class })
 public class CategoriaServiceTest {
 
     @Autowired

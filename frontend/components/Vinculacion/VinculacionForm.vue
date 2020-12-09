@@ -11,7 +11,7 @@
   >
     <template #activator="{on}">
       <TheButtonWithToolTip
-        icon="mdi-link-variant"
+        :icon="buttonIcon"
         :title="vincularTooltipText"
         v-on="on"
       />
@@ -25,18 +25,20 @@
           {{ $t('vincular.solicitud') }}
         </v-card-title>
         <v-row class="px-4">
-          <TheResponsiveColumn v-if="ingresoAVincular">
+          <TheResponsiveColumn v-if="vincularConEgreso">
             <TheAsyncAutocompleteInput
               v-model="vinculacion.egreso"
+              type="number"
               item-text="idEgreso"
               :get-items-function="$egresoService.getEgresosById"
               :label="$t('egresos.titulo')"
               :rules="[$rl.required()]"
             />
           </TheResponsiveColumn>
-          <TheResponsiveColumn v-if="egresoAVincular">
+          <TheResponsiveColumn v-if="!vincularConEgreso">
             <TheAsyncAutocompleteInput
               v-model="vinculacion.ingreso"
+              type="number"
               item-text="idIngreso"
               :get-items-function="$ingresoService.getIngresosById"
               :label="$t('ingresos.titulo')"
@@ -50,7 +52,7 @@
               dense
               type="info"
             >
-              {{ mensajeIngresoDeID() }}
+              {{ mensajeIngresoDeId }}
             </v-alert>
           </v-col>
         </v-row>
@@ -71,11 +73,7 @@ export default {
     TheButtonWithToolTip
   },
   props: {
-    egresoAVincular: {
-      type: Object,
-      default: null
-    },
-    ingresoAVincular: {
+    objetoAVincular: {
       type: Object,
       default: null
     },
@@ -85,6 +83,22 @@ export default {
     },
     vincularTooltipText: {
       type: String,
+      required: true
+    },
+    mensajeIngresoDeId: {
+      type: String,
+      required: true
+    },
+    buttonIcon: {
+      type: String,
+      default: 'mdi-link-variant'
+    },
+    vincularConEgreso: {
+      type: Boolean,
+      default: true
+    },
+    vinculacionFunction: {
+      type: Function,
       required: true
     }
   },
@@ -96,20 +110,14 @@ export default {
     }
   },
   methods: {
-    mensajeIngresoDeID () {
-      return this.egresoAVincular ? this.$t('vincular.info_egreso_id')
-        : this.$t('vincular.info_ingreso_id')
-    },
     saveOrUpdate () {
       this.loading = true
-      const params = this.getIdsVinculacion()
-      this.$egresoService.vincularEgresoIngreso(params)
+      this.vinculacionFunction(this.vincularConEgreso, this.objetoAVincular, this.getIdVinculado())
         .then((response) => {
           if (response) {
             this.closeForm()
             this.toastSuccess(this.$t('saved-ok'))
             this.$emit('created', response)
-            this.updateIdIngresoAsociado()
           }
         }).finally(() => { this.loading = false })
     },
@@ -118,21 +126,8 @@ export default {
       this.showForm = false
       this.$refs.form.resetValidation()
     },
-    getIdsVinculacion () {
-      const ids = { }
-      if (this.egresoAVincular) {
-        ids.egresoId = this.egresoAVincular.idEgreso
-        ids.ingresoId = this.vinculacion.ingreso.idIngreso
-      } else {
-        ids.egresoId = this.vinculacion.egreso.idEgreso
-        ids.ingresoId = this.ingresoAVincular.idIngreso
-      }
-      return ids
-    },
-    updateIdIngresoAsociado () {
-      if (this.egresoAVincular) {
-        this.egresoAVincular.idIngresoAsociado = this.vinculacion.idIngreso
-      }
+    getIdVinculado () {
+      return this.vincularConEgreso ? this.vinculacion.egreso.idEgreso : this.vinculacion.ingreso.idIngreso
     }
   }
 }

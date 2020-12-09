@@ -1,6 +1,8 @@
 package utn.dds.tpAnual.db.entity.afip.tamanios;
 
 
+import utn.dds.tpAnual.db.entity.EntityInterface;
+
 import javax.persistence.*;
 
 /**
@@ -12,7 +14,7 @@ import javax.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "TAMANIO_EMPRESA")
-public abstract class TamanioEmpresa {
+public abstract class TamanioEmpresa implements EntityInterface {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,6 +56,10 @@ public abstract class TamanioEmpresa {
 		return obj instanceof TamanioEmpresa
 				&& this.getNombre().equals(((TamanioEmpresa)obj).getNombre());
 	}
-	
-	
+
+	@Override
+	public Long getId() {
+		return getTamanioId();
+	}
+
 }

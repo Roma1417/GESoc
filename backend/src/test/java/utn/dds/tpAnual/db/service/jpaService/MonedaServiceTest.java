@@ -16,10 +16,11 @@ import utn.dds.tpAnual.db.entity.ubicacion.Moneda;
 import utn.dds.tpAnual.db.repository.MonedaRepository;
 import utn.dds.tpAnual.db.scheduler.ProgramadorDeTareas;
 import utn.dds.tpAnual.db.service.jpaService.MonedaService;
+import utn.dds.tpAnual.db.service.mongo.repository.RegistroOperacionRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@MockBean(ProgramadorDeTareas.class)
+@MockBean({ProgramadorDeTareas.class, RegistroOperacionRepository.class })
 public class MonedaServiceTest {
 
     @Autowired

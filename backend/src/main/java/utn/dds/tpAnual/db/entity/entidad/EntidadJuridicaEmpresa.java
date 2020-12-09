@@ -117,5 +117,9 @@ public class EntidadJuridicaEmpresa extends EntidadJuridica {
 				.append("tamaño empresa", tamanioEmpresa.getNombre())
 			    .toString();
 	}
-	
+
+	@Override
+	public Long getId() {
+		return null;
+	}
 }

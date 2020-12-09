@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 @DiscriminatorValue("Admin")
 public class Admin extends TipoUsuario {
 
-	private final String descripcion = "Usuario administrador";
-
 	public Admin(){
 
 	}
@@ -23,4 +21,8 @@ public class Admin extends TipoUsuario {
 		return true;
 	}
 
+	@Override
+	public Long getId() {
+		return null;
+	}
 }

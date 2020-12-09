@@ -35,7 +35,4 @@ public class CriterioVinculacionOrdenValorPrimerIngreso extends CriterioVinculac
         return vincularListasYaOrdenadasPrimerIngreso(ingresos, egresos, reglas);
     }
 
-
-
-
 }

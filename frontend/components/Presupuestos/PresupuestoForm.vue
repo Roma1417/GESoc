@@ -43,6 +43,7 @@
           <TheResponsiveColumn>
             <TheAsyncAutocompleteInput
               v-model="presupuesto.egreso"
+              type="number"
               item-text="idEgreso"
               :get-items-function="$egresoService.getEgresosById"
               :label="$t('presupuestos.egreso_id')"

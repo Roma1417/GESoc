@@ -1,5 +1,7 @@
 package utn.dds.tpAnual.db.entity.transaccion;
 
+import utn.dds.tpAnual.db.entity.EntityInterface;
+
 import javax.persistence.*;
 
 /**
@@ -10,7 +12,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "MEDIO_PAGO")
-public class MedioPago {
+public class MedioPago implements EntityInterface {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,5 +44,10 @@ public class MedioPago {
 
 	public void setInstrumentoPago(String instrumentoPago) {
 		this.instrumentoPago = instrumentoPago;
+	}
+
+	@Override
+	public Long getId() {
+		return null;
 	}
 }

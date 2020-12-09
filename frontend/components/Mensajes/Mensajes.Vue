@@ -2,10 +2,10 @@
   <TheLayoutWithHeader title="mensajes.menu" :loading="loading">
     <template #body>
       <TheMessageDialog
-      v-model="mensaje.mostrar"
-      :header-message="mensaje.asunto"
-      :body-message="mensaje.cuerpo"
-      @onAccept="closeDialog"
+        v-model="mensaje.mostrar"
+        :header-message="mensaje.asunto"
+        :body-message="mensaje.cuerpo"
+        @onAccept="closeDialog"
       />
       <TheFilterTable
         :page-info.sync="pageInfo"
@@ -15,7 +15,7 @@
         @change="getMensajes()"
         @click:row="mostrarItem"
       >
-      <template #[`item.asunto`]="{ item }">
+        <template #[`item.asunto`]="{ item }">
           {{ ajustarTexto(item.asunto, 22) }}
         </template>
         <template #[`item.cuerpo`]="{ item }">

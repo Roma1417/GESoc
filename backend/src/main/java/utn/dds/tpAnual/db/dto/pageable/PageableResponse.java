@@ -5,7 +5,7 @@ import utn.dds.tpAnual.db.dto.StandardDTO;
 
 import java.util.List;
 
-public class PageableResponse <DTOType extends  StandardDTO, EntityType>{
+public class PageableResponse <DTOType extends StandardDTO, EntityType>{
     private Long total;
     private List<DTOType> data;
 
