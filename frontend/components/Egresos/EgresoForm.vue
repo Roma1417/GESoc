@@ -1,5 +1,6 @@
 <template>
   <TheFormDialog
+    ref="form"
     v-model="showForm"
     :header-message="titleText"
     :loading="loading"
@@ -144,6 +145,9 @@ export default {
     showForm (val) {
       if (val && this.item) {
         this.egreso = cloneDeep(this.item)
+      }
+      if (val && this.$refs.form) {
+        this.$refs.form.resetValidation()
       }
     }
   },
