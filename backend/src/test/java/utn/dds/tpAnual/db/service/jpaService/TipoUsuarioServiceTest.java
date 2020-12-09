@@ -10,12 +10,13 @@ import utn.dds.tpAnual.db.entity.usuario.Estandar;
 import utn.dds.tpAnual.db.entity.usuario.TipoUsuario;
 import utn.dds.tpAnual.db.scheduler.ProgramadorDeTareas;
 import utn.dds.tpAnual.db.service.jpaService.TipoUsuarioService;
+import utn.dds.tpAnual.db.service.mongo.repository.RegistroOperacionRepository;
 
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@MockBean(ProgramadorDeTareas.class)
+@MockBean({ProgramadorDeTareas.class, RegistroOperacionRepository.class })
 public class TipoUsuarioServiceTest {
 
     @Autowired

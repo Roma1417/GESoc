@@ -22,6 +22,7 @@ import utn.dds.tpAnual.db.service.jpaService.CriterioVinculacionService;
 import utn.dds.tpAnual.db.service.jpaService.EgresoService;
 import utn.dds.tpAnual.db.service.jpaService.EntidadService;
 import utn.dds.tpAnual.db.service.jpaService.IngresoService;
+import utn.dds.tpAnual.db.service.mongo.repository.RegistroOperacionRepository;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -29,7 +30,7 @@ import java.util.Arrays;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
-@MockBean(ProgramadorDeTareas.class)
+@MockBean({ProgramadorDeTareas.class, RegistroOperacionRepository.class })
 @DataJpaTest(showSql=false)
 @DirtiesContext
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)

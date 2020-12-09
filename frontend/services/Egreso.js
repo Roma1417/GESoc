@@ -35,7 +35,15 @@ export default class User {
     return this.$axios.postOrFalse('/api/transaccion/egreso', egreso)
   }
 
-  vincularEgresoIngreso (params) {
+  vincularEgresoIngreso (vincularConEgreso, objetoAVincular, idVinculado) {
+    const params = { }
+    if (vincularConEgreso) {
+      params.egresoId = idVinculado
+      params.ingresoId = objetoAVincular.idIngreso
+    } else {
+      params.egresoId = objetoAVincular.idEgreso
+      params.ingresoId = idVinculado
+    }
     return this.$axios.postOrFalse('/api/transaccion/vincular', params)
   }
 }

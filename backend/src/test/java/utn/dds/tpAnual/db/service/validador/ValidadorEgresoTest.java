@@ -14,12 +14,13 @@ import utn.dds.tpAnual.db.entity.transaccion.Egreso;
 import utn.dds.tpAnual.db.scheduler.ProgramadorDeTareas;
 import utn.dds.tpAnual.db.service.jpaService.ConfiguracionService;
 import utn.dds.tpAnual.db.service.jpaService.EgresoService;
+import utn.dds.tpAnual.db.service.mongo.repository.RegistroOperacionRepository;
 
 
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
-@MockBean(ProgramadorDeTareas.class)
+@MockBean({ProgramadorDeTareas.class, RegistroOperacionRepository.class })
 @DataJpaTest(showSql=false)
 @DirtiesContext
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)

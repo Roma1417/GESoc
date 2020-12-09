@@ -27,16 +27,16 @@ public abstract class CustomJPAService <T> {
     public void save (T entity){
         Long id = ((EntityInterface) entity).getId();
         if (id != null && (entityManager.contains(entity) || entityManager.find(entity.getClass(), id) != null)){
-            registroOperacionService.registrarModificacion(entity, entity.getClass().getSimpleName());
+            registroOperacionService.registrarModificacion(getEntity(entity), entity.getClass().getSimpleName());
         } else {
-            registroOperacionService.registrarAlta(entity, entity.getClass().getSimpleName());
+            registroOperacionService.registrarAlta(getEntity(entity), entity.getClass().getSimpleName());
         }
         getRepository().save(entity);
     }
 
     public void delete(T entity){
         getRepository().delete(entity);
-        registroOperacionService.registrarBaja(entity, entity.getClass().getSimpleName());
+        registroOperacionService.registrarBaja(getEntity(entity), entity.getClass().getSimpleName());
     }
 
     public void saveAll (Collection<T> entities){
@@ -62,5 +62,13 @@ public abstract class CustomJPAService <T> {
 
     public Optional<T> findById(Long id){
         return getRepository().findById(id);
+    }
+
+    public boolean puedePersistirseEnMongo(){
+        return true;
+    }
+
+    public Object getEntity(Object entity) {
+        return puedePersistirseEnMongo() ? entity : "Objeto no persistible por recursividad";
     }
 }

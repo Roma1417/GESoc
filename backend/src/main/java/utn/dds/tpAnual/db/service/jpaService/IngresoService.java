@@ -69,7 +69,11 @@ import java.util.Optional;
         Pageable pageable = pageableRequest.toPageable();
         Usuario usuario = usuarioService.getUsuarioByUsername(username);
         return ingresoRepository.getAllRelatedById(usuario.getUsuarioId(), pageable, ingresoId);
+    }
 
+    @Override
+    public boolean puedePersistirseEnMongo() {
+        return false;
     }
 
 }

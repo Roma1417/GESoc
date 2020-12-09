@@ -69,7 +69,7 @@
             <TheTextInput
               v-model="egreso.cantidadPresupuestosMinimos"
               :label="$t('egresos.presupuestos_minimos')"
-              :rules="[$rl.required(),$rl.positive()]"
+              :rules="[$rl.required(),$rl.positiveOrZero()]"
             />
           </TheResponsiveColumn>
           <TheResponsiveColumn>

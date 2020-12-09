@@ -32,6 +32,9 @@ import java.util.Optional;
     @Autowired
     private UsuarioService usuarioService;
 
+    @Autowired
+    private ProyectoFinanciamientoService proyectoFinanciamientoService;
+
     @Override
     public JpaRepository<Egreso, Long> getRepository() {
         return egresoRepository;
@@ -91,5 +94,10 @@ import java.util.Optional;
 
     public Optional<Egreso> findFullRelatedById(Long egresoID, Long userID) {
         return egresoRepository.findFullRelatedById(egresoID, userID);
+    }
+
+    @Override
+    public boolean puedePersistirseEnMongo() {
+        return false;
     }
 }

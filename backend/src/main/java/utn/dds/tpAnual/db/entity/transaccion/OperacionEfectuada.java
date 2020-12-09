@@ -18,7 +18,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "OPERACION_EFECTUADA")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class OperacionEfectuada extends Operacion implements EntityInterface {
+public abstract class OperacionEfectuada extends Operacion {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "OPERACION_EFECTUADA_ID")

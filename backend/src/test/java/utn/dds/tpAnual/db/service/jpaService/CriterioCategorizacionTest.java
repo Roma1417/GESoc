@@ -13,10 +13,11 @@ import utn.dds.tpAnual.db.entity.categorizacion.categoria.Categoria;
 import utn.dds.tpAnual.db.entity.categorizacion.criterioCategorizacion.CriterioCategorizacion;
 import utn.dds.tpAnual.db.entity.transaccion.Item;
 import utn.dds.tpAnual.db.scheduler.ProgramadorDeTareas;
+import utn.dds.tpAnual.db.service.mongo.repository.RegistroOperacionRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@MockBean(ProgramadorDeTareas.class)
+@MockBean({ProgramadorDeTareas.class, RegistroOperacionRepository.class })
 public class CriterioCategorizacionTest {
 
 	@Autowired

@@ -45,6 +45,10 @@ public class Egreso extends OperacionEfectuada {
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Ingreso ingreso;
 
+	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	private ProyectoFinanciamiento proyecto;
+
+
 	public Egreso(DocumentoComercial documentoComercial, Entidad entidadRealizadora, int codigoOperacion,
 			List<DetalleOperacion> detallesOperacion, LocalDate fechaOperacion, MedioPago medioPago,
 			int cantidadPresupuestosMinimos, CriterioCompra criterioCompra, List<Presupuesto> presupuestos,
@@ -93,7 +97,7 @@ public class Egreso extends OperacionEfectuada {
 	}
 
 	public int getCantidadPresupuestosMinimos() {
-		return cantidadPresupuestosMinimos;
+		return proyecto != null ? proyecto.getPresupuestosMinimos() : cantidadPresupuestosMinimos;
 	}
 	
 	public CriterioCompra getCriterioCompra() {
@@ -124,8 +128,11 @@ public class Egreso extends OperacionEfectuada {
 		this.ingreso = ingreso;
 	}
 
-	@Override
-	public Long getId() {
-		return null;
+	public ProyectoFinanciamiento getProyecto() {
+		return proyecto;
+	}
+
+	public void setProyecto(ProyectoFinanciamiento proyecto) {
+		this.proyecto = proyecto;
 	}
 }
