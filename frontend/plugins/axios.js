@@ -8,7 +8,7 @@ export default function ({ $axios, store, redirect, app }) {
   }
   $axios.onRequest((request) => {
     request.headers.common.intercepted = 'true'
-    request.headers.common['Access-Control-Allow-Credential'] = true
+    request.headers.common['Access-Control-Allow-Credentials'] = true
     request.headers.common['Access-Control-Allow-Headers'] = '*'
     request.headers.common['Access-Control-Allow-Origin'] = 'https://gesoc-app.herokuapp.com/'
     return request
