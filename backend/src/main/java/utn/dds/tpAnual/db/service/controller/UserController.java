@@ -12,6 +12,7 @@ import utn.dds.tpAnual.db.entity.usuario.Usuario;
 import utn.dds.tpAnual.db.service.business.MensajeResourceBean;
 import utn.dds.tpAnual.db.service.business.UsuarioResourceBean;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
@@ -40,7 +41,11 @@ public class UserController {
                          HttpServletResponse response) {
         UserDTO userDTO = usuarioResourceBean.login(username, pwd);
         String token = usuarioResourceBean.getJWTToken(username);
-        response.setHeader("Set-Cookie", "Authorization="+token+"; HttpOnly; SameSite=none; Secure; Max-Age=600000; Path=null");
+        Cookie cookie = new Cookie("Authorization", token);
+        cookie.setHttpOnly(true);
+        cookie.setMaxAge(600000);
+        cookie.setPath(null);
+        response.setHeader("Set-Cookie", "Authorization="+token+"; SameSite=none; Secure");
         return userDTO;
     }
 
