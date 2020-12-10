@@ -11,6 +11,7 @@ import utn.dds.tpAnual.db.entity.transaccion.Ingreso;
 import utn.dds.tpAnual.db.service.business.IngresoResourceBean;
 
 @RestController
+@CrossOrigin(origins="https://gesoc-app.herokuapp.com", allowCredentials = "true")
 @RequestMapping("/api/transaccion")
 public class IngresoController {
 
