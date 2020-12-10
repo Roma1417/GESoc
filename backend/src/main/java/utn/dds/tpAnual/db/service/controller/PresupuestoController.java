@@ -14,6 +14,7 @@ import utn.dds.tpAnual.db.service.business.EgresoResourceBean;
 import utn.dds.tpAnual.db.service.business.PresupuestoResourceBean;
 
 @RestController
+@CrossOrigin(origins="https://gesoc-app.herokuapp.com", allowCredentials = "true")
 @RequestMapping("/api/transaccion")
 public class PresupuestoController {
 
