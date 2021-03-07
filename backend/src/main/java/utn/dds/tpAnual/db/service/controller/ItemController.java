@@ -10,6 +10,7 @@ import utn.dds.tpAnual.db.entity.transaccion.Item;
 import utn.dds.tpAnual.db.service.business.ItemResourceBean;
 
 @RestController
+@CrossOrigin(origins="https://gesoc-app.herokuapp.com", allowCredentials = "true")
 @RequestMapping("/api/item")
 public class ItemController {
 

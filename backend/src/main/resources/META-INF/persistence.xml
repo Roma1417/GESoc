@@ -10,9 +10,9 @@
         <properties>
             <property name = "hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name = "hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/dds_tp"/>
-            <property name="hibernate.connection.username" value="dds"/>
-            <property name="hibernate.connection.password" value="dds"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://remotemysql.com:3306/uKRxSorjyw"/>
+            <property name="hibernate.connection.username" value="uKRxSorjyw"/>
+            <property name="hibernate.connection.password" value="SMvjkjga31"/>
             <property name="hibernate.show_sql" value="false"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>
